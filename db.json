@@ -1,0 +1,76 @@
+{
+  "users": [
+    {
+      "email": "quanghiep294@gmail.com",
+      "password": "Hiep2941",
+      "name": "NGUYỄN QUANG HIỆP",
+      "dob": "2020-03-11",
+      "gender": "",
+      "phone": "0962675310",
+      "address": "nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương, nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương",
+      "createdAt": "2020-03-11T10:39:45.194Z",
+      "updatedAt": "2020-03-11T10:39:45.194Z",
+      "id": 1
+    },
+    {
+      "email": "quanghiep294@gmail.com",
+      "password": "Hiep2941",
+      "name": "NGUYỄN QUANG HIỆP",
+      "dob": "",
+      "gender": "",
+      "phone": "0962675310",
+      "address": "nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương, nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương",
+      "createdAt": "2020-03-11T10:54:56.996Z",
+      "updatedAt": "2020-03-11T10:54:57.010Z",
+      "id": 2
+    },
+    {
+      "email": "quanghiep294@gmail.com",
+      "password": "Hiep2941",
+      "name": "NGUYỄN QUANG HIỆP",
+      "dob": "",
+      "gender": "",
+      "phone": "0962675310",
+      "address": "nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương, nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương",
+      "createdAt": "2020-03-11T10:56:03.674Z",
+      "updatedAt": "2020-03-11T10:56:03.675Z",
+      "id": 3
+    },
+    {
+      "email": "quanghiep294@gmail.com",
+      "password": "Hiep2941",
+      "name": "NGUYỄN QUANG HIỆP",
+      "dob": "",
+      "gender": "",
+      "phone": "0962675310",
+      "address": "nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương, nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương",
+      "createdAt": "2020-03-11T10:58:10.873Z",
+      "updatedAt": "2020-03-11T10:58:10.873Z",
+      "id": 4
+    },
+    {
+      "email": "quanghiep294@gmail.com",
+      "password": "Hiep2941",
+      "name": "NGUYỄN QUANG HIỆP",
+      "dob": "",
+      "gender": "",
+      "phone": "0962675310",
+      "address": "nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương, nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương",
+      "createdAt": "2020-03-11T11:05:23.035Z",
+      "updatedAt": "2020-03-11T11:05:23.036Z",
+      "id": 5
+    },
+    {
+      "email": "quanghiep294@gmail.com",
+      "password": "Hiep2941",
+      "name": "NGUYỄN QUANG HIỆP",
+      "dob": "2020-03-07",
+      "gender": "",
+      "phone": "0962675310",
+      "address": "nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương, nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương",
+      "createdAt": "2020-03-11T11:40:26.965Z",
+      "updatedAt": "2020-03-11T11:40:26.965Z",
+      "id": 6
+    }
+  ]
+}
