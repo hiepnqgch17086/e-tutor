@@ -5,12 +5,13 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom'
-import { SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE, LANDING_PAGE } from './routes'
+import { SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE, LANDING_PAGE, PROFILE_PAGE } from './routes'
 import SignInPage from './pages/SignInPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import HomePage from './pages/HomePage';
 import LandingPage from './pages/LandingPage';
+import ProfilePage from './pages/ProfilePage';
 
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
         <Route exact path={LANDING_PAGE} component={LandingPage} />
         <PrivateRoute exact path={HOME_PAGE}>
           <HomePage />
+        </PrivateRoute>
+        <PrivateRoute exact path={PROFILE_PAGE}>
+          <ProfilePage />
         </PrivateRoute>
       </Switch>
       <ToastContainer />
