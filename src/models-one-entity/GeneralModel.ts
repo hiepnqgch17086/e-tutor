@@ -104,15 +104,6 @@ const GeneralModel = types.compose(
         const message = self._getOneConstraint()
         if (message) throw new Error(message)
 
-        // set date
-        // self._setCreatedAtNow()
-        // self._setUpdatedAtNow()
-
-        // set id for new
-        //@ts-ignore, reference to this._setCustomId()
-        // self._setCustomId()
-
-        // get key value in need,
         //@ts-ignore, reference to this._getMainProperties()
         const snapshot = self._getProperties([...self._getMainProperties()])
         if (typeof snapshot === 'string') throw new Error(snapshot)
