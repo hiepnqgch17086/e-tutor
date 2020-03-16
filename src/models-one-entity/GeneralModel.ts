@@ -162,10 +162,12 @@ const GeneralModel = types.compose(
         if (typeof snapshotUpdate === 'string') throw new Error(snapshotUpdate)
 
         // @ts-ignore, reference to this._getReference()
-        self._getReference().update(snapshotUpdate)
+        const url = propUrl || self._getReference()
+        const res = await API.put(url, snapshotUpdate)
+        const data = res.data
         return {
           isSuccess: true,
-          data: snapshotUpdate
+          data
         }
       } catch ({ message }) {
         console.log('setDatabaseUpdate():', message)

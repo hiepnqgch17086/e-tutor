@@ -2,6 +2,7 @@ import { types, clone, getSnapshot } from "mobx-state-tree";
 import setSnapshotNew from "../../models-one-action/setSnapshotNew";
 import { User } from "../../models-one-entity/Users";
 import ProfilePageData from "../ProfilePage/data";
+import { toast } from "react-toastify";
 
 const ProfileEditData = types.compose(
   'ProfilePage',
@@ -16,6 +17,17 @@ const ProfileEditData = types.compose(
       const { currentUser } = ProfilePageData
       const cloneUser = clone(currentUser)
       self.cloneCurrentUser.setSnapshotNew(getSnapshot(cloneUser))
+    },
+    onSaveForm: async function () {
+      const { currentUser } = ProfilePageData
+      // save in server
+      const { errorMessage } = await self.cloneCurrentUser.setDatabaseUpdateProfile()
+      if (errorMessage) {
+        toast.error(errorMessage)
+        return
+      }
+      // save in client
+      currentUser.setSnapshotUpdate(getSnapshot(self.cloneCurrentUser))
     }
   }))
   .create({})

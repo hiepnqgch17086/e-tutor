@@ -8,11 +8,12 @@ import gender from "../models-one-prop/gender";
 import phone from "../models-one-prop/phone";
 import address from "../models-one-prop/address";
 import GeneralModel from "./GeneralModel";
-import { ErrorMessage } from "./types";
+import { ErrorMessage, Response } from "./types";
 import API from "../api";
 import { setLocalStorageAuthToken, getLocalStorageAuthToken } from "../routes";
 import GeneralModelList from "./GeneralModelList";
 // import permission from "../models-one-prop/permission";
+const defaultSnapshot = {}
 
 export const IS_ADMIN = '1'
 export const IS_TUTOR = '2'
@@ -63,6 +64,51 @@ export const User = types.compose(
         self._getPasswordConstraint(),
         self._getRepeatPasswordConstraint()
       ]
+    },
+    setDatabaseUpdateProfile: async function (snapshot: object = defaultSnapshot): Promise<Response> {
+      /**
+       * if snapshot, update with snapshot, else update with self
+       */
+      try {
+        let propertiesUpdated: any
+        if (snapshot !== defaultSnapshot) {
+          const errorMessage = self.setSnapshotUpdate(snapshot)
+          if (errorMessage) throw new Error(errorMessage)
+          propertiesUpdated = Object.keys(snapshot)
+        }
+        // validate
+        const validation = [
+          self._getPhoneConstraint(),
+          self._getEmailConstraint(),
+        ]
+        for (const constraint of validation) {
+          if (constraint) throw new Error(constraint)
+        }
+
+        // set date
+        self._setUpdatedAtNow()
+
+        // get key value in need,
+        //@ts-ignore, reference to this._getMainProperties()
+        const updatedProps = propertiesUpdated ? [...propertiesUpdated, 'updatedAt'] : [...self._getMainProperties(), 'updatedAt']
+        const snapshotUpdate = self._getProperties(updatedProps)
+        if (typeof snapshotUpdate === 'string') throw new Error(snapshotUpdate)
+
+        // @ts-ignore, reference to this._getReference()
+        const url = self._getReference()
+        const res = await API.put(url, snapshotUpdate)
+        const data = res.data
+        return {
+          isSuccess: true,
+          data
+        }
+      } catch ({ message }) {
+        console.log('setDatabaseUpdate():', message)
+        return {
+          isSuccess: false,
+          errorMessage: message
+        }
+      }
     },
     /**
      * Login

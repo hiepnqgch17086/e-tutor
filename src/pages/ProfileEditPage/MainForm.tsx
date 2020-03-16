@@ -7,7 +7,8 @@ import { toast } from 'react-toastify';
 import { defaultOfUser } from '../../models-one-entity/Users';
 
 const MainForm = ({
-  cloneCurrentUser = defaultOfUser
+  cloneCurrentUser = defaultOfUser,
+  onSaveForm = () => { }
 }) => {
   const [isCallingApi, setIsCallingApi] = useState(false)
   return (
@@ -92,46 +93,9 @@ const MainForm = ({
             }}
           />
         </FormGroup>
-
-        {/* Password */}
-        <FormGroup>
-          <Label for="examplePassword">Password</Label>
-          <Input type="password" name="password" id="examplePassword" placeholder="password placeholder"
-            value={cloneCurrentUser.password}
-            onChange={e => {
-              cloneCurrentUser.setPassword(e.target.value)
-              // console.log(currentUser.password)
-            }}
-          />
-        </FormGroup>
-
-        {/* Repeat password */}
-        <FormGroup>
-          <Label for="exampleRepeatPassword">Repeat Password</Label>
-          <Input type="password" name="password" id="exampleRepeatPassword" placeholder="repeat password"
-            value={cloneCurrentUser.repeatPassword}
-            onChange={e => {
-              cloneCurrentUser.setRepeatPassword(e.target.value)
-              // console.log(currentUser.repeatPassword)
-            }}
-          />
-        </FormGroup>
-        <div>
-          Have an account?
-            <Link to={SIGN_IN_PAGE}> Login</Link> instead
-          </div>
         <Button
           disabled={isCallingApi}
-          onClick={async () => {
-            setIsCallingApi(true)
-            const err = await cloneCurrentUser.setDatabaseUpdate()
-            setIsCallingApi(false)
-            if (err) {
-              toast.error(err)
-              return
-            }
-
-          }}
+          onClick={onSaveForm}
         >Submit</Button>
       </Col>
     </Row>

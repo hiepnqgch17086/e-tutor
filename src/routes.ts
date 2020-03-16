@@ -4,6 +4,7 @@ export const ACCOUNT_PAGE = '/account'
 export const HOME_PAGE = '/home'
 export const ADMIN_PAGE = '/admin'
 export const PROFILE_PAGE = '/profile'
+export const PROFILE_EDIT_PAGE = '/profile-edit'
 
 
 export const getIsAuthorized = () => {

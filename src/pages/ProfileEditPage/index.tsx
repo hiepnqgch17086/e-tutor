@@ -5,7 +5,7 @@ import { Container } from 'reactstrap'
 import Data from './data'
 
 const SignUpPage = () => {
-  const { cloneCurrentUser } = Data
+  const { cloneCurrentUser, onSaveForm } = Data
   useEffect(() => {
     // effect
     Data.onDidMount()
@@ -15,6 +15,7 @@ const SignUpPage = () => {
       <h1 className="mt-5">Register</h1>
       <MainForm
         cloneCurrentUser={cloneCurrentUser}
+        onSaveForm={onSaveForm}
       />
     </Container>
   )
