@@ -121,8 +121,7 @@ export const User = types.compose(
 
         const data = response.data
         // data.permissions = permissions
-        self.setSnapshotNew(data)
-        // console.log(JSON.stringify(data))
+        self.setSnapshotUpdate(data)
         // @ts-ignore
         response2.data.map(item => {
           // @ts-ignore
