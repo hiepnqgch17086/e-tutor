@@ -12,6 +12,11 @@ import { ErrorMessage } from "./types";
 import API from "../api";
 import { setLocalStorageAuthToken } from "../routes";
 import GeneralModelList from "./GeneralModelList";
+import permission from "../models-one-prop/permission";
+
+export const IS_ADMIN = '1'
+export const IS_TUTOR = '2'
+export const IS_STUDENT = '3'
 
 const UserProps = types.compose(
   id, email, password, name, dob, gender, phone, address,
@@ -22,9 +27,11 @@ export const User = types.compose(
   'User',
   UserProps,
   GeneralModel,
+  types.model({
+    permissions: types.array(permission)
+  })
 )
   .actions(self => ({
-
     /**
      * @override
      */
@@ -60,6 +67,7 @@ export const User = types.compose(
         setLocalStorageAuthToken(JSON.stringify(data))
         return ''
       } catch (error) {
+        console.log(error.message)
         return 'Something went wrong!'
       }
     },
