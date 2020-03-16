@@ -105,8 +105,8 @@ const GeneralModel = types.compose(
         if (message) throw new Error(message)
 
         // set date
-        self._setCreatedAtNow()
-        self._setUpdatedAtNow()
+        // self._setCreatedAtNow()
+        // self._setUpdatedAtNow()
 
         // set id for new
         //@ts-ignore, reference to this._setCustomId()
@@ -114,7 +114,7 @@ const GeneralModel = types.compose(
 
         // get key value in need,
         //@ts-ignore, reference to this._getMainProperties()
-        const snapshot = self._getProperties([...self._getMainProperties(), 'createdAt', 'updatedAt'])
+        const snapshot = self._getProperties([...self._getMainProperties()])
         if (typeof snapshot === 'string') throw new Error(snapshot)
 
         // @ts-ignore, reference to this._getReference()

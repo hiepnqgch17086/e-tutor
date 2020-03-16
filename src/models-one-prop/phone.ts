@@ -6,7 +6,7 @@ const phone = types.model({
 })
   .actions(self => ({
     _getPhoneConstraint(): string {
-      const regex = /^0[0-9]{8,}$/
+      const regex = /^0[0-9]{9,}$/
       if (!regex.test(self.phone)) {
         this._setIsPhoneError(true)
         return 'Invalid Phone!'

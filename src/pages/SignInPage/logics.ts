@@ -10,5 +10,5 @@ export const onSignIn = async () => {
     toast.error(errorMessage)
     return
   }
-  // window.location.href = HOME_PAGE;
+  window.location.href = HOME_PAGE;
 }

@@ -1,11 +1,11 @@
 import { types } from "mobx-state-tree";
 
 const createdAt = types.model({
-  createdAt: types.maybeNull(types.string)
+  createdAt: types.maybeNull(types.number)
 })
   .actions(self => ({
     _setCreatedAtNow(): void {
-      self.createdAt = (new Date()).toDateString()
+      self.createdAt = Date.now()
     }
   }))
 

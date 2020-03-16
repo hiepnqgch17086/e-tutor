@@ -86,11 +86,11 @@ export const User = types.compose(
         }
 
         // set date
-        self._setUpdatedAtNow()
+        // self._setUpdatedAtNow()
 
         // get key value in need,
         //@ts-ignore, reference to this._getMainProperties()
-        const updatedProps = propertiesUpdated ? [...propertiesUpdated, 'updatedAt'] : [...self._getMainProperties(), 'updatedAt']
+        const updatedProps = propertiesUpdated ? [...propertiesUpdated] : [...self._getMainProperties()]
         const snapshotUpdate = self._getProperties(updatedProps)
         if (typeof snapshotUpdate === 'string') throw new Error(snapshotUpdate)
 

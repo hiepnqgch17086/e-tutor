@@ -71,6 +71,7 @@ const MainForm = ({
         <FormGroup>
           <Label for="dateOfBirth">Date Of Birth</Label>
           <Input type="date" name="dateOfBirth" id="dateOfBirth" placeholder="dateOfBirth"
+            value={cloneCurrentUser.dob}
             onChange={e => {
               //@ts-ignore
               cloneCurrentUser.setDob(e.target.value)
