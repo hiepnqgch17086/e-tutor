@@ -107,6 +107,8 @@ export const User = types.compose(
     }
   }))
 
+export const defaultOfUser = User.create({})
+
 const Users = types.compose(
   'Users',
   GeneralModelList,

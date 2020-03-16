@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom'
 import { SIGN_IN_PAGE } from '../../routes'
 import { Button, FormGroup, Label, Input, Col, Row } from 'reactstrap';
 import { toast } from 'react-toastify';
-import ProfilePageData from '../ProfilePage/data';
+import { defaultOfUser } from '../../models-one-entity/Users';
 
-const MainForm = () => {
-  const { currentUser } = ProfilePageData
+const MainForm = ({
+  cloneCurrentUser = defaultOfUser
+}) => {
   const [isCallingApi, setIsCallingApi] = useState(false)
   return (
     <Row>
@@ -16,9 +17,9 @@ const MainForm = () => {
         <FormGroup>
           <Label for="exampleName">Name</Label>
           <Input type="text" name="name" id="exampleName" placeholder="name"
-            value={currentUser.name}
+            value={cloneCurrentUser.name}
             onChange={(e) => {
-              currentUser.setName(e.target.value)
+              cloneCurrentUser.setName(e.target.value)
               // console.log(currentUser.name)
             }}
           />
@@ -28,9 +29,9 @@ const MainForm = () => {
         <FormGroup>
           <Label for="exampleSelect">Gender</Label>
           <Input type="select" name="select" id="exampleSelect"
-            value={currentUser.gender}
+            value={cloneCurrentUser.gender}
             onChange={(e) => {
-              currentUser.setGender(e.target.value)
+              cloneCurrentUser.setGender(e.target.value)
               // console.log(currentUser.gender)
             }}
           >
@@ -45,9 +46,9 @@ const MainForm = () => {
         <FormGroup>
           <Label for="examplePhone">Phone</Label>
           <Input type="text" name="phone" id="examplePhone" placeholder="0962xxxxxx"
-            value={currentUser.phone}
+            value={cloneCurrentUser.phone}
             onChange={e => {
-              currentUser.setPhone(e.target.value)
+              cloneCurrentUser.setPhone(e.target.value)
               // console.log(currentUser.phone)
             }}
           />
@@ -57,9 +58,9 @@ const MainForm = () => {
         <FormGroup>
           <Label for="address">Address</Label>
           <Input type="text" name="address" id="address" placeholder="address"
-            value={currentUser.address}
+            value={cloneCurrentUser.address}
             onChange={e => {
-              currentUser.setAddress(e.target.value)
+              cloneCurrentUser.setAddress(e.target.value)
               // console.log(currentUser.address)
             }}
           />
@@ -71,12 +72,11 @@ const MainForm = () => {
           <Input type="date" name="dateOfBirth" id="dateOfBirth" placeholder="dateOfBirth"
             onChange={e => {
               //@ts-ignore
-              currentUser.setDob(e.target.value)
+              cloneCurrentUser.setDob(e.target.value)
               // console.log(currentUser.dob)
             }}
           />
         </FormGroup>
-
       </Col>
 
 
@@ -85,9 +85,9 @@ const MainForm = () => {
         <FormGroup>
           <Label for="exampleEmail">Email</Label>
           <Input type="email" name="email" id="exampleEmail" placeholder="email"
-            value={currentUser.email}
+            value={cloneCurrentUser.email}
             onChange={e => {
-              currentUser.setEmail(e.target.value)
+              cloneCurrentUser.setEmail(e.target.value)
               // console.log(currentUser.email)
             }}
           />
@@ -97,9 +97,9 @@ const MainForm = () => {
         <FormGroup>
           <Label for="examplePassword">Password</Label>
           <Input type="password" name="password" id="examplePassword" placeholder="password placeholder"
-            value={currentUser.password}
+            value={cloneCurrentUser.password}
             onChange={e => {
-              currentUser.setPassword(e.target.value)
+              cloneCurrentUser.setPassword(e.target.value)
               // console.log(currentUser.password)
             }}
           />
@@ -109,9 +109,9 @@ const MainForm = () => {
         <FormGroup>
           <Label for="exampleRepeatPassword">Repeat Password</Label>
           <Input type="password" name="password" id="exampleRepeatPassword" placeholder="repeat password"
-            value={currentUser.repeatPassword}
+            value={cloneCurrentUser.repeatPassword}
             onChange={e => {
-              currentUser.setRepeatPassword(e.target.value)
+              cloneCurrentUser.setRepeatPassword(e.target.value)
               // console.log(currentUser.repeatPassword)
             }}
           />
@@ -124,7 +124,7 @@ const MainForm = () => {
           disabled={isCallingApi}
           onClick={async () => {
             setIsCallingApi(true)
-            const err = await currentUser.setDatabaseUpdate()
+            const err = await cloneCurrentUser.setDatabaseUpdate()
             setIsCallingApi(false)
             if (err) {
               toast.error(err)
