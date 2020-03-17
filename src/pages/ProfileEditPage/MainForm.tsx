@@ -84,7 +84,7 @@ const MainForm = ({
 
       <Col md="6" sm="12">
         {/* Email */}
-        <FormGroup>
+        {/* <FormGroup>
           <Label for="exampleEmail">Email</Label>
           <Input type="email" name="email" id="exampleEmail" placeholder="email"
             value={cloneCurrentUser.email}
@@ -93,7 +93,7 @@ const MainForm = ({
               // console.log(currentUser.email)
             }}
           />
-        </FormGroup>
+        </FormGroup> */}
         <Button
           disabled={isCallingApi}
           onClick={onSaveForm}

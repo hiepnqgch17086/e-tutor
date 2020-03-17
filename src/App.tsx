@@ -13,6 +13,7 @@ import HomePage from './pages/HomePage';
 import LandingPage from './pages/LandingPage';
 import ProfilePage from './pages/ProfilePage';
 import ProfileEditPage from './pages/ProfileEditPage';
+import './firebaseConfig'
 
 
 function App() {

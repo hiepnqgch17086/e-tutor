@@ -7,9 +7,11 @@ import { PROFILE_PAGE } from '../../routes'
 const HomePage = () => {
   return (
     <div>
-      <Button>
-        <Link to={PROFILE_PAGE}>To Profile</Link>
-      </Button>
+      <Link to={PROFILE_PAGE}>
+        <Button>
+          Profile Page
+        </Button>
+      </Link>
     </div>
   )
 }

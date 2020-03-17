@@ -8,10 +8,11 @@ import { PROFILE_EDIT_PAGE } from '../../routes'
 const ProfilePage = () => {
   return (
     <div>
-      <Button>
-        <Link to={PROFILE_EDIT_PAGE}>To edit Profile</Link>
-      </Button>
-      {JSON.stringify(Data.currentUser)}
+      <Link to={PROFILE_EDIT_PAGE}>
+        <Button>
+          Edit Profile
+        </Button>
+      </Link>
     </div>
   )
 }
