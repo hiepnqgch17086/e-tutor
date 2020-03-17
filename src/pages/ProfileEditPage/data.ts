@@ -28,6 +28,7 @@ const ProfileEditData = types.compose(
       }
       // save in client
       currentUser.setSnapshotUpdate(getSnapshot(self.cloneCurrentUser))
+      window.history.back();
     }
   }))
   .create({})

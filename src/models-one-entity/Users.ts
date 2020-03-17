@@ -47,7 +47,7 @@ export const User = types.compose(
      * @override
      */
     _getMainProperties(): Array<string> {
-      return ['email', 'password', 'name', 'dob', 'gender', 'phone', 'address']
+      return ['email', 'password', 'name', 'dob', 'gender', 'phone', 'address', 'avatar']
     },
     /**
      * @override

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { Link } from 'react-router-dom'
 import { SIGN_IN_PAGE } from '../../routes'
-import { Button, FormGroup, Label, Input, Col, Row, FormText } from 'reactstrap';
+import { Button, FormGroup, Label, Input, Col, Row, FormText, Spinner } from 'reactstrap';
 import { toast } from 'react-toastify';
 import { defaultOfUser } from '../../models-one-entity/Users';
 import firebase, { storage } from 'firebase'
@@ -14,12 +14,13 @@ const MainForm = ({
 }) => {
   const [isCallingApi, setIsCallingApi] = useState(false)
 
-  const [imageFile, setImageFile] = useState(null)
+  const [isUploadingImage, setIsUploadingImage] = useState(false)
 
-  const [url, setUrl] = useState('')
+  console.log(isUploadingImage)
 
   const onChangeFile = (e: any) => {
     if (e.target.files[0]) {
+      setIsUploadingImage(true)
       const image = e.target.files[0]
       // setImageFile(image)
       firebase.storage()
@@ -27,16 +28,19 @@ const MainForm = ({
         .put(image)
         .on('state_changed',
           (snapshot) => {
-
+            // setIsUploadingImage(false)
           },
           (error) => {
             console.log(error)
+            // setIsUploadingImage(false)
           },
           () => {
             firebase.storage().ref(`avatars/${cloneCurrentUser.id}`)
               .getDownloadURL()
               .then(url => {
-                console.log(url)
+                // console.log(url)
+                cloneCurrentUser.setAvatar(url)
+                setIsUploadingImage(false)
               })
           }
         )
@@ -56,7 +60,11 @@ const MainForm = ({
             />
           </Col>
         </FormGroup>
-        <img width="100%" src={avatarDemo} alt="Card image cap" />
+        {isUploadingImage ? (
+          <Spinner color="primary" />
+        ) : (
+            <img width="200px" height="200px" src={cloneCurrentUser.avatar || avatarDemo} alt="Card image cap" />
+          )}
       </Col>
 
 
