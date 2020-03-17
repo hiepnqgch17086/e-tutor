@@ -144,6 +144,7 @@ export const User = types.compose(
     },
     getLocal() {
       const snapshot = getLocalStorageAuthToken()
+      // console.log(snapshot)
       self.setSnapshotNew(snapshot)
     }
   }))

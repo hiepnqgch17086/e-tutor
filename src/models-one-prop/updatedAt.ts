@@ -1,7 +1,10 @@
 import { types } from "mobx-state-tree";
 
 const updatedAt = types.model({
-  updatedAt: types.maybeNull(types.string)
+  updatedAt: types.optional(
+    types.union(types.string, types.number, types.null),
+    null
+  )
 })
   .actions(self => ({
     _setUpdatedAtNow(): void {
