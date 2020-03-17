@@ -2,17 +2,64 @@ import React, { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { Link } from 'react-router-dom'
 import { SIGN_IN_PAGE } from '../../routes'
-import { Button, FormGroup, Label, Input, Col, Row } from 'reactstrap';
+import { Button, FormGroup, Label, Input, Col, Row, FormText } from 'reactstrap';
 import { toast } from 'react-toastify';
 import { defaultOfUser } from '../../models-one-entity/Users';
+import firebase, { storage } from 'firebase'
+import avatarDemo from '../../images/avatar-demo.png'
 
 const MainForm = ({
   cloneCurrentUser = defaultOfUser,
   onSaveForm = () => { }
 }) => {
   const [isCallingApi, setIsCallingApi] = useState(false)
+
+  const [imageFile, setImageFile] = useState(null)
+
+  const [url, setUrl] = useState('')
+
+  const onChangeFile = (e: any) => {
+    if (e.target.files[0]) {
+      const image = e.target.files[0]
+      // setImageFile(image)
+      firebase.storage()
+        .ref(`avatars/${cloneCurrentUser.id}`)
+        .put(image)
+        .on('state_changed',
+          (snapshot) => {
+
+          },
+          (error) => {
+            console.log(error)
+          },
+          () => {
+            firebase.storage().ref(`avatars/${cloneCurrentUser.id}`)
+              .getDownloadURL()
+              .then(url => {
+                console.log(url)
+              })
+          }
+        )
+    }
+  }
+
   return (
     <Row>
+      <Col md="6" sm="12">
+        <FormGroup row>
+          <Label for="exampleFile" sm={2}>File</Label>
+          <Col sm={10}>
+            <Input type="file" name="file" id="exampleFile"
+              // inputProps={{ accept: "image/png, image/jpeg" }}
+              accept=".png"
+              onChange={(e) => onChangeFile(e)}
+            />
+          </Col>
+        </FormGroup>
+        <img width="100%" src={avatarDemo} alt="Card image cap" />
+      </Col>
+
+
       <Col md="6" sm="12">
         {/* Name */}
         <FormGroup>
@@ -79,10 +126,6 @@ const MainForm = ({
             }}
           />
         </FormGroup>
-      </Col>
-
-
-      <Col md="6" sm="12">
         {/* Email */}
         {/* <FormGroup>
           <Label for="exampleEmail">Email</Label>

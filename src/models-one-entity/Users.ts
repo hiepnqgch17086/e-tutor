@@ -12,6 +12,7 @@ import { ErrorMessage, Response } from "./types";
 import API from "../api";
 import { setLocalStorageAuthToken, getLocalStorageAuthToken } from "../routes";
 import GeneralModelList from "./GeneralModelList";
+import avatar from "../models-one-prop/avatar";
 // import permission from "../models-one-prop/permission";
 const defaultSnapshot = {}
 
@@ -27,15 +28,16 @@ const UserPermission = types.model({
 
   }))
 
-const UserProps = types.compose(
-  id, email, password, name, dob, gender, phone, address,
-  repeatPassword,
+const UserMoreProps = types.compose(
+  name, dob, gender, phone, address,
+  repeatPassword, avatar,
 )
 
 export const User = types.compose(
   'User',
-  UserProps,
+  UserMoreProps,
   GeneralModel,
+  id, email, password,
   types.model({
     userPermissions: types.map(UserPermission)
   })
