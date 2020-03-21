@@ -3,6 +3,7 @@ import setSnapshotNew from "../../models-one-action/setSnapshotNew";
 import { User } from "../../models-one-entity/Users";
 import ProfilePageData from "../ProfilePage/data";
 import { toast } from "react-toastify";
+import { PROFILE_PAGE } from "../../routes";
 
 const ProfileEditData = types.compose(
   'ProfilePage',
@@ -28,7 +29,7 @@ const ProfileEditData = types.compose(
       }
       // save in client
       currentUser.setSnapshotUpdate(getSnapshot(self.cloneCurrentUser))
-      window.history.back();
+      window.location.href = PROFILE_PAGE;
     }
   }))
   .create({})
