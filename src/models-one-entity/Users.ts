@@ -114,8 +114,8 @@ export const User = types.compose(
     getDatabaseToken: async function (): Promise<ErrorMessage> {
       try {
         // will change later
-        const response = await API.get('/users/u2')
-        const response2 = await API.get('/userPermissions/?userId=u2')
+        const response = await API.get('/users/u1')
+        const response2 = await API.get('/userPermissions/?userId=u1')
 
         const data = response.data
         // data.permissions = permissions
@@ -157,11 +157,16 @@ const Users = types.compose(
   'Users',
   GeneralModelList,
   types.model({
-    items: types.map(User)
+    items: types.array(User)
   })
 )
   .actions(self => ({
-
+    getDatabaseItems: async function () {
+      const response = await API.get('/users')
+      self.setSnapshotNew(response.data, self.items)
+    }
   }))
 
 export default Users
+
+export const defaultOfUsers = Users.create({})
