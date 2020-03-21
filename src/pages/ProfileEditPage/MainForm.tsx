@@ -16,7 +16,7 @@ const MainForm = ({
 
   const [isUploadingImage, setIsUploadingImage] = useState(false)
 
-  console.log(isUploadingImage)
+  // console.log(isUploadingImage)
 
   const onChangeFile = (e: any) => {
     if (e.target.files[0]) {

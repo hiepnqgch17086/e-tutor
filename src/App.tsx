@@ -5,7 +5,7 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom'
-import { SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE, LANDING_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE } from './routes'
+import { SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE, LANDING_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, ALL_USERS_PAGE, ADMIN_ERROR_PAGE } from './routes'
 import SignInPage from './pages/SignInPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,6 +14,10 @@ import LandingPage from './pages/LandingPage';
 import ProfilePage from './pages/ProfilePage';
 import ProfileEditPage from './pages/ProfileEditPage';
 import './firebaseConfig'
+import AllUsersPage from './pages/AllUsersPage';
+import ProfilePageData from './pages/ProfilePage/data';
+import { IS_ADMIN } from './models-one-entity/Users';
+import AdminErrorPage from './pages/AdminErrorPage';
 
 
 function App() {
@@ -22,6 +26,7 @@ function App() {
       <Switch>
         <Route exact path={SIGN_IN_PAGE} component={SignInPage} />
         <Route exact path={LANDING_PAGE} component={LandingPage} />
+        <Route exact path={ADMIN_ERROR_PAGE} component={AdminErrorPage} />
         <PrivateRoute exact path={HOME_PAGE}>
           <HomePage />
         </PrivateRoute>
@@ -31,6 +36,9 @@ function App() {
         <PrivateRoute exact path={PROFILE_EDIT_PAGE}>
           <ProfileEditPage />
         </PrivateRoute>
+        <PrivateRouteAdmin exact path={ALL_USERS_PAGE}>
+          <AllUsersPage />
+        </PrivateRouteAdmin>
       </Switch>
       <ToastContainer />
     </BrowserRouter>
@@ -40,6 +48,12 @@ function App() {
 const PrivateRoute = ({ children = <></>, ...rest }) => {
   return <Route {...rest}>
     {getIsAuthorized() ? children : <Redirect to={SIGN_IN_PAGE} />}
+  </Route>
+}
+
+const PrivateRouteAdmin = ({ children = <></>, ...rest }) => {
+  return <Route {...rest}>
+    {ProfilePageData.currentUser.userPermissions.get(IS_ADMIN) ? children : <Redirect to={ADMIN_ERROR_PAGE} />}
   </Route>
 }
 
