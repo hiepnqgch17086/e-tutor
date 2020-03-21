@@ -18,6 +18,8 @@ const password = types.model({
       self.isPasswordError = newValue || null
     },
     setPassword(newValue: string = '', shouldValidate: boolean = true): void {
+      const setRegexToAvoidTags = /[<|>]/gi
+      if (setRegexToAvoidTags.test(newValue)) return
       self.password = newValue
       if (shouldValidate) this._getPasswordConstraint()
     },

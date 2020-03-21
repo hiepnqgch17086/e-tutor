@@ -5,7 +5,7 @@ const address = types.model({
 })
   .actions(self => ({
     setAddress(newValue: string = ''): void {
-      const setRegexToAvoidTags = /[\<|\>]/gi
+      const setRegexToAvoidTags = /[<|>]/gi
       if (setRegexToAvoidTags.test(newValue)) return
       self.address = newValue
     }

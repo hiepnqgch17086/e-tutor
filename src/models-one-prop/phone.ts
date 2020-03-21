@@ -19,7 +19,7 @@ const phone = types.model({
       self.isPhoneError = newValue
     },
     setPhone(newValue: string = '', shouldValidate: boolean = true): void {
-      const setRegexToAvoidTags = /[\<|\>]/gi
+      const setRegexToAvoidTags = /[<|>]/gi
       if (setRegexToAvoidTags.test(newValue)) return
 
       self.phone = newValue

@@ -19,7 +19,7 @@ const name = types.model({
       self.isNameError = newValue
     },
     setName(newValue: string = ''): void {
-      const setRegexToAvoidTags = /[\<|\>]/gi
+      const setRegexToAvoidTags = /[<|>]/gi
       if (setRegexToAvoidTags.test(newValue)) return
       self.name = newValue
     }

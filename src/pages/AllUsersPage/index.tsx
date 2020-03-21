@@ -3,7 +3,6 @@ import { observer } from 'mobx-react-lite'
 import { Container, Table } from 'reactstrap'
 import MainList from './MainList'
 import Data from './data'
-import { values } from 'mobx'
 
 const AllUsersPage = () => {
 

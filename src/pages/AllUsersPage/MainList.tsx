@@ -1,7 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import { defaultOfUsers, defaultOfUser } from '../../models-one-entity/Users'
-import { values } from 'mobx'
+import { defaultOfUsers } from '../../models-one-entity/Users'
 
 const MainList = ({
   userArrayList = defaultOfUsers.items

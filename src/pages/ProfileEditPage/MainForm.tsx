@@ -1,18 +1,15 @@
 import React, { useState } from 'react'
 import { observer } from 'mobx-react-lite'
-import { Link } from 'react-router-dom'
-import { SIGN_IN_PAGE } from '../../routes'
-import { Button, FormGroup, Label, Input, Col, Row, FormText, Spinner } from 'reactstrap';
-import { toast } from 'react-toastify';
+import { Button, FormGroup, Label, Input, Col, Row, Spinner } from 'reactstrap';
 import { defaultOfUser } from '../../models-one-entity/Users';
-import firebase, { storage } from 'firebase'
+import firebase from 'firebase'
 import avatarDemo from '../../images/avatar-demo.png'
 
 const MainForm = ({
   cloneCurrentUser = defaultOfUser,
   onSaveForm = () => { }
 }) => {
-  const [isCallingApi, setIsCallingApi] = useState(false)
+  const [isCallingApi] = useState(false)
 
   const [isUploadingImage, setIsUploadingImage] = useState(false)
 
@@ -27,7 +24,7 @@ const MainForm = ({
         .ref(`avatars/${cloneCurrentUser.id}`)
         .put(image)
         .on('state_changed',
-          (snapshot) => {
+          () => {
             // setIsUploadingImage(false)
           },
           (error) => {
@@ -63,7 +60,7 @@ const MainForm = ({
         {isUploadingImage ? (
           <Spinner color="primary" />
         ) : (
-            <img width="200px" height="200px" src={cloneCurrentUser.avatar || avatarDemo} alt="Card image cap" />
+            <img width="200px" height="200px" src={cloneCurrentUser.avatar || avatarDemo} alt="Card cap" />
           )}
       </Col>
 
