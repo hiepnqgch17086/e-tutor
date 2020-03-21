@@ -14,6 +14,9 @@ const AllUsersPageData = types.compose(
       // get all users
       this.getDatabase()
     },
+    onWillUnMount() {
+      self.setSnapshotNew({})
+    },
     getDatabase: function () {
       self.users.getDatabaseItems()
     }

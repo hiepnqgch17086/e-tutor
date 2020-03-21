@@ -11,6 +11,7 @@ const AllUsersPage = () => {
     Data.onDidMount()
     return () => {
       // cleanup
+      Data.onWillUnMount()
     }
   }, [])
 
