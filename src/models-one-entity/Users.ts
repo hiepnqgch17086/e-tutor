@@ -81,7 +81,7 @@ export const User = types.compose(
         // validate
         const validation = [
           self._getPhoneConstraint(),
-          self._getEmailConstraint(),
+          self._getNameConstraint(),
         ]
         for (const constraint of validation) {
           if (constraint) throw new Error(constraint)
