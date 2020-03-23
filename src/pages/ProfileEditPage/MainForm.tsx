@@ -68,7 +68,7 @@ const MainForm = ({
       <Col md="6" sm="12">
         {/* Name */}
         <FormGroup>
-          <Label for="exampleName">Name</Label>
+          <Label for="exampleName">Name *</Label>
           <Input type="text" name="name" id="exampleName" placeholder="name"
             value={cloneCurrentUser.name}
             onChange={(e) => {
@@ -80,7 +80,7 @@ const MainForm = ({
 
         {/* Gender */}
         <FormGroup>
-          <Label for="exampleSelect">Gender</Label>
+          <Label for="exampleSelect">Gender *</Label>
           <Input type="select" name="select" id="exampleSelect"
             value={cloneCurrentUser.gender}
             onChange={(e) => {
@@ -97,7 +97,7 @@ const MainForm = ({
 
         {/* Phone */}
         <FormGroup>
-          <Label for="examplePhone">Phone</Label>
+          <Label for="examplePhone">Phone *</Label>
           <Input type="text" name="phone" id="examplePhone" placeholder="0962xxxxxx"
             value={cloneCurrentUser.phone}
             onChange={e => {
@@ -109,7 +109,7 @@ const MainForm = ({
 
         {/* Address */}
         <FormGroup>
-          <Label for="address">Address</Label>
+          <Label for="address">Address *</Label>
           <Input type="text" name="address" id="address" placeholder="address"
             value={cloneCurrentUser.address}
             onChange={e => {
@@ -121,7 +121,7 @@ const MainForm = ({
 
         {/* Date of birth */}
         <FormGroup>
-          <Label for="dateOfBirth">Date Of Birth</Label>
+          <Label for="dateOfBirth">Date Of Birth *</Label>
           <Input type="date" name="dateOfBirth" id="dateOfBirth" placeholder="dateOfBirth"
             value={cloneCurrentUser.dob}
             onChange={e => {

@@ -82,6 +82,9 @@ export const User = types.compose(
         const validation = [
           self._getPhoneConstraint(),
           self._getNameConstraint(),
+          self._getGenderConstraint(),
+          self._getDobConstraint(),
+          self._getAddressConstraint(),
         ]
         for (const constraint of validation) {
           if (constraint) throw new Error(constraint)
@@ -114,8 +117,8 @@ export const User = types.compose(
     getDatabaseToken: async function (): Promise<ErrorMessage> {
       try {
         // will change later
-        const response = await API.get('/users/u2')
-        const response2 = await API.get('/userPermissions/?userId=u2')
+        const response = await API.get('/users/u1')
+        const response2 = await API.get('/userPermissions/?userId=u1')
 
         const data = response.data
         // data.permissions = permissions

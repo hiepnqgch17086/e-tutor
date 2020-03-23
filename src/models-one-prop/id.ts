@@ -1,7 +1,10 @@
 import { types } from "mobx-state-tree";
 
 const id = types.model({
-  id: types.optional(types.string, '')
+  id: types.optional(
+    types.union(types.string, types.number),
+    ''
+  )
 })
   .actions(self => ({
     setId(newId: string = ''): void {
@@ -10,7 +13,10 @@ const id = types.model({
   }))
 
 export const blogId = types.model({
-  blogId: types.optional(types.string, '')
+  blogId: types.optional(
+    types.union(types.string, types.number),
+    ''
+  )
 })
   .actions(self => ({
     setBlogId(newId: string = ''): void {
@@ -19,7 +25,10 @@ export const blogId = types.model({
   }))
 
 export const classId = types.model({
-  classId: types.optional(types.string, '')
+  classId: types.optional(
+    types.union(types.string, types.number),
+    ''
+  )
 })
   .actions(self => ({
     setClassId(newId: string = ''): void {
@@ -28,7 +37,10 @@ export const classId = types.model({
   }))
 
 export const commentId = types.model({
-  commentId: types.optional(types.string, '')
+  commentId: types.optional(
+    types.union(types.string, types.number),
+    ''
+  )
 })
   .actions(self => ({
     setCommentId(newId: string = ''): void {
@@ -37,7 +49,10 @@ export const commentId = types.model({
   }))
 
 export const studentId = types.model({
-  studentId: types.optional(types.string, '')
+  studentId: types.optional(
+    types.union(types.string, types.number),
+    ''
+  )
 })
   .actions(self => ({
     setStudentId(newId: string = ''): void {
@@ -46,7 +61,10 @@ export const studentId = types.model({
   }))
 
 export const tutorId = types.model({
-  tutorId: types.optional(types.string, '')
+  tutorId: types.optional(
+    types.union(types.string, types.number),
+    ''
+  )
 })
   .actions(self => ({
     setTutorId(newId: string = ''): void {
@@ -55,7 +73,10 @@ export const tutorId = types.model({
   }))
 
 export const permissionId = types.model({
-  permissionId: types.optional(types.string, '')
+  permissionId: types.optional(
+    types.union(types.string, types.number),
+    ''
+  )
 })
   .actions(self => ({
     setPermissionId(newId: string = ''): void {
@@ -64,7 +85,10 @@ export const permissionId = types.model({
   }))
 
 export const userId = types.model({
-  userId: types.optional(types.string, '')
+  userId: types.optional(
+    types.union(types.string, types.number),
+    ''
+  )
 })
   .actions(self => ({
     setUserId(newId: string = ''): void {
