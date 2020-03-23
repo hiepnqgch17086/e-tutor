@@ -4,10 +4,13 @@ import { Button, FormGroup, Label, Input, Col, Row, Spinner } from 'reactstrap';
 import { defaultOfUser } from '../../models-one-entity/Users';
 import firebase from 'firebase'
 import avatarDemo from '../../images/avatar-demo.png'
+import { Redirect } from 'react-router-dom';
+import { PROFILE_PAGE } from "../../routes";
 
 const MainForm = ({
   cloneCurrentUser = defaultOfUser,
-  onSaveForm = () => { }
+  onSaveForm = () => { },
+  shouldRedirectToProfilePage = false
 }) => {
   const [isCallingApi] = useState(false)
 
@@ -147,6 +150,11 @@ const MainForm = ({
           onClick={onSaveForm}
         >Submit</Button>
       </Col>
+      {
+        shouldRedirectToProfilePage && (
+          <Redirect to={PROFILE_PAGE} />
+        )
+      }
     </Row>
   )
 }

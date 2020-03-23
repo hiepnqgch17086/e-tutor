@@ -5,10 +5,11 @@ import { Container } from 'reactstrap'
 import Data from './data'
 
 const SignUpPage = () => {
-  const { cloneCurrentUser, onSaveForm } = Data
+  const { cloneCurrentUser, onSaveForm, shouldRedirectToProfilePage } = Data
   useEffect(() => {
     // effect
     Data.onDidMount()
+    return () => Data.onWillUnMount()
   }, [])
   return (
     <Container>
@@ -16,6 +17,7 @@ const SignUpPage = () => {
       <MainForm
         cloneCurrentUser={cloneCurrentUser}
         onSaveForm={onSaveForm}
+        shouldRedirectToProfilePage={shouldRedirectToProfilePage}
       />
     </Container>
   )

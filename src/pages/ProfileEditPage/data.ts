@@ -3,13 +3,13 @@ import setSnapshotNew from "../../models-one-action/setSnapshotNew";
 import { User } from "../../models-one-entity/Users";
 import ProfilePageData from "../ProfilePage/data";
 import { toast } from "react-toastify";
-import { PROFILE_PAGE } from "../../routes";
 
 const ProfileEditData = types.compose(
   'ProfilePage',
   setSnapshotNew,
   types.model({
-    cloneCurrentUser: types.optional(User, {})
+    cloneCurrentUser: types.optional(User, {}),
+    shouldRedirectToProfilePage: types.optional(types.boolean, false)
   })
 )
   .actions(self => ({
@@ -29,7 +29,13 @@ const ProfileEditData = types.compose(
       }
       // save in client
       currentUser.setSnapshotUpdate(getSnapshot(self.cloneCurrentUser))
-      window.location.href = PROFILE_PAGE;
+      this.setRedirectToProfilePage()
+    },
+    onWillUnMount() {
+      self.setSnapshotNew({})
+    },
+    setRedirectToProfilePage() {
+      self.shouldRedirectToProfilePage = true
     }
   }))
   .create({})
