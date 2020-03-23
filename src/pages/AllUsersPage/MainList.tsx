@@ -10,8 +10,8 @@ const MainList = ({
   return (
     <>
       {
-        userArrayList.map(user => (
-          <tr key={user.id}>
+        userArrayList.map((user, index) => (
+          <tr key={user.id || index}>
             <th scope="row">{count++}</th>
             <th>{user.email}</th>
             <th>{user.name}</th>
