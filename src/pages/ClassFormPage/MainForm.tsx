@@ -1,16 +1,35 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import { Form, FormGroup, Label, Col, Input } from 'reactstrap'
+import { Form, FormGroup, Label, Input, Row, Col } from 'reactstrap'
 
 const MainForm = () => {
   return (
     <Form>
-      <FormGroup row>
-        <Label for="exampleEmail" sm={2}>Email</Label>
-        <Col sm={10}>
-          <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+      <Row>
+        <Col md="6">
+          <FormGroup>
+            <Label for="exampleEmail">Title</Label>
+            <Input type="text" name="text" id="title" placeholder="title" />
+          </FormGroup>
+          <FormGroup>
+            <Label for="exampleEmail">Description</Label>
+            <Input type="textarea" name="text" id="description" placeholder="description" />
+          </FormGroup>
         </Col>
-      </FormGroup>
+
+        <Col md="6">
+          <FormGroup>
+            <Label for="exampleEmail">Title</Label>
+            <Input type="text" name="text" id="title" placeholder="title" />
+          </FormGroup>
+          <FormGroup>
+            <Label for="exampleEmail">Description</Label>
+            <Input type="textarea" name="text" id="description" placeholder="description" />
+          </FormGroup>
+        </Col>
+
+      </Row>
+
     </Form>
   )
 }
