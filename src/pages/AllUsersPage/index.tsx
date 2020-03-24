@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import { Container, Table } from 'reactstrap'
 import MainList from './MainList'
 import Data from './data'
+import SearchBar from './SearchBar'
 
 const AllUsersPage = () => {
+
+  const { onSearchUsersByEmail } = Data
 
   useEffect(() => {
     // effect
@@ -16,11 +18,20 @@ const AllUsersPage = () => {
   }, [])
 
   return (
-    <div className="card">
-      <MainList
-        userArrayList={Data.users.items}
-      />
-    </div>
+    <>
+      <div className="card">
+        <div className="card-body">
+          <SearchBar
+            onSearchUsersByEmail={onSearchUsersByEmail}
+          />
+        </div>
+      </div>
+      <div className="card">
+        <MainList
+          userArrayList={Data.users.items}
+        />
+      </div>
+    </>
   )
 }
 

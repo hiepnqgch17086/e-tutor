@@ -137,6 +137,10 @@ const Users = types.compose(
     getDatabaseItems: async function () {
       const response = await API.getUsers()
       self.setSnapshotNew(response.data, self.items)
+    },
+    getDatabaseItemsByEmail: async function (email: string) {
+      const response = await API.getUsersByEmail(email)
+      self.setSnapshotNew(response.data, self.items)
     }
   }))
 

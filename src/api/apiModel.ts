@@ -28,7 +28,10 @@ class ApiModel {
     throw new Error('!override getDatabaseToken()')
   }
   getUsers() {
-    throw new Error('!override getDatabaseToken()')
+    throw new Error('!override getUsers()')
+  }
+  getUsersByEmail(email: string) {
+    throw new Error('!override getUsersByEmail()')
   }
   // update profile without password
   setUserUpdateProfile(userSnapshot: Object): Promise<AxiosResponse<any>> {

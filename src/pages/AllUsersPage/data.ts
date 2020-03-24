@@ -6,7 +6,8 @@ const AllUsersPageData = types.compose(
   'AllUsersPageData',
   setSnapshotNew,
   types.model({
-    users: types.optional(Users, {})
+    users: types.optional(Users, {}),
+    // emailForSearching: types.optional(types.string, '')
   })
 )
   .actions(self => ({
@@ -17,9 +18,18 @@ const AllUsersPageData = types.compose(
     onWillUnMount() {
       self.setSnapshotNew({})
     },
+    onSearchUsersByEmail(email: string) {
+      email
+        ? self.users.getDatabaseItemsByEmail(email)
+        : self.users.getDatabaseItems()
+      // console.log(email)
+    },
     getDatabase: function () {
       self.users.getDatabaseItems()
-    }
+    },
+    // setEmailForSearching(newValue: string = '') {
+    //   self.emailForSearching = newValue
+    // }
   })).create({})
 
 export default AllUsersPageData

@@ -26,6 +26,13 @@ export default class JsonApi extends ApiModel {
     return this.ApiRef.get('/users')
   }
   /**
+   * 
+   * @override
+   */
+  getUsersByEmail(email: string) {
+    return this.ApiRef.get(`/users/?email=${email}`)
+  }
+  /**
    * @override
    */
   setUserUpdateProfile(userSnapshot: User): Promise<AxiosResponse<any>> {
