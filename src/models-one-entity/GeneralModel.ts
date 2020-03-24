@@ -6,7 +6,7 @@ import updatedAt from "../models-one-prop/updatedAt";
 import _getProperties from "../models-one-action/_getProperties";
 import setSnapshotUpdate from "../models-one-action/setSnapshotUpdate";
 import { Response } from './types'
-import API from "../api";
+import { AxiosResponse } from "axios";
 
 const defaultSnapshot = {}
 
@@ -47,10 +47,20 @@ const GeneralModel = types.compose(
       throw new Error(`Should override method _getValidation() => array of constraint string, ['title-constraint', 'code-constraint']`)
     },
     // should override
-    _getReference(): string {
+    _getMainThreadOfSettingDatabaseUpdate(): Promise<AxiosResponse<any>> | Promise<any> {
       console.log('\n')
       console.log('Name of model: ', getType(self).name)
-      throw new Error(`Should override method _getReference() => .example: "/users"`)
+      throw new Error(`Should override method _getMainThreadOfSettingDatabaseUpdate()`)
+    },
+    _getMainThreadOfSettingDatabaseNew(): Promise<AxiosResponse<any>> | Promise<any> {
+      console.log('\n')
+      console.log('Name of model: ', getType(self).name)
+      throw new Error(`Should override method _getMainThreadOfSettingDatabaseNew()`)
+    },
+    _getMainThreadOfSettingDatabaseDelete(): Promise<AxiosResponse<any>> | Promise<any> {
+      console.log('\n')
+      console.log('Name of model: ', getType(self).name)
+      throw new Error(`Should override method _getMainThreadOfSettingDatabaseDelete()`)
     },
     // should override
     _setCustomId() {
@@ -106,9 +116,7 @@ const GeneralModel = types.compose(
         const snapshot = self._getProperties([...self._getMainProperties()])
         if (typeof snapshot === 'string') throw new Error(snapshot)
 
-        // @ts-ignore, reference to this._getReference()
-        const url = self._getReference()
-        const res = await API.post(url, snapshot)
+        const res = await this._getMainThreadOfSettingDatabaseNew()
         const data = res.data
 
         return {
@@ -150,9 +158,7 @@ const GeneralModel = types.compose(
         const snapshotUpdate = self._getProperties(updatedProps)
         if (typeof snapshotUpdate === 'string') throw new Error(snapshotUpdate)
 
-        // @ts-ignore, reference to this._getReference()
-        const url = propUrl || self._getReference()
-        const res = await API.put(url, snapshotUpdate)
+        const res = await this._getMainThreadOfSettingDatabaseUpdate()
         const data = res.data
         return {
           isSuccess: true,
