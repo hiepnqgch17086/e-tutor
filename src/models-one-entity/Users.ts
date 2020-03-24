@@ -13,20 +13,9 @@ import API from "../api";
 import { setLocalStorageAuthToken, getLocalStorageAuthToken } from "../routes";
 import GeneralModelList from "./GeneralModelList";
 import avatar from "../models-one-prop/avatar";
+import role from "../models-one-prop/role";
 // import permission from "../models-one-prop/permission";
 const defaultSnapshot = {}
-
-export const IS_ADMIN = '1'
-export const IS_TUTOR = '2'
-export const IS_STUDENT = '3'
-
-const UserPermission = types.model({
-  userId: types.optional(types.string, ''),
-  permissionId: types.optional(types.string, ''),
-})
-  .actions(self => ({
-
-  }))
 
 const UserMoreProps = types.compose(
   name, dob, gender, phone, address,
@@ -38,9 +27,7 @@ export const User = types.compose(
   UserMoreProps,
   GeneralModel,
   id, email, password,
-  types.model({
-    userPermissions: types.map(UserPermission)
-  })
+  role
 )
   .actions(self => ({
     /**
@@ -117,18 +104,12 @@ export const User = types.compose(
     getDatabaseToken: async function (): Promise<ErrorMessage> {
       try {
         // will change later
-        const response = await API.get('/users/u1')
-        const response2 = await API.get('/userPermissions/?userId=u1')
+        const response = await API.get('/users/u2')
 
         const data = response.data
+        console.log(data)
         // data.permissions = permissions
         self.setSnapshotUpdate(data)
-        // @ts-ignore
-        response2.data.map(item => {
-          // @ts-ignore
-          self.setUserPermissionItem(item.permissionId)
-          return item
-        })
 
         // @ts-ignore
         self.setLocal()
@@ -137,12 +118,6 @@ export const User = types.compose(
         console.log(error.message)
         return 'Something went wrong!'
       }
-    },
-    setUserPermissionItem(permissionId: string) {
-      // console.log('permissionId', permissionId)
-      self.userPermissions.set(permissionId,
-        UserPermission.create({ permissionId })
-      )
     },
     setLocal() {
       setLocalStorageAuthToken(JSON.stringify(getSnapshot(self)))

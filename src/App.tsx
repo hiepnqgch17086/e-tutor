@@ -16,7 +16,7 @@ import ProfileEditPage from './pages/ProfileEditPage';
 import './firebaseConfig'
 import AllUsersPage from './pages/AllUsersPage';
 import ProfilePageData from './pages/ProfilePage/data';
-import { IS_ADMIN } from './models-one-entity/Users';
+import { IS_ADMIN } from './models-one-prop/role';
 import AdminErrorPage from './pages/AdminErrorPage';
 
 
@@ -53,7 +53,7 @@ const PrivateRoute = ({ children = <></>, ...rest }) => {
 
 const PrivateRouteAdmin = ({ children = <></>, ...rest }) => {
   return <Route {...rest}>
-    {ProfilePageData.currentUser.userPermissions.get(IS_ADMIN) ? children : <Redirect to={ADMIN_ERROR_PAGE} />}
+    {ProfilePageData.currentUser.role === IS_ADMIN ? children : <Redirect to={ADMIN_ERROR_PAGE} />}
   </Route>
 }
 

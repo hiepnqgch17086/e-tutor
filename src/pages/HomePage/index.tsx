@@ -4,7 +4,7 @@ import { Button } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { PROFILE_PAGE, ALL_USERS_PAGE } from '../../routes'
 import ProfilePageData from '../ProfilePage/data'
-import { IS_ADMIN } from '../../models-one-entity/Users'
+import { IS_ADMIN } from '../../models-one-prop/role'
 
 const HomePage = () => {
   return (
@@ -15,7 +15,7 @@ const HomePage = () => {
         </Button>
       </Link>
       {
-        ProfilePageData.currentUser.userPermissions.get(IS_ADMIN) ? (
+        ProfilePageData.currentUser.role === (IS_ADMIN) ? (
           <Link to={ALL_USERS_PAGE}>
             <Button>
               All Users Page

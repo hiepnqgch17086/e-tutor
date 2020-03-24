@@ -9,7 +9,8 @@
       "phone": "0962675310",
       "address": "nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương, nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương",
       "avatar": "https://firebasestorage.googleapis.com/v0/b/e-totur.appspot.com/o/avatars%2Fu1?alt=media&token=49bdae7d-eac3-4fed-8c05-7ae0494bb223",
-      "id": "u1"
+      "id": "u1",
+      "role": 1
     },
     {
       "email": "quanghiep2942@gmail.com",
@@ -20,7 +21,8 @@
       "phone": "0962675312",
       "address": "nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương, nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương",
       "avatar": "",
-      "id": "u2"
+      "id": "u2",
+      "role": 2
     },
     {
       "email": "quanghiep2943@gmail.com",
@@ -30,7 +32,8 @@
       "gender": "",
       "phone": "0962675310",
       "address": "nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương, nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương",
-      "id": "u3"
+      "id": "u3",
+      "role": 3
     },
     {
       "email": "4quanghiep294@gmail.com",
@@ -40,7 +43,8 @@
       "gender": "",
       "phone": "0962675310",
       "address": "nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương, nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương",
-      "id": "u4"
+      "id": "u4",
+      "role": 3
     },
     {
       "email": "5quanghiep294@gmail.com",
@@ -50,7 +54,8 @@
       "gender": "",
       "phone": "0962675310",
       "address": "nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương, nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương",
-      "id": "u5"
+      "id": "u5",
+      "role": 3
     },
     {
       "email": "6quanghiep294@gmail.com",
@@ -60,29 +65,8 @@
       "gender": "",
       "phone": "0962675310",
       "address": "nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương, nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương",
-      "id": "u6"
-    }
-  ],
-  "userPermissions": [
-    {
-      "id": "1",
-      "userId": "u1",
-      "permissionId": "1"
-    },
-    {
-      "id": "2",
-      "userId": "u1",
-      "permissionId": "2"
-    },
-    {
-      "id": "3",
-      "userId": "u2",
-      "permissionId": "2"
-    },
-    {
-      "id": "4",
-      "userId": "u3",
-      "permissionId": "3"
+      "id": "u6",
+      "role": 3
     }
   ]
 }
