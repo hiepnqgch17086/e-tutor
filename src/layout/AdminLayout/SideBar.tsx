@@ -9,7 +9,7 @@ const SideBar = () => {
   const pathName = location.pathname
   const { currentUser } = ProfilePageData
 
-  console.log(pathName)
+  // console.log(pathName)
 
   const isDashboardActive = pathName === HOME_PAGE
   const isClassesActive = pathName === CLASS_LIST_PAGE || pathName === CLASS_FORM_PAGE

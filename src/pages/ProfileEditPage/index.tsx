@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import MainForm from './MainForm'
 import { observer } from 'mobx-react-lite'
-import { Container } from 'reactstrap'
 import Data from './data'
 import { Redirect } from 'react-router-dom'
 import { PROFILE_PAGE } from '../../routes'

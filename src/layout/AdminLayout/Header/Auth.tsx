@@ -1,17 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ProfilePageData from '../../../pages/ProfilePage/data'
 import { observer } from 'mobx-react-lite'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { PROFILE_PAGE, SIGN_IN_PAGE } from '../../../routes'
 
 const Auth = () => {
   const { currentUser } = ProfilePageData
   const { avatar, name, } = currentUser
 
-  const [shouldRedirectToSignin, setShouldRedirectToSignin] = useState(false)
   const onLogout = () => {
     currentUser.setLogout()
-    setShouldRedirectToSignin(true)
+    window.location.href = (SIGN_IN_PAGE)
   }
   // const name = 
   return (
@@ -46,11 +45,7 @@ const Auth = () => {
         <div className="pl-4 p-3"><a href="#" className="btn btn-sm btn-info">View
                 Profile</a></div> */}
       </div>
-      {
-        shouldRedirectToSignin && (
-          <Redirect to={SIGN_IN_PAGE} />
-        )
-      }
+
     </li>
   )
 }

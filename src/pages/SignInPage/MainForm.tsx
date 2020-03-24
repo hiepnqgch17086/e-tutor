@@ -1,25 +1,37 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import Data from './data'
 
 const MainForm = () => {
 
   return (
-    <Form>
-      <FormGroup>
-        <Label for="exampleEmail">Email</Label>
-        <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
-      </FormGroup>
-      <FormGroup>
-        <Label for="examplePassword">Password</Label>
-        <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
-      </FormGroup>
-      <Button
-        onClick={Data.onSignIn}
-      >Submit</Button>
-
-    </Form>
+    <form className="mt-4">
+      <div className="row">
+        <div className="col-lg-12">
+          <div className="form-group">
+            <label className="text-dark" htmlFor="uname">Username</label>
+            <input className="form-control" id="uname" type="text" placeholder="enter your username" />
+          </div>
+        </div>
+        <div className="col-lg-12">
+          <div className="form-group">
+            <label className="text-dark" htmlFor="pwd">Password</label>
+            <input className="form-control" id="pwd" type="password" placeholder="enter your password" />
+          </div>
+        </div>
+        <div className="col-lg-12 text-center">
+          <button className="btn btn-block btn-dark"
+            onClick={(e) => {
+              e.preventDefault()
+              Data.onSignIn()
+            }}
+          >Sign In</button>
+        </div>
+        <div className="col-lg-12 text-center mt-5">
+          {/* Don't have an account? <a href="#" className="text-danger">Sign Up</a> */}
+        </div>
+      </div>
+    </form>
   )
 }
 
