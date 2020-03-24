@@ -5,7 +5,7 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom'
-import { SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE, LANDING_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, ALL_USERS_PAGE, ADMIN_ERROR_PAGE } from './routes'
+import { SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE, LANDING_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, ALL_USERS_PAGE, ADMIN_ERROR_PAGE, CLASS_LIST_PAGE } from './routes'
 import SignInPage from './pages/SignInPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,6 +18,7 @@ import AllUsersPage from './pages/AllUsersPage';
 import ProfilePageData from './pages/ProfilePage/data';
 import { IS_ADMIN } from './models-one-prop/role';
 import AdminErrorPage from './pages/AdminErrorPage';
+import ClassListPage from './pages/ClassListPage';
 
 
 function App() {
@@ -35,6 +36,9 @@ function App() {
         </PrivateRoute>
         <PrivateRoute exact path={PROFILE_EDIT_PAGE}>
           <ProfileEditPage />
+        </PrivateRoute>
+        <PrivateRoute exact path={CLASS_LIST_PAGE}>
+          <ClassListPage />
         </PrivateRoute>
         <PrivateRouteAdmin exact path={ALL_USERS_PAGE}>
           <AllUsersPage />

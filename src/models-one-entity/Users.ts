@@ -104,10 +104,10 @@ export const User = types.compose(
     getDatabaseToken: async function (): Promise<ErrorMessage> {
       try {
         // will change later
-        const response = await API.get('/users/u2')
+        const response = await API.get('/users/u1')
 
         const data = response.data
-        console.log(data)
+        // console.log(data)
         // data.permissions = permissions
         self.setSnapshotUpdate(data)
 

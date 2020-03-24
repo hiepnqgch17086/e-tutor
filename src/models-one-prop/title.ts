@@ -6,7 +6,7 @@ const title = types.model({
 })
   .actions(self => ({
     _getTitleConstraint(): string {
-      if (!self.title.length) {
+      if (!self.title) {
         this._setIsTitleError(true)
         return 'Title is required'
       }

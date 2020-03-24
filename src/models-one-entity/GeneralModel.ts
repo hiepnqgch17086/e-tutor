@@ -95,9 +95,7 @@ const GeneralModel = types.compose(
     /**
      * to set database with new, set promise for validating in server if has
      */
-    setDatabaseNew: async function ({
-      url: propUrl = ''
-    }: SetDatabaseNewProps = {}): Promise<Response> {
+    setDatabaseNew: async function (): Promise<Response> {
       try {
         // validate
         //@ts-ignore, reference to this._getOneConstraint()
@@ -109,7 +107,7 @@ const GeneralModel = types.compose(
         if (typeof snapshot === 'string') throw new Error(snapshot)
 
         // @ts-ignore, reference to this._getReference()
-        const url = propUrl || self._getReference()
+        const url = self._getReference()
         const res = await API.post(url, snapshot)
         const data = res.data
 

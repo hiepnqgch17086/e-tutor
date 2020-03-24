@@ -1,29 +1,36 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import { defaultOfUsers } from '../../models-one-entity/Users'
+import { defaultOfUsers, defaultOfUser } from '../../models-one-entity/Users'
 
 const MainList = ({
   userArrayList = defaultOfUsers.items
 }) => {
-  console.log('userArrayList', userArrayList)
-  let count = 1
+  // console.log('userArrayList', userArrayList)
   return (
     <>
       {
         userArrayList.map((user, index) => (
-          <tr key={user.id || index}>
-            <th scope="row">{count++}</th>
-            <th>{user.email}</th>
-            <th>{user.name}</th>
-            <th>{user.dob}</th>
-            <th>{user.phone}</th>
-            <th>{user.address}</th>
-            <th>{user.avatar}</th>
-          </tr>
+          <UserItem
+            item={user}
+            index={index}
+            key={user.id}
+          />
         ))
       }
     </>
   )
+}
+
+export const UserItem = ({ item = defaultOfUser, index = 0 }) => {
+  return <tr>
+    <th scope="row">{index + 1}</th>
+    <th>{item.email}</th>
+    <th>{item.name}</th>
+    <th>{item.dob}</th>
+    <th>{item.phone}</th>
+    <th>{item.address}</th>
+    <th>{item.avatar}</th>
+  </tr>
 }
 
 export default observer(MainList)

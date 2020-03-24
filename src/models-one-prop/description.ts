@@ -6,7 +6,7 @@ const description = types.model({
 })
   .actions(self => ({
     _getDescriptionConstraint(): string {
-      if (!self.description.length) {
+      if (!self.description) {
         this._setIsDescriptionError(true)
         return 'Description is required'
       }

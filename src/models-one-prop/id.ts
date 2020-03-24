@@ -1,4 +1,5 @@
 import { types } from "mobx-state-tree";
+import ProfilePageData from "../pages/ProfilePage/data";
 
 const id = types.model({
   id: types.optional(
@@ -21,6 +22,18 @@ export const blogId = types.model({
   .actions(self => ({
     setBlogId(newId: string = ''): void {
       self.blogId = newId
+    }
+  }))
+
+export const creatorId = types.model({
+  creatorId: types.optional(
+    types.union(types.string, types.number),
+    ""
+  )
+})
+  .actions(self => ({
+    afterCreate() {
+      self.creatorId = ProfilePageData.currentUser.id
     }
   }))
 
