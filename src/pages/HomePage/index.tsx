@@ -10,12 +10,8 @@ import { IS_ADMIN } from '../../models-one-prop/role'
 const HomePage = () => {
   return (
     <div>
-      <div>
-        <Link to={PROFILE_PAGE}>
-          <Button>
-            Profile Page
-          </Button>
-        </Link>
+      {/* <div>
+
         <Link to={CLASS_LIST_PAGE}>
           <Button>
             Class list page
@@ -31,7 +27,7 @@ const HomePage = () => {
           ) : null
         }
 
-      </div>
+      </div> */}
     </div>
   )
 }

@@ -40,5 +40,4 @@ const ProfileEditData = types.compose(
   }))
   .create({})
 
-
 export default ProfileEditData

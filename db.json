@@ -3,12 +3,13 @@
     {
       "email": "quanghiep294@gmail.com",
       "password": "Hiep2941",
-      "name": "ADMIN ONE",
+      "name": "ADMIN NAME one",
       "dob": "2020-03-23",
       "gender": "male",
       "phone": "0962675310",
       "address": "nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương, nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương",
       "avatar": "https://firebasestorage.googleapis.com/v0/b/e-totur.appspot.com/o/avatars%2Fu1?alt=media&token=49bdae7d-eac3-4fed-8c05-7ae0494bb223",
+      "role": 1,
       "id": "u1"
     },
     {
@@ -166,7 +167,7 @@
       "gender": "",
       "phone": "0962675310",
       "address": "nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương, nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương",
-      "id": "u14",
+      "id": "u15",
       "role": 3
     }
   ]

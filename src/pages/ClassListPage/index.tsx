@@ -7,7 +7,7 @@ import BtnAddClass from './BtnAddClass'
 const ClassListPage = () => {
   return (
     <Container>
-      <h1>Class List</h1>
+      {/* <h1>Class List</h1> */}
       <BtnAddClass />
       <MainList />
     </Container>

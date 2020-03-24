@@ -15,7 +15,6 @@ const SignUpPage = () => {
   }, [])
   return (
     <Container>
-      <h1>Edit profile</h1>
       <MainForm
         cloneCurrentUser={cloneCurrentUser}
         onSaveForm={onSaveForm}

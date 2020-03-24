@@ -16,29 +16,11 @@ const AllUsersPage = () => {
   }, [])
 
   return (
-    <Container>
-      <h1>All users</h1>
-      <Table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Email</th>
-            <th>Name</th>
-            <th>Dob</th>
-            <th>Phone</th>
-            <th>Address</th>
-            <th>Avatar</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          <MainList
-            userArrayList={Data.users.items}
-          />
-
-        </tbody>
-      </Table>
-    </Container>
+    <div className="card">
+      <MainList
+        userArrayList={Data.users.items}
+      />
+    </div>
   )
 }
 

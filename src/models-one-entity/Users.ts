@@ -10,10 +10,10 @@ import address from "../models-one-prop/address";
 import GeneralModel from "./GeneralModel";
 import { ErrorMessage, Response } from "./types";
 import API from "../api";
-import { setLocalStorageAuthToken, getLocalStorageAuthToken } from "../routes";
+import { setLocalStorageAuthToken, getLocalStorageAuthToken, setLocalStorageAuthTokenDelete } from "../routes";
 import GeneralModelList from "./GeneralModelList";
 import avatar from "../models-one-prop/avatar";
-import role from "../models-one-prop/role";
+import role, { IS_ADMIN, IS_TUTOR } from "../models-one-prop/role";
 // import permission from "../models-one-prop/permission";
 const defaultSnapshot = {}
 
@@ -34,7 +34,7 @@ export const User = types.compose(
      * @override
      */
     _getMainProperties(): Array<string> {
-      return ['email', 'password', 'name', 'dob', 'gender', 'phone', 'address', 'avatar']
+      return ['email', 'password', 'name', 'dob', 'gender', 'phone', 'address', 'avatar', 'role']
     },
     /**
      * @override
@@ -126,7 +126,19 @@ export const User = types.compose(
       const snapshot = getLocalStorageAuthToken()
       // console.log(snapshot)
       self.setSnapshotNew(snapshot)
+    },
+    setLogout() {
+      // self.setSnapshotNew({})
+      setLocalStorageAuthTokenDelete()
     }
+  }))
+  .views(self => ({
+    get isAdmin() {
+      return self.role === IS_ADMIN
+    },
+    get isTutor() {
+      return self.role === IS_TUTOR
+    },
   }))
 
 export const defaultOfUser = User.create({})

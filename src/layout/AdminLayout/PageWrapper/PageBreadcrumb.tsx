@@ -1,27 +1,44 @@
 import React from 'react'
+import { observer } from 'mobx-react-lite'
+import ProfilePageData from '../../../pages/ProfilePage/data'
+import { Link, useLocation } from 'react-router-dom'
+import { HOME_PAGE, CLASS_LIST_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, ALL_USERS_PAGE } from '../../../routes'
+import moment from 'moment'
 
 const PageBreadcrumb = () => {
+
+  const location = useLocation()
+  const pathName = location.pathname
+
+  const { title, breadcrumb } = _getDisplay(pathName)
+
   return (
     <div className="page-breadcrumb">
       <div className="row">
         <div className="col-7 align-self-center">
-          <h3 className="page-title text-truncate text-dark font-weight-medium mb-1">Good Morning Jason!</h3>
+          <h4 className="page-title text-truncate text-dark font-weight-medium mb-1">
+            {title}
+          </h4>
+
+
           <div className="d-flex align-items-center">
             <nav aria-label="breadcrumb">
               <ol className="breadcrumb m-0 p-0">
-                <li className="breadcrumb-item"><a href="index.html">Dashboard</a>
-                </li>
+                {breadcrumb}
               </ol>
             </nav>
           </div>
+
+
         </div>
         <div className="col-5 align-self-center">
-          <div className="customize-input float-right">
-            <select className="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius" defaultValue="">
+          <div className="float-right">
+            <span className="custom-select-set form-control bg-white border-0 custom-shadow custom-radius" style={{ paddingRight: "30px" }}>{moment().format("MMM D")}</span>
+            {/* <select className="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius" defaultValue="">
               <option value="">Aug 19</option>
               <option value={1}>July 19</option>
               <option value={2}>Jun 19</option>
-            </select>
+            </select> */}
           </div>
         </div>
       </div>
@@ -30,4 +47,84 @@ const PageBreadcrumb = () => {
   )
 }
 
-export default PageBreadcrumb
+const _getDisplay = (pathName: string) => {
+  const { currentUser } = ProfilePageData
+
+  switch (pathName) {
+    case HOME_PAGE:
+      return {
+        title: `Hello ${currentUser.name}!`,
+        breadcrumb: (
+          <li className="breadcrumb-item">
+            <Link to={HOME_PAGE}>Dashboard</Link>
+          </li>
+        )
+      };
+    case PROFILE_PAGE:
+      return {
+        title: `Profile`,
+        breadcrumb: (
+          <>
+            <li className="breadcrumb-item">
+              <Link to={HOME_PAGE}>Home</Link>
+            </li>
+            <li className="breadcrumb-item">
+              <Link to={PROFILE_PAGE}>Profile</Link>
+            </li>
+          </>
+        )
+      };
+    case PROFILE_EDIT_PAGE:
+      return {
+        title: `Edit Profile`,
+        breadcrumb: (
+          <>
+            <li className="breadcrumb-item">
+              <Link to={HOME_PAGE}>Home</Link>
+            </li>
+            <li className="breadcrumb-item">
+              <Link to={PROFILE_PAGE}>Profile</Link>
+            </li>
+            <li className="breadcrumb-item">
+              <Link to={PROFILE_EDIT_PAGE}>Edit Profile</Link>
+            </li>
+          </>
+        )
+      };
+    case CLASS_LIST_PAGE:
+      return {
+        title: `Classes`,
+        breadcrumb: (
+          <>
+            <li className="breadcrumb-item">
+              <Link to={HOME_PAGE}>Home</Link>
+            </li>
+            <li className="breadcrumb-item">
+              <Link to={CLASS_LIST_PAGE}>Classes</Link>
+            </li>
+          </>
+        )
+      }
+    case ALL_USERS_PAGE:
+      return {
+        title: `Users`,
+        breadcrumb: (
+          <>
+            <li className="breadcrumb-item">
+              <Link to={HOME_PAGE}>Home</Link>
+            </li>
+            <li className="breadcrumb-item">
+              <Link to={ALL_USERS_PAGE}>Users</Link>
+            </li>
+          </>
+        )
+      }
+    default:
+      return {
+        title: '',
+        Breadcrumb: <></>
+      };;
+  }
+}
+
+export default observer(PageBreadcrumb)
