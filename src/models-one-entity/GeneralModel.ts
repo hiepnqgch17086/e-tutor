@@ -1,6 +1,6 @@
 import { types, getType, getSnapshot } from "mobx-state-tree";
 import setSnapshotNew from "../models-one-action/setSnapshotNew";
-import { ErrorMessage, SetDatabaseNewProps } from "./types";
+import { ErrorMessage } from "./types";
 import createdAt from "../models-one-prop/createdAt";
 import updatedAt from "../models-one-prop/updatedAt";
 import _getProperties from "../models-one-action/_getProperties";

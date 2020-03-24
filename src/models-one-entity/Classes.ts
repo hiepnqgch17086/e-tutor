@@ -5,7 +5,7 @@ import description from "../models-one-prop/description";
 import GeneralModel from "./GeneralModel";
 import GeneralModelList from "./GeneralModelList";
 
-const Class = types.compose(
+export const Class = types.compose(
   'Class',
   id, title, description, creatorId,
   GeneralModel,
