@@ -20,37 +20,41 @@ import { IS_ADMIN } from './models-one-prop/role';
 import AdminErrorPage from './pages/AdminErrorPage';
 import ClassListPage from './pages/ClassListPage';
 import ClassFormPage from './pages/ClassFormPage';
+import AdminLayout from './layout/AdminLayout';
 
+const pathAvoid = [SIGN_IN_PAGE, LANDING_PAGE, ADMIN_ERROR_PAGE]
 
 function App() {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path={SIGN_IN_PAGE} component={SignInPage} />
-        <Route exact path={LANDING_PAGE} component={LandingPage} />
-        <Route exact path={ADMIN_ERROR_PAGE} component={AdminErrorPage} />
-        <PrivateRoute exact path={HOME_PAGE}>
-          <HomePage />
-        </PrivateRoute>
-        <PrivateRouteAdmin exact path={ALL_USERS_PAGE}>
-          <AllUsersPage />
-        </PrivateRouteAdmin>
+      <Route exact path={SIGN_IN_PAGE} component={SignInPage} />
+      <Route exact path={LANDING_PAGE} component={LandingPage} />
+      <Route exact path={ADMIN_ERROR_PAGE} component={AdminErrorPage} />
 
-        <PrivateRoute exact path={CLASS_LIST_PAGE}>
-          <ClassListPage />
-        </PrivateRoute>
-        <PrivateRouteAdmin exact path={CLASS_FORM_PAGE}>
-          <ClassFormPage />
-        </PrivateRouteAdmin>
+      <AdminLayout pathAvoid={pathAvoid}>
+        <Switch>
+          <PrivateRoute exact path={HOME_PAGE}>
+            <HomePage />
+          </PrivateRoute>
+          <PrivateRouteAdmin exact path={ALL_USERS_PAGE}>
+            <AllUsersPage />
+          </PrivateRouteAdmin>
 
-        <PrivateRoute exact path={PROFILE_PAGE}>
-          <ProfilePage />
-        </PrivateRoute>
-        <PrivateRoute exact path={PROFILE_EDIT_PAGE}>
-          <ProfileEditPage />
-        </PrivateRoute>
+          <PrivateRoute exact path={CLASS_LIST_PAGE}>
+            <ClassListPage />
+          </PrivateRoute>
+          <PrivateRouteAdmin exact path={CLASS_FORM_PAGE}>
+            <ClassFormPage />
+          </PrivateRouteAdmin>
+          <PrivateRoute exact path={PROFILE_PAGE}>
+            <ProfilePage />
+          </PrivateRoute>
+          <PrivateRoute exact path={PROFILE_EDIT_PAGE}>
+            <ProfileEditPage />
+          </PrivateRoute>
+        </Switch>
+      </AdminLayout>
 
-      </Switch>
       <ToastContainer />
     </BrowserRouter>
   );

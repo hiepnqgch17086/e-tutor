@@ -17,7 +17,7 @@ const AllUsersPage = () => {
 
   return (
     <Container>
-      <h1 className="mt-5">All users</h1>
+      <h1>All users</h1>
       <Table>
         <thead>
           <tr>

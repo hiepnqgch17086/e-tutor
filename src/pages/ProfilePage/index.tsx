@@ -1,18 +1,19 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import { Button, Container } from 'reactstrap'
+import { Button } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { PROFILE_EDIT_PAGE } from '../../routes'
+// import AdminLayout from '../../layout/AdminLayout'
 
 const ProfilePage = () => {
   return (
-    <Container>
+    <div>
       <Link to={PROFILE_EDIT_PAGE}>
         <Button>
           Edit Profile
         </Button>
       </Link>
-    </Container>
+    </div>
   )
 }
 
