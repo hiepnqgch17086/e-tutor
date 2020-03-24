@@ -2,14 +2,14 @@
   "users": [
     {
       "id": "u1",
-      "email": "quanghiep2941@gmail.com",
+      "email": "quanghiep294@gmail.com",
       "password": "Hiep2941",
-      "name": "ADMIN NAME one",
+      "name": "ADMIN NAME on",
       "dob": "2020-03-24",
       "gender": "male",
       "phone": "0962675310",
       "address": "nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương, nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương",
-      "avatar": "https://firebasestorage.googleapis.com/v0/b/e-totur.appspot.com/o/avatars%2Fu1?alt=media&token=49bdae7d-eac3-4fed-8c05-7ae0494bb223",
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/e-totur.appspot.com/o/avatars%2Fu1?alt=media&token=b10bb4cb-231e-4f31-85e8-2c65b31ed861",
       "role": 1
     },
     {

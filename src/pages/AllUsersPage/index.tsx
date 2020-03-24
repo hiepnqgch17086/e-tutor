@@ -19,18 +19,13 @@ const AllUsersPage = () => {
 
   return (
     <>
-      <div className="card">
-        <div className="card-body">
-          <SearchBar
-            onSearchUsersByEmail={onSearchUsersByEmail}
-          />
-        </div>
-      </div>
-      <div className="card">
-        <MainList
-          userArrayList={Data.users.items}
-        />
-      </div>
+      <SearchBar
+        onSearchUsersByEmail={onSearchUsersByEmail}
+      />
+
+      <MainList
+        userArrayList={Data.users.items}
+      />
     </>
   )
 }

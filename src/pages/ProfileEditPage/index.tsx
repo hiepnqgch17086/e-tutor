@@ -14,7 +14,7 @@ const SignUpPage = () => {
     return () => Data.onWillUnMount()
   }, [])
   return (
-    <Container>
+    <>
       <MainForm
         cloneCurrentUser={cloneCurrentUser}
         onSaveForm={onSaveForm}
@@ -24,7 +24,7 @@ const SignUpPage = () => {
           <Redirect to={PROFILE_PAGE} />
         )
       }
-    </Container>
+    </>
   )
 }
 

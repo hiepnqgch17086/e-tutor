@@ -22,17 +22,23 @@ const SearchBar = ({
   }
 
   return (
-    <InputGroup>
-      <InputGroupAddon addonType="prepend">
-        <InputGroupText>
-          <i className="icon-magnifier" />
-        </InputGroupText>
-      </InputGroupAddon>
-      <Input placeholder="Enter user's email"
-        value={email}
-        onChange={onChangeEmail}
-      />
-    </InputGroup>
+    <div className="card">
+      <div className="card-body">
+
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">
+            <InputGroupText>
+              <i className="icon-magnifier" />
+            </InputGroupText>
+          </InputGroupAddon>
+          <Input placeholder="Enter user's email"
+            value={email}
+            onChange={onChangeEmail}
+          />
+        </InputGroup>
+
+      </div>
+    </div>
   )
 }
 

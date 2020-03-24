@@ -2,7 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react-lite'
 import ProfilePageData from '../../../pages/ProfilePage/data'
 import { Link, useLocation } from 'react-router-dom'
-import { HOME_PAGE, CLASS_LIST_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, ALL_USERS_PAGE } from '../../../routes'
+import { HOME_PAGE, CLASS_LIST_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, ALL_USERS_PAGE, CLASS_FORM_PAGE } from '../../../routes'
 import moment from 'moment'
 
 const PageBreadcrumb = () => {
@@ -50,6 +50,17 @@ const PageBreadcrumb = () => {
 const _getDisplay = (pathName: string) => {
   const { currentUser } = ProfilePageData
 
+  const classBreadcrumbRoot = (
+    <>
+      <li className="breadcrumb-item">
+        <Link to={HOME_PAGE}>Home</Link>
+      </li>
+      <li className="breadcrumb-item">
+        <Link to={CLASS_LIST_PAGE}>Classes</Link>
+      </li>
+    </>
+  )
+
   switch (pathName) {
     case HOME_PAGE:
       return {
@@ -94,13 +105,16 @@ const _getDisplay = (pathName: string) => {
     case CLASS_LIST_PAGE:
       return {
         title: `Classes`,
+        breadcrumb: classBreadcrumbRoot
+      }
+    case CLASS_FORM_PAGE:
+      return {
+        title: `Class form`,
         breadcrumb: (
           <>
+            {classBreadcrumbRoot}
             <li className="breadcrumb-item">
-              <Link to={HOME_PAGE}>Home</Link>
-            </li>
-            <li className="breadcrumb-item">
-              <Link to={CLASS_LIST_PAGE}>Classes</Link>
+              <Link to={CLASS_FORM_PAGE}>Class form</Link>
             </li>
           </>
         )

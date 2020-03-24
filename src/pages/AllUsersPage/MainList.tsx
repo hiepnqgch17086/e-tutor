@@ -8,36 +8,40 @@ const MainList = ({
 }) => {
   // console.log('userArrayList', userArrayList)
   return (
-    <div className="table-responsive">
-      <table className="table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Email</th>
-            <th>Name</th>
-            <th>Dob</th>
-            <th>Phone</th>
-            {/* <th>Address</th> */}
-            <th>Avatar</th>
-            <th>Role</th>
-          </tr>
-        </thead>
-        <tbody>
+    <div className="card">
 
-          {
-            userArrayList.map((user, index) => (
-              <UserItemObserver
-                item={user}
-                index={index}
-                key={user.id}
-              />
-            ))
-          }
+      <div className="table-responsive">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Email</th>
+              <th>Name</th>
+              <th>Dob</th>
+              <th>Phone</th>
+              {/* <th>Address</th> */}
+              <th>Avatar</th>
+              <th>Role</th>
+            </tr>
+          </thead>
+          <tbody>
 
-        </tbody>
+            {
+              userArrayList.map((user, index) => (
+                <UserItemObserver
+                  item={user}
+                  index={index}
+                  key={user.id}
+                />
+              ))
+            }
+
+          </tbody>
 
 
-      </table>
+        </table>
+      </div>
+
     </div>
   )
 }
@@ -73,6 +77,7 @@ export const UserItem = ({ item = defaultOfUser, index = 0 }) => {
       </select>
     </th>
   </tr>
+
 }
 
 const UserItemObserver = observer(UserItem)
