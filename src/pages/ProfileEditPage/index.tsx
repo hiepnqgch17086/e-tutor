@@ -5,6 +5,7 @@ import { Container } from 'reactstrap'
 import Data from './data'
 import { Redirect } from 'react-router-dom'
 import { PROFILE_PAGE } from '../../routes'
+import headerPageClasses from '../../reusable-classes/headerPageClasses'
 
 const SignUpPage = () => {
   const { cloneCurrentUser, onSaveForm, shouldRedirectToProfilePage } = Data
@@ -15,7 +16,7 @@ const SignUpPage = () => {
   }, [])
   return (
     <Container>
-      <h1 className="mt-5">Edit profile</h1>
+      <h1 className={headerPageClasses}>Edit profile</h1>
       <MainForm
         cloneCurrentUser={cloneCurrentUser}
         onSaveForm={onSaveForm}
