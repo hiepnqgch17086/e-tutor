@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
+import { PaginationType } from '../models-one-entity/types'
 
 class ApiModel {
   protected ApiRef: AxiosInstance
@@ -27,11 +28,8 @@ class ApiModel {
   getAuthToken({ email = '', password = '' }): Promise<AxiosResponse<any>> {
     throw new Error('!override getDatabaseToken()')
   }
-  getUsers() {
+  getUsers(paginationData: PaginationType) {
     throw new Error('!override getUsers()')
-  }
-  getUsersByEmail(email: string) {
-    throw new Error('!override getUsersByEmail()')
   }
   // update profile without password
   setUserUpdateProfile(userSnapshot: Object): Promise<AxiosResponse<any>> {

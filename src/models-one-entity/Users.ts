@@ -14,8 +14,7 @@ import { setLocalStorageAuthToken, getLocalStorageAuthToken, setLocalStorageAuth
 import GeneralModelList from "./GeneralModelList";
 import avatar from "../models-one-prop/avatar";
 import role, { IS_ADMIN, IS_TUTOR } from "../models-one-prop/role";
-// import permission from "../models-one-prop/permission";
-const defaultSnapshot = {}
+import PaginationModel from "./PaginationModel";
 
 const UserMoreProps = types.compose(
   name, dob, gender, phone, address,
@@ -126,22 +125,46 @@ export const User = types.compose(
 
 export const defaultOfUser = User.create({})
 
+type GetUsersProp = {
+  email?: string
+}
+
 const Users = types.compose(
   'Users',
   GeneralModelList,
+  PaginationModel,
   types.model({
     items: types.array(User)
   })
 )
   .actions(self => ({
     getDatabaseItems: async function () {
-      const response = await API.getUsers()
+      // const { email } = props
+      // console.log(email)
+      // console.log(self.searchByEmail)
+      // if (email || self.searchByEmail) {
+      //   self.setSearchByEmail(email)
+      //   // self.setPage(1)
+      //   // const response = await API.getUsersByEmail({ email: self.searchByEmail, limit: self.limit, page: self.page })
+      //   // self.setSnapshotNew(response.data, self.items)
+      //   // return
+      // }
+
+      const response = await API.getUsers({
+        page: self.page,
+        limit: self.limit,
+        email: self.searchByEmail
+      })
+
       self.setSnapshotNew(response.data, self.items)
+
     },
-    getDatabaseItemsByEmail: async function (email: string) {
-      const response = await API.getUsersByEmail(email)
-      self.setSnapshotNew(response.data, self.items)
-    }
+    // getDatabaseItemsByEmail: async function (email: string) {
+    //   if (email) {
+
+    //   }
+    //   // this.getDatabaseItems({ limit: self.limit, page: self.page })
+    // }
   }))
 
 export default Users

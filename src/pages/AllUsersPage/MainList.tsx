@@ -1,12 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { defaultOfUsers, defaultOfUser } from '../../models-one-entity/Users'
 import { IS_ADMIN, IS_STUDENT, IS_TUTOR } from '../../models-one-prop/role'
 
 const MainList = ({
-  userArrayList = defaultOfUsers.items
+  users = defaultOfUsers,
+  page = 1,
+  limit = 10,
 }) => {
-  // console.log('userArrayList', userArrayList)
+
+  const getDatabaseUsers = () => {
+    users.getDatabaseItems()
+  }
+
+  useEffect(() => {
+    getDatabaseUsers()
+  }, [page, limit])
+
   return (
     <div className="card">
 
@@ -27,7 +37,7 @@ const MainList = ({
           <tbody>
 
             {
-              userArrayList.map((user, index) => (
+              users.items.map((user, index) => (
                 <UserItemObserver
                   item={user}
                   index={index}

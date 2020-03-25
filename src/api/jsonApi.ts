@@ -1,5 +1,6 @@
 import ApiModel from "./apiModel";
-import Axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
+import { PaginationType } from "../models-one-entity/types";
 
 type User = {
   id?: string | number
@@ -22,16 +23,13 @@ export default class JsonApi extends ApiModel {
    * 
    * @override
    */
-  getUsers() {
-    return this.ApiRef.get('/users')
+  getUsers({ page = 1, limit = 5, email = '' }: PaginationType) {
+    let url = `/users?_page=${page}&_limit=${limit}`
+    if (email) url += `&email=${email}`
+    return this.ApiRef.get(url)
   }
-  /**
-   * 
-   * @override
-   */
-  getUsersByEmail(email: string) {
-    return this.ApiRef.get(`/users/?email=${email}`)
-  }
+
+
   /**
    * @override
    */

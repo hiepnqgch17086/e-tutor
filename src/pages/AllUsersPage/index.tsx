@@ -3,10 +3,12 @@ import { observer } from 'mobx-react-lite'
 import MainList from './MainList'
 import Data from './data'
 import SearchBar from './SearchBar'
+import PaginationBar from './PaginationBar'
 
 const AllUsersPage = () => {
 
-  const { onSearchUsersByEmail } = Data
+  const { users } = Data
+  const { limit, setLimit, page, setPage, getDatabaseItems, setSearchByEmail } = users
 
   useEffect(() => {
     // effect
@@ -20,11 +22,21 @@ const AllUsersPage = () => {
   return (
     <>
       <SearchBar
-        onSearchUsersByEmail={onSearchUsersByEmail}
+        getDatabaseItems={getDatabaseItems}
+        setGlobalInput={setSearchByEmail}
       />
 
       <MainList
-        userArrayList={Data.users.items}
+        users={users}
+        page={page}
+        limit={limit}
+      // setLimit={setLimit}
+      // setPage={setPage}
+      />
+
+      <PaginationBar
+        page={page}
+        setPage={setPage}
       />
     </>
   )

@@ -13,20 +13,21 @@ const AllUsersPageData = types.compose(
   .actions(self => ({
     onDidMount() {
       // get all users
-      this.getDatabase()
+      // this.getDatabase()
     },
     onWillUnMount() {
       self.setSnapshotNew({})
     },
-    onSearchUsersByEmail(email: string) {
-      email
-        ? self.users.getDatabaseItemsByEmail(email)
-        : self.users.getDatabaseItems()
-      // console.log(email)
-    },
-    getDatabase: function () {
-      self.users.getDatabaseItems()
-    },
+    // onSearchUsersByEmail(email: string) {
+    //   self.setPage(1)
+    //   email
+    //     ? self.users.getDatabaseItemsByEmail({ email, limit: self.limit, page: self.page })
+    //     : self.users.getDatabaseItems({ limit: self.limit, page: self.page })
+    //   // console.log(email)
+    // },
+    // getDatabase: function () {
+    //   self.users.getDatabaseItems({ page: self.page, limit: self.limit })
+    // },
     // setEmailForSearching(newValue: string = '') {
     //   self.emailForSearching = newValue
     // }

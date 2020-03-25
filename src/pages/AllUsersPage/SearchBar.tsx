@@ -3,21 +3,24 @@ import { observer } from 'mobx-react-lite'
 import { InputGroup, InputGroupAddon, Input, InputGroupText } from 'reactstrap'
 
 let timer: any = null
-let email2: string = ''
+let input2: string = ''
 
 const SearchBar = ({
-  onSearchUsersByEmail = (email: string) => { console.log(email) }
+  getDatabaseItems = () => { console.log(input) },
+  setGlobalInput = (input: string) => { },
+  placeholder = "Enter user's email"
 }) => {
 
-  const [email, setEmail] = useState('')
+  const [input, setInput] = useState('')
 
-  const onChangeEmail = (e: any) => {
-    setEmail(e.target.value)
-    email2 = e.target.value
+  const onChangeInput = (e: any) => {
+    setInput(e.target.value)
+    input2 = e.target.value
     clearTimeout(timer)
 
     timer = setTimeout(() => {
-      onSearchUsersByEmail(email2)
+      setGlobalInput(input2)
+      getDatabaseItems()
     }, 500);
   }
 
@@ -31,9 +34,9 @@ const SearchBar = ({
               <i className="icon-magnifier" />
             </InputGroupText>
           </InputGroupAddon>
-          <Input placeholder="Enter user's email"
-            value={email}
-            onChange={onChangeEmail}
+          <Input placeholder={placeholder}
+            value={input}
+            onChange={onChangeInput}
           />
         </InputGroup>
 

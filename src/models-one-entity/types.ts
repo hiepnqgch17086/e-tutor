@@ -16,3 +16,14 @@ export type ConstraintKey = string
 export type SetDatabaseNewProps = {
   url?: string
 }
+
+export type PaginationType = {
+  page: number,
+  limit: number
+  email?: string
+}
+
+// export type PaginationEmail = {
+//   page: number,
+//   limit: number,
+// }
