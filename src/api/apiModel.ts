@@ -28,6 +28,9 @@ class ApiModel {
   getAuthToken({ email = '', password = '' }): Promise<AxiosResponse<any>> {
     throw new Error('!override getDatabaseToken()')
   }
+  getUser(id: string | number) {
+    throw new Error('!override getUsers()')
+  }
   getUsers(paginationData: PaginationType) {
     throw new Error('!override getUsers()')
   }

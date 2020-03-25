@@ -2,7 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react-lite'
 import ProfilePageData from '../../../pages/ProfilePage/data'
 import { Link, useLocation } from 'react-router-dom'
-import { HOME_PAGE, CLASS_LIST_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, ALL_USERS_PAGE, CLASS_FORM_PAGE } from '../../../routes'
+import { HOME_PAGE, CLASS_LIST_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, ALL_USERS_PAGE, CLASS_FORM_PAGE, getIsUserPagePath } from '../../../routes'
 import moment from 'moment'
 
 const PageBreadcrumb = () => {
@@ -61,6 +61,34 @@ const _getDisplay = (pathName: string) => {
     </>
   )
 
+  const profileBreadcrumbRoot = (
+    <>
+      <li className="breadcrumb-item">
+        <Link to={HOME_PAGE}>Home</Link>
+      </li>
+      <li className="breadcrumb-item">
+        <Link to={PROFILE_PAGE}>My Profile</Link>
+      </li>
+    </>
+  )
+
+
+
+  if (getIsUserPagePath(pathName)) {
+    return {
+      title: `User detail`,
+      breadcrumb: (
+        <>
+          <li className="breadcrumb-item">
+            <Link to={HOME_PAGE}>Home</Link>
+          </li>
+        </>
+      )
+    }
+  }
+
+  // case USER_PAGE:
+
   switch (pathName) {
     case HOME_PAGE:
       return {
@@ -73,31 +101,17 @@ const _getDisplay = (pathName: string) => {
       };
     case PROFILE_PAGE:
       return {
-        title: `Profile`,
-        breadcrumb: (
-          <>
-            <li className="breadcrumb-item">
-              <Link to={HOME_PAGE}>Home</Link>
-            </li>
-            <li className="breadcrumb-item">
-              <Link to={PROFILE_PAGE}>Profile</Link>
-            </li>
-          </>
-        )
+        title: `My Profile`,
+        breadcrumb: profileBreadcrumbRoot
       };
     case PROFILE_EDIT_PAGE:
       return {
         title: `Edit Profile`,
         breadcrumb: (
           <>
+            {profileBreadcrumbRoot}
             <li className="breadcrumb-item">
-              <Link to={HOME_PAGE}>Home</Link>
-            </li>
-            <li className="breadcrumb-item">
-              <Link to={PROFILE_PAGE}>Profile</Link>
-            </li>
-            <li className="breadcrumb-item">
-              <Link to={PROFILE_EDIT_PAGE}>Edit Profile</Link>
+              <Link to={PROFILE_EDIT_PAGE}>Edit</Link>
             </li>
           </>
         )
@@ -133,6 +147,7 @@ const _getDisplay = (pathName: string) => {
           </>
         )
       }
+
     default:
       return {
         title: '',

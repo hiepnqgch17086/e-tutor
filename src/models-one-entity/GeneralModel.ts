@@ -47,6 +47,12 @@ const GeneralModel = types.compose(
       throw new Error(`Should override method _getValidation() => array of constraint string, ['title-constraint', 'code-constraint']`)
     },
     // should override
+    _getMainThreadOfGettingDatabase(): Promise<AxiosResponse<any>> | Promise<any> {
+      console.log('\n')
+      console.log('Name of model: ', getType(self).name)
+      throw new Error(`Should override method _getMainThreadOfGettingDatabase()`)
+    },
+    // should override
     _getMainThreadOfSettingDatabaseUpdate(): Promise<AxiosResponse<any>> | Promise<any> {
       console.log('\n')
       console.log('Name of model: ', getType(self).name)
@@ -80,15 +86,9 @@ const GeneralModel = types.compose(
      */
     getDatabase: async function (): Promise<Response> {
       try {
-        // constraint: getDB of only self
-        // should set id before calling this method
-        //@ts-ignore, reference to this._getReference()
-        const ref = self._getReference()
-        const snap = await ref.once('value')
-        self.setSnapshotUpdate(snap.val()) // there can has addtional infor which will is existing in the screen, so using setSnapshotUpdate is better
-        //@ts-ignore, reference to this._getDatabaseAdditionalInfo()
-        const message = await self._getDatabaseAdditionalInfo()
-        if (message) throw new Error(message)
+        // @ts-ignore
+        const res = await self._getMainThreadOfGettingDatabase()
+        self.setSnapshotUpdate(res.data)
         return {
           isSuccess: true,
           // @ts-ignore

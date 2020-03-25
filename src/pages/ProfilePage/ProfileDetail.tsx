@@ -15,11 +15,11 @@ const ProfileDetail = ({
             <h4 className="mt-2 text-dark">{user.name}</h4>
           </Col>
           <Col md={8} sm={12}>
-            <div>+ Email: {user.email}</div>
-            <div>+ Gender: {user.gender}</div>
-            <div>+ Phone: {user.phone}</div>
-            <div>+ Address: {user.address}</div>
-            <div>+ Date of birth: {user.dob}</div>
+            <div><i className="fas fa-chevron-right" /> Email: {user.email}</div>
+            <div><i className="fas fa-chevron-right" /> Gender: {user.gender}</div>
+            <div><i className="fas fa-chevron-right" /> Phone: {user.phone}</div>
+            <div><i className="fas fa-chevron-right" /> Address: {user.address}</div>
+            <div><i className="fas fa-chevron-right" /> Date of birth: {user.dob}</div>
           </Col>
         </Row>
 

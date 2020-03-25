@@ -8,3 +8,11 @@
 * Open exist folder, ```git pull```
 * Run server like above, if error, try ```yarn install``` and run again
 
+## Pages
+* ```/```
+* ```/home``` as dashboard
+
+* ```/signIn```
+* ```/profile```
+* ```/profile-edit```
+* ```/all-users```

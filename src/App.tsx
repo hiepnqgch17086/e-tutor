@@ -5,7 +5,7 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom'
-import { SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE, LANDING_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, ALL_USERS_PAGE, ADMIN_ERROR_PAGE, CLASS_LIST_PAGE, CLASS_FORM_PAGE } from './routes'
+import { SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE, LANDING_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, ALL_USERS_PAGE, ADMIN_ERROR_PAGE, CLASS_LIST_PAGE, USER_PAGE, CLASS_FORM_PAGE } from './routes'
 import SignInPage from './pages/SignInPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -21,6 +21,7 @@ import AdminErrorPage from './pages/AdminErrorPage';
 import ClassListPage from './pages/ClassListPage';
 import ClassFormPage from './pages/ClassFormPage';
 import AdminLayout from './layout/AdminLayout';
+import UserDetailPage from './pages/UserDetailPage';
 
 const pathAvoid = [SIGN_IN_PAGE, LANDING_PAGE, ADMIN_ERROR_PAGE]
 
@@ -52,6 +53,11 @@ function App() {
           <PrivateRoute exact path={PROFILE_EDIT_PAGE}>
             <ProfileEditPage />
           </PrivateRoute>
+
+          <PrivateRoute path={USER_PAGE}>
+            <UserDetailPage />
+          </PrivateRoute>
+
         </Switch>
       </AdminLayout>
 

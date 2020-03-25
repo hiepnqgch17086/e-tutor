@@ -32,6 +32,12 @@ export const User = types.compose(
     /**
      * @override
      */
+    _getMainThreadOfGettingDatabase() {
+      return API.getUser(self.id)
+    },
+    /**
+     * @override
+     */
     _getMainProperties(): Array<string> {
       return ['id', 'email', 'password', 'name', 'dob', 'gender', 'phone', 'address', 'avatar', 'role']
     },

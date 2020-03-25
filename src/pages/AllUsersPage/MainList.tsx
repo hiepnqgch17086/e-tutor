@@ -2,6 +2,9 @@ import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { defaultOfUsers, defaultOfUser } from '../../models-one-entity/Users'
 import { IS_ADMIN, IS_STUDENT, IS_TUTOR } from '../../models-one-prop/role'
+import { Link } from 'react-router-dom'
+import { get_USER_PAGE } from '../../routes'
+import { useHistory } from "react-router-dom";
 
 const MainList = ({
   users = defaultOfUsers,
@@ -21,7 +24,7 @@ const MainList = ({
     <div className="card">
 
       <div className="table-responsive">
-        <table className="table">
+        <table className="table table-hover">
           <thead>
             <tr>
               <th>#</th>
@@ -64,7 +67,17 @@ export const UserItem = ({ item = defaultOfUser, index = 0 }) => {
     item.setDatabaseUpdateProfile()
   }
 
-  return <tr>
+  let history = useHistory();
+
+  function handleClick() {
+    history.push(get_USER_PAGE(item.id));
+  }
+
+  function handleChildStopClick(e: any) {
+    e.stopPropagation()
+  }
+
+  return <tr style={{ cursor: 'pointer' }} onClick={handleClick}>
     <th scope="row">{index + 1}</th>
     <th>{item.email}</th>
     <th>{item.name}</th>
@@ -78,6 +91,7 @@ export const UserItem = ({ item = defaultOfUser, index = 0 }) => {
     <th>
       <select className="form-control" id="exampleFormControlSelect1"
         value={item.role}
+        onClick={handleChildStopClick}
         onChange={onChangeRole}
         style={{ minWidth: '120px' }}
       >
@@ -87,7 +101,6 @@ export const UserItem = ({ item = defaultOfUser, index = 0 }) => {
       </select>
     </th>
   </tr>
-
 }
 
 const UserItemObserver = observer(UserItem)

@@ -20,6 +20,12 @@ export default class JsonApi extends ApiModel {
     return this.ApiRef.get('/users/u1')
   }
   /**
+   * @override
+   */
+  getUser(id: string | number) {
+    return this.ApiRef.get(`/users/${id}`)
+  }
+  /**
    * 
    * @override
    */
@@ -28,8 +34,6 @@ export default class JsonApi extends ApiModel {
     if (email) url += `&email=${email}`
     return this.ApiRef.get(url)
   }
-
-
   /**
    * @override
    */
