@@ -9,13 +9,13 @@ const MainForm = () => {
       <div className="row">
         <div className="col-lg-12">
           <div className="form-group">
-            <label className="text-dark" htmlFor="uname">Username</label>
-            <input className="form-control" id="uname" type="text" placeholder="enter your username" />
+            <label className="text-dark" htmlFor="uname">Email *</label>
+            <input className="form-control" id="uname" type="email" placeholder="enter your email" />
           </div>
         </div>
         <div className="col-lg-12">
           <div className="form-group">
-            <label className="text-dark" htmlFor="pwd">Password</label>
+            <label className="text-dark" htmlFor="pwd">Password *</label>
             <input className="form-control" id="pwd" type="password" placeholder="enter your password" />
           </div>
         </div>
