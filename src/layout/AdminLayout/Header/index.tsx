@@ -19,9 +19,9 @@ const Header = () => {
             <Link to={LANDING_PAGE}>
               <b className="logo-icon">
                 {/* Dark Logo icon */}
-                <img src="assets/images/logo-icon.png" alt="homepage" className="dark-logo" />
+                <img src="/assets/images/logo-icon.png" alt="homepage" className="dark-logo" />
                 {/* Light Logo icon */}
-                <img src="assets/images/logo-icon.png" alt="homepage" className="light-logo" />
+                <img src="/assets/images/logo-icon.png" alt="homepage" className="light-logo" />
               </b>
               {/*End Logo icon */}
               {/* Logo text */}
