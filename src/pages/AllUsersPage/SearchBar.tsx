@@ -6,8 +6,9 @@ let timer: any = null
 let input2: string = ''
 
 const SearchBar = ({
-  getDatabaseItems = () => { console.log(input) },
+  getDatabaseItems = () => { console.log('prop should pass') },
   setGlobalInput = (input: string) => { },
+  setPage = (page: number) => { },
   placeholder = "Enter user's email"
 }) => {
 
@@ -19,6 +20,7 @@ const SearchBar = ({
     clearTimeout(timer)
 
     timer = setTimeout(() => {
+      setPage(1)
       setGlobalInput(input2)
       getDatabaseItems()
     }, 500);

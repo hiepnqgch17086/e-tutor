@@ -4,6 +4,7 @@ import MainList from './MainList'
 import Data from './data'
 import SearchBar from './SearchBar'
 import PaginationBar from './PaginationBar'
+import SlNumberOfItems from './SlNumberOfItems'
 
 const AllUsersPage = () => {
 
@@ -24,8 +25,14 @@ const AllUsersPage = () => {
       <SearchBar
         getDatabaseItems={getDatabaseItems}
         setGlobalInput={setSearchByEmail}
+        placeholder="Enter user's email"
+        setPage={setPage}
       />
 
+      <SlNumberOfItems
+        limit={limit}
+        setLimit={setLimit}
+      />
       <MainList
         users={users}
         page={page}
@@ -33,7 +40,6 @@ const AllUsersPage = () => {
       // setLimit={setLimit}
       // setPage={setPage}
       />
-
       <PaginationBar
         page={page}
         setPage={setPage}
