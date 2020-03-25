@@ -22,12 +22,14 @@ const AllUsersPage = () => {
 
   return (
     <>
-      <SearchBar
-        getDatabaseItems={getDatabaseItems}
-        setGlobalInput={setSearchByEmail}
-        placeholder="Enter user's email"
-        setPage={setPage}
-      />
+      <div className="card">
+        <SearchBar
+          getDatabaseItems={getDatabaseItems}
+          setGlobalInput={setSearchByEmail}
+          placeholder="Enter user's email"
+          setPage={setPage}
+        />
+      </div>
 
       <SlNumberOfItems
         limit={limit}

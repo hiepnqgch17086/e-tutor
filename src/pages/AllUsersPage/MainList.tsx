@@ -45,6 +45,8 @@ const MainList = ({
                   item={user}
                   index={index}
                   key={user.id}
+                  page={page}
+                  limit={limit}
                 />
               ))
             }
@@ -59,7 +61,7 @@ const MainList = ({
   )
 }
 
-export const UserItem = ({ item = defaultOfUser, index = 0 }) => {
+export const UserItem = ({ item = defaultOfUser, index = 0, page = 0, limit = 0 }) => {
 
   const onChangeRole = (e: any) => {
     item.setRole(parseInt(e.target.value))
@@ -78,7 +80,7 @@ export const UserItem = ({ item = defaultOfUser, index = 0 }) => {
   }
 
   return <tr style={{ cursor: 'pointer' }} onClick={handleClick}>
-    <th scope="row">{index + 1}</th>
+    <th scope="row">{(page - 1) * limit + index + 1}</th>
     <th>{item.email}</th>
     <th>{item.name}</th>
     <th>{item.dob}</th>
