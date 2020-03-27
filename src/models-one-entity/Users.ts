@@ -10,7 +10,7 @@ import address from "../models-one-prop/address";
 import GeneralModel from "./GeneralModel";
 import { ErrorMessage, Response } from "./types";
 import API from "../api";
-import { setLocalStorageAuthToken, getLocalStorageAuthToken, setLocalStorageAuthTokenDelete } from "../routes";
+import { setLocalStorageAuthIdToken, setLocalStorageAuthTokenDelete } from "../routes";
 import GeneralModelList from "./GeneralModelList";
 import avatar from "../models-one-prop/avatar";
 import role, { IS_ADMIN, IS_TUTOR } from "../models-one-prop/role";
@@ -100,20 +100,22 @@ export const User = types.compose(
 
         self.setSnapshotUpdate(data)
 
-        this.setLocal()
+        this.setAuthIdToken()
         return ''
       } catch (error) {
         console.log(error.message)
         return 'Something went wrong!'
       }
     },
-    setLocal() {
-      setLocalStorageAuthToken(JSON.stringify(getSnapshot(self)))
+    setAuthIdToken() {
+      setLocalStorageAuthIdToken(JSON.stringify(self.id))
     },
-    getLocal() {
-      const snapshot = getLocalStorageAuthToken()
+    getMyProfile: async function () {
+      // const authId = getLocalStorageAuthIdToken()
       // console.log(snapshot)
-      self.setSnapshotNew(snapshot)
+      // self.setSnapshotNew(snapshot)
+      const { data } = await API.getMyProfile()
+      self.setSnapshotUpdate(data)
     },
     setLogout() {
       // self.setSnapshotNew({})

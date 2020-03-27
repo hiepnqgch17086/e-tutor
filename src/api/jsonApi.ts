@@ -1,6 +1,7 @@
 import ApiModel from "./apiModel";
 import { AxiosResponse } from "axios";
 import { PaginationType } from "../models-one-entity/types";
+import { getLocalStorageAuthIdToken } from "../routes";
 
 type User = {
   id?: string | number
@@ -33,6 +34,10 @@ export default class JsonApi extends ApiModel {
     let url = `/users?_page=${page}&_limit=${limit}`
     if (email) url += `&email=${email}`
     return this.ApiRef.get(url)
+  }
+  getMyProfile() {
+    const id = getLocalStorageAuthIdToken()
+    return this.ApiRef.get(`/users/${id}`)
   }
   /**
    * @override

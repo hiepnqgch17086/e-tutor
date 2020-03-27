@@ -10,15 +10,15 @@ const ProfilePageData = types.compose(
   })
 )
   .actions(self => ({
-    afterCreate() {
-      // with any change on current user, will set local
-      onSnapshot(self.currentUser, self.currentUser.setLocal)
-      // weakness: will save local first, not save server first
-    }
+    // afterCreate() {
+    //   // with any change on current user, will set local
+    //   onSnapshot(self.currentUser, self.currentUser.setAuthIdToken)
+    //   // weakness: will save local first, not save server first
+    // }
   }))
   .create({})
 
 // get local to reload from token
-ProfilePageData.currentUser.getLocal()
+ProfilePageData.currentUser.getMyProfile()
 
 export default ProfilePageData

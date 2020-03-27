@@ -25,16 +25,16 @@ export const getIsAuthorized = () => {
   return token ? true : false
 }
 
-export const setLocalStorageAuthToken = (authString: string) => {
-  localStorage.setItem('token', authString)
+export const setLocalStorageAuthIdToken = (authId: string) => {
+  localStorage.setItem('token', authId)
 }
 
 export const setLocalStorageAuthTokenDelete = () => {
   localStorage.removeItem('token')
 }
 
-export const getLocalStorageAuthToken = (): Object => {
-  const currentUserString = localStorage.getItem('token') || '{}'
-  const currentUserObject = JSON.parse(currentUserString)
-  return currentUserObject
+export const getLocalStorageAuthIdToken = (): string => {
+  const authIdString = localStorage.getItem('token') || '{}'
+  // const currentUserObject = JSON.parse(authIdString)
+  return authIdString
 }
