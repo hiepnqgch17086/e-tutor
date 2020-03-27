@@ -2,7 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react-lite'
 import { Form, FormGroup, Label, Input, Row, Col, Button } from 'reactstrap'
 import BtnAddStudent from './MainForm/BtnAddStudent'
-import BtnAddTutor from './MainForm/BtnAddTutor'
+import BtnAddTutor from './MainForm'
 
 const MainForm = () => {
   return (
@@ -23,7 +23,7 @@ const MainForm = () => {
                 <Label for="exampleEmail">
                   Tutor{` `}
                 </Label> <br />
-                <BtnAddTutor />
+                {/* <BtnAddTutor /> */}
               </FormGroup>
             </Col>
 

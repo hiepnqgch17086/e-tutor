@@ -28,13 +28,16 @@ class ApiModel {
   getAuthToken({ email = '', password = '' }): Promise<AxiosResponse<any>> {
     throw new Error('!override getDatabaseToken()')
   }
-  getMyProfile(id: string | number) {
+  getMyProfile(id: string | number): Promise<AxiosResponse<any>> {
     throw new Error('!override getUsers()')
   }
-  getUser(id: string | number) {
+  getUser(id: string | number): Promise<AxiosResponse<any>> {
     throw new Error('!override getUsers()')
   }
-  getUsers(paginationData: PaginationType) {
+  getUsers(paginationData: PaginationType): Promise<AxiosResponse<any>> {
+    throw new Error('!override getUsers()')
+  }
+  getUsersWhoAreStudent(paginationData: PaginationType): Promise<AxiosResponse<any>> {
     throw new Error('!override getUsers()')
   }
   // update profile without password

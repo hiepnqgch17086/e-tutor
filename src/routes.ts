@@ -3,7 +3,7 @@ export const ADMIN_PAGE = '/admin'
 export const ADMIN_ERROR_PAGE = '/admin-error'
 export const ALL_USERS_PAGE = '/all-users'
 export const CLASS_LIST_PAGE = '/classes'
-export const CLASS_FORM_PAGE = '/class-form'
+export const CLASS_ADD_PAGE = '/class-add'
 export const LANDING_PAGE = '/'
 export const SIGN_IN_PAGE = '/signin'
 export const HOME_PAGE = '/home'
@@ -33,8 +33,8 @@ export const setLocalStorageAuthTokenDelete = () => {
   localStorage.removeItem('token')
 }
 
-export const getLocalStorageAuthIdToken = (): string => {
-  const authIdString = localStorage.getItem('token') || '{}'
-  // const currentUserObject = JSON.parse(authIdString)
-  return authIdString
+export const getLocalStorageAuthIdToken = (): string | number => {
+  const authIdString = localStorage.getItem('token') || ''
+  const authId = JSON.parse(authIdString)
+  return authId
 }

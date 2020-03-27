@@ -2,6 +2,7 @@ import ApiModel from "./apiModel";
 import { AxiosResponse } from "axios";
 import { PaginationType } from "../models-one-entity/types";
 import { getLocalStorageAuthIdToken } from "../routes";
+import { IS_STUDENT } from "../models-one-prop/role";
 
 type User = {
   id?: string | number
@@ -23,19 +24,24 @@ export default class JsonApi extends ApiModel {
   /**
    * @override
    */
-  getUser(id: string | number) {
+  getUser(id: string | number): Promise<AxiosResponse<any>> {
     return this.ApiRef.get(`/users/${id}`)
   }
   /**
    * 
    * @override
    */
-  getUsers({ page = 1, limit = 5, email = '' }: PaginationType) {
+  getUsers({ page = 1, limit = 10, email = '' }: PaginationType): Promise<AxiosResponse<any>> {
     let url = `/users?_page=${page}&_limit=${limit}`
     if (email) url += `&email=${email}`
     return this.ApiRef.get(url)
   }
-  getMyProfile() {
+  getUsersWhoAreStudent({ page = 1, limit = 10, email = '' }: PaginationType): Promise<AxiosResponse<any>> {
+    let url = `/users?_page=${page}&_limit=${limit}&role=${IS_STUDENT}`
+    if (email) url += `&email=${email}`
+    return this.ApiRef.get(url)
+  }
+  getMyProfile(): Promise<AxiosResponse<any>> {
     const id = getLocalStorageAuthIdToken()
     return this.ApiRef.get(`/users/${id}`)
   }

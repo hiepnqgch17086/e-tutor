@@ -112,7 +112,7 @@ export const User = types.compose(
     },
     getMyProfile: async function () {
       // const authId = getLocalStorageAuthIdToken()
-      // console.log(snapshot)
+      console.log("snapshot")
       // self.setSnapshotNew(snapshot)
       const { data } = await API.getMyProfile()
       self.setSnapshotUpdate(data)
@@ -147,17 +147,6 @@ const Users = types.compose(
 )
   .actions(self => ({
     getDatabaseItems: async function () {
-      // const { email } = props
-      // console.log(email)
-      // console.log(self.searchByEmail)
-      // if (email || self.searchByEmail) {
-      //   self.setSearchByEmail(email)
-      //   // self.setPage(1)
-      //   // const response = await API.getUsersByEmail({ email: self.searchByEmail, limit: self.limit, page: self.page })
-      //   // self.setSnapshotNew(response.data, self.items)
-      //   // return
-      // }
-
       const response = await API.getUsers({
         page: self.page,
         limit: self.limit,
@@ -167,12 +156,15 @@ const Users = types.compose(
       self.setSnapshotNew(response.data, self.items)
 
     },
-    // getDatabaseItemsByEmail: async function (email: string) {
-    //   if (email) {
+    getDatabaseItemsWhoAreStudent: async function () {
+      const response = await API.getUsersWhoAreStudent({
+        page: self.page,
+        limit: self.limit,
+        email: self.searchByEmail
+      })
 
-    //   }
-    //   // this.getDatabaseItems({ limit: self.limit, page: self.page })
-    // }
+      self.setSnapshotNew(response.data, self.items)
+    },
   }))
 
 export default Users

@@ -2,7 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react-lite'
 import ProfilePageData from '../../../pages/ProfilePage/data'
 import { Link, useLocation } from 'react-router-dom'
-import { HOME_PAGE, CLASS_LIST_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, ALL_USERS_PAGE, CLASS_FORM_PAGE, getIsUserPagePath } from '../../../routes'
+import { HOME_PAGE, CLASS_LIST_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, ALL_USERS_PAGE, CLASS_ADD_PAGE, getIsUserPagePath } from '../../../routes'
 import moment from 'moment'
 
 const PageBreadcrumb = () => {
@@ -121,14 +121,14 @@ const _getDisplay = (pathName: string) => {
         title: `Classes`,
         breadcrumb: classBreadcrumbRoot
       }
-    case CLASS_FORM_PAGE:
+    case CLASS_ADD_PAGE:
       return {
         title: `Class form`,
         breadcrumb: (
           <>
             {classBreadcrumbRoot}
             <li className="breadcrumb-item">
-              <Link to={CLASS_FORM_PAGE}>Class form</Link>
+              <Link to={CLASS_ADD_PAGE}>Class form</Link>
             </li>
           </>
         )
