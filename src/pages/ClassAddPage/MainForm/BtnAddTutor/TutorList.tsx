@@ -1,56 +1,54 @@
 import React, { useEffect } from 'react'
-import studentsData from './data'
+import tutorsData from './data'
 import { defaultOfUser } from '../../../../models-one-entity/Users'
 import { observer } from 'mobx-react-lite'
 import CustomTable from '../../../../components-in-managing-resources/CustomTable'
 import { useHistory } from 'react-router-dom'
 import { get_USER_PAGE } from '../../../../routes'
 import { Button, ButtonGroup } from 'reactstrap'
-import ClassAddPageData from '../../data'
 import { getSnapshot } from 'mobx-state-tree'
+import ClassAddPageData from '../../data'
 
-const StudentList = ({
+const TutorList = ({
   isModalVisible = false
 }) => {
-
-  const { page, limit } = studentsData
+  const { tutor } = ClassAddPageData
+  const { page, limit } = tutorsData
 
   let history = useHistory();
 
   useEffect(() => {
     // console.log('didmout')
-    studentsData.getDatabaseItemsWhoAreStudents()
+    tutorsData.getDatabaseItemsWhoAreTutors()
   }, [page, limit])
 
   useEffect(() => {
     if (!isModalVisible) {
       // console.log(isModalVisible)
-      studentsData.setSnapshotNew({})
+      tutorsData.setSnapshotNew({})
     }
   }, [isModalVisible])
-
-  const { joinedStudents } = ClassAddPageData
 
   return (
 
     <CustomTable
       headerArray={["#", "Avatar", "Email", "Name", "Menu"]}
-      data={studentsData.items}
+      data={tutorsData.items}
       renderItemCellsInRow={({ item = defaultOfUser, index = 0 }) => {
 
         const onGoDetailOfUser = () => {
           history.push(get_USER_PAGE(item.id))
         }
 
-        const onAddStudent = () => {
-          joinedStudents.setItemsToAdd(getSnapshot(item))
+        const onChooseTutor = () => {
+          tutor.setSnapshotNew(getSnapshot(item))
         }
 
-        const onRemoveStudent = () => {
-          joinedStudents.setItemsToRemove(item.id)
+        const onRemoveTutor = () => {
+          tutor.setSnapshotNew({})
         }
 
-        const isAdded = joinedStudents.items.findIndex(i => i.id === item.id) >= 0
+        const isAdded = tutor.id === item.id
 
         return [
           (page - 1) * limit + index + 1,
@@ -65,13 +63,13 @@ const StudentList = ({
               {
                 isAdded
                   ? (<Button
-                    onClick={onRemoveStudent}
+                    onClick={onRemoveTutor}
                     color="danger"
                     className="ml-1">
                     Remove
                   </Button>)
                   : (<Button
-                    onClick={onAddStudent}
+                    onClick={onChooseTutor}
                     color="primary"
                     className="ml-1">
                     Add
@@ -85,4 +83,4 @@ const StudentList = ({
   )
 }
 
-export default observer(StudentList)
+export default observer(TutorList)

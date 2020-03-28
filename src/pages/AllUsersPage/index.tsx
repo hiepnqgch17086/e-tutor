@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import MainList from './MainList'
 import Data from './data'
-import SearchBar from './SearchBar'
-import PaginationBar from './PaginationBar'
-import SlNumberOfItems from './SlNumberOfItems'
+import SearchBar from '../../components-in-managing-resources/SearchBar'
+import PaginationBar from '../../components-in-managing-resources/PaginationBar'
+import SlNumberOfItems from '../../components-in-managing-resources/SlNumberOfItems'
 
 const AllUsersPage = () => {
 

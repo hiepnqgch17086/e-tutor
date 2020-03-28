@@ -1,5 +1,5 @@
 import { types } from "mobx-state-tree";
-import id, { creatorId } from "../models-one-prop/id";
+import id, { creatorId, tutorId } from "../models-one-prop/id";
 import title from "../models-one-prop/title";
 import description from "../models-one-prop/description";
 import GeneralModel from "./GeneralModel";
@@ -7,7 +7,7 @@ import GeneralModelList from "./GeneralModelList";
 
 export const Class = types.compose(
   'Class',
-  id, title, description, creatorId,
+  id, title, description, tutorId,
   GeneralModel,
 )
   .actions(self => ({
@@ -15,7 +15,7 @@ export const Class = types.compose(
      * @override
      */
     _getMainProperties(): Array<string> {
-      return ['title', 'description', 'creatorId']
+      return ['title', 'description', 'tutorId']
     },
     /**
      * @override
@@ -31,6 +31,7 @@ export const Class = types.compose(
       return [
         self._getTitleConstraint(),
         self._getDescriptionConstraint(),
+        self._getTutorIdConstraint(),
       ]
     },
   }))

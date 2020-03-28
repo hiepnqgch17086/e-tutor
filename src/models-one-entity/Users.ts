@@ -112,7 +112,6 @@ export const User = types.compose(
     },
     getMyProfile: async function () {
       // const authId = getLocalStorageAuthIdToken()
-      console.log("snapshot")
       // self.setSnapshotNew(snapshot)
       const { data } = await API.getMyProfile()
       self.setSnapshotUpdate(data)
@@ -146,6 +145,15 @@ const Users = types.compose(
   })
 )
   .actions(self => ({
+    setItemsToAdd(snapshot: Object) {
+      const newUser = User.create(snapshot)
+      self.items.push(newUser)
+      // console.log(getSnapshot(self.items))
+    },
+    setItemsToRemove(id: string | number) {
+      self.items.splice(self.items.findIndex(i => i.id === id), 1)
+      // console.log(getSnapshot(self.items))
+    },
     getDatabaseItems: async function () {
       const response = await API.getUsers({
         page: self.page,
@@ -156,8 +164,17 @@ const Users = types.compose(
       self.setSnapshotNew(response.data, self.items)
 
     },
-    getDatabaseItemsWhoAreStudent: async function () {
-      const response = await API.getUsersWhoAreStudent({
+    getDatabaseItemsWhoAreStudents: async function () {
+      const response = await API.getUsersWhoAreStudents({
+        page: self.page,
+        limit: self.limit,
+        email: self.searchByEmail
+      })
+
+      self.setSnapshotNew(response.data, self.items)
+    },
+    getDatabaseItemsWhoAreTutors: async function () {
+      const response = await API.getUsersWhoAreTutors({
         page: self.page,
         limit: self.limit,
         email: self.searchByEmail

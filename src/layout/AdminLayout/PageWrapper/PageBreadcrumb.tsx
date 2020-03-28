@@ -123,12 +123,12 @@ const _getDisplay = (pathName: string) => {
       }
     case CLASS_ADD_PAGE:
       return {
-        title: `Class form`,
+        title: `Add Class`,
         breadcrumb: (
           <>
             {classBreadcrumbRoot}
             <li className="breadcrumb-item">
-              <Link to={CLASS_ADD_PAGE}>Class form</Link>
+              <Link to={CLASS_ADD_PAGE}>Add Class</Link>
             </li>
           </>
         )

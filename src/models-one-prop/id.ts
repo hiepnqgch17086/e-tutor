@@ -1,4 +1,4 @@
-import { types } from "mobx-state-tree";
+import { types, onSnapshot } from "mobx-state-tree";
 import ProfilePageData from "../pages/ProfilePage/data";
 
 const id = types.model({
@@ -32,7 +32,7 @@ export const creatorId = types.model({
   )
 })
   .actions(self => ({
-    afterCreate() {
+    setDefaultCreatorId() {
       self.creatorId = ProfilePageData.currentUser.id
     }
   }))
@@ -80,6 +80,10 @@ export const tutorId = types.model({
   )
 })
   .actions(self => ({
+    _getTutorIdConstraint() {
+      if (self.tutorId) return ''
+      return 'Tutor is required!'
+    },
     setTutorId(newId: string = ''): void {
       self.tutorId = newId
     }

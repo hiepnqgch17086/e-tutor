@@ -2,16 +2,16 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col } from 'reactstrap';
 import '../index.css'
-import StudentList from './StudentList';
-import { observer, Observer } from 'mobx-react-lite';
-import studentsData from './data';
+import TutorList from './TutorList';
+import { observer } from 'mobx-react-lite';
+import tutorsData from './data';
 import SearchBar from '../../../../components-in-managing-resources/SearchBar';
 import PaginationBar from '../../../../components-in-managing-resources/PaginationBar';
 import SlNumberOfItems from '../../../../components-in-managing-resources/SlNumberOfItems';
 
 const BtnAddStudent = (props: any) => {
 
-  const { limit, setLimit, page, setPage, getDatabaseItemsWhoAreStudents: getDatabaseItemsWhoAreStudent, setSearchByEmail } = studentsData
+  const { limit, setLimit, page, setPage, getDatabaseItemsWhoAreTutors, setSearchByEmail } = tutorsData
 
   const {
     buttonLabel,
@@ -29,7 +29,7 @@ const BtnAddStudent = (props: any) => {
         <ModalHeader toggle={toggle}>
           <SearchBar
             placeholder={"Enter student's email"}
-            getDatabaseItems={getDatabaseItemsWhoAreStudent}
+            getDatabaseItems={getDatabaseItemsWhoAreTutors}
             setGlobalInput={setSearchByEmail}
             setPage={setPage}
           />
@@ -38,7 +38,7 @@ const BtnAddStudent = (props: any) => {
           <SlNumberOfItems
             limit={limit} setLimit={setLimit}
           />
-          <StudentList isModalVisible={isModalVisible} />
+          <TutorList isModalVisible={isModalVisible} />
           <PaginationBar
             page={page}
             setPage={setPage}

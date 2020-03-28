@@ -1,10 +1,12 @@
 import React from 'react'
+import { observer } from 'mobx-react-lite'
 
 const SlNumberOfItems = ({
-  limit = 10,
+  limit = 5,
   setLimit = (limit: number) => { }
 }) => {
   const onChange = (e: any) => {
+    // console.log(e.target.value)
     setLimit(parseInt(e.target.value))
   }
   return (
@@ -21,4 +23,4 @@ const SlNumberOfItems = ({
   )
 }
 
-export default SlNumberOfItems
+export default observer(SlNumberOfItems)

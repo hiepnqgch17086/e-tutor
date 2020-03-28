@@ -5,6 +5,12 @@ import { InputGroup, InputGroupAddon, Input, InputGroupText } from 'reactstrap'
 let timer: any = null
 let input2: string = ''
 
+/**
+ * 
+ * @param setGlobalInput: set input out-side of component 
+ * @param setPage: set page 1st when enter new input 
+ * @param getDatabaseItems: call api
+ */
 const SearchBar = ({
   getDatabaseItems = () => { console.log('prop should pass') },
   setGlobalInput = (input: string) => { },

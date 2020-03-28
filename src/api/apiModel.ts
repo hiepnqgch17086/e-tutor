@@ -37,7 +37,10 @@ class ApiModel {
   getUsers(paginationData: PaginationType): Promise<AxiosResponse<any>> {
     throw new Error('!override getUsers()')
   }
-  getUsersWhoAreStudent(paginationData: PaginationType): Promise<AxiosResponse<any>> {
+  getUsersWhoAreStudents(paginationData: PaginationType): Promise<AxiosResponse<any>> {
+    throw new Error('!override getUsers()')
+  }
+  getUsersWhoAreTutors(paginationData: PaginationType): Promise<AxiosResponse<any>> {
     throw new Error('!override getUsers()')
   }
   // update profile without password

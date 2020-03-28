@@ -17,7 +17,6 @@ import './firebaseConfig'
 import AllUsersPage from './pages/AllUsersPage';
 import ProfilePageData from './pages/ProfilePage/data';
 import { IS_ADMIN } from './models-one-prop/role';
-import AdminErrorPage from './pages/AdminErrorPage';
 import ClassListPage from './pages/ClassListPage';
 import ClassAddPage from './pages/ClassAddPage';
 import AdminLayout from './layout/AdminLayout';
@@ -30,7 +29,6 @@ function App() {
     <BrowserRouter>
       <Route exact path={SIGN_IN_PAGE} component={SignInPage} />
       <Route exact path={LANDING_PAGE} component={LandingPage} />
-      <Route exact path={ADMIN_ERROR_PAGE} component={AdminErrorPage} />
 
       <AdminLayout pathAvoid={pathAvoid}>
         <Switch>
@@ -74,7 +72,7 @@ const PrivateRoute = ({ children = <></>, ...rest }) => {
 
 const PrivateRouteAdmin = ({ children = <></>, ...rest }) => {
   return <Route {...rest}>
-    {ProfilePageData.currentUser.role === IS_ADMIN ? children : <Redirect to={ADMIN_ERROR_PAGE} />}
+    {ProfilePageData.currentUser.role === IS_ADMIN ? children : <Redirect to={CLASS_LIST_PAGE || HOME_PAGE} />}
   </Route>
 }
 
