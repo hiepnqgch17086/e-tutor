@@ -42,3 +42,7 @@ export const getLocalStorageAuthIdToken = (): string | number => {
     return ''
   }
 }
+
+export const goUserPage = (userId: any) => {
+  window.open(get_USER_PAGE(userId))
+}

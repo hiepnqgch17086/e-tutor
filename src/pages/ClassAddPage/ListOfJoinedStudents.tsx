@@ -2,6 +2,7 @@ import React from 'react'
 import CustomTable from '../../components-in-managing-resources/CustomTable'
 import { defaultOfUsers, defaultOfUser } from '../../models-one-entity/Users'
 import { Button, ButtonGroup } from 'reactstrap'
+import AvatarInDefault from '../../images/AvatarInDefault'
 
 const ListOfJoinedStudents = ({
   joinedStudents = defaultOfUsers
@@ -18,7 +19,7 @@ const ListOfJoinedStudents = ({
 
         return [
           index + 1,
-          <img src={item.avatar} alt="user" className="rounded-circle" width={70} height={70} />,
+          <img src={item.avatar || AvatarInDefault} alt="user" className="rounded-circle" width={70} height={70} />,
           item.email,
           item.name,
           <>

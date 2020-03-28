@@ -24,7 +24,7 @@ const BtnAddStudent = (props: any) => {
 
   return (
     <div>
-      <Button color="danger" onClick={toggle}>Add</Button>
+      <Button color="danger" onClick={toggle}>Edit</Button>
       <Modal isOpen={isModalVisible} toggle={toggle} className={className} style={{ maxWidth: '900px' }}>
         <ModalHeader toggle={toggle}>
           <SearchBar

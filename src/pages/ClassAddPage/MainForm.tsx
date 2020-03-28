@@ -7,9 +7,10 @@ import ListOfJoinedStudents from './ListOfJoinedStudents'
 import BtnAddTutor from './MainForm/BtnAddTutor'
 import Data from './data'
 import CustomTextArea from '../../components-in-managing-resources/CustomTextArea'
+import CardOfTutorInfo from './CardOfTutorInfo'
 
 const MainForm = () => {
-  const { joinedStudents, onSubmitForm, class: thisClass } = Data
+  const { joinedStudents, onSubmitForm, class: thisClass, tutor } = Data
   return (
     <div className="card">
       <div className="card-body">
@@ -41,6 +42,7 @@ const MainForm = () => {
                 <Label for="exampleEmail">
                   Tutor{` `}
                 </Label> <br />
+                <CardOfTutorInfo user={tutor} />
                 <BtnAddTutor />
               </FormGroup>
             </Col>

@@ -3,12 +3,11 @@ import tutorsData from './data'
 import { defaultOfUser } from '../../../../models-one-entity/Users'
 import { observer } from 'mobx-react-lite'
 import CustomTable from '../../../../components-in-managing-resources/CustomTable'
-import { useHistory } from 'react-router-dom'
-import { get_USER_PAGE } from '../../../../routes'
 import { Button, ButtonGroup } from 'reactstrap'
 import { getSnapshot } from 'mobx-state-tree'
 import ClassAddPageData from '../../data'
 import AvatarInDefault from '../../../../images/AvatarInDefault'
+import { goUserPage } from '../../../../routes'
 
 const TutorList = ({
   isModalVisible = false
@@ -16,7 +15,6 @@ const TutorList = ({
   const { tutor } = ClassAddPageData
   const { page, limit } = tutorsData
 
-  let history = useHistory();
 
   useEffect(() => {
     // console.log('didmout')
@@ -37,10 +35,6 @@ const TutorList = ({
       data={tutorsData.items}
       renderItemCellsInRow={({ item = defaultOfUser, index = 0 }) => {
 
-        const onGoDetailOfUser = () => {
-          history.push(get_USER_PAGE(item.id))
-        }
-
         const onChooseTutor = () => {
           tutor.setSnapshotNew(getSnapshot(item))
         }
@@ -58,7 +52,7 @@ const TutorList = ({
           item.name,
           <>
             <ButtonGroup size="sm">
-              <Button onClick={onGoDetailOfUser}>
+              <Button onClick={() => goUserPage(item.id)}>
                 Detail
               </Button>
               {

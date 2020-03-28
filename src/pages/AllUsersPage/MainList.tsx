@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { defaultOfUsers, defaultOfUser } from '../../models-one-entity/Users'
 import { IS_ADMIN, IS_STUDENT, IS_TUTOR } from '../../models-one-prop/role'
-import { get_USER_PAGE } from '../../routes'
+import { get_USER_PAGE, goUserPage } from '../../routes'
 import { useHistory } from "react-router-dom";
 import CustomTable from '../../components-in-managing-resources/CustomTable'
 import { Button } from 'reactstrap'
@@ -26,10 +26,6 @@ const MainList = ({
       data={users.items}
       renderItemCellsInRow={({ item = defaultOfUser, index = 0 }) => {
 
-        const onGoDetailOfUser = () => {
-          history.push(get_USER_PAGE(item.id))
-        }
-
         const onChangeRole = (e: any) => {
           item.setRole(parseInt(e.target.value))
           // console.log(e.target.value)
@@ -52,7 +48,7 @@ const MainList = ({
             <option value={IS_TUTOR}>Tutor</option>
             <option value={IS_STUDENT}>Student</option>
           </select>,
-          <Button onClick={onGoDetailOfUser}>
+          <Button onClick={() => goUserPage(item.id)}>
             Detail
           </Button>
         ]
