@@ -16,7 +16,6 @@ const name = types.model({
       return ''
     },
     _setIsNameError(newValue: boolean): void {
-      console.log(newValue)
       self.isNameError = newValue
     },
     setName(newValue: string = '', shouldValidate: boolean = true): void {

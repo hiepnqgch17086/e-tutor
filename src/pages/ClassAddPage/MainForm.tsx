@@ -6,7 +6,6 @@ import BtnAddStudent from './MainForm/BtnAddStudent'
 import ListOfJoinedStudents from './ListOfJoinedStudents'
 import BtnAddTutor from './MainForm/BtnAddTutor'
 import Data from './data'
-import CustomTextArea from '../../components-in-managing-resources/CustomTextArea'
 import CardOfTutorInfo from './CardOfTutorInfo'
 import { useHistory } from 'react-router-dom'
 import { CLASS_LIST_PAGE } from '../../routes'
@@ -33,15 +32,17 @@ const MainForm = () => {
                   value={thisClass.title}
                   onChangeText={thisClass.setTitle}
                   placeholder="title"
+                  type="text"
                 />
               </FormGroup>
               <FormGroup>
                 <Label for="exampleEmail">Description</Label>
-                <CustomTextArea
+                <CustomInput
                   error={thisClass.isDescriptionError}
                   value={thisClass.description}
                   onChangeText={thisClass.setDescription}
                   placeholder="description"
+                  type="textarea"
                 />
               </FormGroup>
             </Col>

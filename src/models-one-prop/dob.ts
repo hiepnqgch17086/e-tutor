@@ -21,8 +21,11 @@ const dob = types.model({
     _setIsDobError(newValue: boolean): void {
       self.isDobError = newValue
     },
-    setDob(newValue: string = ''): void {
+    setDob(newValue: string = '', shouldValidate: boolean = true): void {
       self.dob = newValue
+      if (shouldValidate) {
+        this._getDobConstraint()
+      }
     }
   }))
 

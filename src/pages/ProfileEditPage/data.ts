@@ -16,8 +16,13 @@ const ProfileEditData = types.compose(
     onDidMount() {
       // clone currentUser in Profile Page
       const { currentUser } = ProfilePageData
+      if (!currentUser.id) {
+        this.setRedirectToProfilePage()
+        return
+      }
       const cloneUser = clone(currentUser)
       self.cloneCurrentUser.setSnapshotNew(getSnapshot(cloneUser))
+      // console.log(getSnapshot(self))
     },
     onSaveForm: async function () {
       const { currentUser } = ProfilePageData
@@ -27,11 +32,13 @@ const ProfileEditData = types.compose(
         return
       }
       // save in client
-      currentUser.setSnapshotUpdate(getSnapshot(self.cloneCurrentUser))
+      currentUser.setSnapshotUpdate(getSnapshot(self.cloneCurrentUser), currentUser, currentUser._getMainProperties())
       this.setRedirectToProfilePage()
     },
     onWillUnMount() {
+      // console.log('onwill unmoit')
       self.setSnapshotNew({})
+      // console.log(getSnapshot(self))
     },
     setRedirectToProfilePage() {
       self.shouldRedirectToProfilePage = true

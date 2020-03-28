@@ -127,25 +127,23 @@ const MainForm = ({
             {/* Address */}
             <FormGroup>
               <Label for="address">Address *</Label>
-              <Input type="text" name="address" id="address" placeholder="address"
+              <CustomInput
+                error={cloneCurrentUser.isAddressError}
                 value={cloneCurrentUser.address}
-                onChange={e => {
-                  cloneCurrentUser.setAddress(e.target.value)
-                  // console.log(currentUser.address)
-                }}
+                onChangeText={cloneCurrentUser.setAddress}
+                placeholder="address"
               />
             </FormGroup>
 
             {/* Date of birth */}
             <FormGroup>
               <Label for="dateOfBirth">Date Of Birth *</Label>
-              <Input type="date" name="dateOfBirth" id="dateOfBirth" placeholder="dateOfBirth"
+              <CustomInput
+                error={cloneCurrentUser.isDobError}
                 value={cloneCurrentUser.dob}
-                onChange={e => {
-                  //@ts-ignore
-                  cloneCurrentUser.setDob(e.target.value)
-                  // console.log(currentUser.dob)
-                }}
+                onChangeText={cloneCurrentUser.setDob}
+                placeholder="dateOfBirth"
+                type="date"
               />
             </FormGroup>
             {/* Email */}

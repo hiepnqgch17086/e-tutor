@@ -18,10 +18,11 @@ const address = types.model({
     _setIsAddressError(newValue: boolean): void {
       self.isAddressError = newValue
     },
-    setAddress(newValue: string = ''): void {
+    setAddress(newValue: string = '', shouldValidate: boolean = true): void {
       const setRegexToAvoidTags = /[<|>]/gi
       if (setRegexToAvoidTags.test(newValue)) return
       self.address = newValue
+      if (shouldValidate) this._getAddressConstraint()
     }
   }))
 
