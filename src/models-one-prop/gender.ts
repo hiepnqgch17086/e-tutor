@@ -18,8 +18,9 @@ const gender = types.model({
     _setIsGenderError(newValue: boolean): void {
       self.isGenderError = newValue
     },
-    setGender(newValue: string = ''): void {
+    setGender(newValue: string = '', shouldValidate: boolean = true): void {
       self.gender = newValue
+      if (shouldValidate) this._getGenderConstraint()
     }
   }))
 

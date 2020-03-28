@@ -6,6 +6,7 @@ import firebase from 'firebase'
 import avatarDemo from '../../images/avatar-demo.png'
 import ImageUploader from 'react-images-upload';
 import CustomInput from '../../components-in-managing-resources/CustomInput';
+import CustomSelect from '../../components-in-managing-resources/CustomSelect';
 
 const MainForm = ({
   cloneCurrentUser = defaultOfUser,
@@ -99,18 +100,17 @@ const MainForm = ({
             {/* Gender */}
             <FormGroup>
               <Label for="exampleSelect">Gender *</Label>
-              <Input type="select" name="select" id="exampleSelect"
+              <CustomSelect
+                error={cloneCurrentUser.isGenderError}
                 value={cloneCurrentUser.gender}
-                onChange={(e) => {
-                  cloneCurrentUser.setGender(e.target.value)
-                  // console.log(currentUser.gender)
-                }}
-              >
-                <option value="">Select one</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-              </Input>
+                onChangeText={cloneCurrentUser.setGender}
+                data={[
+                  { value: "male", label: "Male" },
+                  { value: "female", label: "Female" },
+                  { value: "other", label: "Other" },
+                ]}
+              />
+
             </FormGroup>
 
             {/* Phone */}
