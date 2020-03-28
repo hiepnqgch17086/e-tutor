@@ -58,7 +58,7 @@ const GeneralModel = types.compose(
       console.log('Name of model: ', getType(self).name)
       throw new Error(`Should override method _getMainThreadOfSettingDatabaseUpdate()`)
     },
-    _getMainThreadOfSettingDatabaseNew(): Promise<AxiosResponse<any>> | Promise<any> {
+    _getMainThreadOfSettingDatabaseNew(snapshot: Object): Promise<AxiosResponse<any>> | Promise<any> {
       console.log('\n')
       console.log('Name of model: ', getType(self).name)
       throw new Error(`Should override method _getMainThreadOfSettingDatabaseNew()`)
@@ -116,7 +116,8 @@ const GeneralModel = types.compose(
         const snapshot = self._getProperties([...self._getMainProperties()])
         if (typeof snapshot === 'string') throw new Error(snapshot)
 
-        const res = await this._getMainThreadOfSettingDatabaseNew()
+        //@ts-ignore, reference to this._getMainThreadOfSettingDatabaseNew()
+        const res = await self._getMainThreadOfSettingDatabaseNew(snapshot)
         const data = res.data
 
         return {

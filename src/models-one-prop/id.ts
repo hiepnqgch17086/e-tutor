@@ -8,7 +8,7 @@ const id = types.model({
   )
 })
   .actions(self => ({
-    setId(newId: string = ''): void {
+    setId(newId: string | number): void {
       self.id = newId
     }
   }))
@@ -20,7 +20,7 @@ export const blogId = types.model({
   )
 })
   .actions(self => ({
-    setBlogId(newId: string = ''): void {
+    setBlogId(newId: string | number): void {
       self.blogId = newId
     }
   }))
@@ -44,7 +44,7 @@ export const classId = types.model({
   )
 })
   .actions(self => ({
-    setClassId(newId: string = ''): void {
+    setClassId(newId: string | number): void {
       self.classId = newId
     }
   }))
@@ -56,7 +56,7 @@ export const commentId = types.model({
   )
 })
   .actions(self => ({
-    setCommentId(newId: string = ''): void {
+    setCommentId(newId: string | number): void {
       self.commentId = newId
     }
   }))
@@ -68,7 +68,7 @@ export const studentId = types.model({
   )
 })
   .actions(self => ({
-    setStudentId(newId: string = ''): void {
+    setStudentId(newId: string | number): void {
       self.studentId = newId
     }
   }))
@@ -84,7 +84,7 @@ export const tutorId = types.model({
       if (self.tutorId) return ''
       return 'Tutor is required!'
     },
-    setTutorId(newId: string = ''): void {
+    setTutorId(newId: string | number): void {
       self.tutorId = newId
     }
   }))
@@ -96,7 +96,7 @@ export const permissionId = types.model({
   )
 })
   .actions(self => ({
-    setPermissionId(newId: string = ''): void {
+    setPermissionId(newId: string | number): void {
       self.permissionId = newId
     }
   }))
@@ -108,7 +108,7 @@ export const userId = types.model({
   )
 })
   .actions(self => ({
-    setUserId(newId: string = ''): void {
+    setUserId(newId: string | number): void {
       self.userId = newId
     }
   }))

@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import MainForm from './MainForm'
+import Data from './data'
 
-const ClassFormPage = () => {
+const ClassAddPage = () => {
+  useEffect(() => {
+    return () => {
+      Data.onWillUnMount()
+    }
+  }, [])
   return (
     <>
       <MainForm />
@@ -10,4 +16,4 @@ const ClassFormPage = () => {
   )
 }
 
-export default observer(ClassFormPage)
+export default observer(ClassAddPage)

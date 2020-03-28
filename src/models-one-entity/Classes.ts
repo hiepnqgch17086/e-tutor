@@ -4,6 +4,7 @@ import title from "../models-one-prop/title";
 import description from "../models-one-prop/description";
 import GeneralModel from "./GeneralModel";
 import GeneralModelList from "./GeneralModelList";
+import API from "../api";
 
 export const Class = types.compose(
   'Class',
@@ -11,6 +12,12 @@ export const Class = types.compose(
   GeneralModel,
 )
   .actions(self => ({
+    /**
+     * @override
+     */
+    _getMainThreadOfSettingDatabaseNew(snapshot: Object) {
+      return API.setClassNew(snapshot)
+    },
     /**
      * @override
      */

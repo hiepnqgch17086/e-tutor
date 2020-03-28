@@ -2,6 +2,7 @@ import { types, getType, getSnapshot } from "mobx-state-tree";
 import GeneralPageModel from "../GeneralPageModel";
 import { Class } from "../../models-one-entity/Classes";
 import Users, { User } from "../../models-one-entity/Users";
+import { toast } from "react-toastify";
 
 const ClassAddPageData = types.compose(
   'ClassAddPageData',
@@ -16,8 +17,22 @@ const ClassAddPageData = types.compose(
     onDidMount(classId: string) {
 
     },
-    onSubmitForm() {
-      console.log(getSnapshot(self.class))
+    onWillUnMount() {
+      self.setSnapshotNew({})
+    },
+    onSubmitForm: async function () {
+      try {
+
+        const { class: thisClass, joinedStudents, tutor } = self
+        thisClass.setTutorId(tutor.id)
+        const { data, errorMessage } = await thisClass.setDatabaseNew()
+        if (errorMessage) throw new Error(errorMessage)
+
+        console.log(data)
+
+      } catch (error) {
+        toast.error(error.message)
+      }
     }
   }))
   .create({})

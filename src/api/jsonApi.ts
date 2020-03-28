@@ -54,7 +54,16 @@ export default class JsonApi extends ApiModel {
    * @override
    */
   setUserUpdateProfile(userSnapshot: User): Promise<AxiosResponse<any>> {
-    const { id = 'any' } = userSnapshot
+    const { id = '' } = userSnapshot
     return this.ApiRef.put(`/users/${id}`, userSnapshot)
+  }
+
+
+  ////////// CLASSES /////////////
+  /**
+   * @override
+   */
+  setClassNew(classSnapshot: Object): Promise<AxiosResponse<any>> {
+    return this.ApiRef.post(`/classes`, classSnapshot)
   }
 } 

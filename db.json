@@ -171,5 +171,19 @@
       "id": "u15",
       "role": 3
     }
+  ],
+  "classes": [
+    {
+      "title": "s",
+      "description": "s",
+      "tutorId": "u4",
+      "id": 1
+    },
+    {
+      "title": "s",
+      "description": "s",
+      "tutorId": "u4",
+      "id": 2
+    }
   ]
 }
