@@ -5,6 +5,7 @@ import Data from './data'
 import SearchBar from '../../components-in-managing-resources/SearchBar'
 import PaginationBar from '../../components-in-managing-resources/PaginationBar'
 import SlNumberOfItems from '../../components-in-managing-resources/SlNumberOfItems'
+import BtnAddUser from './BtnAddUser'
 
 const AllUsersPage = () => {
 
@@ -22,7 +23,8 @@ const AllUsersPage = () => {
 
   return (
     <>
-      <div className="card">
+      <BtnAddUser />
+      <div className="mb-2">
         <SearchBar
           getDatabaseItems={getDatabaseItems}
           setGlobalInput={setSearchByEmail}
@@ -30,11 +32,12 @@ const AllUsersPage = () => {
           setPage={setPage}
         />
       </div>
-
-      <SlNumberOfItems
-        limit={limit}
-        setLimit={setLimit}
-      />
+      <div className="mb-2">
+        <SlNumberOfItems
+          limit={limit}
+          setLimit={setLimit}
+        />
+      </div>
       <MainList
         users={users}
         page={page}

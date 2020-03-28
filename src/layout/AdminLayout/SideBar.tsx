@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import { HOME_PAGE, CLASS_LIST_PAGE, ALL_USERS_PAGE, CLASS_ADD_PAGE, getIsUserPagePath } from '../../routes'
+import { HOME_PAGE, CLASS_LIST_PAGE, USERS_PAGE, CLASS_ADD_PAGE, getIsUserPagePath, USER_ADD_PAGE } from '../../routes'
 import ProfilePageData from '../../pages/ProfilePage/data'
 import { observer } from 'mobx-react-lite'
 
@@ -12,8 +12,12 @@ const SideBar = () => {
   // console.log(pathName)
 
   const isDashboardActive = pathName === HOME_PAGE
-  const isClassesActive = pathName === CLASS_LIST_PAGE || pathName === CLASS_ADD_PAGE
-  const isUsersActive = pathName === ALL_USERS_PAGE || getIsUserPagePath(pathName)
+
+  const classRoutes = [CLASS_LIST_PAGE, CLASS_ADD_PAGE]
+  const isClassesActive = classRoutes.indexOf(pathName) >= 0
+
+  const userRoutes = [USERS_PAGE, USER_ADD_PAGE]
+  const isUsersActive = userRoutes.indexOf(pathName) >= 0 || getIsUserPagePath(pathName)
 
   return (
     <aside className="left-sidebar" data-sidebarbg="skin6">
@@ -43,7 +47,7 @@ const SideBar = () => {
             {
               currentUser.isAdmin && (
                 <SideBarItem
-                  href={ALL_USERS_PAGE}
+                  href={USERS_PAGE}
                   iconName="icon-people"
                   title="Users"
                   isActive={isUsersActive}

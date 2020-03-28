@@ -2,18 +2,12 @@ import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import ProfileDetail from '../ProfilePage/ProfileDetail'
 import Data from './data'
-import { useParams, useHistory } from 'react-router-dom'
-import { Button } from 'reactstrap'
+import { useParams } from 'react-router-dom'
 
 
 const UserDetailPage = () => {
   const { user } = Data
   const { id = "" } = useParams()
-  const history = useHistory()
-
-  const goBack = () => {
-    history.goBack()
-  }
 
   useEffect(() => {
     user.setId(id)
@@ -29,9 +23,6 @@ const UserDetailPage = () => {
           />
         ) : null
       }
-      <Button onClick={goBack}>
-        Back
-      </Button>
     </div>
   )
 }

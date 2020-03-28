@@ -9,7 +9,7 @@ import CustomInput from '../../components-in-managing-resources/CustomInput';
 import CustomSelect from '../../components-in-managing-resources/CustomSelect';
 
 const MainForm = ({
-  cloneCurrentUser = defaultOfUser,
+  user = defaultOfUser,
   onSaveForm = () => { },
 }) => {
   const [isCallingApi] = useState(false)
@@ -31,7 +31,7 @@ const MainForm = ({
       // const imageFile = e.target.files[0]
       // setImageFile(image)
       firebase.storage()
-        .ref(`avatars/${cloneCurrentUser.id}`)
+        .ref(`avatars/${user.id}`)
         //@ts-ignore
         .put(imageFile)
         .on('state_changed',
@@ -43,11 +43,11 @@ const MainForm = ({
             // setIsUploadingImage(false)
           },
           () => {
-            firebase.storage().ref(`avatars/${cloneCurrentUser.id}`)
+            firebase.storage().ref(`avatars/${user.id}`)
               .getDownloadURL()
               .then(url => {
                 // console.log(url)
-                cloneCurrentUser.setAvatar(url)
+                user.setAvatar(url)
                 setIsUploadingImage(false)
                 onSaveForm()
               })
@@ -69,7 +69,7 @@ const MainForm = ({
               {isUploadingImage ? (
                 <Spinner color="primary" />
               ) : null}
-              <img width="200px" height="200px" src={imagePreview || cloneCurrentUser.avatar || avatarDemo} alt="Card cap" />
+              <img width="200px" height="200px" src={imagePreview || user.avatar || avatarDemo} alt="Card cap" />
             </FormGroup>
             <FormGroup row>
               <ImageUploader
@@ -90,9 +90,9 @@ const MainForm = ({
             <FormGroup>
               <Label for="exampleName">Name *</Label>
               <CustomInput
-                error={cloneCurrentUser.isNameError}
-                value={cloneCurrentUser.name}
-                onChangeText={cloneCurrentUser.setName}
+                error={user.isNameError}
+                value={user.name}
+                onChangeText={user.setName}
                 placeholder="name"
               />
             </FormGroup>
@@ -101,9 +101,9 @@ const MainForm = ({
             <FormGroup>
               <Label for="exampleSelect">Gender *</Label>
               <CustomSelect
-                error={cloneCurrentUser.isGenderError}
-                value={cloneCurrentUser.gender}
-                onChangeText={cloneCurrentUser.setGender}
+                error={user.isGenderError}
+                value={user.gender}
+                onChangeText={user.setGender}
                 data={[
                   { value: "male", label: "Male" },
                   { value: "female", label: "Female" },
@@ -117,9 +117,9 @@ const MainForm = ({
             <FormGroup>
               <Label for="examplePhone">Phone *</Label>
               <CustomInput
-                error={cloneCurrentUser.isPhoneError}
-                value={cloneCurrentUser.phone}
-                onChangeText={cloneCurrentUser.setPhone}
+                error={user.isPhoneError}
+                value={user.phone}
+                onChangeText={user.setPhone}
                 placeholder="0962xxxxxx"
               />
             </FormGroup>
@@ -128,9 +128,9 @@ const MainForm = ({
             <FormGroup>
               <Label for="address">Address *</Label>
               <CustomInput
-                error={cloneCurrentUser.isAddressError}
-                value={cloneCurrentUser.address}
-                onChangeText={cloneCurrentUser.setAddress}
+                error={user.isAddressError}
+                value={user.address}
+                onChangeText={user.setAddress}
                 placeholder="address"
               />
             </FormGroup>
@@ -139,9 +139,9 @@ const MainForm = ({
             <FormGroup>
               <Label for="dateOfBirth">Date Of Birth *</Label>
               <CustomInput
-                error={cloneCurrentUser.isDobError}
-                value={cloneCurrentUser.dob}
-                onChangeText={cloneCurrentUser.setDob}
+                error={user.isDobError}
+                value={user.dob}
+                onChangeText={user.setDob}
                 placeholder="dateOfBirth"
                 type="date"
               />

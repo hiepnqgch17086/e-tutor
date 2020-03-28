@@ -3,6 +3,8 @@ import { types } from "mobx-state-tree";
 const password = types.model({
   password: types.optional(types.string, ''),
   isPasswordError: types.maybeNull(types.boolean),
+  repeatPassword: types.optional(types.string, ''),
+  isRepeatPasswordError: types.maybeNull(types.boolean),
 })
   .actions(self => ({
     _getPasswordConstraint(): string {
@@ -14,25 +16,9 @@ const password = types.model({
       this._setIsPasswordError(false)
       return ''
     },
-    _setIsPasswordError(newValue: boolean): void {
-      self.isPasswordError = newValue || null
+    _setIsPasswordError(newValue: boolean | null = null): void {
+      self.isPasswordError = newValue
     },
-    setPassword(newValue: string = '', shouldValidate: boolean = true): void {
-      const setRegexToAvoidTags = /[<|>]/gi
-      if (setRegexToAvoidTags.test(newValue)) return
-      self.password = newValue
-      if (shouldValidate) this._getPasswordConstraint()
-    },
-  }))
-
-/**
- * required 'password' in prop
- */
-export const repeatPassword = types.model({
-  repeatPassword: types.optional(types.string, ''),
-  isRepeatPasswordError: types.maybeNull(types.boolean),
-})
-  .actions(self => ({
     _getRepeatPasswordConstraint(): string {
       //@ts-ignore
       if (self.repeatPassword !== self.password) {
@@ -45,7 +31,17 @@ export const repeatPassword = types.model({
     _setIsRepeatPasswordError(newValue: boolean): void {
       self.isRepeatPasswordError = newValue
     },
+    setPassword(newValue: string = '', shouldValidate: boolean = true): void {
+      const setRegexToAvoidTags = /[<|>]/gi
+      if (setRegexToAvoidTags.test(newValue)) return
+
+      self.password = newValue
+      if (shouldValidate) this._getPasswordConstraint()
+    },
     setRepeatPassword(newValue: string = '', shouldValidate: boolean = true): void {
+      const setRegexToAvoidTags = /[<|>]/gi
+      if (setRegexToAvoidTags.test(newValue)) return
+
       self.repeatPassword = newValue
       if (shouldValidate) this._getRepeatPasswordConstraint()
     },

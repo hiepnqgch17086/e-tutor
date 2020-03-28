@@ -47,6 +47,10 @@ class ApiModel {
   setUserUpdateProfile(userSnapshot: Object): Promise<AxiosResponse<any>> {
     throw new Error('!override setUserUpdateProfile()')
   }
+  // as signup
+  setUserNew(userSnapshot: Object) {
+    throw new Error('!override setUserNew')
+  }
 
 
   ////////// CLASSES /////////////

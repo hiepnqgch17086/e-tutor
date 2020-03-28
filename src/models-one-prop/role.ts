@@ -6,12 +6,25 @@ export const IS_STUDENT = 3
 const roleList = [IS_ADMIN, IS_STUDENT, IS_TUTOR]
 
 const role = types.model({
-  role: types.optional(types.number, 0)
+  role: types.optional(types.number, 0),
+  isRoleError: types.maybeNull(types.boolean)
 })
   .actions(self => ({
-    setRole(newValue: number) {
+    _getRoleConstraint() {
+      if (roleList.indexOf(self.role) >= 0) {
+        this._setIsRoleError(false)
+        return ''
+      }
+      this._setIsRoleError(true)
+      return 'Role is required!'
+    },
+    _setIsRoleError(newValue: boolean | null): void {
+      self.isRoleError = newValue
+    },
+    setRole(newValue: number, shouldValidate = true) {
       if (roleList.indexOf(newValue) >= 0) {
         self.role = newValue
+        if (shouldValidate) this._getRoleConstraint()
       }
     }
   }))

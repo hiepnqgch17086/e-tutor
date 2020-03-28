@@ -2,7 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react-lite'
 import ProfilePageData from '../../../pages/ProfilePage/data'
 import { Link, useLocation } from 'react-router-dom'
-import { HOME_PAGE, CLASS_LIST_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, ALL_USERS_PAGE, CLASS_ADD_PAGE, getIsUserPagePath } from '../../../routes'
+import { HOME_PAGE, CLASS_LIST_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, USERS_PAGE, CLASS_ADD_PAGE, getIsUserPagePath, USER_ADD_PAGE } from '../../../routes'
 import moment from 'moment'
 import { Button } from 'reactstrap'
 import CustomIconPlus from '../../../components-in-managing-resources/CustomIconPlus'
@@ -135,7 +135,7 @@ const _getDisplay = (pathName: string) => {
           </>
         )
       }
-    case ALL_USERS_PAGE:
+    case USERS_PAGE:
       return {
         title: `Users`,
         breadcrumb: (
@@ -144,7 +144,25 @@ const _getDisplay = (pathName: string) => {
               <Link to={HOME_PAGE}>Home</Link>
             </li>
             <li className="breadcrumb-item">
-              <Link to={ALL_USERS_PAGE}>Users</Link>
+              <Link to={USERS_PAGE}>Users</Link>
+            </li>
+          </>
+        )
+      }
+
+    case USER_ADD_PAGE:
+      return {
+        title: `Add User`,
+        breadcrumb: (
+          <>
+            <li className="breadcrumb-item">
+              <Link to={HOME_PAGE}>Home</Link>
+            </li>
+            <li className="breadcrumb-item">
+              <Link to={USERS_PAGE}>Users</Link>
+            </li>
+            <li className="breadcrumb-item">
+              <Link to={USERS_PAGE}>Add User</Link>
             </li>
           </>
         )

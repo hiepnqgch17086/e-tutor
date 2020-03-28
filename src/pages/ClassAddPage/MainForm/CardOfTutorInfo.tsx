@@ -1,9 +1,9 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import { defaultOfUser } from '../../models-one-entity/Users'
-import AvatarInDefault from '../../images/AvatarInDefault'
+import { defaultOfUser } from '../../../models-one-entity/Users'
+import AvatarInDefault from '../../../images/AvatarInDefault'
 import { Button } from 'reactstrap'
-import { goUserPage } from '../../routes'
+import { goUserPage } from '../../../routes'
 
 const CardOfTutorInfo = ({
   user = defaultOfUser

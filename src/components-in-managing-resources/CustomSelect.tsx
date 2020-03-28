@@ -3,8 +3,8 @@ import { Input } from 'reactstrap'
 import { observer } from 'mobx-react-lite'
 
 type L = {
-  value?: string,
-  label?: string,
+  value?: string | number,
+  label?: string | number,
 }
 
 type Props = {

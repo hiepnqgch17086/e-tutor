@@ -24,7 +24,7 @@ const BtnAddStudent = (props: any) => {
 
   return (
     <div>
-      <Button color="danger" onClick={toggle}>Add</Button>
+      <Button color="primary" onClick={toggle}>Add</Button>
       <Modal isOpen={isModalVisible} toggle={toggle} className={className} style={{ maxWidth: '900px' }}>
         <ModalHeader toggle={toggle}>
           <SearchBar
@@ -35,9 +35,11 @@ const BtnAddStudent = (props: any) => {
           />
         </ModalHeader>
         <ModalBody>
-          <SlNumberOfItems
-            limit={limit} setLimit={setLimit}
-          />
+          <div className="mb-2">
+            <SlNumberOfItems
+              limit={limit} setLimit={setLimit}
+            />
+          </div>
           <StudentList isModalVisible={isModalVisible} />
           <PaginationBar
             page={page}

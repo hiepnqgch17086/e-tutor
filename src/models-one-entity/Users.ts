@@ -1,7 +1,7 @@
 import { types, getSnapshot } from "mobx-state-tree";
 import id from "../models-one-prop/id";
 import email from "../models-one-prop/email";
-import password, { repeatPassword } from "../models-one-prop/password";
+import password from "../models-one-prop/password";
 import name from "../models-one-prop/name";
 import dob from "../models-one-prop/dob";
 import gender from "../models-one-prop/gender";
@@ -14,12 +14,11 @@ import { setLocalStorageAuthIdToken, setLocalStorageAuthTokenDelete } from "../r
 import GeneralModelList from "./GeneralModelList";
 import avatar from "../models-one-prop/avatar";
 import role, { IS_ADMIN, IS_TUTOR } from "../models-one-prop/role";
-import PaginationModel from "./PaginationModel";
 import { toast } from "react-toastify";
 
 const UserMoreProps = types.compose(
   name, dob, gender, phone, address,
-  repeatPassword, avatar,
+  avatar,
 )
 
 export const User = types.compose(
@@ -30,6 +29,9 @@ export const User = types.compose(
   role
 )
   .actions(self => ({
+    _getMainThreadOfSettingDatabaseNew(snapshot: Object) {
+      return API.setUserNew(snapshot)
+    },
     /**
      * @override
      */
@@ -48,7 +50,12 @@ export const User = types.compose(
      */
     _getValidation(): Array<string> {
       return [
+        self._getRoleConstraint(),
+        self._getNameConstraint(),
+        self._getGenderConstraint(),
         self._getPhoneConstraint(),
+        self._getAddressConstraint(),
+        self._getDobConstraint(),
         self._getEmailConstraint(),
         self._getPasswordConstraint(),
         self._getRepeatPasswordConstraint()

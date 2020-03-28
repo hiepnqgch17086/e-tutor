@@ -15,7 +15,7 @@ const SignUpPage = () => {
   return (
     <>
       <MainForm
-        cloneCurrentUser={cloneCurrentUser}
+        user={cloneCurrentUser}
         onSaveForm={onSaveForm}
       />
       {

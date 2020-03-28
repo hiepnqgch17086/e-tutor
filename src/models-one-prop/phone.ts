@@ -14,31 +14,18 @@ const phone = types.model({
       this._setIsPhoneError(false)
       return ''
     },
-    //@ts-ignore
-    _setIsPhoneError(newValue: boolean): void {
+    _setIsPhoneError(newValue: boolean | null): void {
       self.isPhoneError = newValue
     },
     setPhone(newValue: string = '', shouldValidate: boolean = true): void {
       const setRegexToAvoidTags = /[<|>]/gi
-      const setRegexToAllowOnlyNumber = /[0-9]/gi
 
-      const runMainThread = () => {
-        self.phone = newValue
-        if (shouldValidate) this._getPhoneConstraint()
-      }
-
-      if (
-        setRegexToAvoidTags.test(newValue) ||
-        !setRegexToAllowOnlyNumber.test(newValue)
-      ) {
-        if (newValue === '') runMainThread()
+      if (setRegexToAvoidTags.test(newValue)) {
         return
       }
 
-      runMainThread()
-
-
-
+      self.phone = newValue
+      if (shouldValidate) this._getPhoneConstraint()
     },
   }))
 
