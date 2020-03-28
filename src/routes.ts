@@ -34,7 +34,11 @@ export const setLocalStorageAuthTokenDelete = () => {
 }
 
 export const getLocalStorageAuthIdToken = (): string | number => {
-  const authIdString = localStorage.getItem('token') || ''
-  const authId = JSON.parse(authIdString)
-  return authId
+  try {
+    const authIdString = localStorage.getItem('token') || ''
+    const authId = JSON.parse(authIdString)
+    return authId
+  } catch (error) {
+    return ''
+  }
 }
