@@ -1,8 +1,7 @@
 import { types, getType, getSnapshot } from "mobx-state-tree";
 import setSnapshotNew from "../models-one-action/setSnapshotNew";
 import { ErrorMessage } from "./types";
-import createdAt from "../models-one-prop/createdAt";
-import updatedAt from "../models-one-prop/updatedAt";
+import { createdAt, updatedAt } from "../models-one-prop/dateAt";
 import _getProperties from "../models-one-action/_getProperties";
 import setSnapshotUpdate from "../models-one-action/setSnapshotUpdate";
 import { Response } from './types'

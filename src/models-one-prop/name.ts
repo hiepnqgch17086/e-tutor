@@ -26,5 +26,8 @@ const name = types.model({
     }
   }))
 
+// export const tutorName = types.model({
+//   tutorName: ty
+// })
 
 export default name

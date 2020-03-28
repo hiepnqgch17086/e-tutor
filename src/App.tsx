@@ -5,7 +5,7 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom'
-import { SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE, LANDING_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, USERS_PAGE, ADMIN_ERROR_PAGE, CLASS_LIST_PAGE, USER_PAGE, CLASS_ADD_PAGE, USER_ADD_PAGE } from './routes'
+import { SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE, LANDING_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, USER_LIST_PAGE, ADMIN_ERROR_PAGE, CLASS_LIST_PAGE, USER_PAGE, CLASS_ADD_PAGE, USER_ADD_PAGE, CLASS_DETAIL_PAGE } from './routes'
 import SignInPage from './pages/SignInPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,7 +14,7 @@ import LandingPage from './pages/LandingPage';
 import ProfilePage from './pages/ProfilePage';
 import ProfileEditPage from './pages/ProfileEditPage';
 import './firebaseConfig'
-import UsersPage from './pages/UsersPage';
+import UserListPage from './pages/UserListPage';
 import ProfilePageData from './pages/ProfilePage/data';
 import { IS_ADMIN } from './models-one-prop/role';
 import ClassListPage from './pages/ClassListPage';
@@ -22,6 +22,7 @@ import ClassAddPage from './pages/ClassAddPage';
 import AdminLayout from './layout/AdminLayout';
 import UserDetailPage from './pages/UserDetailPage';
 import UserAddPage from './pages/UserAddPage';
+import ClassDetailPage from './pages/ClassDetailPage';
 
 const pathAvoid = [SIGN_IN_PAGE, LANDING_PAGE, ADMIN_ERROR_PAGE]
 
@@ -41,6 +42,9 @@ function App() {
           <PrivateRoute exact path={CLASS_LIST_PAGE}>
             <ClassListPage />
           </PrivateRoute>
+          <PrivateRoute path={CLASS_DETAIL_PAGE}>
+            <ClassDetailPage />
+          </PrivateRoute>
           <PrivateRouteAdmin exact path={CLASS_ADD_PAGE}>
             <ClassAddPage />
           </PrivateRouteAdmin>
@@ -51,8 +55,8 @@ function App() {
             <ProfileEditPage />
           </PrivateRoute>
 
-          <PrivateRouteAdmin exact path={USERS_PAGE}>
-            <UsersPage />
+          <PrivateRouteAdmin exact path={USER_LIST_PAGE}>
+            <UserListPage />
           </PrivateRouteAdmin>
           <PrivateRouteAdmin exact path={USER_ADD_PAGE}>
             <UserAddPage />

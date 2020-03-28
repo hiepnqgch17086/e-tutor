@@ -10,6 +10,10 @@ const ForAdminData = types.compose(
   .actions(self => ({
     onDidMount() {
       self.classes.getDatabaseItemsForAdmin()
+      // console.l
+    },
+    onWillUnMount() {
+      self.setSnapshotNew({})
     }
   }))
   .create({})

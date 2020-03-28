@@ -186,28 +186,12 @@
   ],
   "classes": [
     {
-      "title": "s",
-      "description": "s",
-      "tutorId": "u4",
+      "title": "112",
+      "description": "asa",
+      "tutorId": "u5",
+      "startAt": "2020-03-28",
+      "endAt": "2020-04-02",
       "id": 1
-    },
-    {
-      "title": "s",
-      "description": "s",
-      "tutorId": "u4",
-      "id": 2
-    },
-    {
-      "title": "d",
-      "description": "d",
-      "tutorId": "u4",
-      "id": 3
-    },
-    {
-      "title": "qw",
-      "description": "ww",
-      "tutorId": "u4",
-      "id": 4
     }
   ]
 }

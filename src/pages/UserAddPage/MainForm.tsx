@@ -6,7 +6,7 @@ import CustomInput from '../../components-in-managing-resources/CustomInput';
 import CustomSelect from '../../components-in-managing-resources/CustomSelect';
 import { IS_STUDENT, IS_TUTOR, IS_ADMIN } from '../../models-one-prop/role';
 import { useHistory } from 'react-router-dom';
-import { USERS_PAGE } from '../../routes';
+import { USER_LIST_PAGE } from '../../routes';
 
 const MainForm = ({
   user = defaultOfUser,
@@ -17,7 +17,7 @@ const MainForm = ({
   const history = useHistory()
 
   const onSaveFormSuccess = () => {
-    history.push(USERS_PAGE)
+    history.push(USER_LIST_PAGE)
   }
 
   return (

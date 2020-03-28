@@ -26,7 +26,7 @@ const MainForm = () => {
           <Row>
             <Col md="6">
               <FormGroup>
-                <Label for="exampleEmail">Title</Label>
+                <Label for="exampleEmail">Title *</Label>
                 <CustomInput
                   error={thisClass.isTitleError}
                   value={thisClass.title}
@@ -36,7 +36,7 @@ const MainForm = () => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="exampleEmail">Description</Label>
+                <Label for="exampleEmail">Description *</Label>
                 <CustomInput
                   error={thisClass.isDescriptionError}
                   value={thisClass.description}
@@ -45,11 +45,31 @@ const MainForm = () => {
                   type="textarea"
                 />
               </FormGroup>
+              {/* Start At */}
+              <FormGroup>
+                <Label for="exampleEmail">Start At *</Label>
+                <CustomInput
+                  error={thisClass.isStartAtError}
+                  value={thisClass.startAt}
+                  onChangeText={thisClass.setStartAt}
+                  type="date"
+                />
+              </FormGroup>
+              {/* End At */}
+              <FormGroup>
+                <Label for="exampleEmail">End At *</Label>
+                <CustomInput
+                  error={thisClass.isEndAtError}
+                  value={thisClass.endAt}
+                  onChangeText={thisClass.setEndAt}
+                  type="date"
+                />
+              </FormGroup>
             </Col>
             <Col md="6">
               <FormGroup>
                 <Label for="exampleEmail">
-                  Tutor{` `}
+                  Tutor *
                 </Label> <br />
                 <CardOfTutorInfo user={tutor} />
                 <BtnAddTutor />
@@ -61,7 +81,7 @@ const MainForm = () => {
             <Col md="12">
               <FormGroup>
                 <Label for="exampleEmail">
-                  Students{` `}
+                  Students *
                 </Label> <br />
                 <ListOfJoinedStudents joinedStudents={joinedStudents} />
                 <BtnAddStudent />

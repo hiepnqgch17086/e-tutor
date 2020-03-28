@@ -2,7 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react-lite'
 import ProfilePageData from '../../../pages/ProfilePage/data'
 import { Link, useLocation } from 'react-router-dom'
-import { HOME_PAGE, CLASS_LIST_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, USERS_PAGE, CLASS_ADD_PAGE, getIsUserPagePath, USER_ADD_PAGE } from '../../../routes'
+import { HOME_PAGE, CLASS_LIST_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, USER_LIST_PAGE, CLASS_ADD_PAGE, getIsUserPagePath, USER_ADD_PAGE, getIsClassPagePath } from '../../../routes'
 import moment from 'moment'
 import { Button } from 'reactstrap'
 import CustomIconPlus from '../../../components-in-managing-resources/CustomIconPlus'
@@ -89,6 +89,25 @@ const _getDisplay = (pathName: string) => {
     }
   }
 
+  if (getIsClassPagePath(pathName)) {
+    return {
+      title: 'Class detail',
+      breadcrumb: (
+        <>
+          <li className="breadcrumb-item">
+            <Link to={HOME_PAGE}>Home</Link>
+          </li>
+          <li className="breadcrumb-item">
+            <Link to={CLASS_LIST_PAGE}>Classes</Link>
+          </li>
+          <li className="breadcrumb-item">
+            <Link to={'#'}>Class detail</Link>
+          </li>
+        </>
+      )
+    }
+  }
+
   // case USER_PAGE:
 
   switch (pathName) {
@@ -135,7 +154,7 @@ const _getDisplay = (pathName: string) => {
           </>
         )
       }
-    case USERS_PAGE:
+    case USER_LIST_PAGE:
       return {
         title: `Users`,
         breadcrumb: (
@@ -144,7 +163,7 @@ const _getDisplay = (pathName: string) => {
               <Link to={HOME_PAGE}>Home</Link>
             </li>
             <li className="breadcrumb-item">
-              <Link to={USERS_PAGE}>Users</Link>
+              <Link to={USER_LIST_PAGE}>Users</Link>
             </li>
           </>
         )
@@ -159,10 +178,10 @@ const _getDisplay = (pathName: string) => {
               <Link to={HOME_PAGE}>Home</Link>
             </li>
             <li className="breadcrumb-item">
-              <Link to={USERS_PAGE}>Users</Link>
+              <Link to={USER_LIST_PAGE}>Users</Link>
             </li>
             <li className="breadcrumb-item">
-              <Link to={USERS_PAGE}>Add User</Link>
+              <Link to={USER_LIST_PAGE}>Add User</Link>
             </li>
           </>
         )

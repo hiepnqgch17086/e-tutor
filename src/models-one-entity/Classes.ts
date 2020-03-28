@@ -1,16 +1,16 @@
 import { types } from "mobx-state-tree";
-import id, { creatorId, tutorId } from "../models-one-prop/id";
+import id, { tutorId } from "../models-one-prop/id";
 import title from "../models-one-prop/title";
 import description from "../models-one-prop/description";
 import GeneralModel from "./GeneralModel";
 import GeneralModelList from "./GeneralModelList";
 import API from "../api";
-import PaginationModel from "./PaginationModel";
 import { toast } from "react-toastify";
+import { startAt, endAt } from "../models-one-prop/dateAt";
 
 export const Class = types.compose(
   'Class',
-  id, title, description, tutorId,
+  id, title, description, tutorId, startAt, endAt,
   GeneralModel,
 )
   .actions(self => ({
@@ -24,7 +24,7 @@ export const Class = types.compose(
      * @override
      */
     _getMainProperties(): Array<string> {
-      return ['title', 'description', 'tutorId']
+      return ['title', 'description', 'tutorId', 'startAt', 'endAt']
     },
     /**
      * @override
@@ -41,6 +41,8 @@ export const Class = types.compose(
         self._getTitleConstraint(),
         self._getDescriptionConstraint(),
         self._getTutorIdConstraint(),
+        self._getStartAtConstraint(),
+        self._getEndAtConstraint()
       ]
     },
   }))
@@ -60,6 +62,7 @@ const Classes = types.compose(
           page: self.page,
           title: self.searchByTitle
         })
+        self.setSnapshotNew(data, self.items)
       } catch (error) {
         console.log(error.message)
         toast.error('Something went wrong!')
