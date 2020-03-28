@@ -94,14 +94,15 @@
       "role": 3
     },
     {
+      "id": "u9",
       "email": "quanghiep2949@gmail.com",
       "password": "3Hiep2941",
       "name": "STUDENT NAME four",
-      "dob": "",
-      "gender": "",
+      "dob": "2020-03-28",
+      "gender": "male",
       "phone": "0962675310",
       "address": "nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương, nhà 5, đường Tiên Kha 2, thôn Tiên Kha, xã Tiên Dương",
-      "id": "u9",
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/e-totur.appspot.com/o/avatars%2Fu9?alt=media&token=8cf9d2a2-669d-4f0f-ac99-6c7efd181395",
       "role": 3
     },
     {
