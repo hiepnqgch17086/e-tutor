@@ -8,9 +8,17 @@ import BtnAddTutor from './MainForm/BtnAddTutor'
 import Data from './data'
 import CustomTextArea from '../../components-in-managing-resources/CustomTextArea'
 import CardOfTutorInfo from './CardOfTutorInfo'
+import { useHistory } from 'react-router-dom'
+import { CLASS_LIST_PAGE } from '../../routes'
 
 const MainForm = () => {
   const { joinedStudents, onSubmitForm, class: thisClass, tutor } = Data
+
+  let history = useHistory()
+  const onSubmitSucess = () => {
+    history.push(CLASS_LIST_PAGE)
+  }
+
   return (
     <div className="card">
       <div className="card-body">
@@ -62,7 +70,7 @@ const MainForm = () => {
           <Row>
             <Col md="12">
               <FormGroup>
-                <Button onClick={onSubmitForm}>
+                <Button onClick={() => onSubmitForm(onSubmitSucess)}>
                   Submit
                 </Button>
               </FormGroup>

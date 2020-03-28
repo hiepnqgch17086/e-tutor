@@ -1,10 +1,9 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import { Button } from 'reactstrap'
-import { Link } from 'react-router-dom'
-import { PROFILE_PAGE, ALL_USERS_PAGE, CLASS_LIST_PAGE } from '../../routes'
-import ProfilePageData from '../ProfilePage/data'
-import { IS_ADMIN } from '../../models-one-prop/role'
+// import { Button } from 'reactstrap'
+// import { PROFILE_PAGE, ALL_USERS_PAGE, CLASS_LIST_PAGE } from '../../routes'
+// import ProfilePageData from '../ProfilePage/data'
+// import { IS_ADMIN } from '../../models-one-prop/role'
 // import AdminLayout from '../../layout/AdminLayout'
 
 const HomePage = () => {

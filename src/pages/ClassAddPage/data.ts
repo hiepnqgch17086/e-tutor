@@ -3,6 +3,7 @@ import GeneralPageModel from "../GeneralPageModel";
 import { Class } from "../../models-one-entity/Classes";
 import Users, { User } from "../../models-one-entity/Users";
 import { toast } from "react-toastify";
+import { CLASS_LIST_PAGE } from "../../routes";
 
 const ClassAddPageData = types.compose(
   'ClassAddPageData',
@@ -20,7 +21,7 @@ const ClassAddPageData = types.compose(
     onWillUnMount() {
       self.setSnapshotNew({})
     },
-    onSubmitForm: async function () {
+    onSubmitForm: async function (callback: Function = () => { }) {
       try {
 
         const { class: thisClass, joinedStudents, tutor } = self
@@ -29,7 +30,7 @@ const ClassAddPageData = types.compose(
         if (errorMessage) throw new Error(errorMessage)
 
         console.log(data)
-
+        callback()
       } catch (error) {
         toast.error(error.message)
       }

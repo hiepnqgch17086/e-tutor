@@ -8,7 +8,7 @@ import { Button } from 'reactstrap'
 
 const UserDetailPage = () => {
   const { user } = Data
-  const { id } = useParams()
+  const { id = "" } = useParams()
   const history = useHistory()
 
   const goBack = () => {

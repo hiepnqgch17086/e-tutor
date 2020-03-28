@@ -4,6 +4,8 @@ import ProfilePageData from '../../../pages/ProfilePage/data'
 import { Link, useLocation } from 'react-router-dom'
 import { HOME_PAGE, CLASS_LIST_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, ALL_USERS_PAGE, CLASS_ADD_PAGE, getIsUserPagePath } from '../../../routes'
 import moment from 'moment'
+import { Button } from 'reactstrap'
+import CustomIconPlus from '../../../components-in-managing-resources/CustomIconPlus'
 
 const PageBreadcrumb = () => {
 
@@ -118,7 +120,7 @@ const _getDisplay = (pathName: string) => {
       };
     case CLASS_LIST_PAGE:
       return {
-        title: `Classes`,
+        title: 'Classes',
         breadcrumb: classBreadcrumbRoot
       }
     case CLASS_ADD_PAGE:
