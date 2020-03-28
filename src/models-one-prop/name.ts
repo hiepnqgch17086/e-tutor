@@ -16,12 +16,14 @@ const name = types.model({
       return ''
     },
     _setIsNameError(newValue: boolean): void {
+      console.log(newValue)
       self.isNameError = newValue
     },
-    setName(newValue: string = ''): void {
+    setName(newValue: string = '', shouldValidate: boolean = true): void {
       const setRegexToAvoidTags = /[<|>|@|#|$|%|&|*|(|)|^|!|0-9]/gi
       if (setRegexToAvoidTags.test(newValue)) return
       self.name = newValue
+      if (shouldValidate) this._getNameConstraint()
     }
   }))
 

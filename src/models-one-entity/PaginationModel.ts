@@ -3,7 +3,8 @@ import { types } from "mobx-state-tree";
 const PaginationModel = types.model({
   limit: types.optional(types.number, 10),
   page: types.optional(types.number, 1),
-  searchByEmail: types.optional(types.string, '')
+  searchByEmail: types.optional(types.string, ''),
+  searchByTitle: types.optional(types.string, ''),
 })
   .actions(self => ({
     setLimit(newValue: number = 10) {
@@ -14,6 +15,9 @@ const PaginationModel = types.model({
     },
     setSearchByEmail(newValue: string = '') {
       self.searchByEmail = newValue
+    },
+    setSearchByTitle(newValue: string = '') {
+      self.searchByTitle = newValue
     }
   }))
 

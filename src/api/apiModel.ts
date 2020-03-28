@@ -53,6 +53,9 @@ class ApiModel {
   setClassNew(classSnapshot: Object): Promise<AxiosResponse<any>> {
     throw new Error('!override setClassNew()')
   }
+  getClassesForAdmin(paginationData: PaginationType): Promise<AxiosResponse<any>> {
+    throw new Error('!override setClassNew()')
+  }
 }
 
 export default ApiModel

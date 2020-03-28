@@ -5,6 +5,8 @@ import description from "../models-one-prop/description";
 import GeneralModel from "./GeneralModel";
 import GeneralModelList from "./GeneralModelList";
 import API from "../api";
+import PaginationModel from "./PaginationModel";
+import { toast } from "react-toastify";
 
 export const Class = types.compose(
   'Class',
@@ -51,7 +53,18 @@ const Classes = types.compose(
   })
 )
   .actions(self => ({
-
+    getDatabaseItemsForAdmin: async function () {
+      try {
+        const { data } = await API.getClassesForAdmin({
+          limit: self.limit,
+          page: self.page,
+          title: self.searchByTitle
+        })
+      } catch (error) {
+        console.log(error.message)
+        toast.error('Something went wrong!')
+      }
+    }
   }))
 
 export const defaultOfClasses = Classes.create({})

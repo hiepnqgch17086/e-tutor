@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from 'reactstrap'
 import { Link } from 'react-router-dom'
-import { CLASS_ADD_PAGE } from '../../routes'
+import { CLASS_ADD_PAGE } from '../../../routes'
 
 const BtnAddClass = () => {
   return (

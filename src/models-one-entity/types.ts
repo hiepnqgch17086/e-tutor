@@ -18,9 +18,10 @@ export type SetDatabaseNewProps = {
 }
 
 export type PaginationType = {
-  page: number,
+  page: number
   limit: number
   email?: string
+  title?: string
 }
 
 // export type PaginationEmail = {

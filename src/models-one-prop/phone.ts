@@ -20,7 +20,12 @@ const phone = types.model({
     },
     setPhone(newValue: string = '', shouldValidate: boolean = true): void {
       const setRegexToAvoidTags = /[<|>]/gi
-      if (setRegexToAvoidTags.test(newValue)) return
+      const setRegexToAllowOnlyNumber = /[0-9\s]/gi
+      if (
+        setRegexToAvoidTags.test(newValue) ||
+        !setRegexToAllowOnlyNumber.test(newValue)
+      ) return
+
 
       self.phone = newValue
       if (shouldValidate) this._getPhoneConstraint()

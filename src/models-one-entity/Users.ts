@@ -15,6 +15,7 @@ import GeneralModelList from "./GeneralModelList";
 import avatar from "../models-one-prop/avatar";
 import role, { IS_ADMIN, IS_TUTOR } from "../models-one-prop/role";
 import PaginationModel from "./PaginationModel";
+import { toast } from "react-toastify";
 
 const UserMoreProps = types.compose(
   name, dob, gender, phone, address,
@@ -82,6 +83,7 @@ export const User = types.compose(
         }
       } catch ({ message }) {
         console.log('setDatabaseUpdate():', message)
+        toast.error(message)
         return {
           isSuccess: false,
           errorMessage: message
@@ -104,6 +106,7 @@ export const User = types.compose(
         return ''
       } catch (error) {
         console.log(error.message)
+        toast.error('Something went wrong!')
         return 'Something went wrong!'
       }
     },
@@ -139,7 +142,6 @@ type GetUsersProp = {
 const Users = types.compose(
   'Users',
   GeneralModelList,
-  PaginationModel,
   types.model({
     items: types.array(User)
   })

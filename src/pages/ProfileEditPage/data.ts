@@ -24,7 +24,6 @@ const ProfileEditData = types.compose(
       // save in server
       const { errorMessage } = await self.cloneCurrentUser.setDatabaseUpdateProfile()
       if (errorMessage) {
-        toast.error(errorMessage)
         return
       }
       // save in client

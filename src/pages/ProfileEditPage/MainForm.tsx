@@ -5,6 +5,7 @@ import { defaultOfUser } from '../../models-one-entity/Users';
 import firebase from 'firebase'
 import avatarDemo from '../../images/avatar-demo.png'
 import ImageUploader from 'react-images-upload';
+import CustomInput from '../../components-in-managing-resources/CustomInput';
 
 const MainForm = ({
   cloneCurrentUser = defaultOfUser,
@@ -87,12 +88,11 @@ const MainForm = ({
             {/* Name */}
             <FormGroup>
               <Label for="exampleName">Name *</Label>
-              <Input type="text" name="name" id="exampleName" placeholder="name"
+              <CustomInput
+                error={cloneCurrentUser.isNameError}
                 value={cloneCurrentUser.name}
-                onChange={(e) => {
-                  cloneCurrentUser.setName(e.target.value)
-                  // console.log(currentUser.name)
-                }}
+                onChangeText={cloneCurrentUser.setName}
+                placeholder="name"
               />
             </FormGroup>
 
@@ -116,12 +116,11 @@ const MainForm = ({
             {/* Phone */}
             <FormGroup>
               <Label for="examplePhone">Phone *</Label>
-              <Input type="text" name="phone" id="examplePhone" placeholder="0962xxxxxx"
+              <CustomInput
+                error={cloneCurrentUser.isPhoneError}
                 value={cloneCurrentUser.phone}
-                onChange={e => {
-                  cloneCurrentUser.setPhone(e.target.value)
-                  // console.log(currentUser.phone)
-                }}
+                onChangeText={cloneCurrentUser.setPhone}
+                placeholder="0962xxxxxx"
               />
             </FormGroup>
 

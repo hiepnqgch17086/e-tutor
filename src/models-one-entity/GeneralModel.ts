@@ -7,6 +7,7 @@ import _getProperties from "../models-one-action/_getProperties";
 import setSnapshotUpdate from "../models-one-action/setSnapshotUpdate";
 import { Response } from './types'
 import { AxiosResponse } from "axios";
+import { toast } from "react-toastify";
 
 const defaultSnapshot = {}
 
@@ -94,11 +95,12 @@ const GeneralModel = types.compose(
           // @ts-ignore
           data: getSnapshot(self)
         }
-      } catch (error) {
-        console.log('getDatabase()', error.message)
+      } catch ({ message }) {
+        console.log('getDatabase()', message)
+        toast.error(message)
         return {
           isSuccess: false,
-          errorMessage: error.message
+          errorMessage: message
         }
       }
     },
@@ -126,6 +128,7 @@ const GeneralModel = types.compose(
         }
       } catch ({ message }) {
         console.log('setDatabaseNew()', message)
+        toast.error(message)
         return {
           isSuccess: false,
           errorMessage: message,
@@ -197,6 +200,7 @@ const GeneralModel = types.compose(
         }
       } catch ({ message }) {
         console.log('setDatabaseDelete():', message)
+        toast.error(message)
         return {
           isSuccess: false,
           errorMessage: message

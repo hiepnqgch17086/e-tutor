@@ -22,18 +22,13 @@ const ClassAddPageData = types.compose(
       self.setSnapshotNew({})
     },
     onSubmitForm: async function (callback: Function = () => { }) {
-      try {
+      const { class: thisClass, joinedStudents, tutor } = self
+      thisClass.setTutorId(tutor.id)
+      const { data, errorMessage } = await thisClass.setDatabaseNew()
+      if (errorMessage) return
 
-        const { class: thisClass, joinedStudents, tutor } = self
-        thisClass.setTutorId(tutor.id)
-        const { data, errorMessage } = await thisClass.setDatabaseNew()
-        if (errorMessage) throw new Error(errorMessage)
-
-        console.log(data)
-        callback()
-      } catch (error) {
-        toast.error(error.message)
-      }
+      console.log(data)
+      callback()
     }
   }))
   .create({})

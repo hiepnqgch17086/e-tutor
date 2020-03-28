@@ -66,4 +66,12 @@ export default class JsonApi extends ApiModel {
   setClassNew(classSnapshot: Object): Promise<AxiosResponse<any>> {
     return this.ApiRef.post(`/classes`, classSnapshot)
   }
+  /**
+   * @override
+   */
+  getClassesForAdmin({ page = 1, limit = 10, title = '' }: PaginationType): Promise<AxiosResponse<any>> {
+    let url = `/classes?_page=${page}&_limit=${limit}`
+    if (title) url += `&title=${title}`
+    return this.ApiRef.get(url)
+  }
 } 
