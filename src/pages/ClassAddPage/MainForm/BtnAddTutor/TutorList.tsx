@@ -8,6 +8,7 @@ import { get_USER_PAGE } from '../../../../routes'
 import { Button, ButtonGroup } from 'reactstrap'
 import { getSnapshot } from 'mobx-state-tree'
 import ClassAddPageData from '../../data'
+import AvatarInDefault from '../../../../images/AvatarInDefault'
 
 const TutorList = ({
   isModalVisible = false
@@ -52,7 +53,7 @@ const TutorList = ({
 
         return [
           (page - 1) * limit + index + 1,
-          <img src={item.avatar} alt="user" className="rounded-circle" width={70} height={70} />,
+          <img src={item.avatar || AvatarInDefault} alt="user" className="rounded-circle" width={70} height={70} />,
           item.email,
           item.name,
           <>

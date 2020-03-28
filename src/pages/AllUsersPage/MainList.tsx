@@ -6,6 +6,7 @@ import { get_USER_PAGE } from '../../routes'
 import { useHistory } from "react-router-dom";
 import CustomTable from '../../components-in-managing-resources/CustomTable'
 import { Button } from 'reactstrap'
+import AvatarInDefault from '../../images/AvatarInDefault'
 
 const MainList = ({
   users = defaultOfUsers,
@@ -41,7 +42,7 @@ const MainList = ({
           item.name,
           item.dob,
           item.phone,
-          <img src={item.avatar} alt="user" className="rounded-circle" width={70} height={70} />,
+          <img src={item.avatar || AvatarInDefault} alt="user" className="rounded-circle" width={70} height={70} />,
           <select className="form-control" id="exampleFormControlSelect1"
             value={item.role}
             onChange={onChangeRole}

@@ -3,6 +3,7 @@ import ProfilePageData from '../../../pages/ProfilePage/data'
 import { observer } from 'mobx-react-lite'
 import { Link } from 'react-router-dom'
 import { PROFILE_PAGE, SIGN_IN_PAGE } from '../../../routes'
+import AvatarInDefault from '../../../images/AvatarInDefault'
 
 const Auth = () => {
   const { currentUser } = ProfilePageData
@@ -16,7 +17,7 @@ const Auth = () => {
   return (
     <li className="nav-item dropdown">
       <a className="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img src={avatar} alt="user" className="rounded-circle" width={40} height={40} />
+        <img src={avatar || AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
         <span className="ml-2 d-none d-lg-inline-block">
           {/* <span>Hello,</span>  */}
           <span className="text-dark">{name}</span> <i data-feather="chevron-down" className="svg-icon" />
