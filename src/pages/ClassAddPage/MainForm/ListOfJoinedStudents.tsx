@@ -3,6 +3,7 @@ import CustomTable from '../../../components-in-managing-resources/CustomTable'
 import { defaultOfUsers, defaultOfUser } from '../../../models-one-entity/Users'
 import { Button, ButtonGroup } from 'reactstrap'
 import AvatarInDefault from '../../../images/AvatarInDefault'
+import CustomBtnTrash from '../../../components-in-managing-resources/CustomBtnTrash'
 
 const ListOfJoinedStudents = ({
   joinedStudents = defaultOfUsers
@@ -27,12 +28,10 @@ const ListOfJoinedStudents = ({
               <Button onClick={() => { }}>
                 Detail
               </Button>
-              <Button
+              <CustomBtnTrash
                 onClick={onRemoveStudent}
-                color="danger"
-                className="ml-1">
-                Remove
-              </Button>
+                className="ml-1"
+              />
             </ButtonGroup>
           </>
         ]

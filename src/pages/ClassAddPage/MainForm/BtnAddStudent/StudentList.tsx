@@ -9,6 +9,7 @@ import { Button, ButtonGroup } from 'reactstrap'
 import ClassAddPageData from '../../data'
 import { getSnapshot } from 'mobx-state-tree'
 import AvatarInDefault from '../../../../images/AvatarInDefault'
+import CustomBtnTrash from '../../../../components-in-managing-resources/CustomBtnTrash'
 
 const StudentList = ({
   isModalVisible = false
@@ -65,12 +66,9 @@ const StudentList = ({
               </Button>
               {
                 isAdded
-                  ? (<Button
+                  ? (<CustomBtnTrash
                     onClick={onRemoveStudent}
-                    color="danger"
-                    className="ml-1">
-                    Remove
-                  </Button>)
+                    className="ml-1" />)
                   : (<Button
                     onClick={onAddStudent}
                     color="primary"

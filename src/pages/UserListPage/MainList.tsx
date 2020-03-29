@@ -5,8 +5,11 @@ import { IS_ADMIN, IS_STUDENT, IS_TUTOR } from '../../models-one-prop/role'
 import { get_USER_PAGE, goUserPage } from '../../routes'
 import { useHistory } from "react-router-dom";
 import CustomTable from '../../components-in-managing-resources/CustomTable'
-import { Button } from 'reactstrap'
+import { Button, ButtonGroup } from 'reactstrap'
 import AvatarInDefault from '../../images/AvatarInDefault'
+import SlRole from './MainList/SlRole'
+import CustomBtnTrash from '../../components-in-managing-resources/CustomBtnTrash'
+import BtnTrash from './MainList/BtnTrash'
 
 const MainList = ({
   users = defaultOfUsers,
@@ -26,10 +29,8 @@ const MainList = ({
       data={users.items}
       renderItemCellsInRow={({ item = defaultOfUser, index = 0 }) => {
 
-        const onChangeRole = (e: any) => {
-          item.setRole(parseInt(e.target.value))
-          // console.log(e.target.value)
-          item.setDatabaseUpdateRole()
+        const onRemoveUser = () => {
+
         }
 
         return [
@@ -39,18 +40,13 @@ const MainList = ({
           item.dob,
           item.phone,
           <img src={item.avatar || AvatarInDefault} alt="user" className="rounded-circle" width={70} height={70} />,
-          <select className="form-control" id="exampleFormControlSelect1"
-            value={item.role}
-            onChange={onChangeRole}
-            style={{ minWidth: '120px' }}
-          >
-            <option value={IS_ADMIN}>Admin</option>
-            <option value={IS_TUTOR}>Tutor</option>
-            <option value={IS_STUDENT}>Student</option>
-          </select>,
-          <Button onClick={() => goUserPage(item.id)}>
-            Detail
-          </Button>
+          <SlRole item={item} />,
+          <ButtonGroup>
+            <Button onClick={() => goUserPage(item.id)}>
+              Detail
+            </Button>
+            <BtnTrash item={item} />
+          </ButtonGroup>
         ]
       }}
     />

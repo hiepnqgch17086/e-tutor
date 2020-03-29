@@ -102,6 +102,13 @@ export default class JsonApi extends ApiModel {
   setClassNew(classSnapshot: Object): Promise<AxiosResponse<any>> {
     return this.ApiRef.post(`/classes`, classSnapshot)
   }
+  /**
+   * @override
+   */
+  setUserDelete(id: string | number) {
+    return this.ApiRef.delete(`/users/${id}`)
+  }
+
 
   /////////CLASS_MEMBER ///////////
   /**

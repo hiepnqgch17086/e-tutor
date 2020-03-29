@@ -15,18 +15,6 @@ const GeneralModel = types.compose(
   setSnapshotNew, _getSnapshotWithProperties, setSnapshotUpdate,
 )
   .actions(self => ({
-    _getDatabaseDeleteConstraint(): void | Promise<ErrorMessage> {
-      console.log('\n')
-      console.log('Name of model: ', getType(self).name)
-      console.log('Can override method _getDatabaseDeleteConstraint() => Promise<ErrorMessage>, for preventing when delete data')
-      return
-    },
-    _getDatabaseAdditionalInfo(): void | Promise<ErrorMessage> {
-      console.log('\n')
-      console.log('Name of model: ', getType(self).name)
-      console.log(`can override method _getDatabaseAdditionalInfo() => Promise<ErrorMessage>, for get more database, for example: product needs category title, but in firebase realtime, can not join, so need to getDatabase of product's category`)
-      return
-    },
     _getMainProperties(): Array<string> {
       console.log('\n')
       console.log('Name of model: ', getType(self).name)
@@ -180,18 +168,8 @@ const GeneralModel = types.compose(
      */
     setDatabaseDelete: async function (): Promise<Response> {
       try {
-        // @ts-ignore, reference to this._getDatabaseDeleteConstraint()
-        const errorMessage = await self._getDatabaseDeleteConstraint()
-        if (errorMessage) throw new Error(errorMessage)
-
-        // RELATED data
-        // @ts-ignore, reference to this._setDatabaseDeleteRelated()
-        const errorMessage2 = await self._setDatabaseDeleteRelated()
-        if (errorMessage2) throw new Error(errorMessage2)
-
-        // MAIN data
-        // @ts-ignore, reference to this._getReference()
-        self._getReference().remove()
+        // @ts-ignore, reference to this._getMainThreadOfSettingDatabaseDelete()
+        await self._getMainThreadOfSettingDatabaseDelete()
         return {
           isSuccess: true,
           // @ts-ignore

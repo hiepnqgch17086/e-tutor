@@ -1,4 +1,4 @@
-import { types, getSnapshot } from "mobx-state-tree";
+import { types, getSnapshot, getParent } from "mobx-state-tree";
 import id from "../models-one-prop/id";
 import email from "../models-one-prop/email";
 import password from "../models-one-prop/password";
@@ -37,6 +37,12 @@ export const User = types.compose(
      */
     _getMainThreadOfGettingDatabase() {
       return API.getUser(self.id)
+    },
+    /**
+     * @override
+     */
+    _getMainThreadOfSettingDatabaseDelete() {
+      return API.setUserDelete(self.id)
     },
     /**
      * @override
@@ -150,6 +156,9 @@ export const User = types.compose(
     get isTutor() {
       return self.role === IS_TUTOR
     },
+    get parentUserList(): any {
+      return getParent(self, 2)
+    }
   }))
 
 export const defaultOfUser = User.create({})

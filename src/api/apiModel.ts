@@ -54,6 +54,9 @@ class ApiModel {
   setUserUpdateRole(userSnapshot: Object) {
     throw new Error('!override setUserUpdateRole()')
   }
+  setUserDelete(id: string | number) {
+    throw new Error('!override setUserDelete()')
+  }
 
 
   ////////// CLASSES /////////////

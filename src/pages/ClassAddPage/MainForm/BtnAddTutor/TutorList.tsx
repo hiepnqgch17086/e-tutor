@@ -8,6 +8,7 @@ import { getSnapshot } from 'mobx-state-tree'
 import ClassAddPageData from '../../data'
 import AvatarInDefault from '../../../../images/AvatarInDefault'
 import { goUserPage } from '../../../../routes'
+import CustomBtnTrash from '../../../../components-in-managing-resources/CustomBtnTrash'
 
 const TutorList = ({
   isModalVisible = false
@@ -57,12 +58,10 @@ const TutorList = ({
               </Button>
               {
                 isAdded
-                  ? (<Button
+                  ? (<CustomBtnTrash
                     onClick={onRemoveTutor}
-                    color="danger"
-                    className="ml-1">
-                    Remove
-                  </Button>)
+                    className="ml-1" />
+                  )
                   : (<Button
                     onClick={onChooseTutor}
                     color="primary"
