@@ -138,12 +138,12 @@ export const User = types.compose(
         }
       }
     },
-    setDatabaseUpdateRole() {
+    setDatabaseUpdateRole: async function () {
       try {
         const updatedProps = self._getMainProperties()
         const snapshotUpdate = self._getSnapshotWithProperties(updatedProps)
         if (typeof snapshotUpdate === 'string') throw new Error(snapshotUpdate)
-        API.setUserUpdateRole(snapshotUpdate)
+        await API.setUserUpdateRole(snapshotUpdate)
       } catch ({ message }) {
         toast.error(message)
       }
