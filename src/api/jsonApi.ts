@@ -87,12 +87,7 @@ export default class JsonApi extends ApiModel {
   }
 
   ////////// CLASSES /////////////
-  /**
-   * @override
-   */
-  setClassNew(classSnapshot: Object): Promise<AxiosResponse<any>> {
-    return this.ApiRef.post(`/classes`, classSnapshot)
-  }
+
   /**
    * @override
    */
@@ -100,5 +95,19 @@ export default class JsonApi extends ApiModel {
     let url = `/classes?_page=${page}&_limit=${limit}`
     if (title) url += `&title=${title}`
     return this.ApiRef.get(url)
+  }
+  /**
+   * @override
+   */
+  setClassNew(classSnapshot: Object): Promise<AxiosResponse<any>> {
+    return this.ApiRef.post(`/classes`, classSnapshot)
+  }
+
+  /////////CLASS_MEMBER ///////////
+  /**
+   * @override
+   */
+  setClassMemberNew(classMemberSnapshot: Object): Promise<AxiosResponse<any>> {
+    return this.ApiRef.post(`/classMembers`, classMemberSnapshot)
   }
 } 

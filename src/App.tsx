@@ -23,7 +23,7 @@ import AdminLayout from './layout/AdminLayout';
 import UserDetailPage from './pages/UserDetailPage';
 import UserAddPage from './pages/UserAddPage';
 import ClassDetailPage from './pages/ClassDetailPage';
-import Axios from 'axios';
+// import Axios from 'axios';
 
 const pathAvoid = [SIGN_IN_PAGE, LANDING_PAGE, ADMIN_ERROR_PAGE]
 

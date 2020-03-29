@@ -29,13 +29,7 @@ export const Class = types.compose(
     _getMainProperties(): Array<string> {
       return ['title', 'description', 'tutorId', 'startAt', 'endAt']
     },
-    /**
-     * @override
-     */
-    _getReference(): string {
-      // if new, consider like /users/
-      return `/classes/${self.id}`
-    },
+
     /**
      * @override
      */

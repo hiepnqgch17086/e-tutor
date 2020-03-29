@@ -57,11 +57,16 @@ class ApiModel {
 
 
   ////////// CLASSES /////////////
+  getClassesForAdmin(paginationData: PaginationType): Promise<AxiosResponse<any>> {
+    throw new Error('!override setClassNew()')
+  }
   setClassNew(classSnapshot: Object): Promise<AxiosResponse<any>> {
     throw new Error('!override setClassNew()')
   }
-  getClassesForAdmin(paginationData: PaginationType): Promise<AxiosResponse<any>> {
-    throw new Error('!override setClassNew()')
+
+  /////////CLASS_MEMBER ///////////
+  setClassMemberNew(classMemberSnapshot: Object): Promise<AxiosResponse<any>> {
+    throw new Error('!override setClassMember()')
   }
 }
 

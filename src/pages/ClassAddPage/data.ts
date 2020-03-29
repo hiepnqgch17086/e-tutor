@@ -30,10 +30,12 @@ const ClassAddPageData = types.compose(
       }
 
       thisClass.setTutorId(tutor.id)
-      const { data, errorMessage } = await thisClass.setDatabaseNew()
+      const { data: newClass, errorMessage } = await thisClass.setDatabaseNew()
       if (errorMessage) return
 
       // add to classMember
+      const { id } = newClass
+
 
       callback()
     }
