@@ -49,7 +49,10 @@ class ApiModel {
   }
   // as signup
   setUserNew(userSnapshot: Object) {
-    throw new Error('!override setUserNew')
+    throw new Error('!override setUserNew()')
+  }
+  setUserUpdateRole(userSnapshot: Object) {
+    throw new Error('!override setUserUpdateRole()')
   }
 
 

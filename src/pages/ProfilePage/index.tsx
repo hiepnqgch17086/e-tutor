@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { Button } from 'reactstrap'
 import { Link } from 'react-router-dom'
@@ -8,6 +8,11 @@ import ProfileDetail from './ProfileDetail'
 import Data from './data'
 
 const ProfilePage = () => {
+
+  useEffect(() => {
+    Data.onDidMount()
+  }, [])
+
   const { currentUser } = Data
   return (
     <>

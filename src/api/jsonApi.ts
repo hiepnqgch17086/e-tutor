@@ -5,7 +5,8 @@ import { getLocalStorageAuthIdToken } from "../routes";
 import { IS_STUDENT, IS_TUTOR } from "../models-one-prop/role";
 
 type User = {
-  id?: string | number
+  id?: string | number,
+  role?: string | number,
 }
 
 export default class JsonApi extends ApiModel {
@@ -66,7 +67,8 @@ export default class JsonApi extends ApiModel {
    * @override
    */
   setUserUpdateProfile(userSnapshot: User): Promise<AxiosResponse<any>> {
-    const { id = '' } = userSnapshot
+    const { id } = userSnapshot
+    if (!id) throw new Error('Id not exist')
     return this.ApiRef.put(`/users/${id}`, userSnapshot)
   }
   /**
@@ -75,7 +77,14 @@ export default class JsonApi extends ApiModel {
   setUserNew(userSnapshot: Object) {
     return this.ApiRef.post(`/users`, userSnapshot)
   }
-
+  /**
+   * @override
+   */
+  setUserUpdateRole(userSnapshot: User): Promise<AxiosResponse<any>> {
+    const { id } = userSnapshot
+    if (!id) throw new Error('Id not exist')
+    return this.ApiRef.put(`/users/${id}`, userSnapshot)
+  }
 
   ////////// CLASSES /////////////
   /**

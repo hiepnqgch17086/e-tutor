@@ -2,7 +2,7 @@ import { types, getType, getSnapshot } from "mobx-state-tree";
 import setSnapshotNew from "../models-one-action/setSnapshotNew";
 import { ErrorMessage } from "./types";
 import { createdAt, updatedAt } from "../models-one-prop/dateAt";
-import _getProperties from "../models-one-action/_getProperties";
+import _getSnapshotWithProperties from "../models-one-action/_getSnapshotWithProperties";
 import setSnapshotUpdate from "../models-one-action/setSnapshotUpdate";
 import { Response } from './types'
 import { AxiosResponse } from "axios";
@@ -12,7 +12,7 @@ const defaultSnapshot = {}
 
 const GeneralModel = types.compose(
   createdAt, updatedAt,
-  setSnapshotNew, _getProperties, setSnapshotUpdate,
+  setSnapshotNew, _getSnapshotWithProperties, setSnapshotUpdate,
 )
   .actions(self => ({
     _getDatabaseDeleteConstraint(): void | Promise<ErrorMessage> {
@@ -114,7 +114,7 @@ const GeneralModel = types.compose(
         if (message) throw new Error(message)
 
         //@ts-ignore, reference to this._getMainProperties()
-        const snapshot = self._getProperties([...self._getMainProperties()])
+        const snapshot = self._getSnapshotWithProperties([...self._getMainProperties()])
         if (typeof snapshot === 'string') throw new Error(snapshot)
 
         //@ts-ignore, reference to this._getMainThreadOfSettingDatabaseNew()
@@ -158,7 +158,7 @@ const GeneralModel = types.compose(
         // get key value in need,
         //@ts-ignore, reference to this._getMainProperties()
         const updatedProps = propertiesUpdated ? [...propertiesUpdated, 'updatedAt'] : [...self._getMainProperties(), 'updatedAt']
-        const snapshotUpdate = self._getProperties(updatedProps)
+        const snapshotUpdate = self._getSnapshotWithProperties(updatedProps)
         if (typeof snapshotUpdate === 'string') throw new Error(snapshotUpdate)
 
         const res = await this._getMainThreadOfSettingDatabaseUpdate()

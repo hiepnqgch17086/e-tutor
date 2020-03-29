@@ -7,11 +7,14 @@ import GeneralModelList from "./GeneralModelList";
 import API from "../api";
 import { toast } from "react-toastify";
 import { startAt, endAt } from "../models-one-prop/dateAt";
+import { tutorName } from "../models-one-prop/name";
+import { numberOfStudens } from "../models-one-prop/numberOf";
 
 export const Class = types.compose(
   'Class',
   id, title, description, tutorId, startAt, endAt,
   GeneralModel,
+  tutorName, numberOfStudens,
 )
   .actions(self => ({
     /**

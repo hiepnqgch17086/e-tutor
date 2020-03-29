@@ -16,7 +16,7 @@ const MainList = ({
   return (
     <div>
       <CustomTable
-        headerArray={['#', 'Title', 'Description', 'TutorId', 'Start At', 'End At', 'Menu']}
+        headerArray={['#', 'Title', 'Description', 'Tutor Name', 'Number of Students', 'Start At', 'End At', 'Menu']}
         data={classes.items}
         renderItemCellsInRow={({ item = defaultOfClass, index = 0 }) => {
 
@@ -28,7 +28,8 @@ const MainList = ({
             (page - 1) * limit + index + 1,
             item.title,
             item.description,
-            item.tutorId,
+            item.tutorName || "...",
+            item.numberOfStudens || "...",
             item.startAt,
             item.endAt,
             <Button size="sm" onClick={goToClassDetailPage}>

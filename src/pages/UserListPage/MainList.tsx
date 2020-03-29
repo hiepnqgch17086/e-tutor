@@ -29,7 +29,7 @@ const MainList = ({
         const onChangeRole = (e: any) => {
           item.setRole(parseInt(e.target.value))
           // console.log(e.target.value)
-          item.setDatabaseUpdateProfile()
+          item.setDatabaseUpdateRole()
         }
 
         return [

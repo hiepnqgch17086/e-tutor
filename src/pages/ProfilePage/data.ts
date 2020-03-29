@@ -10,11 +10,9 @@ const ProfilePageData = types.compose(
   })
 )
   .actions(self => ({
-    // afterCreate() {
-    //   // with any change on current user, will set local
-    //   onSnapshot(self.currentUser, self.currentUser.setAuthIdToken)
-    //   // weakness: will save local first, not save server first
-    // }
+    onDidMount() {
+      self.currentUser.getMyProfile()
+    }
   }))
   .create({})
 

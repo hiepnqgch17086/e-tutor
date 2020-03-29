@@ -61,6 +61,41 @@ export const User = types.compose(
         self._getRepeatPasswordConstraint()
       ]
     },
+
+
+
+    // SPECIAL METHODS
+    // Login
+    getDatabaseToken: async function (): Promise<ErrorMessage> {
+      try {
+        // will change later
+        const response = await API.getAuthToken({ email: self.email, password: self.password })
+
+        const data = response.data
+
+        self.setSnapshotUpdate(data)
+
+        this.setAuthIdToken()
+        return ''
+      } catch (error) {
+        console.log(error.message)
+        toast.error('Something went wrong!')
+        return 'Something went wrong!'
+      }
+    },
+    getMyProfile: async function () {
+      // const authId = getLocalStorageAuthIdToken()
+      // self.setSnapshotNew(snapshot)
+      const { data } = await API.getMyProfile()
+      self.setSnapshotUpdate(data)
+    },
+    setAuthIdToken() {
+      setLocalStorageAuthIdToken(JSON.stringify(self.id))
+    },
+    setLogout() {
+      // self.setSnapshotNew({})
+      setLocalStorageAuthTokenDelete()
+    },
     setDatabaseUpdateProfile: async function (): Promise<Response> {
       /**
        * if snapshot, update with snapshot, else update with self
@@ -79,7 +114,7 @@ export const User = types.compose(
 
         const updatedProps = self._getMainProperties()
 
-        const snapshotUpdate = self._getProperties(updatedProps)
+        const snapshotUpdate = self._getSnapshotWithProperties(updatedProps)
         if (typeof snapshotUpdate === 'string') throw new Error(snapshotUpdate)
 
         const res = await API.setUserUpdateProfile(snapshotUpdate)
@@ -97,38 +132,15 @@ export const User = types.compose(
         }
       }
     },
-    /**
-     * Login
-     */
-    getDatabaseToken: async function (): Promise<ErrorMessage> {
+    setDatabaseUpdateRole() {
       try {
-        // will change later
-        const response = await API.getAuthToken({ email: self.email, password: self.password })
-
-        const data = response.data
-
-        self.setSnapshotUpdate(data)
-
-        this.setAuthIdToken()
-        return ''
-      } catch (error) {
-        console.log(error.message)
-        toast.error('Something went wrong!')
-        return 'Something went wrong!'
+        const updatedProps = self._getMainProperties()
+        const snapshotUpdate = self._getSnapshotWithProperties(updatedProps)
+        if (typeof snapshotUpdate === 'string') throw new Error(snapshotUpdate)
+        API.setUserUpdateRole(snapshotUpdate)
+      } catch ({ message }) {
+        toast.error(message)
       }
-    },
-    setAuthIdToken() {
-      setLocalStorageAuthIdToken(JSON.stringify(self.id))
-    },
-    getMyProfile: async function () {
-      // const authId = getLocalStorageAuthIdToken()
-      // self.setSnapshotNew(snapshot)
-      const { data } = await API.getMyProfile()
-      self.setSnapshotUpdate(data)
-    },
-    setLogout() {
-      // self.setSnapshotNew({})
-      setLocalStorageAuthTokenDelete()
     }
   }))
   .views(self => ({

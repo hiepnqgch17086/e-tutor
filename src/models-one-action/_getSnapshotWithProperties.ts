@@ -4,9 +4,9 @@ import { ErrorMessage } from "../models-one-entity/types";
 /**
  * get properties with keys in definition prop
  */
-const _getProperties = types.model({})
+const _getSnapshotWithProperties = types.model({})
   .actions(self => ({
-    _getProperties(array: Array<string> = []): Object | ErrorMessage {
+    _getSnapshotWithProperties(array: Array<string> = []): Object | ErrorMessage {
       const rs = {}
       for (const property of array) {
         if (self.hasOwnProperty(property)) {
@@ -20,4 +20,4 @@ const _getProperties = types.model({})
     }
   }))
 
-export default _getProperties
+export default _getSnapshotWithProperties

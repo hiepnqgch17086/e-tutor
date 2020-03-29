@@ -7,6 +7,9 @@ import PaginationBar from '../../components-in-managing-resources/PaginationBar'
 import SlNumberOfItems from '../../components-in-managing-resources/SlNumberOfItems'
 import BtnAddUser from './BtnAddUser'
 
+/**
+ * FOR ADMIN ONLY
+ */
 const AllUsersPage = () => {
 
   const { users } = Data
