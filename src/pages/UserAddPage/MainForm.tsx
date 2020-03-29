@@ -7,6 +7,7 @@ import CustomSelect from '../../components-in-managing-resources/CustomSelect';
 import { IS_STUDENT, IS_TUTOR, IS_ADMIN } from '../../models-one-prop/role';
 import { useHistory } from 'react-router-dom';
 import { USER_LIST_PAGE } from '../../routes';
+import { passwordDefault } from './data';
 
 const MainForm = ({
   user = defaultOfUser,
@@ -130,7 +131,7 @@ const MainForm = ({
 
             {/* Password */}
             <FormGroup>
-              <Label for="exampleName">Password *</Label>
+              <Label for="exampleName">Password * (default: "{passwordDefault}")</Label>
               <CustomInput
                 error={user.isPasswordError}
                 value={user.password}

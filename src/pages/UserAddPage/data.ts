@@ -2,6 +2,8 @@ import { types } from "mobx-state-tree";
 import GeneralPageModel from "../GeneralPageModel";
 import { User } from "../../models-one-entity/Users";
 
+export const passwordDefault = 'a1234567'
+
 const UserAddPageData = types.compose(
   'UserAddPageData',
   GeneralPageModel,
@@ -10,9 +12,11 @@ const UserAddPageData = types.compose(
   })
 )
   .actions(self => ({
-    // onDidMount() {
-
-    // },
+    onDidMount() {
+      const { user } = self
+      user.setPassword(passwordDefault)
+      user.setRepeatPassword(passwordDefault)
+    },
     onWillUnMount() {
       self.setSnapshotNew({})
     },

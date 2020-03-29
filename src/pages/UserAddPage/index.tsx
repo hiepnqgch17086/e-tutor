@@ -6,7 +6,7 @@ import { observer } from 'mobx-react-lite'
 const UserAddPage = () => {
   const { user, onSaveForm } = Data
   useEffect(() => {
-    // effect
+    Data.onDidMount()
     return () => {
       Data.onWillUnMount()
     }
