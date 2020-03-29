@@ -17,7 +17,9 @@ const BtnTrash = ({
 
   const onDeleteUser = async () => {
     toggle()
+    // delete in db
     const { isSuccess } = await item.setDatabaseDelete()
+    // delete in ui
     if (isSuccess) item.parentUserList.setItemsToRemove(item.id)
   }
 
