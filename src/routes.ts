@@ -52,3 +52,7 @@ export const getLocalStorageAuthIdToken = (): string | number => {
 export const goUserPage = (userId: any) => {
   window.open(get_USER_PAGE(userId))
 }
+
+if (('indexedDB' in window)) {
+  console.log('THis browser...');
+} 

@@ -24,7 +24,7 @@ const SignInPage = (props: any) => {
               <div className="text-center">
                 <img src="assets/images/big/icon.png" alt="wrapkit" />
               </div>
-              <h2 className="mt-3 text-center">eTutur</h2>
+              <h2 className="mt-3 text-center">eTutor</h2>
               <p className="text-center">Enter your email address and password to access admin panel.</p>
               <MainForm />
             </div>
