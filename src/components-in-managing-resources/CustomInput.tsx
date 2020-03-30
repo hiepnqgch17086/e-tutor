@@ -7,7 +7,8 @@ type Props = {
   value?: string | number,
   onChangeText?: Function,
   placeholder?: string,
-  type?: string
+  type?: string,
+  id?: string,
 }
 
 const CustomInput = ({
@@ -16,7 +17,9 @@ const CustomInput = ({
   onChangeText = (text: string) => { },
   placeholder = "",
   type = "text",
+  id,
 }: Props) => {
+  const idProp = id ? { id } : {}
   return (
     <Input
       className={`${error === false && 'is-valid'} ${error === true && 'is-invalid'}`}
@@ -24,6 +27,7 @@ const CustomInput = ({
       onChange={e => onChangeText(e.target.value)}
       // @ts-ignore
       type={type} name="text" placeholder={placeholder}
+      {...idProp}
     />
   )
 }

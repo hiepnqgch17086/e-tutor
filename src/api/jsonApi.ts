@@ -29,7 +29,6 @@ export default class JsonApi extends ApiModel {
     return this.ApiRef.get(`/users/${id}`)
   }
   /**
-   * 
    * @override
    */
   getUsers({ page = 1, limit = 10, email = '' }: PaginationType): Promise<AxiosResponse<any>> {
@@ -83,6 +82,13 @@ export default class JsonApi extends ApiModel {
   setUserUpdateRole(userSnapshot: User): Promise<AxiosResponse<any>> {
     const { id } = userSnapshot
     if (!id) throw new Error('Id not exist')
+    return this.ApiRef.put(`/users/${id}`, userSnapshot)
+  }
+  /**
+   * @override
+   */
+  setMyPasswordUpdate(userSnapshot: Object): Promise<AxiosResponse<any>> {
+    const id = getLocalStorageAuthIdToken()
     return this.ApiRef.put(`/users/${id}`, userSnapshot)
   }
 

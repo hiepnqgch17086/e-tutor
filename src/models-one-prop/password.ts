@@ -28,7 +28,7 @@ const password = types.model({
       this._setIsRepeatPasswordError(false)
       return ''
     },
-    _setIsRepeatPasswordError(newValue: boolean): void {
+    _setIsRepeatPasswordError(newValue: boolean | null = null): void {
       self.isRepeatPasswordError = newValue
     },
     setPassword(newValue: string = '', shouldValidate: boolean = true): void {

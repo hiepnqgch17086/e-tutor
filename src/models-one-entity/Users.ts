@@ -147,6 +147,35 @@ export const User = types.compose(
       } catch ({ message }) {
         toast.error(message)
       }
+    },
+    setDatabaseMyPasswordUpdate: async function (): Promise<Response> {
+      try {
+
+        const validation = [
+          self._getPasswordConstraint(),
+          self._getRepeatPasswordConstraint()
+        ]
+
+        for (const constraint of validation) {
+          if (constraint) throw new Error(constraint)
+        }
+
+        const updatedProps = self._getMainProperties()
+        const snapshotUpdate = self._getSnapshotWithProperties(updatedProps)
+        if (typeof snapshotUpdate === 'string') throw new Error(snapshotUpdate)
+
+        await API.setMyPasswordUpdate(snapshotUpdate)
+
+        return {
+          isSuccess: true
+        }
+      } catch ({ message }) {
+        toast.error(message)
+        return {
+          isSuccess: false,
+          errorMessage: message
+        }
+      }
     }
   }))
   .views(self => ({

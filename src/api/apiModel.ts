@@ -24,11 +24,10 @@ class ApiModel {
   }
 
   //////////////USERS////////////////
-  // sign in
   getAuthToken({ email = '', password = '' }): Promise<AxiosResponse<any>> {
     throw new Error('!override getDatabaseToken()')
   }
-  getMyProfile(id: string | number): Promise<AxiosResponse<any>> {
+  getMyProfile(): Promise<AxiosResponse<any>> {
     throw new Error('!override getUsers()')
   }
   getUser(id: string | number): Promise<AxiosResponse<any>> {
@@ -48,14 +47,17 @@ class ApiModel {
     throw new Error('!override setUserUpdateProfile()')
   }
   // as signup
-  setUserNew(userSnapshot: Object) {
+  setUserNew(userSnapshot: Object): Promise<AxiosResponse<any>> {
     throw new Error('!override setUserNew()')
   }
-  setUserUpdateRole(userSnapshot: Object) {
+  setUserUpdateRole(userSnapshot: Object): Promise<AxiosResponse<any>> {
     throw new Error('!override setUserUpdateRole()')
   }
-  setUserDelete(id: string | number) {
+  setUserDelete(id: string | number): Promise<AxiosResponse<any>> {
     throw new Error('!override setUserDelete()')
+  }
+  setMyPasswordUpdate(userSnapshot: Object): Promise<AxiosResponse<any>> {
+    throw new Error('!override setUserUpdatePassword')
   }
 
 
