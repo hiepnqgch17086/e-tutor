@@ -5,7 +5,7 @@ const JsonApiInstance = new JsonApi()
 
 const MainApiInstance = new MainApi()
 
-const API = MainApiInstance
+const API = JsonApiInstance
 
 API.isMainApi = API === MainApiInstance
 
