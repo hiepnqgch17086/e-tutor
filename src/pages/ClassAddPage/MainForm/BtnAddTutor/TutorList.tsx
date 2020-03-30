@@ -32,7 +32,7 @@ const TutorList = ({
   return (
 
     <CustomTable
-      headerArray={["#", "Avatar", "Email", "Name", "Menu"]}
+      headerArray={["#", "Avatar", "Name", "Email", "Menu"]}
       data={tutorsData.items}
       renderItemCellsInRow={({ item = defaultOfUser, index = 0 }) => {
 
@@ -49,8 +49,8 @@ const TutorList = ({
         return [
           (page - 1) * limit + index + 1,
           <img src={item.avatar || AvatarInDefault} alt="user" className="rounded-circle" width={70} height={70} />,
-          item.email,
           item.name,
+          item.email,
           <>
             <ButtonGroup size="sm">
               <Button onClick={() => goUserPage(item.id)}>

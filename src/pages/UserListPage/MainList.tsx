@@ -25,21 +25,17 @@ const MainList = ({
 
   return (
     <CustomTable
-      headerArray={["#", "Email", "Name", "Dob", "Phone", "Avatar", "Role", "Menu"]}
+      headerArray={["#", "Avatar", "Name", "Email", "Phone", "Dob", "Role", "Menu"]}
       data={users.items}
       renderItemCellsInRow={({ item = defaultOfUser, index = 0 }) => {
 
-        const onRemoveUser = () => {
-
-        }
-
         return [
           (page - 1) * limit + index + 1,
-          item.email,
-          item.name,
-          item.dob,
-          item.phone,
           <img src={item.avatar || AvatarInDefault} alt="user" className="rounded-circle" width={70} height={70} />,
+          item.name,
+          item.email,
+          item.phone,
+          item.dob,
           <SlRole item={item} />,
           <ButtonGroup>
             <Button onClick={() => goUserPage(item.id)}>
