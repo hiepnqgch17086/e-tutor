@@ -7,6 +7,8 @@ import { User } from "./types";
 export default class JsonApi {
   protected ApiRef: AxiosInstance
 
+  public isMainApi: boolean = false
+
   constructor(baseURL: string = 'http://localhost:3001') {
     this.ApiRef = Axios.create({
       baseURL

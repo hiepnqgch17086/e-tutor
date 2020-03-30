@@ -1,5 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
+import API from '../api'
 
 const SlNumberOfItems = ({
   limit = 5,
@@ -10,6 +11,10 @@ const SlNumberOfItems = ({
     // console.log(e.target.value)
     setLimit(parseInt(e.target.value))
   }
+
+  // lock feature
+  if (API.isMainApi) return <></>
+
   return (
     <select className={`form-control ${className}`} id="exampleFormControlSelect1"
       value={limit}

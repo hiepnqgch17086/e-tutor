@@ -5,6 +5,8 @@ const JsonApiInstance = new JsonApi()
 
 const MainApiInstance = new MainApi()
 
-const API = JsonApiInstance
+const API = MainApiInstance
+
+API.isMainApi = API === MainApiInstance
 
 export default API

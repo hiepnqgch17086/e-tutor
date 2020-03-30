@@ -32,6 +32,7 @@ const BtnAddStudent = (props: any) => {
             getDatabaseItems={getDatabaseItemsWhoAreStudent}
             setGlobalInput={setSearchByEmail}
             setPage={setPage}
+            className="mb-0"
           />
         </ModalHeader>
         <ModalBody>

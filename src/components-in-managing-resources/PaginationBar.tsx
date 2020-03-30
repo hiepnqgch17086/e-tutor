@@ -1,6 +1,7 @@
 import React from 'react'
 import { PaginationLink, PaginationItem, Pagination } from 'reactstrap'
 import { observer } from 'mobx-react-lite'
+import API from '../api'
 
 const PaginationBar = ({
   page = 1,
@@ -18,6 +19,9 @@ const PaginationBar = ({
   const onFirstPage = () => {
     setPage(1)
   }
+
+  // lock feature
+  if (API.isMainApi) return <></>
 
   return (
     <Pagination aria-label="Page navigation example">
