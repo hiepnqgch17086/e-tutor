@@ -3,14 +3,15 @@ import { observer } from 'mobx-react-lite'
 
 const SlNumberOfItems = ({
   limit = 5,
-  setLimit = (limit: number) => { }
+  setLimit = (limit: number) => { },
+  className = "mb-2"
 }) => {
   const onChange = (e: any) => {
     // console.log(e.target.value)
     setLimit(parseInt(e.target.value))
   }
   return (
-    <select className="form-control" id="exampleFormControlSelect1"
+    <select className={`form-control ${className}`} id="exampleFormControlSelect1"
       value={limit}
       onChange={onChange}
       style={{ maxWidth: '120px' }}

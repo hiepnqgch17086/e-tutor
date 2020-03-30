@@ -27,20 +27,16 @@ const AllUsersPage = () => {
   return (
     <>
       <BtnAddUser />
-      <div className="mb-2">
-        <SearchBar
-          getDatabaseItems={getDatabaseItems}
-          setGlobalInput={setSearchByEmail}
-          placeholder="Enter user's email"
-          setPage={setPage}
-        />
-      </div>
-      <div className="mb-2">
-        <SlNumberOfItems
-          limit={limit}
-          setLimit={setLimit}
-        />
-      </div>
+      <SearchBar
+        getDatabaseItems={getDatabaseItems}
+        setGlobalInput={setSearchByEmail}
+        placeholder="Enter user's email"
+        setPage={setPage}
+      />
+      <SlNumberOfItems
+        limit={limit}
+        setLimit={setLimit}
+      />
       <MainList
         users={users}
         page={page}

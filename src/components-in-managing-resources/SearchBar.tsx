@@ -15,7 +15,8 @@ const SearchBar = ({
   getDatabaseItems = () => { console.log('prop should pass') },
   setGlobalInput = (input: string) => { },
   setPage = (page: number) => { },
-  placeholder = "Enter user's email"
+  placeholder = "Enter user's email",
+  className = "mb-2"
 }) => {
 
   const [input, setInput] = useState('')
@@ -33,7 +34,7 @@ const SearchBar = ({
   }
 
   return (
-    <InputGroup>
+    <InputGroup className={`${className}`}>
       <InputGroupAddon addonType="prepend">
         <InputGroupText>
           <i className="icon-magnifier" />

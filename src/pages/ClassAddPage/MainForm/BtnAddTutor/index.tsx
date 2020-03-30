@@ -32,14 +32,13 @@ const BtnAddStudent = (props: any) => {
             getDatabaseItems={getDatabaseItemsWhoAreTutors}
             setGlobalInput={setSearchByEmail}
             setPage={setPage}
+            className="mb-0"
           />
         </ModalHeader>
         <ModalBody>
-          <div className="mb-2">
-            <SlNumberOfItems
-              limit={limit} setLimit={setLimit}
-            />
-          </div>
+          <SlNumberOfItems
+            limit={limit} setLimit={setLimit}
+          />
           <TutorList isModalVisible={isModalVisible} />
           <PaginationBar
             page={page}

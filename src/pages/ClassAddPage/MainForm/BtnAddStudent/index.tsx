@@ -35,11 +35,9 @@ const BtnAddStudent = (props: any) => {
           />
         </ModalHeader>
         <ModalBody>
-          <div className="mb-2">
-            <SlNumberOfItems
-              limit={limit} setLimit={setLimit}
-            />
-          </div>
+          <SlNumberOfItems
+            limit={limit} setLimit={setLimit}
+          />
           <StudentList isModalVisible={isModalVisible} />
           <PaginationBar
             page={page}
