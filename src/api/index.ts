@@ -1,22 +1,10 @@
 import JsonApi from './jsonApi'
+import MainApi from './mainApi'
 
-const API = new JsonApi()
+const JsonApiInstance = new JsonApi()
 
-// const API = axios.create({
-//   baseURL: 'http://localhost:3001'
-// })
+const MainApiInstance = new MainApi()
 
-// API.interceptors.request.use(
-//   (config) => {
-//     // const token = localStorage.getItem('token')
-//     // if (token) {
-//     //   config.headers.Authorization = `Bearer ${token}`
-//     // }
-//     return config
-//   },
-//   (err) => {
-//     return Promise.reject(err)
-//   }
-// )
+const API = JsonApiInstance
 
 export default API
