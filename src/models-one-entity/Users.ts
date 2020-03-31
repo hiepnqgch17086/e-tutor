@@ -6,7 +6,7 @@ import name from "../models-one-prop/name";
 import GeneralModel from "./GeneralModel";
 import { ErrorMessage, Response } from "./types";
 import API from "../api";
-import { setLocalStorageAuthIdToken, setLocalStorageAuthTokenDelete } from "../routes";
+import { setLocalStorageAuthIdToken, setLocalStorageAuthTokenDelete, getLocalStorageToken, SIGN_IN_PAGE } from "../routes";
 import GeneralModelList from "./GeneralModelList";
 import avatar from "../models-one-prop/avatar";
 import role, { IS_ADMIN, IS_TUTOR } from "../models-one-prop/role";
@@ -37,17 +37,30 @@ export const User = types.compose(
       try {
         // will change later
         const response = await API.getAuthToken({ email: self.email, password: self.password })
-
-        const { data: { user, token } } = response
-        console.log(response.data)
+        // console.log('data')
+        const { data: { user, token, errorMessage } } = response
+        // console.log(response.data)
+        if (errorMessage) throw new Error(errorMessage)
 
         self.setSnapshotUpdate(user)
+
+        // console.log(self)
 
         this.setAuthIdToken(token)
         return ''
       } catch (error) {
         toast.error(error.message)
         return 'Something went wrong!'
+      }
+    },
+    getMyProfile: async function (): Promise<ErrorMessage> {
+      try {
+        const { data: { user, errorMessage } } = await API.getMyProfile()
+        if (errorMessage) throw new Error(errorMessage)
+        self.setSnapshotUpdate(user)
+        return ''
+      } catch (error) {
+        return error.message
       }
     },
     setAuthIdToken(token: string) {

@@ -12,7 +12,7 @@ type Props = {
 }
 
 const CustomInput = ({
-  error = null || false,
+  error = false || null,
   value = '',
   onChangeText = (text: string) => { },
   placeholder = "",

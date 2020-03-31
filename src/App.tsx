@@ -13,6 +13,7 @@ import HomePage from './pages/HomePage';
 import LandingPage from './pages/LandingPage';
 import './firebaseConfig'
 import AdminLayout from './layout/AdminLayout';
+// import Axios from 'axios';
 
 const pathAvoid = [SIGN_IN_PAGE, LANDING_PAGE, ADMIN_ERROR_PAGE]
 
@@ -45,7 +46,7 @@ export default App;
 
 // const data = {
 //   "email": "admin3@example.com",
-//   "password": "123456",
+//   "password": "1234567",
 //   "name": "admin3"
 // }
 

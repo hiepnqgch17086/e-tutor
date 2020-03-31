@@ -12,7 +12,7 @@ const SignInPageData = types.compose(
 )
   .actions(self => ({
     onWillUnMount() {
-      self.setSnapshotNew({})
+      currentUser.setPassword('', false)
     },
     /**
      * @param callback , like navigate to another page

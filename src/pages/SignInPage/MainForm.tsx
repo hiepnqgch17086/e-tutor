@@ -3,6 +3,10 @@ import { observer } from 'mobx-react-lite'
 import Data from './data'
 import { useHistory } from 'react-router-dom'
 import { HOME_PAGE } from '../../routes'
+import ProfilePageData from '../ProfilePage/data'
+import CustomInput from '../../components-in-managing-resources/CustomInput'
+
+const { currentUser } = ProfilePageData
 
 const MainForm = () => {
 
@@ -23,13 +27,23 @@ const MainForm = () => {
         <div className="col-lg-12">
           <div className="form-group">
             <label className="text-dark" htmlFor="uname">Email *</label>
-            <input className="form-control" id="uname" type="email" placeholder="enter your email" />
+            <CustomInput
+              value={currentUser.email}
+              onChangeText={currentUser.setEmail}
+              placeholder="enter your email"
+              type="email"
+            />
           </div>
         </div>
         <div className="col-lg-12">
           <div className="form-group">
             <label className="text-dark" htmlFor="pwd">Password *</label>
-            <input className="form-control" id="pwd" type="password" placeholder="enter your password" />
+            <CustomInput
+              value={currentUser.password}
+              onChangeText={currentUser.setPassword}
+              placeholder="enter your password"
+              type="password"
+            />
           </div>
         </div>
         <div className="col-lg-12 text-center">

@@ -1,7 +1,7 @@
 import { types } from "mobx-state-tree";
 
 const avatar = types.model({
-  avatar: types.optional(types.string, '')
+  avatar: types.maybeNull(types.string)
 })
   .actions(self => ({
     setAvatar(newValue: string = ''): void {
@@ -10,7 +10,7 @@ const avatar = types.model({
   }))
 
 export const tutorAvatar = types.model({
-  tutorAvatar: types.optional(types.string, '')
+  tutorAvatar: types.maybeNull(types.string)
 })
   .actions(self => ({
     setTutorAvatar(newValue: string = ''): void {

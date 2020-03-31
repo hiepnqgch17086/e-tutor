@@ -1,26 +1,45 @@
 import { AxiosResponse } from "axios";
 import JsonApi from "./jsonApi";
+import { SIGN_IN_PAGE, getLocalStorageToken } from "../routes";
+import axios from 'axios'
 
-export default class MainApi extends JsonApi {
+const axiosInstance = axios.create({
+  baseURL: 'http://localhost:4000'
+})
 
-  constructor() {
-    super('http://localhost:4000')
+axiosInstance.interceptors.request.use(
+  async (config) => {
+    const token = getLocalStorageToken()
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
+    return config
+  },
+  err => {
+    return Promise.reject(err)
   }
+)
+
+export default class MainApi {
+
+  constructor() { }
 
   //////////////USERS////////////////
   /**
    * @override
    */
   getAuthToken({ email = '', password = '' }): Promise<AxiosResponse<any>> {
-    return this.ApiRef.post('/login', {
-      email, password
+    // console.log('email', password)
+    return axiosInstance.post('/login', {
+      email,
+      password,
     })
   }
-  /**
-   * @override
-   */
-  setMyPasswordUpdate({ password = '' }): Promise<AxiosResponse<any>> {
-    return this.ApiRef.put(`/users`, password)
+  getMyProfile(): Promise<AxiosResponse<any>> {
+    return axiosInstance.get('/my-profile', {
+    })
   }
-
-} 
+  setMyPasswordUpdate({ password = '' }): Promise<AxiosResponse<any>> {
+    return axiosInstance.put(`/users`, password)
+  }
+}

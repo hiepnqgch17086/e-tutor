@@ -16,3 +16,7 @@
 * ```/profile```
 * ```/profile-edit```
 * ```/all-users```
+* example: {
+	"email": "admin3@example.com",
+	"password": "123456"
+}
