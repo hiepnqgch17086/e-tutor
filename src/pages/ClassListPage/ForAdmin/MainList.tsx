@@ -5,6 +5,7 @@ import { defaultOfClasses, defaultOfClass } from '../../../models-one-entity/Cla
 import { Button } from 'reactstrap'
 import { useHistory } from 'react-router-dom'
 import { get_CLASS_PAGE } from '../../../routes'
+import moment from 'moment'
 
 const MainList = ({
   classes = defaultOfClasses,
@@ -30,8 +31,8 @@ const MainList = ({
             item.description,
             item.tutorName || "...",
             item.numberOfStudens || "...",
-            item.startAt,
-            item.endAt,
+            moment(item.startAt).format('YYYY-MM-DD'),
+            moment(item.endAt).format('YYYY-MM-DD'),
             <Button size="sm" onClick={goToClassDetailPage}>
               Detail
             </Button>
