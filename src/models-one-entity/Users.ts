@@ -9,7 +9,7 @@ import API from "../api";
 import { setLocalStorageAuthIdToken, setLocalStorageAuthTokenDelete } from "../routes";
 import GeneralModelList from "./GeneralModelList";
 import avatar from "../models-one-prop/avatar";
-import role, { IS_ADMIN, IS_TUTOR } from "../models-one-prop/role";
+import role, { IS_ADMIN, IS_TUTOR, IS_STUDENT } from "../models-one-prop/role";
 import { toast } from "react-toastify";
 
 export const User = types.compose(
@@ -70,7 +70,7 @@ export const User = types.compose(
       // self.setSnapshotNew({})
       setLocalStorageAuthTokenDelete()
     },
-    setDatabaseMyPasswordUpdate: async function (): Promise<Response> {
+    setDatabaseMyPasswordUpdate: async function (oldPassword: string): Promise<Response> {
       try {
 
         const validation = [
@@ -82,11 +82,8 @@ export const User = types.compose(
           if (constraint) throw new Error(constraint)
         }
 
-        const updatedProps = self._getMainProperties()
-        const snapshotUpdate = self._getSnapshotWithProperties(updatedProps)
-        if (typeof snapshotUpdate === 'string') throw new Error(snapshotUpdate)
-
-        await API.setMyPasswordUpdate(snapshotUpdate)
+        const { data: { errorMessage } } = await API.setMyPasswordUpdate({ oldPassword, newPassword: self.password })
+        if (errorMessage) throw new Error(errorMessage)
 
         return {
           isSuccess: true
@@ -106,6 +103,9 @@ export const User = types.compose(
     },
     get isTutor() {
       return self.role === IS_TUTOR
+    },
+    get isStudent() {
+      return self.role === IS_STUDENT
     },
     get parentUserList(): any {
       return getParent(self, 2)

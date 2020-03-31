@@ -11,7 +11,6 @@ const ProfilePageData = types.compose(
 )
   .actions(self => ({
     onDidMount() {
-      console.log('ssss', self.currentUser)
     }
   }))
   .create({})

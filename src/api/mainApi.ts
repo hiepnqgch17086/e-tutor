@@ -22,7 +22,10 @@ export default class MainApi extends JsonApi {
     return this.ApiRef.get('/my-profile', {
     })
   }
-  setMyPasswordUpdate({ password = '' }): Promise<AxiosResponse<any>> {
-    return this.ApiRef.put(`/users`, password)
+  setMyPasswordUpdate({ oldPassword = '', newPassword = '' }): Promise<AxiosResponse<any>> {
+    return this.ApiRef.put(`/change-my-password`, {
+      oldPassword,
+      newPassword,
+    })
   }
 }

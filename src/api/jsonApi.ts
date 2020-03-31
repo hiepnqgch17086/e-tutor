@@ -26,12 +26,4 @@ export default class JsonApi {
     )
   }
 
-  //////////////USERS////////////////
-  getAuthToken({ email = '', password = '' }): Promise<AxiosResponse<any>> {
-    return this.ApiRef.get('/users/u1')
-  }
-  setMyPasswordUpdate(userSnapshot: Object): Promise<AxiosResponse<any>> {
-    throw new Error('sdfd')
-  }
-  ////////// CLASSES /////////////
 } 

@@ -19,13 +19,8 @@ const EditPassword = ({
   const toggle = () => setModal(!modal);
 
   const onSubmit = async () => {
-    if (oldPassword !== user.password) {
-      toast.error('Old password is wrong!')
-      return
-    }
-
     // update in server
-    const { errorMessage } = await cloneUser.setDatabaseMyPasswordUpdate()
+    const { errorMessage } = await cloneUser.setDatabaseMyPasswordUpdate(oldPassword)
     if (errorMessage) return
 
     // update in client

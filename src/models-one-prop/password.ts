@@ -8,10 +8,10 @@ const password = types.model({
 })
   .actions(self => ({
     _getPasswordConstraint(): string {
-      const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
-      if (!regex.test(self.password)) {
+      // const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+      if (self.password.length < 6) {
         this._setIsPasswordError(true)
-        return 'Password: Minimum eight characters, at least one letter and one number!'
+        return 'Password: Minimum 6 characters!'
       }
       this._setIsPasswordError(false)
       return ''

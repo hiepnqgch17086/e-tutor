@@ -17,6 +17,7 @@ const ProfileDetail = ({
           <Col md={8} sm={12}>
             <div><i className="fas fa-chevron-right" /> Name: {user.name}</div>
             <div><i className="fas fa-chevron-right" /> Email: {user.email}</div>
+            <div><i className="fas fa-chevron-right" /> Role: {user.isTutor && 'Tutor'}{user.isAdmin && 'Admin'}{user.isStudent && 'Student'}</div>
           </Col>
         </Row>
       </div>
