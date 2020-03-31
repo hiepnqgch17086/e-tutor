@@ -4,8 +4,6 @@ import ProfilePageData from '../../../pages/ProfilePage/data'
 import { Link, useLocation } from 'react-router-dom'
 import { HOME_PAGE, CLASS_LIST_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, USER_LIST_PAGE, CLASS_ADD_PAGE, getIsUserPagePath, USER_ADD_PAGE, getIsClassPagePath } from '../../../routes'
 import moment from 'moment'
-import { Button } from 'reactstrap'
-import CustomIconPlus from '../../../components-in-managing-resources/CustomIconPlus'
 
 const PageBreadcrumb = () => {
 

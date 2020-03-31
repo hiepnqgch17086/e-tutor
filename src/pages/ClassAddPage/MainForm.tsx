@@ -9,6 +9,7 @@ import Data from './data'
 import CardOfTutorInfo from './MainForm/CardOfTutorInfo'
 import { useHistory } from 'react-router-dom'
 import { CLASS_LIST_PAGE } from '../../routes'
+import moment from 'moment'
 
 const MainForm = () => {
   const { joinedStudents, onSubmitForm, class: thisClass, tutor } = Data
@@ -16,6 +17,16 @@ const MainForm = () => {
   let history = useHistory()
   const onSubmitSucess = () => {
     history.push(CLASS_LIST_PAGE)
+  }
+
+  const onChangeStartAt = (dateString: string) => {
+    const date = new Date(dateString)
+    thisClass.setStartAt(date.valueOf())
+  }
+
+  const onChangeEndAt = (dateString: string) => {
+    const date = new Date(dateString)
+    thisClass.setEndAt(date.valueOf())
   }
 
   return (
@@ -50,8 +61,8 @@ const MainForm = () => {
                 <Label for="exampleEmail">Start At *</Label>
                 <CustomInput
                   error={thisClass.isStartAtError}
-                  value={thisClass.startAt}
-                  onChangeText={thisClass.setStartAt}
+                  value={moment(thisClass.startAt).format('YYYY-MM-DD')}
+                  onChangeText={onChangeStartAt}
                   type="date"
                 />
               </FormGroup>
@@ -60,8 +71,8 @@ const MainForm = () => {
                 <Label for="exampleEmail">End At *</Label>
                 <CustomInput
                   error={thisClass.isEndAtError}
-                  value={thisClass.endAt}
-                  onChangeText={thisClass.setEndAt}
+                  value={moment(thisClass.endAt).format('YYYY-MM-DD')}
+                  onChangeText={onChangeEndAt}
                   type="date"
                 />
               </FormGroup>
