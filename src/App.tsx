@@ -23,7 +23,7 @@ import AdminLayout from './layout/AdminLayout';
 import UserDetailPage from './pages/UserDetailPage';
 import UserAddPage from './pages/UserAddPage';
 import ClassDetailPage from './pages/ClassDetailPage';
-// import Axios from 'axios';
+import Axios from 'axios';
 
 const pathAvoid = [SIGN_IN_PAGE, LANDING_PAGE, ADMIN_ERROR_PAGE]
 
@@ -88,8 +88,14 @@ const PrivateRouteAdmin = ({ children = <></>, ...rest }) => {
 
 export default App;
 
-// Axios.get('https://899ad8c5.ngrok.io/user/login?email=sang3333@gmail.com&password=1234')
-//   .then(res => {
-//     console.log('data', res.data)
-//   })
-//   .catch(err => console.log(err))
+const data = {
+  "email": "admin3@example.com",
+  "password": "123456",
+  "name": "admin3"
+}
+
+Axios.post('http://localhost:4000/login', data)
+  .then(res => {
+    console.log('data', res.data)
+  })
+  .catch(err => console.log(err))

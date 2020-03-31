@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 const defaultSnapshot = {}
 
 const GeneralModel = types.compose(
-  createdAt, updatedAt,
+  // createdAt, updatedAt,
   setSnapshotNew, _getSnapshotWithProperties, setSnapshotUpdate,
 )
   .actions(self => ({
@@ -141,7 +141,7 @@ const GeneralModel = types.compose(
         if (message) throw new Error(message)
 
         // set date
-        self._setUpdatedAtNow()
+        // self._setUpdatedAtNow()
 
         // get key value in need,
         //@ts-ignore, reference to this._getMainProperties()

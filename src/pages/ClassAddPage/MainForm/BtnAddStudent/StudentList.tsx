@@ -31,7 +31,7 @@ const StudentList = ({
     }
   }, [isModalVisible])
 
-  const { joinedStudents } = ClassAddPageData
+  const { class: thisClass } = ClassAddPageData
 
   return (
 
@@ -45,14 +45,14 @@ const StudentList = ({
         }
 
         const onAddStudent = () => {
-          joinedStudents.setItemsToAdd(getSnapshot(item))
+          thisClass.setMembersToAdd(getSnapshot(item))
         }
 
         const onRemoveStudent = () => {
-          joinedStudents.setItemsToRemove(item.id)
+          thisClass.setMembersToRemove(item.id)
         }
 
-        const isAdded = joinedStudents.items.findIndex(i => i.id === item.id) >= 0
+        const isAdded = thisClass.members.findIndex(i => i.id === item.id) >= 0
 
         return [
           (page - 1) * limit + index + 1,

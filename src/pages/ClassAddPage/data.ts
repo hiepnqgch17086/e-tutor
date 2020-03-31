@@ -1,7 +1,7 @@
 import { types } from "mobx-state-tree";
 import GeneralPageModel from "../GeneralPageModel";
 import { Class } from "../../models-one-entity/Classes";
-import Users, { User } from "../../models-one-entity/Users";
+import { User } from "../../models-one-entity/Users";
 import { toast } from "react-toastify";
 
 const ClassAddPageData = types.compose(
@@ -9,7 +9,6 @@ const ClassAddPageData = types.compose(
   GeneralPageModel,
   types.model({
     class: types.optional(Class, {}),
-    joinedStudents: types.optional(Users, {}),
     tutor: types.optional(User, {})
   })
 )
@@ -21,21 +20,18 @@ const ClassAddPageData = types.compose(
       self.setSnapshotNew({})
     },
     onSubmitForm: async function (callback: Function = () => { }) {
-      const { class: thisClass, joinedStudents, tutor } = self
+      const { class: thisClass, tutor } = self
+      const { members } = thisClass
 
       // check joinedStudents
-      if (!joinedStudents.items.length) {
+      if (!members.length) {
         toast.error("Students are required!")
         return
       }
 
       thisClass.setTutorId(tutor.id)
-      const { data: newClass, errorMessage } = await thisClass.setDatabaseNew()
+      const { errorMessage } = await thisClass.setDatabaseNew()
       if (errorMessage) return
-
-      // add to classMember
-      const { id } = newClass
-
 
       callback()
     }

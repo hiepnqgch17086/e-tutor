@@ -8,13 +8,25 @@ import API from "../api";
 import { toast } from "react-toastify";
 import { startAt, endAt } from "../models-one-prop/dateAt";
 import { tutorName } from "../models-one-prop/name";
-import { numberOfStudens } from "../models-one-prop/numberOf";
+import { tutorAvatar } from "../models-one-prop/avatar";
+import { User } from "./Users";
+
+const TutorInfor = types.compose(
+  tutorName, tutorAvatar
+)
+
+const ClassInfo = types.compose(
+  id, title, description, tutorId, startAt, endAt,
+)
 
 export const Class = types.compose(
   'Class',
-  id, title, description, tutorId, startAt, endAt,
+  ClassInfo,
   GeneralModel,
-  tutorName, numberOfStudens,
+  TutorInfor,
+  types.model({
+    members: types.array(User)
+  })
 )
   .actions(self => ({
     /**
@@ -27,7 +39,7 @@ export const Class = types.compose(
      * @override
      */
     _getMainProperties(): Array<string> {
-      return ['title', 'description', 'tutorId', 'startAt', 'endAt']
+      return ['title', 'description', 'tutorId', 'startAt', 'endAt', 'members']
     },
 
     /**
@@ -41,6 +53,15 @@ export const Class = types.compose(
         self._getStartAtConstraint(),
         self._getEndAtConstraint()
       ]
+    },
+    setMembersToAdd(snapshot: Object) {
+      const newUser = User.create(snapshot)
+      self.members.push(newUser)
+      // console.log(getSnapshot(self.items))
+    },
+    setMembersToRemove(id: string | number) {
+      self.members.splice(self.members.findIndex(i => i.id === id), 1)
+      // console.log(getSnapshot(self.items))
     },
   }))
 

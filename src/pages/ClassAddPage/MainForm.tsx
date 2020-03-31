@@ -12,7 +12,7 @@ import { CLASS_LIST_PAGE } from '../../routes'
 import moment from 'moment'
 
 const MainForm = () => {
-  const { joinedStudents, onSubmitForm, class: thisClass, tutor } = Data
+  const { onSubmitForm, class: thisClass, tutor } = Data
 
   let history = useHistory()
   const onSubmitSucess = () => {
@@ -94,7 +94,7 @@ const MainForm = () => {
                 <Label for="exampleEmail">
                   Students *
                 </Label> <br />
-                <ListOfJoinedStudents joinedStudents={joinedStudents} />
+                <ListOfJoinedStudents thisClass={thisClass} />
                 <BtnAddStudent />
               </FormGroup>
             </Col>

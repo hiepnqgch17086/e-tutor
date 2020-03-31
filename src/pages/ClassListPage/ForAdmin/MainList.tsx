@@ -17,7 +17,7 @@ const MainList = ({
   return (
     <div>
       <CustomTable
-        headerArray={['#', 'Title', 'Description', 'Tutor Name', 'Number of Students', 'Start At', 'End At', 'Menu']}
+        headerArray={['#', 'Title', 'Description', 'Tutor Name', 'Start At', 'End At', 'Menu']}
         data={classes.items}
         renderItemCellsInRow={({ item = defaultOfClass, index = 0 }) => {
 
@@ -30,7 +30,6 @@ const MainList = ({
             item.title,
             item.description,
             item.tutorName || "...",
-            item.numberOfStudens || "...",
             moment(item.startAt).format('YYYY-MM-DD'),
             moment(item.endAt).format('YYYY-MM-DD'),
             <Button size="sm" onClick={goToClassDetailPage}>

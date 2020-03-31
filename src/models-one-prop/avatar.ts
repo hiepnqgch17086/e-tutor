@@ -9,5 +9,13 @@ const avatar = types.model({
     }
   }))
 
+export const tutorAvatar = types.model({
+  tutorAvatar: types.optional(types.string, '')
+})
+  .actions(self => ({
+    setTutorAvatar(newValue: string = ''): void {
+      self.tutorAvatar = newValue
+    }
+  }))
 
 export default avatar

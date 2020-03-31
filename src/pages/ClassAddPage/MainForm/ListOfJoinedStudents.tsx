@@ -4,18 +4,19 @@ import { defaultOfUsers, defaultOfUser } from '../../../models-one-entity/Users'
 import { Button, ButtonGroup } from 'reactstrap'
 import AvatarInDefault from '../../../images/AvatarInDefault'
 import CustomBtnTrash from '../../../components-in-managing-resources/CustomBtnTrash'
+import { defaultOfClass } from '../../../models-one-entity/Classes'
 
 const ListOfJoinedStudents = ({
-  joinedStudents = defaultOfUsers
+  thisClass = defaultOfClass
 }) => {
   return (
     <CustomTable
       headerArray={["#", "Avatar", "Email", "Name", "Menu"]}
-      data={joinedStudents.items}
+      data={defaultOfClass.members}
       renderItemCellsInRow={({ item = defaultOfUser, index = 0 }) => {
 
         const onRemoveStudent = () => {
-          joinedStudents.setItemsToRemove(item.id)
+          thisClass.setMembersToRemove(item.id)
         }
 
         return [
