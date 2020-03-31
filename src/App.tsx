@@ -12,17 +12,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import HomePage from './pages/HomePage';
 import LandingPage from './pages/LandingPage';
 import ProfilePage from './pages/ProfilePage';
-import ProfileEditPage from './pages/ProfileEditPage';
+// import ProfileEditPage from './pages-in-old-scenario/ProfileEditPage';
 import './firebaseConfig'
-import UserListPage from './pages/UserListPage';
+// import UserListPage from './pages-in-old-scenario/UserListPage';
 import ProfilePageData from './pages/ProfilePage/data';
 import { IS_ADMIN } from './models-one-prop/role';
-import ClassListPage from './pages/ClassListPage';
-import ClassAddPage from './pages/ClassAddPage';
+// import ClassListPage from './pages-in-old-scenario/ClassListPage';
+// import ClassAddPage from './pages-in-old-scenario/ClassAddPage';
 import AdminLayout from './layout/AdminLayout';
-import UserDetailPage from './pages/UserDetailPage';
-import UserAddPage from './pages/UserAddPage';
-import ClassDetailPage from './pages/ClassDetailPage';
+// import UserDetailPage from './pages-in-old-scenario/UserDetailPage';
+// import UserAddPage from './pages-in-old-scenario/UserAddPage';
+// import ClassDetailPage from './pages-in-old-scenario/ClassDetailPage';
 import Axios from 'axios';
 
 const pathAvoid = [SIGN_IN_PAGE, LANDING_PAGE, ADMIN_ERROR_PAGE]
@@ -40,15 +40,15 @@ function App() {
           </PrivateRoute>
 
 
-          <PrivateRoute exact path={CLASS_LIST_PAGE}>
+          {/* <PrivateRoute exact path={CLASS_LIST_PAGE}>
             <ClassListPage />
           </PrivateRoute>
           <PrivateRoute path={CLASS_DETAIL_PAGE}>
             <ClassDetailPage />
           </PrivateRoute>
-          <PrivateRouteAdmin exact path={CLASS_ADD_PAGE}>
+          <PrivateRoute exact path={CLASS_ADD_PAGE}>
             <ClassAddPage />
-          </PrivateRouteAdmin>
+          </PrivateRoute>
           <PrivateRoute exact path={PROFILE_PAGE}>
             <ProfilePage />
           </PrivateRoute>
@@ -56,15 +56,15 @@ function App() {
             <ProfileEditPage />
           </PrivateRoute>
 
-          <PrivateRouteAdmin exact path={USER_LIST_PAGE}>
+          <PrivateRoute exact path={USER_LIST_PAGE}>
             <UserListPage />
-          </PrivateRouteAdmin>
-          <PrivateRouteAdmin exact path={USER_ADD_PAGE}>
+          </PrivateRoute>
+          <PrivateRoute exact path={USER_ADD_PAGE}>
             <UserAddPage />
-          </PrivateRouteAdmin>
+          </PrivateRoute>
           <PrivateRoute path={USER_PAGE}>
             <UserDetailPage />
-          </PrivateRoute>
+          </PrivateRoute> */}
 
         </Switch>
       </AdminLayout>
@@ -80,22 +80,22 @@ const PrivateRoute = ({ children = <></>, ...rest }) => {
   </Route>
 }
 
-const PrivateRouteAdmin = ({ children = <></>, ...rest }) => {
-  return <Route {...rest}>
-    {ProfilePageData.currentUser.role === IS_ADMIN ? children : <Redirect to={CLASS_LIST_PAGE || HOME_PAGE} />}
-  </Route>
-}
+// const PrivateRoute = ({ children = <></>, ...rest }) => {
+//   return <Route {...rest}>
+//     {ProfilePageData.currentUser.role === IS_ADMIN ? children : <Redirect to={CLASS_LIST_PAGE || HOME_PAGE} />}
+//   </Route>
+// }
 
 export default App;
 
-const data = {
-  "email": "admin3@example.com",
-  "password": "123456",
-  "name": "admin3"
-}
+// const data = {
+//   "email": "admin3@example.com",
+//   "password": "123456",
+//   "name": "admin3"
+// }
 
-Axios.post('http://localhost:4000/login', data)
-  .then(res => {
-    console.log('data', res.data)
-  })
-  .catch(err => console.log(err))
+// Axios.post('http://localhost:4000/login', data)
+//   .then(res => {
+//     console.log('data', res.data)
+//   })
+//   .catch(err => console.log(err))

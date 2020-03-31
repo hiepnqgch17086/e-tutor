@@ -27,23 +27,22 @@ export const getIsClassPagePath = (pathName: string) => {
 }
 
 export const getIsAuthorized = () => {
-  const token = localStorage.getItem('token')
+  const token = sessionStorage.getItem('token')
   return token ? true : false
 }
 
-export const setLocalStorageAuthIdToken = (authId: string) => {
-  localStorage.setItem('token', authId)
+export const setLocalStorageAuthIdToken = (token: string) => {
+  sessionStorage.setItem('token', token)
 }
 
 export const setLocalStorageAuthTokenDelete = () => {
-  localStorage.removeItem('token')
+  sessionStorage.removeItem('token')
 }
 
-export const getLocalStorageAuthIdToken = (): string | number => {
+export const getLocalStorageToken = (): string | number => {
   try {
-    const authIdString = localStorage.getItem('token') || ''
-    const authId = JSON.parse(authIdString)
-    return authId
+    const token = sessionStorage.getItem('token') || ''
+    return token
   } catch (error) {
     return ''
   }
@@ -52,7 +51,3 @@ export const getLocalStorageAuthIdToken = (): string | number => {
 export const goUserPage = (userId: any) => {
   window.open(get_USER_PAGE(userId))
 }
-
-if (('indexedDB' in window)) {
-  console.log('THis browser...');
-} 

@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import MainForm from './MainForm';
 import { observer } from 'mobx-react-lite';
 import Data from './data'
-import { Redirect } from 'react-router-dom';
-import { HOME_PAGE } from '../../routes';
 
 const SignInPage = (props: any) => {
   useEffect(() => {
@@ -31,14 +29,6 @@ const SignInPage = (props: any) => {
           </div>
         </div>
       </div>
-
-      {/* <h1 className="mt-5 text-dark">Login</h1>
-      <MainForm /> */}
-      {
-        Data.shouldRedirectToHomepage && (
-          <Redirect to={HOME_PAGE} />
-        )
-      }
     </>
   );
 }

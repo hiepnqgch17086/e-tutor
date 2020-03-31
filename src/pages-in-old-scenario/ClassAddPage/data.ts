@@ -1,5 +1,5 @@
 import { types } from "mobx-state-tree";
-import GeneralPageModel from "../GeneralPageModel";
+import GeneralPageModel from "../../pages/GeneralPageModel";
 import { Class } from "../../models-one-entity/Classes";
 import { User } from "../../models-one-entity/Users";
 import { toast } from "react-toastify";

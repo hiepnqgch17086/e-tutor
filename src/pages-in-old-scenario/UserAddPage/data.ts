@@ -1,5 +1,5 @@
 import { types } from "mobx-state-tree";
-import GeneralPageModel from "../GeneralPageModel";
+import GeneralPageModel from "../../pages/GeneralPageModel";
 import { User } from "../../models-one-entity/Users";
 
 export const passwordDefault = 'a1234567'

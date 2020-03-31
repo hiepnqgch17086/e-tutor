@@ -1,5 +1,5 @@
 import { types } from "mobx-state-tree";
-import GeneralPageModel from "../GeneralPageModel";
+import GeneralPageModel from "../../pages/GeneralPageModel";
 import Classes from "../../models-one-entity/Classes";
 
 const ClassListPageModel = types.compose(

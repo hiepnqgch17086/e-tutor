@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import ProfileDetail from '../ProfilePage/ProfileDetail'
+import ProfileDetail from '../../pages/ProfilePage/ProfileDetail'
 import Data from './data'
 import { useParams } from 'react-router-dom'
 

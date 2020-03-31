@@ -19,12 +19,7 @@ const ProfilePage = () => {
     <>
       <ProfileDetail user={currentUser} />
       <ButtonGroup>
-        <Link to={PROFILE_EDIT_PAGE}>
-          <Button>
-            Edit Profile
-        </Button>
-        </Link>
-        <BtnEditPassword className="ml-1" user={currentUser} />
+        <BtnEditPassword user={currentUser} />
       </ButtonGroup>
     </>
   )

@@ -1,8 +1,21 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
 import Data from './data'
+import { useHistory } from 'react-router-dom'
+import { HOME_PAGE } from '../../routes'
 
 const MainForm = () => {
+
+  const history = useHistory()
+
+  const onSignInSuccess = () => {
+    history.push(HOME_PAGE)
+  }
+
+  const onSubmit = (e: any) => {
+    e.preventDefault()
+    Data.onSignIn(onSignInSuccess)
+  }
 
   return (
     <form className="mt-4">
@@ -21,14 +34,10 @@ const MainForm = () => {
         </div>
         <div className="col-lg-12 text-center">
           <button className="btn btn-block btn-dark"
-            onClick={(e) => {
-              e.preventDefault()
-              Data.onSignIn()
-            }}
+            onClick={onSubmit}
           >Sign In</button>
         </div>
         <div className="col-lg-12 text-center mt-5">
-          {/* Don't have an account? <a href="#" className="text-danger">Sign Up</a> */}
         </div>
       </div>
     </form>

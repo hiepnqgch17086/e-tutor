@@ -1,7 +1,7 @@
 import { types, clone, getSnapshot } from "mobx-state-tree";
 import setSnapshotNew from "../../models-one-action/setSnapshotNew";
 import { User } from "../../models-one-entity/Users";
-import ProfilePageData from "../ProfilePage/data";
+import ProfilePageData from "../../pages/ProfilePage/data";
 import { toast } from "react-toastify";
 
 const ProfileEditData = types.compose(

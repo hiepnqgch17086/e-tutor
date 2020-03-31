@@ -1,6 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import ProfilePageData from '../ProfilePage/data'
+import ProfilePageData from '../../pages/ProfilePage/data'
 import { IS_ADMIN, IS_TUTOR, IS_STUDENT } from '../../models-one-prop/role'
 import ForAdmin from './ForAdmin'
 import ForTutor from './ForTutor'
