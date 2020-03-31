@@ -1,7 +1,7 @@
 import React from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { HOME_PAGE, CHAT_PAGE, getIsClassPagePath } from '../../routes'
-import ProfilePageData from '../../pages/ProfilePage/data'
+// import ProfilePageData from '../../pages/ProfilePage/data'
 import { observer } from 'mobx-react-lite'
 
 const SideBar = () => {

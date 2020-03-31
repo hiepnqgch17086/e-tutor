@@ -1,4 +1,4 @@
-import Axios, { AxiosResponse, AxiosInstance } from "axios";
+import Axios, { AxiosInstance } from "axios";
 import { getLocalStorageToken } from "../routes";
 
 export default class JsonApi {

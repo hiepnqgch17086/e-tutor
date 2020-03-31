@@ -3,8 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label } 
 import { defaultOfUser, User } from '../../models-one-entity/Users';
 import CustomInput from '../../components-in-managing-resources/CustomInput';
 import { observer } from 'mobx-react-lite';
-import { toast } from 'react-toastify';
-import { getSnapshot, clone } from 'mobx-state-tree';
+import { getSnapshot } from 'mobx-state-tree';
 
 const cloneUser = User.create({})
 

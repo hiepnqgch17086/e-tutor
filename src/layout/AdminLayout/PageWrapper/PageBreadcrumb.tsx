@@ -2,7 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react-lite'
 import ProfilePageData from '../../../pages/ProfilePage/data'
 import { Link, useLocation } from 'react-router-dom'
-import { HOME_PAGE, CHAT_PAGE, PROFILE_PAGE, getIsClassPagePath } from '../../../routes'
+import { HOME_PAGE, CHAT_PAGE, PROFILE_PAGE } from '../../../routes'
 import moment from 'moment'
 
 const PageBreadcrumb = () => {
