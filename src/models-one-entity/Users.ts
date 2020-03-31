@@ -39,6 +39,7 @@ export const User = types.compose(
         const response = await API.getAuthToken({ email: self.email, password: self.password })
 
         const { data: { user, token } } = response
+        console.log(response.data)
 
         self.setSnapshotUpdate(user)
 

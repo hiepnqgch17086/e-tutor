@@ -4,7 +4,7 @@ import JsonApi from "./jsonApi";
 export default class MainApi extends JsonApi {
 
   constructor() {
-    super('http://localhost:3001')
+    super('http://localhost:4000')
   }
 
   //////////////USERS////////////////
@@ -12,7 +12,9 @@ export default class MainApi extends JsonApi {
    * @override
    */
   getAuthToken({ email = '', password = '' }): Promise<AxiosResponse<any>> {
-    return this.ApiRef.get('/users/u1')
+    return this.ApiRef.post('/login', {
+      email, password
+    })
   }
   /**
    * @override

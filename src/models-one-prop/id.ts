@@ -1,4 +1,4 @@
-import { types, onSnapshot } from "mobx-state-tree";
+import { types } from "mobx-state-tree";
 import ProfilePageData from "../pages/ProfilePage/data";
 
 const id = types.model({

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import { HOME_PAGE, CLASS_LIST_PAGE, USER_LIST_PAGE, CLASS_ADD_PAGE, getIsUserPagePath, USER_ADD_PAGE, CLASS_DETAIL_PAGE, getIsClassPagePath } from '../../routes'
+import { HOME_PAGE, CLASS_LIST_PAGE, USER_LIST_PAGE, CLASS_ADD_PAGE, getIsUserPagePath, USER_ADD_PAGE, getIsClassPagePath } from '../../routes'
 import ProfilePageData from '../../pages/ProfilePage/data'
 import { observer } from 'mobx-react-lite'
 

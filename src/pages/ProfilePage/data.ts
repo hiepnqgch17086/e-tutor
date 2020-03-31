@@ -1,4 +1,4 @@
-import { types, onSnapshot } from "mobx-state-tree";
+import { types } from "mobx-state-tree";
 import setSnapshotNew from "../../models-one-action/setSnapshotNew";
 import { User } from "../../models-one-entity/Users";
 
@@ -11,12 +11,10 @@ const ProfilePageData = types.compose(
 )
   .actions(self => ({
     onDidMount() {
-      self.currentUser.getMyProfile()
     }
   }))
   .create({})
 
 // get local to reload from token
-ProfilePageData.currentUser.getMyProfile()
 
 export default ProfilePageData

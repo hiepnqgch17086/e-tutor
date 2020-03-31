@@ -17,7 +17,7 @@ const SignInPageData = types.compose(
     /**
      * @param callback , like navigate to another page
      */
-    onSignIn: async function (callback = () => { }) {
+    onSignIn: async function (callback: Function = () => { }) {
       const errorMessage = await currentUser.getDatabaseToken()
       if (errorMessage) return
       callback()
