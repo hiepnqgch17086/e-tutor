@@ -6,7 +6,7 @@ import name from "../models-one-prop/name";
 import GeneralModel from "./GeneralModel";
 import { ErrorMessage, Response } from "./types";
 import API from "../api";
-import { setLocalStorageAuthIdToken, setLocalStorageAuthTokenDelete, getLocalStorageToken, SIGN_IN_PAGE } from "../routes";
+import { setLocalStorageAuthIdToken, setLocalStorageAuthTokenDelete } from "../routes";
 import GeneralModelList from "./GeneralModelList";
 import avatar from "../models-one-prop/avatar";
 import role, { IS_ADMIN, IS_TUTOR } from "../models-one-prop/role";
@@ -114,9 +114,6 @@ export const User = types.compose(
 
 export const defaultOfUser = User.create({})
 
-type GetUsersProp = {
-  email?: string
-}
 
 const Users = types.compose(
   'Users',

@@ -2,7 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react-lite'
 import ProfilePageData from '../../../pages/ProfilePage/data'
 import { Link, useLocation } from 'react-router-dom'
-import { HOME_PAGE, CLASS_LIST_PAGE, PROFILE_PAGE, PROFILE_EDIT_PAGE, USER_LIST_PAGE, CLASS_ADD_PAGE, getIsUserPagePath, USER_ADD_PAGE, getIsClassPagePath } from '../../../routes'
+import { HOME_PAGE, CHAT_PAGE, PROFILE_PAGE, getIsClassPagePath } from '../../../routes'
 import moment from 'moment'
 
 const PageBreadcrumb = () => {
@@ -50,17 +50,6 @@ const PageBreadcrumb = () => {
 const _getDisplay = (pathName: string) => {
   const { currentUser } = ProfilePageData
 
-  const classBreadcrumbRoot = (
-    <>
-      <li className="breadcrumb-item">
-        <Link to={HOME_PAGE}>Home</Link>
-      </li>
-      <li className="breadcrumb-item">
-        <Link to={CLASS_LIST_PAGE}>Classes</Link>
-      </li>
-    </>
-  )
-
   const profileBreadcrumbRoot = (
     <>
       <li className="breadcrumb-item">
@@ -71,42 +60,6 @@ const _getDisplay = (pathName: string) => {
       </li>
     </>
   )
-
-
-
-  if (getIsUserPagePath(pathName)) {
-    return {
-      title: `User detail`,
-      breadcrumb: (
-        <>
-          <li className="breadcrumb-item">
-            <Link to={HOME_PAGE}>Home</Link>
-          </li>
-        </>
-      )
-    }
-  }
-
-  if (getIsClassPagePath(pathName)) {
-    return {
-      title: 'Class detail',
-      breadcrumb: (
-        <>
-          <li className="breadcrumb-item">
-            <Link to={HOME_PAGE}>Home</Link>
-          </li>
-          <li className="breadcrumb-item">
-            <Link to={CLASS_LIST_PAGE}>Classes</Link>
-          </li>
-          <li className="breadcrumb-item">
-            <Link to={'#'}>Class detail</Link>
-          </li>
-        </>
-      )
-    }
-  }
-
-  // case USER_PAGE:
 
   switch (pathName) {
     case HOME_PAGE:
@@ -123,66 +76,18 @@ const _getDisplay = (pathName: string) => {
         title: `My Profile`,
         breadcrumb: profileBreadcrumbRoot
       };
-    case PROFILE_EDIT_PAGE:
-      return {
-        title: `Edit Profile`,
-        breadcrumb: (
-          <>
-            {profileBreadcrumbRoot}
-            <li className="breadcrumb-item">
-              <Link to={PROFILE_EDIT_PAGE}>Edit</Link>
-            </li>
-          </>
-        )
-      };
-    case CLASS_LIST_PAGE:
-      return {
-        title: 'Classes',
-        breadcrumb: classBreadcrumbRoot
-      }
-    case CLASS_ADD_PAGE:
-      return {
-        title: `Add Class`,
-        breadcrumb: (
-          <>
-            {classBreadcrumbRoot}
-            <li className="breadcrumb-item">
-              <Link to={CLASS_ADD_PAGE}>Add Class</Link>
-            </li>
-          </>
-        )
-      }
-    case USER_LIST_PAGE:
-      return {
-        title: `Users`,
-        breadcrumb: (
-          <>
-            <li className="breadcrumb-item">
-              <Link to={HOME_PAGE}>Home</Link>
-            </li>
-            <li className="breadcrumb-item">
-              <Link to={USER_LIST_PAGE}>Users</Link>
-            </li>
-          </>
-        )
-      }
 
-    case USER_ADD_PAGE:
+    case CHAT_PAGE:
       return {
-        title: `Add User`,
-        breadcrumb: (
-          <>
-            <li className="breadcrumb-item">
-              <Link to={HOME_PAGE}>Home</Link>
-            </li>
-            <li className="breadcrumb-item">
-              <Link to={USER_LIST_PAGE}>Users</Link>
-            </li>
-            <li className="breadcrumb-item">
-              <Link to={USER_LIST_PAGE}>Add User</Link>
-            </li>
-          </>
-        )
+        title: 'Chat',
+        breadcrumb: <>
+          <li className="breadcrumb-item">
+            <Link to={HOME_PAGE}>Home</Link>
+          </li>
+          <li className="breadcrumb-item">
+            <Link to={CHAT_PAGE}>Chat</Link>
+          </li>
+        </>
       }
 
     default:

@@ -1,28 +1,11 @@
 import { AxiosResponse } from "axios";
 import JsonApi from "./jsonApi";
-import { SIGN_IN_PAGE, getLocalStorageToken } from "../routes";
-import axios from 'axios'
 
-const axiosInstance = axios.create({
-  baseURL: 'http://localhost:4000'
-})
+export default class MainApi extends JsonApi {
 
-axiosInstance.interceptors.request.use(
-  async (config) => {
-    const token = getLocalStorageToken()
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`
-    }
-    return config
-  },
-  err => {
-    return Promise.reject(err)
+  constructor() {
+    super('http://localhost:4000')
   }
-)
-
-export default class MainApi {
-
-  constructor() { }
 
   //////////////USERS////////////////
   /**
@@ -30,16 +13,16 @@ export default class MainApi {
    */
   getAuthToken({ email = '', password = '' }): Promise<AxiosResponse<any>> {
     // console.log('email', password)
-    return axiosInstance.post('/login', {
+    return this.ApiRef.post('/login', {
       email,
       password,
     })
   }
   getMyProfile(): Promise<AxiosResponse<any>> {
-    return axiosInstance.get('/my-profile', {
+    return this.ApiRef.get('/my-profile', {
     })
   }
   setMyPasswordUpdate({ password = '' }): Promise<AxiosResponse<any>> {
-    return axiosInstance.put(`/users`, password)
+    return this.ApiRef.put(`/users`, password)
   }
 }

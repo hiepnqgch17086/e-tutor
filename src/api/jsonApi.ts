@@ -6,7 +6,11 @@ export default class JsonApi {
 
   public isMainApi: boolean = false
 
-  public setHeader() {
+  constructor(baseURL: string = 'http://localhost:3001') {
+    this.ApiRef = Axios.create({
+      baseURL
+    })
+
     this.ApiRef.interceptors.request.use(
       (config) => {
         const token = getLocalStorageToken()
@@ -20,12 +24,6 @@ export default class JsonApi {
         return Promise.reject(err)
       }
     )
-  }
-
-  constructor(baseURL: string = 'http://localhost:3001') {
-    this.ApiRef = Axios.create({
-      baseURL
-    })
   }
 
   //////////////USERS////////////////
