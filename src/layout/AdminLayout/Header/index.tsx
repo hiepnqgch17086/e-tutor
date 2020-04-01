@@ -39,7 +39,7 @@ const Header = () => {
           {/* ============================================================== */}
           {/* Toggle which is visible on mobile only */}
           {/* ============================================================== */}
-          <a className="topbartoggler d-block d-md-none waves-effect waves-light" href="#" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i className="ti-more" /></a>
+          <a className="topbartoggler d-block d-md-none waves-effect waves-light" href="#!" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i className="ti-more" /></a>
         </div>
         {/* ============================================================== */}
         {/* End Logo */}
@@ -50,7 +50,7 @@ const Header = () => {
           </ul>
           <ul className="navbar-nav float-right">
             <li className="nav-item d-none d-md-block">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="#!">
                 <form>
                   <div className="customize-input">
                     <input className="form-control custom-shadow custom-radius border-0 bg-white" type="search" placeholder="Search" aria-label="Search" />

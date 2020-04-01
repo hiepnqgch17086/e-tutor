@@ -10,7 +10,7 @@ const ListOfContacts = () => {
         <li>
           <div className="message-center">
             {/* Message */}
-            <a href="#" className="message-item d-flex align-items-center border-bottom px-3 py-2">
+            <a href="#!" className="btn message-item d-flex align-items-center border-bottom px-3 py-2">
               <div className="user-img"><img src="assets/images/users/1.jpg" alt="user" className="img-fluid rounded-circle" width="40px" /> <span className="profile-status online float-right" />
               </div>
               <div className="w-75 d-inline-block v-middle pl-2">
@@ -24,7 +24,7 @@ const ListOfContacts = () => {
               </div>
             </a>
             {/* Message */}
-            <a href="#" className="message-item d-flex align-items-center border-bottom px-3 py-2">
+            <a href="#!" className="btn message-item d-flex align-items-center border-bottom px-3 py-2">
               <div className="user-img"><img src="assets/images/users/2.jpg" alt="user" className="img-fluid rounded-circle" width="40px" /> <span className="profile-status busy float-right" />
               </div>
               <div className="w-75 d-inline-block v-middle pl-2">
@@ -37,7 +37,7 @@ const ListOfContacts = () => {
               </div>
             </a>
             {/* Message */}
-            <a href="#" className="message-item d-flex align-items-center border-bottom px-3 py-2">
+            <a href="#!" className="btn message-item d-flex align-items-center border-bottom px-3 py-2">
               <div className="user-img"> <img src="assets/images/users/3.jpg" alt="user" className="img-fluid rounded-circle" width="40px" /> <span className="profile-status away float-right" />
               </div>
               <div className="w-75 d-inline-block v-middle pl-2">
@@ -50,7 +50,7 @@ const ListOfContacts = () => {
               </div>
             </a>
             {/* Message */}
-            <a href="#" className="message-item d-flex align-items-center border-bottom px-3 py-2">
+            <a href="#!" className="btn message-item d-flex align-items-center border-bottom px-3 py-2">
               <div className="user-img"><img src="assets/images/users/4.jpg" alt="user" className="img-fluid rounded-circle" width="40px" /> <span className="profile-status offline float-right" />
               </div>
               <div className="w-75 d-inline-block v-middle pl-2">
@@ -62,7 +62,7 @@ const ListOfContacts = () => {
               </div>
             </a>
             {/* Message */}
-            <a href="#" className="message-item d-flex align-items-center border-bottom px-3 py-2">
+            <a href="#!" className="btn message-item d-flex align-items-center border-bottom px-3 py-2">
               <div className="user-img"><img src="assets/images/users/5.jpg" alt="user" className="img-fluid rounded-circle" width="40px" /> <span className="profile-status offline float-right" />
               </div>
               <div className="w-75 d-inline-block v-middle pl-2">
@@ -74,7 +74,7 @@ const ListOfContacts = () => {
               </div>
             </a>
             {/* Message */}
-            <a href="#" className="message-item d-flex align-items-center border-bottom px-3 py-2">
+            <a href="#!" className="btn message-item d-flex align-items-center border-bottom px-3 py-2">
               <div className="user-img"><img src="assets/images/users/6.jpg" alt="user" className="img-fluid rounded-circle" width="40px" /> <span className="profile-status offline float-right" />
               </div>
               <div className="w-75 d-inline-block v-middle pl-2">
@@ -86,7 +86,7 @@ const ListOfContacts = () => {
               </div>
             </a>
             {/* Message */}
-            <a href="#" className="message-item d-flex align-items-center border-bottom px-3 py-2">
+            <a href="#!" className="btn message-item d-flex align-items-center border-bottom px-3 py-2">
               <div className="user-img"><img src="assets/images/users/7.jpg" alt="user" className="img-fluid rounded-circle" width="40px" /> <span className="profile-status offline float-right" />
               </div>
               <div className="w-75 d-inline-block v-middle pl-2">
@@ -98,7 +98,7 @@ const ListOfContacts = () => {
               </div>
             </a>
             {/* Message */}
-            <a href="#" className="message-item d-flex align-items-center px-3 py-2">
+            <a href="#!" className="btn message-item d-flex align-items-center px-3 py-2">
               <div className="user-img"><img src="assets/images/users/8.jpg" alt="user" className="img-fluid rounded-circle" width="40px" /> <span className="profile-status offline float-right" />
               </div>
               <div className="w-75 d-inline-block v-middle pl-2">

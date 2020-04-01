@@ -20,26 +20,26 @@ export const get_CLASS_PAGE = (id: string | number) => `${CHAT_PAGE}/${id}`
 // }
 
 export const getIsClassPagePath = (pathName: string) => {
-  const regex = new RegExp("^\\" + CHAT_PAGE + "\/\\w+$")
+  const regex = new RegExp("^\\" + CHAT_PAGE + "\\w+$")
   return regex.test(pathName)
 }
 
 export const getIsAuthorized = () => {
-  const token = sessionStorage.getItem('token')
+  const token = localStorage.getItem('token')
   return token ? true : false
 }
 
 export const setLocalStorageAuthIdToken = (token: string) => {
-  sessionStorage.setItem('token', token)
+  localStorage.setItem('token', token)
 }
 
 export const setLocalStorageAuthTokenDelete = () => {
-  sessionStorage.removeItem('token')
+  localStorage.removeItem('token')
 }
 
 export const getLocalStorageToken = (): string | number => {
   try {
-    const token = sessionStorage.getItem('token') || ''
+    const token = localStorage.getItem('token') || ''
     return token
   } catch (error) {
     return ''

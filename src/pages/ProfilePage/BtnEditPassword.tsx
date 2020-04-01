@@ -30,7 +30,7 @@ const EditPassword = ({
   useEffect(() => {
     // clone user
     cloneUser.setSnapshotNew(getSnapshot(user))
-  }, [user.email])
+  }, [user, user.email])
 
   // *fix bug
   useEffect(() => {

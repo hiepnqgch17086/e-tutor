@@ -14,7 +14,7 @@ import LandingPage from './pages/LandingPage';
 import './firebaseConfig'
 import AdminLayout from './layout/AdminLayout';
 import ProfilePage from './pages/ProfilePage';
-import ChatPage from './pages/MeetingsInDayPage';
+import ChatPage from './pages/ChatPage';
 import MeetingPage from './pages/MeetingListPage';
 // import CalenderPage from './pages/CalenderPage';
 // import Axios from 'axios';
