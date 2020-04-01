@@ -1,6 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import Meeting from '../../components-for-meeting/index'
+import ListItemOfMeeting from './ListItemOfMeeting'
 
 const ListOfMeeting = () => {
   const demolist = ['Meeting One', 'Meeting Two', 'Meeting Three', 'Meeting Four']
@@ -16,7 +16,7 @@ const ListOfMeeting = () => {
             <div id="calendar-events" className="">
               {
                 demolist.map((item, index) => {
-                  return <Meeting key={index} item={item} />
+                  return <ListItemOfMeeting key={index} item={item} />
                 })
               }
             </div>

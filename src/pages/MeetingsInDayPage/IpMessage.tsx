@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
 
-const IpComment = () => {
+const IpMessage = () => {
   return (
     <div className="card card-body border" style={{
       marginBottom: '0px',
@@ -24,4 +24,4 @@ const IpComment = () => {
   )
 }
 
-export default observer(IpComment)
+export default observer(IpMessage)

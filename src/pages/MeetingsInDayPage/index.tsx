@@ -4,7 +4,7 @@ import IpSearchContact from './IpSearchContact'
 import './index.css'
 import ListOfContacts from './ListOfContacts'
 import CurrentRoom from './CurrentRoom'
-import IpText from './IpText'
+import IpMessage from './IpMessage'
 
 const ChatPage = () => {
   return (
@@ -18,7 +18,7 @@ const ChatPage = () => {
             </div>
             <div className="col-lg-9  col-xl-10">
               <CurrentRoom />
-              <IpText />
+              <IpMessage />
             </div>
           </div>
         </div>
