@@ -9,6 +9,8 @@ export const PROFILE_PAGE = '/profile'
 export const QUOTE_SEPERATED = '/'
 
 export const CHAT_PAGE = '/chat'
+export const CALENDER_PAGE = '/calender'
+export const MEETING_PAGE = '/meetings'
 // export const get_USER_PAGE = (id: string | number) => `${USER_LIST_PAGE}/${id}`
 export const get_CLASS_PAGE = (id: string | number) => `${CHAT_PAGE}/${id}`
 

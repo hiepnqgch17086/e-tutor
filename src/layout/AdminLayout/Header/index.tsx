@@ -45,45 +45,10 @@ const Header = () => {
         {/* End Logo */}
         {/* ============================================================== */}
         <div className="navbar-collapse collapse" id="navbarSupportedContent">
-          {/* ============================================================== */}
-          {/* toggle and nav items */}
-          {/* ============================================================== */}
           <ul className="navbar-nav float-left mr-auto ml-3 pl-1">
             <Notification />
-            {/* ============================================================== */}
-            {/* create new */}
-            {/* ============================================================== */}
-            {/* <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i data-feather="settings" className="svg-icon" />
-              </a>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="#">Action</a>
-                <a className="dropdown-item" href="#">Another action</a>
-                <div className="dropdown-divider" />
-                <a className="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li> */}
-            {/* <li className="nav-item d-none d-md-block">
-              <a className="nav-link" href="#">
-                <div className="customize-input">
-                  <select className="custom-select form-control bg-white custom-radius custom-shadow border-0" defaultValue="">
-                    <option value="">EN</option>
-                    <option value={1}>AB</option>
-                    <option value={2}>AK</option>
-                    <option value={3}>BE</option>
-                  </select>
-                </div>
-              </a>
-            </li> */}
           </ul>
-          {/* ============================================================== */}
-          {/* Right side toggle and nav items */}
-          {/* ============================================================== */}
           <ul className="navbar-nav float-right">
-            {/* ============================================================== */}
-            {/* Search */}
-            {/* ============================================================== */}
             <li className="nav-item d-none d-md-block">
               <a className="nav-link" href="#">
                 <form>
@@ -94,20 +59,11 @@ const Header = () => {
                 </form>
               </a>
             </li>
-            {/* ============================================================== */}
-            {/* User profile and search */}
-            {/* ============================================================== */}
-
             <Auth />
-
-            {/* ============================================================== */}
-            {/* User profile and search */}
-            {/* ============================================================== */}
           </ul>
         </div>
       </nav>
     </header>
-
   )
 }
 

@@ -5,7 +5,7 @@ const Notification = () => {
   return (
     <li className="nav-item dropdown">
       <a className="nav-link dropdown-toggle pl-md-3 position-relative" href="#" id="bell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span><i data-feather="bell" className="svg-icon" /></span>
+        <span><i data-feather="mail" className="svg-icon" /></span>
         <span className="badge badge-primary notify-no rounded-circle">5</span>
       </a>
       <div className="dropdown-menu dropdown-menu-left mailbox animated bounceInDown">

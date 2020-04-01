@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import { HOME_PAGE, CHAT_PAGE, getIsClassPagePath } from '../../routes'
+import { HOME_PAGE, CHAT_PAGE, MEETING_PAGE } from '../../routes'
 // import ProfilePageData from '../../pages/ProfilePage/data'
 import { observer } from 'mobx-react-lite'
 
@@ -10,8 +10,9 @@ const SideBar = () => {
 
   const isDashboardActive = pathName === HOME_PAGE
 
-  const chatRoutes = [CHAT_PAGE]
-  const isChatActive = chatRoutes.indexOf(pathName) >= 0 || getIsClassPagePath(pathName)
+  const isChatActive = pathName === CHAT_PAGE
+
+  const isMeetingActive = pathName === MEETING_PAGE
 
   // const userRoutes = [USER_LIST_PAGE, USER_ADD_PAGE]
   // const isUsersActive = userRoutes.indexOf(pathName) >= 0 || getIsUserPagePath(pathName)
@@ -36,14 +37,17 @@ const SideBar = () => {
 
             <SideBarItem
               href={CHAT_PAGE}
-              iconName="icon-bubble"
+              iconName="icon-speech"
               title="Chat"
               isActive={isChatActive}
             />
 
-
-
-
+            <SideBarItem
+              href={MEETING_PAGE}
+              iconName="icon-calender"
+              title="Meetings"
+              isActive={isMeetingActive}
+            />
           </ul>
         </nav>
         {/* End Sidebar navigation */}
@@ -54,9 +58,9 @@ const SideBar = () => {
   )
 }
 
-const SideBarItem = ({ isActive = true, iconName = '', title = '', href = "" }) => {
-  return <li className={`sidebar-item ${isActive && 'selected'}`}>
-    <Link to={href} className={`sidebar-link sidebar-link ${isActive && 'active'}`} aria-expanded="false">
+const SideBarItem = ({ isActive = false, iconName = '', title = '', href = "" }) => {
+  return <li className={`sidebar-item ${isActive ? 'selected' : ''}`}>
+    <Link to={href} className={`sidebar-link ${isActive ? 'active' : ''}`} aria-expanded="false">
       <i className={iconName} />
       <span className="hide-menu">{title}</span>
     </Link>

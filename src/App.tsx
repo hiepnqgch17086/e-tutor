@@ -5,7 +5,7 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom'
-import { SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE, LANDING_PAGE, ADMIN_ERROR_PAGE, PROFILE_PAGE } from './routes'
+import { SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE, LANDING_PAGE, ADMIN_ERROR_PAGE, PROFILE_PAGE, CHAT_PAGE, MEETING_PAGE } from './routes'
 import SignInPage from './pages/SignInPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,6 +14,9 @@ import LandingPage from './pages/LandingPage';
 import './firebaseConfig'
 import AdminLayout from './layout/AdminLayout';
 import ProfilePage from './pages/ProfilePage';
+import ChatPage from './pages/MeetingsInDayPage';
+import MeetingPage from './pages/MeetingListPage';
+// import CalenderPage from './pages/CalenderPage';
 // import Axios from 'axios';
 
 const pathAvoid = [SIGN_IN_PAGE, LANDING_PAGE, ADMIN_ERROR_PAGE]
@@ -31,6 +34,12 @@ function App() {
           </PrivateRoute>
           <PrivateRoute exact path={PROFILE_PAGE}>
             <ProfilePage />
+          </PrivateRoute>
+          <PrivateRoute exact path={CHAT_PAGE}>
+            <ChatPage />
+          </PrivateRoute>
+          <PrivateRoute exact path={MEETING_PAGE}>
+            <MeetingPage />
           </PrivateRoute>
         </Switch>
       </AdminLayout>
