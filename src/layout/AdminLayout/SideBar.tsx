@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import { HOME_PAGE, CHAT_ROOM_LIST_PAGE, MEETING_LIST_PAGE } from '../../routes'
+import { HOME_PAGE, CHAT_ROOM_LIST_PAGE, MEETING_LIST_PAGE, USER_LIST_PAGE } from '../../routes'
 // import ProfilePageData from '../../pages/ProfilePage/data'
 import { observer } from 'mobx-react-lite'
 
@@ -15,7 +15,7 @@ const SideBar = () => {
   const isMeetingActive = pathName.indexOf(MEETING_LIST_PAGE) >= 0
 
   // const userRoutes = [USER_LIST_PAGE, USER_ADD_PAGE]
-  // const isUsersActive = userRoutes.indexOf(pathName) >= 0 || getIsUserPagePath(pathName)
+  const isUsersActive = pathName.indexOf(USER_LIST_PAGE) >= 0
 
   return (
     <aside className="left-sidebar" data-sidebarbg="skin6">
@@ -24,30 +24,48 @@ const SideBar = () => {
         {/* Sidebar navigation*/}
         <nav className="sidebar-nav">
           <ul id="sidebarnav">
+            {
+              true && ( // for tutor and student
+                <>
+                  <SideBarItem
+                    href={HOME_PAGE}
+                    iconName="icon-home"
+                    title="Dashboard"
+                    isActive={isDashboardActive}
+                  />
 
-            <SideBarItem
-              href={HOME_PAGE}
-              iconName="icon-home"
-              title="Dashboard"
-              isActive={isDashboardActive}
-            />
+                  <li className="list-divider" />
+                  <li className="nav-small-cap"><span className="hide-menu">Applications</span></li>
 
-            <li className="list-divider" />
-            <li className="nav-small-cap"><span className="hide-menu">Applications</span></li>
+                  <SideBarItem
+                    href={CHAT_ROOM_LIST_PAGE}
+                    iconName="icon-speech"
+                    title="Chat"
+                    isActive={isChatActive}
+                  />
 
-            <SideBarItem
-              href={CHAT_ROOM_LIST_PAGE}
-              iconName="icon-speech"
-              title="Chat"
-              isActive={isChatActive}
-            />
+                  <SideBarItem
+                    href={MEETING_LIST_PAGE}
+                    iconName="icon-calender"
+                    title="Meetings"
+                    isActive={isMeetingActive}
+                  />
+                </>
+              )
+            }
 
-            <SideBarItem
-              href={MEETING_LIST_PAGE}
-              iconName="icon-calender"
-              title="Meetings"
-              isActive={isMeetingActive}
-            />
+            {
+              true && ( // for only admin
+                <SideBarItem
+                  href={USER_LIST_PAGE}
+                  iconName="icon-people"
+                  title="Users (admin-only)"
+                  isActive={isUsersActive}
+                />
+              )
+            }
+
+
           </ul>
         </nav>
         {/* End Sidebar navigation */}

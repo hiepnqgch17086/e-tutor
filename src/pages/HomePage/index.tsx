@@ -13,7 +13,7 @@ const HomePage = ({ user = {} }: any) => {
 
   let role = propRole || currentUser.role
 
-  role = IS_TUTOR
+  role = IS_ADMIN
 
   switch (role) {
     case IS_STUDENT:

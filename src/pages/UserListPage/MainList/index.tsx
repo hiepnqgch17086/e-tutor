@@ -1,44 +1,55 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import { defaultOfUsers, defaultOfUser } from '../../../models-one-entity/Users'
-import { IS_ADMIN, IS_STUDENT, IS_TUTOR } from '../../../models-one-prop/role'
-// import { get_USER_PAGE, goUserPage } from '../../../routes'
-import { useHistory } from "react-router-dom";
+import Users, { defaultOfUser } from '../../../models-one-entity/Users'
+import { goUserPage } from '../../../routes'
 import CustomTable from '../../../components-in-managing-resources/CustomTable'
 import { Button, ButtonGroup } from 'reactstrap'
 import AvatarInDefault from '../../../images/AvatarInDefault'
-import SlRole from '../MainList/SlRole'
-import CustomBtnTrash from '../../../components-in-managing-resources/CustomBtnTrash'
-import BtnTrash from '../MainList/BtnTrash'
+import IconChangeTutor from './IconChangeTutor'
+import { IS_STUDENT, IS_TUTOR } from '../../../models-one-prop/role'
+import { useHistory } from 'react-router-dom'
 
 const MainList = ({
-  users = defaultOfUsers,
+  users = Users.create({
+    items: [
+      {
+        id: 1,
+        avatar: '',
+        email: 'student1@example.com',
+        name: 'student1',
+        role: 3
+      }
+    ]
+  }),
   page = 1,
   limit = 10,
 }) => {
 
-  let history = useHistory();
+  const history = useHistory()
 
   useEffect(() => {
   }, [page, limit])
 
   return (
     <CustomTable
-      headerArray={["#", "Avatar", "Name", "Email", "Phone", "Dob", "Role", "Menu"]}
+      className="mb-2"
+      headerArray={["#", "Avatar", "Name", "Email", "Role", "Tutor email", "Menu"]}
       data={users.items}
       renderItemCellsInRow={({ item = defaultOfUser, index = 0 }) => {
-
         return [
           (page - 1) * limit + index + 1,
           <img src={item.avatar || AvatarInDefault} alt="user" className="rounded-circle" width={70} height={70} />,
           item.name,
           item.email,
-          <SlRole item={item} />,
+          item.role === IS_STUDENT ? 'Student' : item.role === IS_TUTOR ? 'Tutor' : 'Other',
+          <div>
+            "tutor1@example.com"
+            <IconChangeTutor className="ml-1" />
+          </div>,
           <ButtonGroup>
-            <Button onClick={() => { }}>
+            <Button onClick={() => goUserPage(item.id)}>
               Detail
             </Button>
-            <BtnTrash item={item} />
           </ButtonGroup>
         ]
       }}

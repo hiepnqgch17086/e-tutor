@@ -11,9 +11,6 @@ import SlNumberOfItems from '../../components-in-managing-resources/SlNumberOfIt
  */
 const AllUsersPage = () => {
 
-  const { users } = Data
-  const { limit, setLimit, page, setPage, setSearchByEmail } = users
-
   useEffect(() => {
     // effect
     Data.onDidMount()
@@ -27,24 +24,20 @@ const AllUsersPage = () => {
     <>
       <SearchBar
         getDatabaseItems={() => { }}
-        setGlobalInput={setSearchByEmail}
-        placeholder="Enter user's email"
-        setPage={setPage}
+        placeholder="Enter student/tutor email"
       />
       <SlNumberOfItems
-        limit={limit}
-        setLimit={setLimit}
       />
       <MainList
-        users={users}
-        page={page}
-        limit={limit}
+      // users={users}
+      // page={page}
+      // limit={limit}
       // setLimit={setLimit}
       // setPage={setPage}
       />
       <PaginationBar
-        page={page}
-        setPage={setPage}
+      // page={page}
+      // setPage={setPage}
       />
     </>
   )

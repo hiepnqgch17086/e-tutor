@@ -1,10 +1,11 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
+import CardListOfCounter from './CardListOfCounter'
 
 const ForAdmin = () => {
   return (
     <div>
-      ForAdmin
+      <CardListOfCounter />
     </div>
   )
 }

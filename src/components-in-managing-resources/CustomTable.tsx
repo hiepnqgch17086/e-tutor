@@ -4,11 +4,12 @@ import { observer } from 'mobx-react-lite'
 const CustomTable = ({
   headerArray = ['#'],
   data = [],
-  renderItemCellsInRow = ({ item, index }: any) => []
+  renderItemCellsInRow = ({ item, index }: any) => [],
+  className = ''
 }: any) => {
 
   return (
-    <div className="card">
+    <div className={`card ${className}`}>
       <div className="table-responsive">
         <table className="table">
           <thead>
