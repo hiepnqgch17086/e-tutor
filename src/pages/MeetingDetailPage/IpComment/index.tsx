@@ -4,7 +4,7 @@ import BtnUploadFile from './BtnUploadFile'
 
 const IpMessage = () => {
   return (
-    <div className="card-body border-top">
+    <div className="card-body border-top border-right">
       <div className="row">
         <div className="col-9">
           <div className="input-field mt-0 mb-0">
