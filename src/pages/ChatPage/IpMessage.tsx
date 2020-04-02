@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite'
 
 const IpMessage = () => {
   return (
-    <div className="card card-body border">
+    <div className="card-body border">
       <div className="row">
         <div className="col-9">
           <div className="input-field mt-0 mb-0">

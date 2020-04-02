@@ -28,42 +28,22 @@ const RowOfDate = ({
                 startDateStringArr.map((dString, index) => {
                   // LOGIC
                   const isToday = dString === moment().format('YYYY-MM-DD')
+
                   const cellIsCurrentDate = dString === moment(dateString).format('YYYY-MM-DD')
                   const styleForCurrentDate = cellIsCurrentDate ? {
                     backgroundColor: '#ffff004f'
                   } : {}
-                  // LOGIC
-                  return (
-                    <td key={index} className={`fc-day fc-widget-content ${isToday && 'fc-today'}`} data-date={dString}
-                      style={{
-                        cursor: 'pointer',
 
-                        ...styleForCurrentDate
-                      }}
-                      onClick={() => onClickDateCell(dString)}
-                    />
-                  )
-                })
-              }
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div className="fc-content-skeleton">
-        <table>
-          <tbody>
-            <tr>
-              {
-                startDateStringArr.map((dString, index) => {
-                  // const isToday = dateString === moment().format('YYYY-MM-DD')
                   const date = moment(dString).format('DD')
                   const isOtherMonth = moment(dateString).format('MM') !== moment(dString).format('MM')
+                  // LOGIC
                   return (
-                    <td className={`fc-day-top ${isOtherMonth && 'fc-other-month'}`} data-date={dString} key={index}
+                    <td key={index}
+                      className={`fc-day fc-day-top fc-widget-content ${isToday && 'fc-today'} ${isOtherMonth && 'fc-other-month'}`}
+                      data-date={dString}
                       style={{
                         cursor: 'pointer',
-                        border: '1px solid red',
+                        ...styleForCurrentDate
                       }}
                       onClick={() => onClickDateCell(dString)}
                     >
@@ -75,7 +55,6 @@ const RowOfDate = ({
             </tr>
           </tbody>
         </table>
-
       </div>
     </div>
   )

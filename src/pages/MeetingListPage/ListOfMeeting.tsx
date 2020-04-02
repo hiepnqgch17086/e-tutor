@@ -6,7 +6,7 @@ import moment from 'moment'
 const ListOfMeeting = ({
   dateString = ''
 }) => {
-  const demolist = ['Meeting One', 'Meeting Two', 'Meeting Three', 'Meeting Four']
+  const demolist: any[] = ['', '', '', '']
   const style = { paddingRight: '0px' }
   return (
     <>
