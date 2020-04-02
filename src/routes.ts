@@ -10,10 +10,11 @@ export const QUOTE_SEPERATED = '/'
 
 export const CHAT_PAGE = '/chat'
 export const CALENDER_PAGE = '/calender'
-export const MEETING_PAGE = '/meetings'
+export const MEETING_LIST_PAGE = '/meetings'
+export const MEETING_DETAIL_PAGE = '/meetings/:id'
 // export const get_USER_PAGE = (id: string | number) => `${USER_LIST_PAGE}/${id}`
 export const get_CLASS_PAGE = (id: string | number) => `${CHAT_PAGE}/${id}`
-
+export const get_MEETING_DETAIL_PAGE = (id: string | number) => `${MEETING_LIST_PAGE}/${id}`
 // export const getIsUserPagePath = (pathName: string) => {
 //   const regex = new RegExp("^\\" + USER_LIST_PAGE + "\/\\w+$")
 //   return regex.test(pathName)

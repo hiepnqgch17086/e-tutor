@@ -43,7 +43,7 @@ const ToolBar = ({
         >today</button>
       </div>
       <div className="fc-left">
-        <h2>April 2020</h2>
+        <h2>{moment(dateString).format('MMMM YYYY')}</h2>
       </div>
       <div className="fc-clear" />
     </div>

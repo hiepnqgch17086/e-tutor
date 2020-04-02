@@ -45,17 +45,20 @@ const Calender = ({
                   </tr>
                 </thead>
                 <tbody className="fc-body">
+                  <tr>
+                    <td>
+                      {
+                        startDateStringList.map((startDateString, index) => (
+                          <RowOfDate
+                            key={index}
+                            startDateString={startDateString} dateString={dateString}
+                            setDateString={setDateString}
+                          />
+                        ))
+                      }
+                    </td>
+                  </tr>
 
-                  {
-                    startDateStringList.map((startDateString, index) => (
-                      <tr className="border">
-                        <RowOfDate
-                          key={index} startDateString={startDateString} dateString={dateString}
-                          setDateString={setDateString}
-                        />
-                      </tr>
-                    ))
-                  }
 
                 </tbody>
               </table>

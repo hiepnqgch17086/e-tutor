@@ -2,6 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react-lite'
 import ListItemOfMeeting from './ListOfMeeting/ListItemOfMeeting'
 import moment from 'moment'
+import BtnAddMeeting from './ListOfMeeting/BtnAddMeeting'
 
 const ListOfMeeting = ({
   dateString = ''
@@ -22,6 +23,7 @@ const ListOfMeeting = ({
                   return <ListItemOfMeeting key={index} item={item} />
                 })
               }
+              <BtnAddMeeting />
             </div>
           </div>
         </div>

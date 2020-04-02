@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import { HOME_PAGE, CHAT_PAGE, MEETING_PAGE } from '../../routes'
+import { HOME_PAGE, CHAT_PAGE, MEETING_LIST_PAGE } from '../../routes'
 // import ProfilePageData from '../../pages/ProfilePage/data'
 import { observer } from 'mobx-react-lite'
 
@@ -12,7 +12,7 @@ const SideBar = () => {
 
   const isChatActive = pathName === CHAT_PAGE
 
-  const isMeetingActive = pathName === MEETING_PAGE
+  const isMeetingActive = pathName.indexOf(MEETING_LIST_PAGE) >= 0
 
   // const userRoutes = [USER_LIST_PAGE, USER_ADD_PAGE]
   // const isUsersActive = userRoutes.indexOf(pathName) >= 0 || getIsUserPagePath(pathName)
@@ -43,7 +43,7 @@ const SideBar = () => {
             />
 
             <SideBarItem
-              href={MEETING_PAGE}
+              href={MEETING_LIST_PAGE}
               iconName="icon-calender"
               title="Meetings"
               isActive={isMeetingActive}
