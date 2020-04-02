@@ -11,9 +11,9 @@ const IpMessage = () => {
           </div>
         </div>
         <div className="col-3" style={{ padding: '0px' }}>
-          <a className="btn-circle btn-lg btn-cyan float-right text-white mr-2" href="#!"
+          {/* <a className="btn-circle btn-lg btn-cyan float-right text-white mr-2" href="#!"
             style={{ backgroundColor: 'grey' }}
-          ><i className="fas fa-paperclip" /></a>
+          ><i className="fas fa-paperclip" /></a> */}
           <a className="btn-circle btn-lg btn-cyan float-right text-white ml-1 mr-2" href="#!"><i className="fas fa-paper-plane" /></a>
         </div>
       </div>

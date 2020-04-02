@@ -2,6 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react-lite'
 import SearchBar from '../../../../components-in-managing-resources/SearchBar';
 import { Button } from 'reactstrap';
+import AvatarInDefault from '../../../../images/AvatarInDefault';
 
 const BtnSearchStudent = () => {
   return (
@@ -16,6 +17,10 @@ const BtnSearchStudent = () => {
         <Button>Search Student</Button>
       </a>
 
+
+
+
+      {/* LIST OF MATCHED STUDENTS */}
       <div className="dropdown-menu dropdown-menu-right mailbox animated bounceInDown p-0">
         <ul className="list-style-none">
           <li>
@@ -26,9 +31,7 @@ const BtnSearchStudent = () => {
               />
               {/* Message */}
               <a href="#!" className="message-item d-flex align-items-center border-bottom px-3 py-2">
-                <div className="btn btn-danger rounded-circle btn-circle">
-                  <i data-feather="airplay" className="text-white" />
-                </div>
+                <img src={AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
                 <div className="w-75 d-inline-block v-middle pl-2">
                   <h6 className="message-title mb-0 mt-1">Name of tutor's student</h6>
                   <span className="font-12 text-nowrap d-block text-muted">
@@ -36,17 +39,6 @@ const BtnSearchStudent = () => {
                   <span className="font-12 text-nowrap d-block text-muted"></span>
                 </div>
               </a>
-              {/* Message */}
-              {/* Message */}
-              {/* <a href="#!" className="message-item d-flex align-items-center border-bottom px-3 py-2">
-                <span className="btn btn-primary rounded-circle btn-circle"><i data-feather="box" className="text-white" /></span>
-                <div className="w-75 d-inline-block v-middle pl-2">
-                  <h6 className="message-title mb-0 mt-1">Pavan kumar</h6> <span className="font-12 text-nowrap d-block text-muted">Just
-              see the my admin!</span>
-                  <span className="font-12 text-nowrap d-block text-muted">9:02 AM</span>
-                </div>
-              </a> */}
-
             </div>
           </li>
         </ul>

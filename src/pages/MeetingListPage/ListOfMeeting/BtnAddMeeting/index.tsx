@@ -8,6 +8,7 @@ import { observer } from 'mobx-react-lite';
 import BtnSearchStudent from './BtnSearchStudent';
 import CustomInput from '../../../../components-in-managing-resources/CustomInput';
 import moment from 'moment';
+import AvatarInDefault from '../../../../images/AvatarInDefault';
 
 
 const BtnAddMeeting = ({
@@ -27,6 +28,17 @@ const BtnAddMeeting = ({
         <ModalHeader toggle={toggle}>{moment(dateString).format('dddd DD-MM-YYYY')}</ModalHeader>
         <ModalBody>
           <BtnSearchStudent />
+          {/* CHOOSEN STUDENT */}
+          <a href="#!" className="message-item d-flex align-items-center px-3 py-2 d-flex justify-content-center">
+            <img src={AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
+            <div className="d-inline-block v-middle pl-2">
+              <h6 className="message-title mb-0 mt-1">Name of tutor's student</h6>
+              <span className="font-12 text-nowrap d-block text-muted">
+              </span>
+              <span className="font-12 text-nowrap d-block text-muted"></span>
+            </div>
+          </a>
+          {/* START TIME */}
           <div>Start Time</div>
           <CustomInput
             onChangeText={(text: any) => {
@@ -36,6 +48,7 @@ const BtnAddMeeting = ({
             }}
             type="time"
           />
+          {/* END TIME  */}
           <div>End Time</div>
           <CustomInput
             onChangeText={(text: any) => {
