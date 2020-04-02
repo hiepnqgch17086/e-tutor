@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardHeader, CardBody, CardTitle, CardText } from 'reactstrap'
+import { Card, CardBody, CardTitle, CardText } from 'reactstrap'
 import moment from 'moment'
 
 const EmailDetailPage = () => {

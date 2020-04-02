@@ -3,7 +3,6 @@ import { observer } from 'mobx-react-lite'
 import CustomTable from '../../../components-in-managing-resources/CustomTable'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
-import { Button } from 'reactstrap'
 import AvatarInDefault from '../../../images/AvatarInDefault'
 
 const TableOfNewestMessages = () => {

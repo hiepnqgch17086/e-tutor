@@ -7,7 +7,6 @@ import { Button, ButtonGroup } from 'reactstrap'
 import AvatarInDefault from '../../../images/AvatarInDefault'
 import BtnChangeTutor from './BtnChangeTutor'
 import { IS_STUDENT, IS_TUTOR } from '../../../models-one-prop/role'
-import { useHistory } from 'react-router-dom'
 
 const MainList = ({
   users = Users.create({
@@ -24,8 +23,6 @@ const MainList = ({
   page = 1,
   limit = 10,
 }) => {
-
-  const history = useHistory()
 
   useEffect(() => {
   }, [page, limit])
