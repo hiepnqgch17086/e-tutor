@@ -1,8 +1,8 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import ToolBar from './Calender/ToolBar'
-import TableHead from './Calender/TableHead'
-import RowOfDate from './Calender/RowOfDate'
+import ToolBar from './ToolBar'
+import TableHead from './TableHead'
+import RowOfDate from './RowOfDate'
 import moment from 'moment'
 
 const Calender = ({

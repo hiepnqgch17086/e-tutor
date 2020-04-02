@@ -1,8 +1,8 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import ListItemOfMeeting from './ListOfMeeting/ListItemOfMeeting'
+import ListItemOfMeeting from './ListItemOfMeeting'
 import moment from 'moment'
-import BtnAddMeeting from './ListOfMeeting/BtnAddMeeting'
+import BtnAddMeeting from './BtnAddMeeting'
 
 const ListOfMeeting = ({
   dateString = ''

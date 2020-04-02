@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import ProfilePageData from '../../ProfilePage/data';
-import { IS_STUDENT } from '../../../models-one-prop/role';
+import ProfilePageData from '../../../ProfilePage/data';
+import { IS_STUDENT } from '../../../../models-one-prop/role';
 import { observer } from 'mobx-react-lite';
-import BtnSearchStudent from './BtnAddMeeting/BtnSearchStudent';
-import CustomInput from '../../../components-in-managing-resources/CustomInput';
+import BtnSearchStudent from './BtnSearchStudent';
+import CustomInput from '../../../../components-in-managing-resources/CustomInput';
 import moment from 'moment';
 
 
