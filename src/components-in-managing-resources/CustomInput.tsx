@@ -25,8 +25,10 @@ const CustomInput = ({
       className={`${error === false && 'is-valid'} ${error === true && 'is-invalid'}`}
       value={value}
       onChange={e => onChangeText(e.target.value)}
+      // type="datetime-local"
       // @ts-ignore
-      type={type} name="text" placeholder={placeholder}
+      type={type}
+      name="text" placeholder={placeholder}
       {...idProp}
     />
   )

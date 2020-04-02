@@ -23,7 +23,7 @@ const ListOfMeeting = ({
                   return <ListItemOfMeeting key={index} item={item} />
                 })
               }
-              <BtnAddMeeting />
+              <BtnAddMeeting dateString={dateString} />
             </div>
           </div>
         </div>

@@ -9,16 +9,18 @@ const ListItemOfMeeting = ({ item = '' }) => {
     id: 1
   }
   return (
-    <Link to={get_MEETING_DETAIL_PAGE(item2.id)}>
-      <div className="calendar-events mb-3" data-class="bg-success"
-        style={{ cursor: 'pointer' }}
-      >
-        {item2.title} <br />
-        <span className="text-muted font-14">
-          with {item2.with}
+    <div className="calendar-events mb-3" data-class="bg-success"
+      style={{ cursor: 'pointer' }}
+    >
+      <Link to={get_MEETING_DETAIL_PAGE(item2.id)}>
+        <span>
+          {item2.title} <br />
+          <span className="text-muted font-14">
+            with {item2.with}
+          </span>
         </span>
-      </div>
-    </Link>
+      </Link>
+    </div>
   )
 }
 

@@ -5,9 +5,14 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import ProfilePageData from '../../ProfilePage/data';
 import { IS_STUDENT } from '../../../models-one-prop/role';
 import { observer } from 'mobx-react-lite';
-import SearchBar from '../../../components-in-managing-resources/SearchBar';
+import BtnSearchStudent from './BtnAddMeeting/BtnSearchStudent';
+import CustomInput from '../../../components-in-managing-resources/CustomInput';
+import moment from 'moment';
 
-const BtnAddMeeting = () => {
+
+const BtnAddMeeting = ({
+  dateString = ''
+}) => {
   const { currentUser } = ProfilePageData
 
   const [modal, setModal] = useState(false);
@@ -19,14 +24,30 @@ const BtnAddMeeting = () => {
     <div>
       <Button color="danger" onClick={toggle}>Add Meeting</Button>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Add Meeting</ModalHeader>
+        <ModalHeader toggle={toggle}>{moment(dateString).format('dddd DD-MM-YYYY')}</ModalHeader>
         <ModalBody>
-          <SearchBar
-            placeholder="student's email"
+          <BtnSearchStudent />
+          <div>Start Time</div>
+          <CustomInput
+            onChangeText={(text: any) => {
+              console.log('developing', text, moment(
+                moment(dateString).format('YYYY-MM-DD') + ' ' + text
+              ).format())
+            }}
+            type="time"
+          />
+          <div>End Time</div>
+          <CustomInput
+            onChangeText={(text: any) => {
+              console.log('developing', text, moment(
+                moment(dateString).format('YYYY-MM-DD') + ' ' + text
+              ).format())
+            }}
+            type="time"
           />
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
+          <Button color="primary" onClick={toggle}>Add meeting</Button>{' '}
           <Button color="secondary" onClick={toggle}>Cancel</Button>
         </ModalFooter>
       </Modal>
