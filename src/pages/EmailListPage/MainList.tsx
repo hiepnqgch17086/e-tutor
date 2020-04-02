@@ -4,7 +4,7 @@ import CustomTable from '../../components-in-managing-resources/CustomTable'
 import moment from 'moment'
 import { Button } from 'reactstrap'
 import { Link } from 'react-router-dom'
-import { get_NOTIFICATION_DETAIL_PAGE } from '../../routes'
+import { get_EMAIL_DETAIL_PAGE } from '../../routes'
 
 const MainList = () => {
 
@@ -23,7 +23,7 @@ const MainList = () => {
       data={defaultData}
       renderItemCellsInRow={({ item = defaultItem, index = 0 }) => {
         return [
-          <Link to={get_NOTIFICATION_DETAIL_PAGE(item.id)}>
+          <Link to={get_EMAIL_DETAIL_PAGE(item.id)}>
             <Button size="sm">Detail</Button>
           </Link>,
           item.title,

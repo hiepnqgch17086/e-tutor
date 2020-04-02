@@ -27,18 +27,20 @@ const ToolBar = ({
     <div className="fc-toolbar fc-header-toolbar">
       <div className="fc-right">
         <div className="fc-button-group">
-          <button type="button" className="fc-prev-button fc-button fc-state-default fc-corner-left" aria-label="prev"
+          <button type="button" className="btn fc-prev-button fc-button fc-state-default fc-corner-left" aria-label="prev"
+            style={{ outline: 'none' }}
             onClick={onPrevMonth}
           >
             <span className="fc-icon fc-icon-left-single-arrow" />
           </button>
-          <button type="button" className="fc-next-button fc-button fc-state-default fc-corner-right" aria-label="next"
+          <button type="button" className="btn fc-next-button fc-button fc-state-default fc-corner-right" aria-label="next"
+            style={{ outline: 'none' }}
             onClick={onNextMonth}
           >
             <span className="fc-icon fc-icon-right-single-arrow" />
           </button>
         </div>
-        <button type="button" className="fc-today-button fc-button fc-state-default fc-corner-left fc-corner-right fc-state-disabled"
+        <button type="button" className="btn btn-primary fc-today-button fc-button fc-state-default fc-corner-left fc-corner-right fc-state-disabled"
           onClick={onToday}
         >today</button>
       </div>

@@ -1,9 +1,10 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
 import { Link } from 'react-router-dom'
-import { EMAIL_LIST_PAGE } from '../../../routes'
+import { EMAIL_LIST_PAGE } from '../../../../routes'
+import UnReadEmailItem from './UnReadEmailItem'
 
-const Notification = () => {
+const UnReadEmailList = () => {
   return (
     <li className="nav-item dropdown">
       <a href="#!" className="nav-link dropdown-toggle pl-md-3 position-relative" id="bell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -15,18 +16,11 @@ const Notification = () => {
           <li>
             <div className="message-center notifications position-relative">
               {/* Message */}
-              <a href="#!" className="message-item d-flex align-items-center border-bottom px-3 py-2">
-                <div className="btn btn-danger rounded-circle btn-circle"><i data-feather="airplay" className="text-white" /></div>
-                <div className="w-75 d-inline-block v-middle pl-2">
-                  <h6 className="message-title mb-0 mt-1">Luanch Admin</h6>
-                  <span className="font-12 text-nowrap d-block text-muted">Just see
-                  the my new
-              admin!</span>
-                  <span className="font-12 text-nowrap d-block text-muted">9:30 AM</span>
-                </div>
-              </a>
-              {/* Message */}
-              <a href="#!" className="message-item d-flex align-items-center border-bottom px-3 py-2">
+
+              <UnReadEmailItem />
+
+
+              {/* <a href="#!" className="message-item d-flex align-items-center border-bottom px-3 py-2">
                 <span className="btn btn-success text-white rounded-circle btn-circle"><i data-feather="calendar" className="text-white" /></span>
                 <div className="w-75 d-inline-block v-middle pl-2">
                   <h6 className="message-title mb-0 mt-1">Event today</h6>
@@ -35,7 +29,8 @@ const Notification = () => {
                   <span className="font-12 text-nowrap d-block text-muted">9:10 AM</span>
                 </div>
               </a>
-              {/* Message */}
+
+
               <a href="#!" className="message-item d-flex align-items-center border-bottom px-3 py-2">
                 <span className="btn btn-info rounded-circle btn-circle"><i data-feather="settings" className="text-white" /></span>
                 <div className="w-75 d-inline-block v-middle pl-2">
@@ -46,7 +41,8 @@ const Notification = () => {
                   <span className="font-12 text-nowrap d-block text-muted">9:08 AM</span>
                 </div>
               </a>
-              {/* Message */}
+
+
               <a href="#!" className="message-item d-flex align-items-center border-bottom px-3 py-2">
                 <span className="btn btn-primary rounded-circle btn-circle"><i data-feather="box" className="text-white" /></span>
                 <div className="w-75 d-inline-block v-middle pl-2">
@@ -54,7 +50,8 @@ const Notification = () => {
               see the my admin!</span>
                   <span className="font-12 text-nowrap d-block text-muted">9:02 AM</span>
                 </div>
-              </a>
+              </a> */}
+
             </div>
           </li>
           <li>
@@ -69,4 +66,4 @@ const Notification = () => {
   )
 }
 
-export default observer(Notification)
+export default observer(UnReadEmailList)

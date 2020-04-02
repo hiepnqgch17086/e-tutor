@@ -23,8 +23,8 @@ const Auth = () => {
           <span className="text-dark">{name}</span> <i data-feather="chevron-down" className="svg-icon" />
         </span>
       </a>
-      <div className="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-        <Link to={PROFILE_PAGE} className="dropdown-item" href="#!" style={{ marginTop: '0.5rem' }}>
+      <div className="dropdown-menu dropdown-menu-right user-dd animated flipInY" style={{ padding: '0px' }}>
+        <Link to={PROFILE_PAGE} className="dropdown-item" href="#!" >
           <i data-feather="user" className="svg-icon mr-2 ml-1" />
               My Profile
         </Link>
@@ -39,7 +39,7 @@ const Auth = () => {
         <div className="dropdown-divider" />
         <a className="dropdown-item" href="#!"><i data-feather="settings" className="svg-icon mr-2 ml-1" />
               Account Setting</a> */}
-        <div className="dropdown-divider" />
+        <div className="dropdown-divider m-0" />
         <a className="dropdown-item" href="#!" onClick={onLogout}><i data-feather="power" className="svg-icon mr-2 ml-1" />
               Logout</a>
         {/* <div className="dropdown-divider" />

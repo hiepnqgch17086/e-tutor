@@ -1,6 +1,6 @@
 import React from 'react'
 import Auth from './Auth'
-import Notification from './Notification'
+import UnReadEmailList from './UnReadEmailList'
 import { Link } from 'react-router-dom'
 import { LANDING_PAGE } from '../../../routes'
 
@@ -49,7 +49,7 @@ const Header = () => {
 
           </ul>
           <ul className="navbar-nav float-right">
-            <Notification />
+            <UnReadEmailList />
             {/* <li className="nav-item d-none d-md-block">
               <a className="nav-link" href="#!">
                 <form>
