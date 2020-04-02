@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import { HOME_PAGE, CHAT_PAGE, MEETING_LIST_PAGE } from '../../routes'
+import { HOME_PAGE, CHAT_ROOM_LIST_PAGE, MEETING_LIST_PAGE } from '../../routes'
 // import ProfilePageData from '../../pages/ProfilePage/data'
 import { observer } from 'mobx-react-lite'
 
@@ -10,7 +10,7 @@ const SideBar = () => {
 
   const isDashboardActive = pathName === HOME_PAGE
 
-  const isChatActive = pathName === CHAT_PAGE
+  const isChatActive = pathName === CHAT_ROOM_LIST_PAGE
 
   const isMeetingActive = pathName.indexOf(MEETING_LIST_PAGE) >= 0
 
@@ -36,7 +36,7 @@ const SideBar = () => {
             <li className="nav-small-cap"><span className="hide-menu">Applications</span></li>
 
             <SideBarItem
-              href={CHAT_PAGE}
+              href={CHAT_ROOM_LIST_PAGE}
               iconName="icon-speech"
               title="Chat"
               isActive={isChatActive}

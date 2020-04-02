@@ -1,6 +1,5 @@
 import React from 'react'
 import Footer from './Footer'
-// import PageBreadcrumb from './PageBreadcrumb'
 
 const PageWrapper = ({ children = <></> }) => {
   return (
@@ -8,7 +7,7 @@ const PageWrapper = ({ children = <></> }) => {
 
       <div className="page-wrapper">
         {/* <PageBreadcrumb /> */}
-        <div className="container-fluid" style={{ padding: '15px' }}>
+        <div className="container-fluid">
           {children}
         </div>
         <Footer />

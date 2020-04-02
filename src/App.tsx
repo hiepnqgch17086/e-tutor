@@ -5,7 +5,7 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom'
-import { SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE, LANDING_PAGE, ADMIN_ERROR_PAGE, PROFILE_PAGE, CHAT_PAGE, MEETING_LIST_PAGE, MEETING_DETAIL_PAGE, EMAIL_LIST_PAGE, EMAIL_DETAIL_PAGE } from './routes'
+import { SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE, LANDING_PAGE, ADMIN_ERROR_PAGE, PROFILE_PAGE, CHAT_ROOM_LIST_PAGE, MEETING_LIST_PAGE, MEETING_DETAIL_PAGE, EMAIL_LIST_PAGE, EMAIL_DETAIL_PAGE } from './routes'
 import SignInPage from './pages/SignInPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,7 +14,7 @@ import LandingPage from './pages/LandingPage';
 import './firebaseConfig'
 import AdminLayout from './layout/AdminLayout';
 import ProfilePage from './pages/ProfilePage';
-import ChatPage from './pages/ChatPage';
+import ChatRoomListPage from './pages/ChatRoomListPage';
 import MeetingListPage from './pages/MeetingListPage';
 import MeetingDetailPage from './pages/MeetingDetailPage';
 import EmailList from './pages/EmailListPage';
@@ -38,8 +38,8 @@ function App() {
           <PrivateRoute exact path={PROFILE_PAGE}>
             <ProfilePage />
           </PrivateRoute>
-          <PrivateRoute exact path={CHAT_PAGE}>
-            <ChatPage />
+          <PrivateRoute exact path={CHAT_ROOM_LIST_PAGE}>
+            <ChatRoomListPage />
           </PrivateRoute>
           <PrivateRoute exact path={MEETING_LIST_PAGE}>
             <MeetingListPage />

@@ -41,35 +41,45 @@ const BtnAddMeeting = ({
           </a>
 
           {/* TITLE OF MEETING */}
-          <div>Title (purpose)</div>
+          <div>Title</div>
           <CustomInput
             onChangeText={(text: string) => {
               console.log('developing', text)
             }}
-            placeholder="title (purpose) of meeting"
+            placeholder="title of meeting"
           />
 
-          {/* START TIME */}
-          <div>Start Time</div>
-          <CustomInput
-            onChangeText={(text: any) => {
-              console.log('developing', text, moment(
-                moment(dateString).format('YYYY-MM-DD') + ' ' + text
-              ).format())
-            }}
-            type="time"
-          />
+          <div className="d-flex">
+            {/* START TIME */}
+            <div className="flex-grow-1">
+              <div>Start Time</div>
+              <CustomInput
+                onChangeText={(text: any) => {
+                  console.log('developing', text, moment(
+                    moment(dateString).format('YYYY-MM-DD') + ' ' + text
+                  ).format())
+                }}
+                type="time"
+              />
+            </div>
 
-          {/* END TIME  */}
-          <div>End Time</div>
-          <CustomInput
-            onChangeText={(text: any) => {
-              console.log('developing', text, moment(
-                moment(dateString).format('YYYY-MM-DD') + ' ' + text
-              ).format())
-            }}
-            type="time"
-          />
+            {/* END TIME  */}
+            <div className="flex-grow-1">
+              <div>End Time</div>
+              <CustomInput
+                onChangeText={(text: any) => {
+                  console.log('developing', text, moment(
+                    moment(dateString).format('YYYY-MM-DD') + ' ' + text
+                  ).format())
+                }}
+                type="time"
+              />
+            </div>
+
+          </div>
+
+
+
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={toggle}>Add meeting</Button>{' '}
