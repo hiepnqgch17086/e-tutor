@@ -28,7 +28,8 @@ const BtnAddMeeting = ({
         <ModalHeader toggle={toggle}>{moment(dateString).format('dddd DD-MM-YYYY')}</ModalHeader>
         <ModalBody>
           <BtnSearchStudent />
-          {/* CHOOSEN STUDENT */}
+          {/* MEETING WITH THE STUDENT */}
+          <div className="mt-2">Meeting with</div>
           <a href="#!" className="message-item d-flex align-items-center px-3 py-2 d-flex justify-content-center">
             <img src={AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
             <div className="d-inline-block v-middle pl-2">
@@ -38,6 +39,16 @@ const BtnAddMeeting = ({
               <span className="font-12 text-nowrap d-block text-muted"></span>
             </div>
           </a>
+
+          {/* TITLE OF MEETING */}
+          <div>Title (purpose)</div>
+          <CustomInput
+            onChangeText={(text: string) => {
+              console.log('developing', text)
+            }}
+            placeholder="title (purpose) of meeting"
+          />
+
           {/* START TIME */}
           <div>Start Time</div>
           <CustomInput
@@ -48,6 +59,7 @@ const BtnAddMeeting = ({
             }}
             type="time"
           />
+
           {/* END TIME  */}
           <div>End Time</div>
           <CustomInput
