@@ -29,7 +29,9 @@ const MeetingPage = () => {
           />
         </div>
         <div className="col-lg-4">
-          <ListOfMeeting />
+          <ListOfMeeting
+            dateString={dateString}
+          />
         </div>
 
       </div>

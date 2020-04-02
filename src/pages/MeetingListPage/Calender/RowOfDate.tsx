@@ -4,7 +4,8 @@ import moment from 'moment'
 
 const RowOfDate = ({
   startDateString = '',
-  dateString = ''
+  dateString = '',
+  setDateString = (dateString: string) => { }
 }) => {
   const startDateStringArr = []
   const startDate = moment(startDateString)
@@ -12,6 +13,11 @@ const RowOfDate = ({
     startDateStringArr.push(startDate.format('YYYY-MM-DD'));
     startDate.add(1, 'day')
   }
+
+  const onClickDateCell = (dString: string) => {
+    setDateString(dString)
+  }
+
   return (
     <div className="fc-row fc-week fc-widget-content fc-rigid">
       <div className="fc-bg">
@@ -20,9 +26,22 @@ const RowOfDate = ({
             <tr>
               {
                 startDateStringArr.map((dString, index) => {
+                  // LOGIC
                   const isToday = dString === moment().format('YYYY-MM-DD')
+                  const cellIsCurrentDate = dString === moment(dateString).format('YYYY-MM-DD')
+                  const styleForCurrentDate = cellIsCurrentDate ? {
+                    backgroundColor: '#ffff004f'
+                  } : {}
+                  // LOGIC
                   return (
-                    <td key={index} className={`fc-day fc-widget-content ${isToday && 'fc-today'}`} data-date={dString} />
+                    <td key={index} className={`fc-day fc-widget-content ${isToday && 'fc-today'}`} data-date={dString}
+                      style={{
+                        cursor: 'pointer',
+
+                        ...styleForCurrentDate
+                      }}
+                      onClick={() => onClickDateCell(dString)}
+                    />
                   )
                 })
               }
@@ -30,9 +49,10 @@ const RowOfDate = ({
           </tbody>
         </table>
       </div>
+
       <div className="fc-content-skeleton">
         <table>
-          <thead>
+          <tbody>
             <tr>
               {
                 startDateStringArr.map((dString, index) => {
@@ -40,30 +60,20 @@ const RowOfDate = ({
                   const date = moment(dString).format('DD')
                   const isOtherMonth = moment(dateString).format('MM') !== moment(dString).format('MM')
                   return (
-                    <td className={`fc-day-top ${isOtherMonth && 'fc-other-month'}`} data-date={dString} key={index}>
+                    <td className={`fc-day-top ${isOtherMonth && 'fc-other-month'}`} data-date={dString} key={index}
+                      style={{
+                        cursor: 'pointer',
+                        border: '1px solid red',
+                      }}
+                      onClick={() => onClickDateCell(dString)}
+                    >
                       <span className="fc-day-number">{date}</span>
                     </td>
                   )
                 })
               }
             </tr>
-          </thead><tbody>
-            <tr>
-
-              <td />
-              <td />
-              <td className="fc-event-container">
-
-
-              </td>
-              <td />
-              <td />
-              <td />
-
-            </tr>
-
           </tbody>
-
         </table>
 
       </div>

@@ -51,7 +51,10 @@ const Calender = ({
                         <div className="fc-day-grid fc-unselectable">
                           {
                             startDateStringList.map((startDateString, index) => (
-                              <RowOfDate key={index} startDateString={startDateString} dateString={dateString} />
+                              <RowOfDate
+                                key={index} startDateString={startDateString} dateString={dateString}
+                                setDateString={setDateString}
+                              />
                             ))
                           }
                         </div>
