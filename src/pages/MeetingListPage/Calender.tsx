@@ -45,22 +45,18 @@ const Calender = ({
                   </tr>
                 </thead>
                 <tbody className="fc-body">
-                  <tr>
-                    <td className="fc-widget-content">
-                      <div className="fc-scroller fc-day-grid-container" style={{ overflow: 'hidden' }}>
-                        <div className="fc-day-grid fc-unselectable">
-                          {
-                            startDateStringList.map((startDateString, index) => (
-                              <RowOfDate
-                                key={index} startDateString={startDateString} dateString={dateString}
-                                setDateString={setDateString}
-                              />
-                            ))
-                          }
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
+
+                  {
+                    startDateStringList.map((startDateString, index) => (
+                      <tr className="border">
+                        <RowOfDate
+                          key={index} startDateString={startDateString} dateString={dateString}
+                          setDateString={setDateString}
+                        />
+                      </tr>
+                    ))
+                  }
+
                 </tbody>
               </table>
             </div>
