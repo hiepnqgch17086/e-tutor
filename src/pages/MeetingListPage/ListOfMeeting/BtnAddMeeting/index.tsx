@@ -30,12 +30,11 @@ const BtnAddMeeting = ({
           <BtnSearchStudent />
           {/* MEETING WITH THE STUDENT */}
           <div className="mt-2">Meeting with</div>
-          <a href="#!" className="message-item d-flex align-items-center px-3 py-2 d-flex justify-content-center">
+          <a href="#!" className="message-item d-flex align-items-center px-3 py-2 d-flex justify-content-start">
             <img src={AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
             <div className="d-inline-block v-middle pl-2">
               <h6 className="message-title mb-0 mt-1">Name of tutor's student</h6>
-              <span className="font-12 text-nowrap d-block text-muted">
-              </span>
+              <span className="font-12 text-nowrap d-block text-muted">student1@example.com</span>
               <span className="font-12 text-nowrap d-block text-muted"></span>
             </div>
           </a>

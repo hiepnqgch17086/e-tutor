@@ -5,7 +5,7 @@ import { goUserPage } from '../../../routes'
 import CustomTable from '../../../components-in-managing-resources/CustomTable'
 import { Button, ButtonGroup } from 'reactstrap'
 import AvatarInDefault from '../../../images/AvatarInDefault'
-import IconChangeTutor from './IconChangeTutor'
+import BtnChangeTutor from './BtnChangeTutor'
 import { IS_STUDENT, IS_TUTOR } from '../../../models-one-prop/role'
 import { useHistory } from 'react-router-dom'
 
@@ -44,7 +44,7 @@ const MainList = ({
           item.role === IS_STUDENT ? 'Student' : item.role === IS_TUTOR ? 'Tutor' : 'Other',
           <div>
             "tutor1@example.com"
-            <IconChangeTutor className="ml-1" />
+            <BtnChangeTutor className="ml-1" />
           </div>,
           <ButtonGroup>
             <Button onClick={() => goUserPage(item.id)}>
