@@ -5,7 +5,7 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom'
-import { SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE, LANDING_PAGE, ADMIN_ERROR_PAGE, PROFILE_PAGE, CHAT_PAGE, MEETING_LIST_PAGE, MEETING_DETAIL_PAGE } from './routes'
+import { SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE, LANDING_PAGE, ADMIN_ERROR_PAGE, PROFILE_PAGE, CHAT_PAGE, MEETING_LIST_PAGE, MEETING_DETAIL_PAGE, EMAIL_LIST_PAGE, EMAIL_DETAIL_PAGE } from './routes'
 import SignInPage from './pages/SignInPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,6 +17,8 @@ import ProfilePage from './pages/ProfilePage';
 import ChatPage from './pages/ChatPage';
 import MeetingListPage from './pages/MeetingListPage';
 import MeetingDetailPage from './pages/MeetingDetailPage';
+import EmailList from './pages/EmailListPage';
+import EmailDetailPage from './pages/EmailDetailPage';
 // import CalenderPage from './pages/CalenderPage';
 // import Axios from 'axios';
 
@@ -45,6 +47,13 @@ function App() {
           <PrivateRoute path={MEETING_DETAIL_PAGE}>
             <MeetingDetailPage />
           </PrivateRoute>
+          <PrivateRoute exact path={EMAIL_LIST_PAGE}>
+            <EmailList />
+          </PrivateRoute>
+          <PrivateRoute path={EMAIL_DETAIL_PAGE}>
+            <EmailDetailPage />
+          </PrivateRoute>
+
         </Switch>
       </AdminLayout>
 

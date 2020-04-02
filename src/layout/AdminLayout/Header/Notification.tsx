@@ -1,5 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
+import { Link } from 'react-router-dom'
+import { EMAIL_LIST_PAGE } from '../../../routes'
 
 const Notification = () => {
   return (
@@ -56,10 +58,10 @@ const Notification = () => {
             </div>
           </li>
           <li>
-            <a className="nav-link pt-3 text-center text-dark" href="#;">
+            <Link to={EMAIL_LIST_PAGE} className="nav-link pt-3 text-center text-dark">
               <strong>Check all notifications</strong>
               <i className="fa fa-angle-right" />
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
