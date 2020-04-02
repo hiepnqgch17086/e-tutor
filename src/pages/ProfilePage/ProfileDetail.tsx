@@ -15,6 +15,7 @@ const ProfileDetail = ({
             <img width="200px" height="200px" src={user.avatar || AvatarInDefault} alt="Card cap" />
           </Col>
           <Col md={8} sm={12}>
+            <h1 className="text-dark">Profile</h1>
             <div><i className="fas fa-chevron-right" /> Name: {user.name}</div>
             <div><i className="fas fa-chevron-right" /> Email: {user.email}</div>
             <div><i className="fas fa-chevron-right" /> Role: {user.isTutor && 'Tutor'}{user.isAdmin && 'Admin'}{user.isStudent && 'Student'}</div>

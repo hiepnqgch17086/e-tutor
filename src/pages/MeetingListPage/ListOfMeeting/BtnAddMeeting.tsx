@@ -5,7 +5,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import ProfilePageData from '../../ProfilePage/data';
 import { IS_STUDENT } from '../../../models-one-prop/role';
 import { observer } from 'mobx-react-lite';
-import IpSearchStudents from './BtnAddMeeting/IpSearchStudents';
+import SearchBar from '../../../components-in-managing-resources/SearchBar';
 
 const BtnAddMeeting = () => {
   const { currentUser } = ProfilePageData
@@ -19,9 +19,11 @@ const BtnAddMeeting = () => {
     <div>
       <Button color="danger" onClick={toggle}>Add Meeting</Button>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+        <ModalHeader toggle={toggle}>Add Meeting</ModalHeader>
         <ModalBody>
-          <IpSearchStudents />
+          <SearchBar
+            placeholder="student's email"
+          />
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={toggle}>Do Something</Button>{' '}

@@ -46,10 +46,11 @@ const Header = () => {
         {/* ============================================================== */}
         <div className="navbar-collapse collapse" id="navbarSupportedContent">
           <ul className="navbar-nav float-left mr-auto ml-3 pl-1">
-            <Notification />
+
           </ul>
           <ul className="navbar-nav float-right">
-            <li className="nav-item d-none d-md-block">
+            <Notification />
+            {/* <li className="nav-item d-none d-md-block">
               <a className="nav-link" href="#!">
                 <form>
                   <div className="customize-input">
@@ -58,7 +59,7 @@ const Header = () => {
                   </div>
                 </form>
               </a>
-            </li>
+            </li> */}
             <Auth />
           </ul>
         </div>

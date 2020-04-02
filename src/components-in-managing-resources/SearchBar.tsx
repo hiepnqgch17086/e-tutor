@@ -14,7 +14,7 @@ let input2: string = ''
 const SearchBar = ({
   getDatabaseItems = () => { console.log('prop should pass') },
   setGlobalInput = (input: string) => { },
-  setPage = (page: number) => { },
+  setPage = (page: number) => { console.log('optional') },
   placeholder = "Enter user's email",
   className = "mb-2"
 }) => {

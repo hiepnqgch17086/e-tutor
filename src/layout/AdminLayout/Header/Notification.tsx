@@ -8,7 +8,7 @@ const Notification = () => {
         <span><i data-feather="mail" className="svg-icon" /></span>
         <span className="badge badge-primary notify-no rounded-circle">5</span>
       </a>
-      <div className="dropdown-menu dropdown-menu-left mailbox animated bounceInDown">
+      <div className="dropdown-menu dropdown-menu-right mailbox animated bounceInDown">
         <ul className="list-style-none">
           <li>
             <div className="message-center notifications position-relative">
