@@ -5,6 +5,7 @@ import Data from './data'
 import SearchBar from '../../components-in-managing-resources/SearchBar'
 import PaginationBar from '../../components-in-managing-resources/PaginationBar'
 import SlNumberOfItems from '../../components-in-managing-resources/SlNumberOfItems'
+import SlCategoryOfUser from './SlCategoryOfUser'
 
 /**
  * FOR ADMIN ONLY
@@ -26,8 +27,10 @@ const AllUsersPage = () => {
         getDatabaseItems={() => { }}
         placeholder="Enter student/tutor email"
       />
-      <SlNumberOfItems
-      />
+      <div className="d-flex">
+        <SlNumberOfItems />
+        <SlCategoryOfUser />
+      </div>
       <MainList
       // users={users}
       // page={page}

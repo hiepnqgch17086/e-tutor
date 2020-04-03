@@ -20,7 +20,18 @@ const BtnChangeTutor = ({
       </Button>
 
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Student: student1@example.com</ModalHeader>
+        <ModalHeader toggle={toggle}>
+          <div>Student</div>
+          <a href="#!" className="message-item align-items-center px-3 py-2 d-flex justify-content-start">
+            <img src={AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
+            <div className="d-inline-block v-middle pl-2">
+              <h6 className="message-title mb-0 mt-1">Name of current student</h6>
+              <span className="font-12 text-nowrap d-block text-muted">student1@example.com</span>
+              <span className="font-12 text-nowrap d-block text-muted"></span>
+            </div>
+          </a>
+          {/* Student: student1@example.com */}
+        </ModalHeader>
         <ModalBody>
           <BtnSearchTutor />
           {/* CURRENT TUTOR */}

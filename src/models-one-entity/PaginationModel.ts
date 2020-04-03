@@ -5,6 +5,7 @@ const PaginationModel = types.model({
   page: types.optional(types.number, 1),
   searchByEmail: types.optional(types.string, ''),
   searchByTitle: types.optional(types.string, ''),
+  searchByCategory: types.optional(types.number, 0),
 })
   .actions(self => ({
     setLimit(newValue: number = 10) {
@@ -12,6 +13,9 @@ const PaginationModel = types.model({
     },
     setPage(newValue: number = 1) {
       self.page = newValue
+    },
+    setSearchByCategory(categoryKey: number) {
+      self.searchByCategory = categoryKey
     },
     setSearchByEmail(newValue: string = '') {
       self.searchByEmail = newValue

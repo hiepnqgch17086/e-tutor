@@ -9,11 +9,11 @@ import ForTutor from './ForTutor';
 // or DashboardPage
 const HomePage = ({ user = {} }: any) => {
   const { currentUser } = ProfilePageData
-  const { propRole = '' } = user
+  const { role: propRole = '' } = user
 
   let role = propRole || currentUser.role
 
-  role = IS_ADMIN
+  // role = IS_ADMIN
 
   switch (role) {
     case IS_STUDENT:
