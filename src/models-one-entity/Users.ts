@@ -23,7 +23,6 @@ export const User = types.compose(
   UserBase,
   types.model({
     tutorId: types.maybeNull(UserBase),
-    students: types.array(UserBase)
   })
 )
   .actions(self => ({
@@ -71,6 +70,11 @@ export const User = types.compose(
         return error.message
       }
     },
+    setTutorNew() {
+      if (!self.tutorId) {
+        self.tutorId = UserBase.create({})
+      }
+    },
     setAuthIdToken(token: string) {
       setLocalStorageAuthIdToken(token)
     },
@@ -102,6 +106,20 @@ export const User = types.compose(
           isSuccess: false,
           errorMessage: message
         }
+      }
+    },
+    setDatabaseChangeTutor: async function (callback: Function = () => { }) {
+      try {
+        const idOfTutor = self.tutorId ? self.tutorId.id : ''
+        if (!idOfTutor) throw new Error('Tutor is required!')
+        const { errorMessage } = await API.setTutorOfStudent(self.id, idOfTutor)
+        if (errorMessage) throw new Error(errorMessage)
+
+        toast.success('Update successfully')
+        callback()
+      } catch (error) {
+        // console.log(error.message)
+        toast.error(error.message)
       }
     }
   }))
@@ -157,7 +175,18 @@ const Users = types.compose(
           limit: self.limit,
           page: self.page,
         })
-        console.log(data)
+        self.setSnapshotNew(data.students, self.items)
+      } catch (error) {
+        console.log(error.message)
+      }
+    },
+    getDbTutorUsers: async function () {
+      try {
+        const { data } = await API.getTutorUsers({
+          emailContains: self.emailContains,
+          limit: self.limit,
+          page: self.page,
+        })
         self.setSnapshotNew(data.tutors, self.items)
       } catch (error) {
         console.log(error.message)

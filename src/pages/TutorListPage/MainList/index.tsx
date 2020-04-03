@@ -15,7 +15,7 @@ const MainList = ({
   return (
     <CustomTable
       className="mb-2"
-      headerArray={["#", "Avatar", "Name", "Email", "Role", "Support", "Menu"]}
+      headerArray={["#", "Avatar", "Name", "Email", "Role", "Menu"]}
       data={users.items}
       renderItemCellsInRow={({ item = defaultOfUser, index = 0 }) => {
         return [
@@ -24,9 +24,6 @@ const MainList = ({
           item.name,
           item.email,
           item.role === IS_STUDENT ? 'Student' : item.role === IS_TUTOR ? 'Tutor' : 'Other',
-          <div>
-            {item.students.length} students
-          </div>,
           <ButtonGroup>
             <Button onClick={() => goUserPage(item.id)}>
               Detail

@@ -12,7 +12,7 @@ const TutoListPageData = types.compose(
   .actions(self => ({
     onDidMountDidUpdate() {
       const { users } = self
-      users.getDbStudentUsersWhoHaveNotTutor()
+      users.getDbTutorUsers()
     },
     onWillUnMount() {
       self.setSnapshotNew({})

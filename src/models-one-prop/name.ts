@@ -19,7 +19,7 @@ const name = types.model({
       self.isNameError = newValue
     },
     setName(newValue: string = '', shouldValidate: boolean = true): void {
-      const setRegexToAvoidTags = /[<|>|@|#|$|%|&|*|(|)|^|!|0-9]/gi
+      const setRegexToAvoidTags = /[<|>|@|#|$|%|&|*|(|)|^|!]/gi
       if (setRegexToAvoidTags.test(newValue)) return
       self.name = newValue
       if (shouldValidate) this._getNameConstraint()

@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import JsonApi from "./jsonApi";
-import { PaginationType } from "../models-one-entity/types";
+import { PaginationType, Response } from "../models-one-entity/types";
 
 
 export default class MainApi extends JsonApi {
@@ -34,6 +34,18 @@ export default class MainApi extends JsonApi {
     return this.ApiRef.get(`/users/students?limit=${limit}&page=${page}&emailContains=${emailContains}`)
   }
   getStudentUsersWhoHaveNotTutor({ limit, page, emailContains }: any): Promise<AxiosResponse<any>> {
+    return this.ApiRef.get(`/users/students-have-not-tutor?limit=${limit}&page=${page}&emailContains=${emailContains}`)
+  }
+  getTutorUsers({ limit, page, emailContains }: any): Promise<AxiosResponse<any>> {
     return this.ApiRef.get(`/users/tutors?limit=${limit}&page=${page}&emailContains=${emailContains}`)
+  }
+  async setTutorOfStudent(studentId: string | number = 0, tutorId: string | number = 0): Promise<Response> {
+    const { data: { errorMessage } } = await this.ApiRef.put('/users/set-tutor-for-student', {
+      studentId,
+      tutorId
+    })
+    return {
+      errorMessage
+    }
   }
 }

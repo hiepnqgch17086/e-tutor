@@ -4,7 +4,7 @@ export type ErrorMessage = string
  * define response for calling api
  */
 export type Response = {
-  isSuccess: boolean,
+  isSuccess?: boolean,
   errorMessage?: string,
   data?: {
     id?: string

@@ -27,7 +27,7 @@ const MainList = ({
           item.role === IS_STUDENT ? 'Student' : item.role === IS_TUTOR ? 'Tutor' : 'Other',
           <div>
             {item.tutorId === null ? '' : item.tutorId.email}
-            <BtnChangeTutor className="ml-1" />
+            <BtnChangeTutor className="ml-1" student={item} />
           </div>,
           <ButtonGroup>
             <Button onClick={() => goUserPage(item.id)}>

@@ -1,10 +1,24 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import SearchBar from '../../../../components-in-managing-resources/SearchBar';
+import SearchBar from '../../../../../components-in-managing-resources/SearchBar';
 import { Button } from 'reactstrap';
-import AvatarInDefault from '../../../../images/AvatarInDefault';
+import AvatarInDefault from '../../../../../images/AvatarInDefault';
+import Users from '../../../../../models-one-entity/Users';
+import ListItemOfTutor from './ListItemOfTutor';
 
 const BtnSearchTutor = () => {
+
+  const [tutorList, setTutorList] = useState(Users.create({}))
+  const { emailContains } = tutorList
+
+  useEffect(() => {
+    if (emailContains) {
+      tutorList.getDbTutorUsers()
+    } else {
+      tutorList.setSnapshotNew([], tutorList.items)
+    }
+  }, [emailContains])
+
   return (
     <li className="nav-item dropdown" style={{ listStyle: 'none' }}>
       <a href="#!" className="nav-link dropdown-toggle pl-md-3 position-relative d-flex flex-column" id="bell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -28,16 +42,14 @@ const BtnSearchTutor = () => {
               <SearchBar
                 placeholder="tutor's email"
                 className="mt-n3"
+                setPropInput={tutorList.setEmailContains}
               />
               {/* Message */}
-              <a href="#!" className="message-item d-flex align-items-center border-bottom px-3 py-2">
-                <img src={AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
-                <div className="w-75 d-inline-block v-middle pl-2">
-                  <h6 className="message-title mb-0 mt-1">Name of any tutor</h6>
-                  <span className="font-12 text-nowrap d-block text-muted">tutor1@example.com</span>
-                  <span className="font-12 text-nowrap d-block text-muted">300 students</span>
-                </div>
-              </a>
+              {
+                tutorList.items.map(item => (
+                  <ListItemOfTutor key={item.id} item={item} />
+                ))
+              }
             </div>
           </li>
         </ul>

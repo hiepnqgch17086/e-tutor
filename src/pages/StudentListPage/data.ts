@@ -19,7 +19,7 @@ const AllUsersPageData = types.compose(
           users.getDbStudentUsers()
           return;
         case STUDENTS_WHO_HAVE_NOT_TUTOR:
-          users.getDbStudentUsers()
+          users.getDbStudentUsersWhoHaveNotTutor()
           return
         default:
           return;

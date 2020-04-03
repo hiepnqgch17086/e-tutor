@@ -2,14 +2,33 @@ import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import AvatarInDefault from '../../../../images/AvatarInDefault';
 import BtnSearchTutor from './BtnSearchTutor';
+import { defaultOfUser } from '../../../../models-one-entity/Users';
+import { newTutor } from './data';
+import { Observer } from 'mobx-react-lite';
+import { toast } from 'react-toastify';
 
 const BtnChangeTutor = ({
-  className = ''
+  className = '',
+  student = defaultOfUser
 }) => {
+  const currentTutor = student.tutorId || defaultOfUser
 
   const [modal, setModal] = useState(false);
-
   const toggle = () => setModal(!modal);
+
+  const onChangeTutor = () => {
+    if (!newTutor.id) {
+      toast.error('New tutor is required!')
+      return
+    }
+    student.setTutorNew()
+    student.tutorId?.setEmail(newTutor.email)
+    student.tutorId?.setId(newTutor.id)
+    student.tutorId?.setName(newTutor.name)
+    // console.log("newTutor.name", newTutor.name)
+    student.setDatabaseChangeTutor()
+    toggle()
+  }
 
   return (
     <div>
@@ -23,43 +42,61 @@ const BtnChangeTutor = ({
         <ModalHeader toggle={toggle}>
           <div>Student</div>
           <a href="#!" className="message-item align-items-center px-3 py-2 d-flex justify-content-start">
-            <img src={AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
+            <img src={student.avatar || AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
             <div className="d-inline-block v-middle pl-2">
-              <h6 className="message-title mb-0 mt-1">Name of current student</h6>
-              <span className="font-12 text-nowrap d-block text-muted">student1@example.com</span>
+              <h6 className="message-title mb-0 mt-1">{student.name}</h6>
+              <span className="font-12 text-nowrap d-block text-muted">{student.email}</span>
               <span className="font-12 text-nowrap d-block text-muted"></span>
             </div>
           </a>
           {/* Student: student1@example.com */}
         </ModalHeader>
         <ModalBody>
-          <BtnSearchTutor />
-          {/* CURRENT TUTOR */}
-          <div className="mt-2">Current Tutor</div>
-          <a href="#!" className="message-item align-items-center px-3 py-2 d-flex justify-content-start">
-            <img src={AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
-            <div className="d-inline-block v-middle pl-2">
-              <h6 className="message-title mb-0 mt-1">Name of current tutor</h6>
-              <span className="font-12 text-nowrap d-block text-muted">tutor1@example.com</span>
-              <span className="font-12 text-nowrap d-block text-muted">300 students</span>
-            </div>
-          </a>
+          <Observer>{() => (
+            <>
+              <BtnSearchTutor />
+              {/* CURRENT TUTOR */}
+              {
+                currentTutor.id ? (
+                  <>
+                    <div className="mt-2">Current Tutor</div>
+                    <a href="#!" className="message-item align-items-center px-3 py-2 d-flex justify-content-start">
+                      <img src={AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
+                      <div className="d-inline-block v-middle pl-2">
+                        <h6 className="message-title mb-0 mt-1">{currentTutor.name}</h6>
+                        <span className="font-12 text-nowrap d-block text-muted">{currentTutor.email}</span>
+                        <span className="font-12 text-nowrap d-block text-muted"></span>
+                      </div>
+                    </a>
+                  </>
+                ) : null
+              }
 
 
 
-          <div>Change to</div>
-          <a href="#!" className="message-item d-flex align-items-center px-3 py-2 justify-content-start">
-            <img src={AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
-            <div className="d-inline-block v-middle pl-2">
-              <h6 className="message-title mb-0 mt-1">Name of next tutor</h6>
-              <span className="font-12 text-nowrap d-block text-muted">tutor1@example.com</span>
-              <span className="font-12 text-nowrap d-block text-muted">300 students</span>
-            </div>
-          </a>
 
+              <div className="mt-2">New tutor</div>
+              {
+                newTutor.id ? (
+                  <>
+                    <a href="#!" className="message-item d-flex align-items-center px-3 py-2 justify-content-start">
+                      <img src={AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
+                      <div className="d-inline-block v-middle pl-2">
+                        <h6 className="message-title mb-0 mt-1">{newTutor.name}</h6>
+                        <span className="font-12 text-nowrap d-block text-muted">{newTutor.email}</span>
+                        <span className="font-12 text-nowrap d-block text-muted"></span>
+                      </div>
+                    </a>
+                  </>
+                ) : null
+              }
+            </>
+          )}
+
+          </Observer>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggle}>Change Tutor</Button>{' '}
+          <Button color="primary" onClick={onChangeTutor}>Change Tutor</Button>{' '}
           <Button color="secondary" onClick={toggle}>Cancel</Button>
         </ModalFooter>
       </Modal>
