@@ -7,10 +7,9 @@ const SlNumberOfItems = ({
   className = "mb-2"
 }) => {
   const onChange = (e: any) => {
-    // console.log(e.target.value)
-    setLimit(parseInt(e.target.value))
+    const value = parseInt(e.target.value)
+    setLimit(value)
   }
-
 
   return (
     <select className={`form-control ${className}`} id="exampleFormControlSelect1"

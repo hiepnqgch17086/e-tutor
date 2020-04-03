@@ -1,6 +1,7 @@
 import { types } from "mobx-state-tree";
 import setSnapshotNew from "../../models-one-action/setSnapshotNew";
 import Users from "../../models-one-entity/Users";
+import { STUDENTS } from "./definitions";
 
 const AllUsersPageData = types.compose(
   'AllUsersPageData',
@@ -11,13 +12,21 @@ const AllUsersPageData = types.compose(
   })
 )
   .actions(self => ({
-    onDidMount() {
-      // get all users
-      // this.getDatabase()
+    onDidMountDidUpdate(category: string) {
+      const { users } = self
+      switch (category) {
+        case STUDENTS:
+          users.getDbStudentUsers()
+          return;
+
+        default:
+          return;
+      }
     },
     onWillUnMount() {
       self.setSnapshotNew({})
     },
+
     // onSearchUsersByEmail(email: string) {
     //   self.setPage(1)
     //   email

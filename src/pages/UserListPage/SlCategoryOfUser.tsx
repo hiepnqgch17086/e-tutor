@@ -1,26 +1,28 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
+import { STUDENTS, TUTORS, STUDENTS_WHO_HAVE_NOT_TUTOR_YET } from './definitions'
 
 const SlCategoryOfUser = ({
-  limit = 5,
-  setSearchByCategory = (categoryKey: number) => { },
+  category = STUDENTS,
+  setCategory = (category: string) => { },
+  setPage = (page: number) => { },
   className = "mb-2"
 }) => {
   const onChange = (e: any) => {
     // console.log(e.target.value)
-    setSearchByCategory(parseInt(e.target.value))
+    setCategory(e.target.value)
+    setPage(1)
   }
 
 
   return (
     <select className={`form-control ${className}`} id="exampleFormControlSelect1"
-      value={limit}
+      value={category}
       onChange={onChange}
-      style={{ maxWidth: '120px' }}
     >
-      <option value={1}>Students</option>
-      <option value={2}>Tutors</option>
-      <option value={3}>Students who have not tutor yet</option>
+      <option value={STUDENTS}>{STUDENTS}</option>
+      <option value={TUTORS}>{TUTORS}</option>
+      <option value={STUDENTS_WHO_HAVE_NOT_TUTOR_YET}>{STUDENTS_WHO_HAVE_NOT_TUTOR_YET}</option>
     </select>
   )
 }

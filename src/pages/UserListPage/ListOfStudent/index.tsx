@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import Users, { defaultOfUser } from '../../../models-one-entity/Users'
+import Users, { defaultOfUser, defaultOfUsers } from '../../../models-one-entity/Users'
 import { goUserPage } from '../../../routes'
 import CustomTable from '../../../components-in-managing-resources/CustomTable'
 import { Button, ButtonGroup } from 'reactstrap'
@@ -8,25 +8,11 @@ import AvatarInDefault from '../../../images/AvatarInDefault'
 import BtnChangeTutor from './BtnChangeTutor'
 import { IS_STUDENT, IS_TUTOR } from '../../../models-one-prop/role'
 
-const MainList = ({
-  users = Users.create({
-    items: [
-      {
-        id: 1,
-        avatar: '',
-        email: 'student1@example.com',
-        name: 'student1',
-        role: 3
-      }
-    ]
-  }),
-  page = 1,
-  limit = 10,
+const ListOfStudent = ({
+  users = defaultOfUsers
 }) => {
-
-  useEffect(() => {
-  }, [page, limit])
-
+  const { page, limit } = users
+  // console.log(users)
   return (
     <CustomTable
       className="mb-2"
@@ -40,7 +26,7 @@ const MainList = ({
           item.email,
           item.role === IS_STUDENT ? 'Student' : item.role === IS_TUTOR ? 'Tutor' : 'Other',
           <div>
-            "tutor1@example.com"
+            {item.tutorId === null ? '' : item.tutorId.email}
             <BtnChangeTutor className="ml-1" />
           </div>,
           <ButtonGroup>
@@ -54,4 +40,4 @@ const MainList = ({
   )
 }
 
-export default observer(MainList)
+export default observer(ListOfStudent)

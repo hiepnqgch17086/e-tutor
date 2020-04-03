@@ -1,5 +1,5 @@
 import { types, getParent } from "mobx-state-tree";
-import id from "../models-one-prop/id";
+import id, { tutorId } from "../models-one-prop/id";
 import email from "../models-one-prop/email";
 import password from "../models-one-prop/password";
 import name from "../models-one-prop/name";
@@ -12,11 +12,19 @@ import avatar from "../models-one-prop/avatar";
 import role, { IS_ADMIN, IS_TUTOR, IS_STUDENT } from "../models-one-prop/role";
 import { toast } from "react-toastify";
 
-export const User = types.compose(
-  'User',
+const UserBase = types.compose(
   GeneralModel,
   id, email, password, name, avatar,
-  role
+  role,
+)
+
+export const User = types.compose(
+  'User',
+  UserBase,
+  types.model({
+    tutorId: types.maybeNull(UserBase),
+    students: types.array(UserBase)
+  })
 )
   .actions(self => ({
     /**
@@ -33,7 +41,7 @@ export const User = types.compose(
 
     // SPECIAL METHODS
     // Login
-    getDatabaseToken: async function (): Promise<ErrorMessage> {
+    getApiToken: async function (): Promise<ErrorMessage> {
       try {
         // will change later
         const response = await API.getAuthToken({ email: self.email, password: self.password })
@@ -126,12 +134,22 @@ const Users = types.compose(
     setItemsToAdd(snapshot: Object) {
       const newUser = User.create(snapshot)
       self.items.push(newUser)
-      // console.log(getSnapshot(self.items))
     },
     setItemsToRemove(id: string | number) {
       self.items.splice(self.items.findIndex(i => i.id === id), 1)
-      // console.log(getSnapshot(self.items))
     },
+    getDbStudentUsers: async function () {
+      try {
+        const { data } = await API.getStudentUsers({
+          emailContains: self.emailContains,
+          limit: self.limit,
+          page: self.page,
+        })
+        self.setSnapshotNew(data.students, self.items)
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
   }))
 
 export default Users

@@ -12,9 +12,7 @@ let input2: string = ''
  * @param getDatabaseItems: call api
  */
 const SearchBar = ({
-  getDatabaseItems = () => { console.log('prop should pass') },
-  setGlobalInput = (input: string) => { },
-  setPage = (page: number) => { console.log('optional') },
+  setPropInput = (input: string) => { },
   placeholder = "Enter user's email",
   className = "mb-2"
 }) => {
@@ -27,9 +25,7 @@ const SearchBar = ({
     clearTimeout(timer)
 
     timer = setTimeout(() => {
-      setPage(1)
-      setGlobalInput(input2)
-      getDatabaseItems()
+      setPropInput(input2)
     }, 500);
   }
 
