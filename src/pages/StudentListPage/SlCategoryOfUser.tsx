@@ -1,6 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import { STUDENTS, STUDENTS_WHO_HAVE_NOT_TUTOR_YET } from './definitions'
+import { STUDENTS, STUDENTS_WHO_HAVE_NOT_TUTOR } from './definitions'
 
 const SlCategoryOfUser = ({
   category = STUDENTS,
@@ -20,7 +20,7 @@ const SlCategoryOfUser = ({
       onChange={onChange}
     >
       <option value={STUDENTS}>{STUDENTS}</option>
-      <option value={STUDENTS_WHO_HAVE_NOT_TUTOR_YET}>{STUDENTS_WHO_HAVE_NOT_TUTOR_YET}</option>
+      <option value={STUDENTS_WHO_HAVE_NOT_TUTOR}>{STUDENTS_WHO_HAVE_NOT_TUTOR}</option>
     </select>
   )
 }

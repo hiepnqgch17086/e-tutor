@@ -42,13 +42,9 @@ const StudentListPage = () => {
           setCategory={setCategory}
         />
       </div>
-      {
-        category === STUDENTS && (
-          <MainList
-            users={users}
-          />
-        )
-      }
+      <MainList
+        users={users}
+      />
       <PaginationBar
         page={page}
         setPage={setPage}

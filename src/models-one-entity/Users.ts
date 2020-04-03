@@ -149,6 +149,18 @@ const Users = types.compose(
       } catch (error) {
         console.log(error.message)
       }
+    },
+    getDbStudentUsersWhoHaveNotTutor: async function () {
+      try {
+        const { data } = await API.getStudentUsersWhoHaveNotTutor({
+          emailContains: self.emailContains,
+          limit: self.limit,
+          page: self.page,
+        })
+        self.setSnapshotNew(data.students, self.items)
+      } catch (error) {
+        console.log(error.message)
+      }
     }
   }))
 
