@@ -5,18 +5,38 @@ import { goUserPage } from '../../../routes'
 import CustomTable from '../../../components-in-managing-resources/CustomTable'
 import { Button, ButtonGroup } from 'reactstrap'
 import AvatarInDefault from '../../../images/AvatarInDefault'
-import BtnChangeTutor from './BtnChangeTutor'
 import { IS_STUDENT, IS_TUTOR } from '../../../models-one-prop/role'
 
-const ListOfStudent = ({
-  users = defaultOfUsers
+const ListOfTutor = ({
+  users = Users.create({
+    items: [
+      {
+        id: 1,
+        avatar: '',
+        name: 'tutor1',
+        role: 2,
+        email: 'tutor1@example.com',
+        students: [
+          {
+            id: 1
+          },
+          {
+            id: 2
+          },
+          {
+            id: 3
+          }
+        ]
+      }
+    ]
+  })
 }) => {
   const { page, limit } = users
   // console.log(users)
   return (
     <CustomTable
       className="mb-2"
-      headerArray={["#", "Avatar", "Name", "Email", "Role", "Tutor email", "Menu"]}
+      headerArray={["#", "Avatar", "Name", "Email", "Role", "Support", "Menu"]}
       data={users.items}
       renderItemCellsInRow={({ item = defaultOfUser, index = 0 }) => {
         return [
@@ -26,8 +46,7 @@ const ListOfStudent = ({
           item.email,
           item.role === IS_STUDENT ? 'Student' : item.role === IS_TUTOR ? 'Tutor' : 'Other',
           <div>
-            {item.tutorId === null ? '' : item.tutorId.email}
-            <BtnChangeTutor className="ml-1" />
+            {item.students.length} students
           </div>,
           <ButtonGroup>
             <Button onClick={() => goUserPage(item.id)}>
@@ -40,4 +59,4 @@ const ListOfStudent = ({
   )
 }
 
-export default observer(ListOfStudent)
+export default observer(ListOfTutor)

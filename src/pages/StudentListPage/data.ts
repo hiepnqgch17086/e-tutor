@@ -18,7 +18,6 @@ const AllUsersPageData = types.compose(
         case STUDENTS:
           users.getDbStudentUsers()
           return;
-
         default:
           return;
       }

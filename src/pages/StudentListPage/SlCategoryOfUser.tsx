@@ -1,6 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import { STUDENTS, TUTORS, STUDENTS_WHO_HAVE_NOT_TUTOR_YET } from './definitions'
+import { STUDENTS, STUDENTS_WHO_HAVE_NOT_TUTOR_YET } from './definitions'
 
 const SlCategoryOfUser = ({
   category = STUDENTS,
@@ -9,7 +9,6 @@ const SlCategoryOfUser = ({
   className = "mb-2"
 }) => {
   const onChange = (e: any) => {
-    // console.log(e.target.value)
     setCategory(e.target.value)
     setPage(1)
   }
@@ -21,7 +20,6 @@ const SlCategoryOfUser = ({
       onChange={onChange}
     >
       <option value={STUDENTS}>{STUDENTS}</option>
-      <option value={TUTORS}>{TUTORS}</option>
       <option value={STUDENTS_WHO_HAVE_NOT_TUTOR_YET}>{STUDENTS_WHO_HAVE_NOT_TUTOR_YET}</option>
     </select>
   )

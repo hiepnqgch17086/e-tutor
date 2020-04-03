@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { observer } from 'mobx-react-lite'
-import ListOfStudent from './ListOfStudent'
+import MainList from './MainList'
 import Data from './data'
 import SearchBar from '../../components-in-managing-resources/SearchBar'
 import PaginationBar from '../../components-in-managing-resources/PaginationBar'
 import SlNumberOfItems from '../../components-in-managing-resources/SlNumberOfItems'
 import SlCategoryOfUser from './SlCategoryOfUser'
 import { STUDENTS } from './definitions'
-
+import ListOfTutor from '../TutorListPage/ListOfTutor'
 /**
  * FOR ADMIN ONLY
  */
-const AllUsersPage = () => {
+const StudentListPage = () => {
 
   const [category, setCategory] = useState(STUDENTS)
   const { users } = Data
@@ -44,7 +44,7 @@ const AllUsersPage = () => {
       </div>
       {
         category === STUDENTS && (
-          <ListOfStudent
+          <MainList
             users={users}
           />
         )
@@ -57,4 +57,4 @@ const AllUsersPage = () => {
   )
 }
 
-export default observer(AllUsersPage)
+export default observer(StudentListPage)
