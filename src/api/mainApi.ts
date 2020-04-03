@@ -48,4 +48,14 @@ export default class MainApi extends JsonApi {
       errorMessage
     }
   }
+
+
+  /////////////EMAILS///////////////
+  async getUnReadEmailsOfAuth(): Promise<Response> {
+    const { data: { unReadEmailsOfAuth, errorMessage } } = await this.ApiRef.get('/emails/unread-of-auth')
+    return {
+      data: unReadEmailsOfAuth,
+      errorMessage
+    }
+  }
 }

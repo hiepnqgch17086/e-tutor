@@ -1,23 +1,43 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { Link } from 'react-router-dom'
 import { EMAIL_LIST_PAGE } from '../../../../routes'
 import UnReadEmailItem from './UnReadEmailItem'
+import ProfilePageData from '../../../../pages/ProfilePage/data'
+import { unReadEmailOfAuth } from './data'
 
 const UnReadEmailList = () => {
+
+  const { currentUser } = ProfilePageData
+
+  useEffect(() => {
+    // effect
+    if (!currentUser.id) return
+
+    unReadEmailOfAuth.getDatabaseUnReadEmailsOfAuth()
+    return () => {
+      // cleanup
+    }
+  }, [currentUser.id])
+
   return (
     <li className="nav-item dropdown">
       <a href="#!" className="nav-link dropdown-toggle pl-md-3 position-relative" id="bell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span><i data-feather="mail" className="svg-icon" /></span>
-        <span className="badge badge-primary notify-no rounded-circle">5</span>
+        <span className="badge badge-primary notify-no rounded-circle">
+          {unReadEmailOfAuth.countOfUnReadEmails}
+        </span>
       </a>
       <div className="dropdown-menu dropdown-menu-right mailbox animated bounceInDown">
         <ul className="list-style-none">
           <li>
             <div className="message-center notifications position-relative">
               {/* Message */}
-
-              <UnReadEmailItem />
+              {
+                unReadEmailOfAuth.items.map((item) => (
+                  <UnReadEmailItem key={item.id} item={item} />
+                ))
+              }
 
 
               {/* <a href="#!" className="message-item d-flex align-items-center border-bottom px-3 py-2">

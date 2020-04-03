@@ -2,8 +2,7 @@ import { types } from "mobx-state-tree";
 
 export const createdAt = types.model({
   createdAt: types.optional(
-    types.union(types.string, types.number, types.null),
-    null
+    types.string, ''
   )
 })
   .actions(self => ({
@@ -15,8 +14,7 @@ export const createdAt = types.model({
 
 export const updatedAt = types.model({
   updatedAt: types.optional(
-    types.union(types.string, types.number, types.null),
-    null
+    types.string, ''
   )
 })
   .actions(self => ({

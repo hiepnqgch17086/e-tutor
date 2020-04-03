@@ -7,12 +7,13 @@ import setSnapshotUpdate from "../models-one-action/setSnapshotUpdate";
 import { Response } from './types'
 import { AxiosResponse } from "axios";
 import { toast } from "react-toastify";
+import { createdAt, updatedAt } from "../models-one-prop/dateAt";
 
 const defaultSnapshot = {}
 
 const GeneralModel = types.compose(
   // createdAt, updatedAt,
-  setSnapshotNew, _getSnapshotWithProperties, setSnapshotUpdate,
+  setSnapshotNew, _getSnapshotWithProperties, setSnapshotUpdate, createdAt, updatedAt
 )
   .actions(self => ({
     _getMainProperties(): Array<string> {
