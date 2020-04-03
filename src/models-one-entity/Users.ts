@@ -157,7 +157,8 @@ const Users = types.compose(
           limit: self.limit,
           page: self.page,
         })
-        self.setSnapshotNew(data.students, self.items)
+        console.log(data)
+        self.setSnapshotNew(data.tutors, self.items)
       } catch (error) {
         console.log(error.message)
       }

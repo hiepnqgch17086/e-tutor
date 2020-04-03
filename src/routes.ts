@@ -14,8 +14,9 @@ export const MEETING_LIST_PAGE = '/meetings'
 export const MEETING_DETAIL_PAGE = '/meetings/:id'
 export const EMAIL_LIST_PAGE = '/emails'
 export const EMAIL_DETAIL_PAGE = '/emails/:id'
+
 export const STUDENT_LIST_PAGE = '/students'
-export const STUDENT_DETAIL_PAGE = '/students/:id'
+export const TUTOR_LIST_PAGE = '/tutors'
 export const USER_DETAIL_PAGE = '/users/:id'
 
 export const get_USER_PAGE = (id: string | number) => `/users/${id}`

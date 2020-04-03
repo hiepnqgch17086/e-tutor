@@ -7,29 +7,8 @@ import { Button, ButtonGroup } from 'reactstrap'
 import AvatarInDefault from '../../../images/AvatarInDefault'
 import { IS_STUDENT, IS_TUTOR } from '../../../models-one-prop/role'
 
-const ListOfTutor = ({
-  users = Users.create({
-    items: [
-      {
-        id: 1,
-        avatar: '',
-        name: 'tutor1',
-        role: 2,
-        email: 'tutor1@example.com',
-        students: [
-          {
-            id: 1
-          },
-          {
-            id: 2
-          },
-          {
-            id: 3
-          }
-        ]
-      }
-    ]
-  })
+const MainList = ({
+  users = defaultOfUsers
 }) => {
   const { page, limit } = users
   // console.log(users)
@@ -59,4 +38,4 @@ const ListOfTutor = ({
   )
 }
 
-export default observer(ListOfTutor)
+export default observer(MainList)

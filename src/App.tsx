@@ -5,7 +5,7 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom'
-import { SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE, LANDING_PAGE, ADMIN_ERROR_PAGE, PROFILE_PAGE, CHAT_ROOM_LIST_PAGE, MEETING_LIST_PAGE, MEETING_DETAIL_PAGE, EMAIL_LIST_PAGE, EMAIL_DETAIL_PAGE, STUDENT_LIST_PAGE, STUDENT_DETAIL_PAGE, USER_DETAIL_PAGE } from './routes'
+import { SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE, LANDING_PAGE, ADMIN_ERROR_PAGE, PROFILE_PAGE, CHAT_ROOM_LIST_PAGE, MEETING_LIST_PAGE, MEETING_DETAIL_PAGE, EMAIL_LIST_PAGE, EMAIL_DETAIL_PAGE, STUDENT_LIST_PAGE, USER_DETAIL_PAGE, TUTOR_LIST_PAGE } from './routes'
 import SignInPage from './pages/SignInPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -21,6 +21,7 @@ import EmailList from './pages/EmailListPage';
 import EmailDetailPage from './pages/EmailDetailPage';
 import StudentListPage from './pages/StudentListPage';
 import UserDetailPage from './pages/UserDetailPage';
+import TutorListPage from './pages/TutorListPage';
 // import CalenderPage from './pages/CalenderPage';
 // import Axios from 'axios';
 
@@ -55,8 +56,12 @@ function App() {
           <PrivateRoute path={EMAIL_DETAIL_PAGE}>
             <EmailDetailPage />
           </PrivateRoute>
+
           <PrivateRoute exact path={STUDENT_LIST_PAGE}>
             <StudentListPage />
+          </PrivateRoute>
+          <PrivateRoute exact path={TUTOR_LIST_PAGE}>
+            <TutorListPage />
           </PrivateRoute>
           <PrivateRoute path={USER_DETAIL_PAGE}>
             <UserDetailPage />
