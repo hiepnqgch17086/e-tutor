@@ -2,7 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react-lite'
 import ProfilePageData from '../../../pages/ProfilePage/data'
 import { Link, useLocation } from 'react-router-dom'
-import { HOME_PAGE, CHAT_ROOM_LIST_PAGE, PROFILE_PAGE } from '../../../routes'
+import { HOME_PAGE, CHAT_ROOM_TUTOR_PAGE, PROFILE_PAGE } from '../../../routes'
 import moment from 'moment'
 
 const PageBreadcrumb = () => {
@@ -77,7 +77,7 @@ const _getDisplay = (pathName: string) => {
         breadcrumb: profileBreadcrumbRoot
       };
 
-    case CHAT_ROOM_LIST_PAGE:
+    case CHAT_ROOM_TUTOR_PAGE:
       return {
         title: 'Chat',
         breadcrumb: <>
@@ -85,7 +85,7 @@ const _getDisplay = (pathName: string) => {
             <Link to={HOME_PAGE}>Home</Link>
           </li>
           <li className="breadcrumb-item">
-            <Link to={CHAT_ROOM_LIST_PAGE}>Chat</Link>
+            <Link to={CHAT_ROOM_TUTOR_PAGE}>Chat</Link>
           </li>
         </>
       }

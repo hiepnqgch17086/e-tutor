@@ -1,16 +1,20 @@
 import React from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import { HOME_PAGE, CHAT_ROOM_LIST_PAGE, MEETING_LIST_PAGE, STUDENT_LIST_PAGE, TUTOR_LIST_PAGE } from '../../routes'
+import { HOME_PAGE, CHAT_ROOM_TUTOR_PAGE, MEETING_LIST_PAGE, STUDENT_LIST_PAGE, TUTOR_LIST_PAGE, CHAT_ROOM_STUDENT_PAGE } from '../../routes'
 // import ProfilePageData from '../../pages/ProfilePage/data'
 import { observer } from 'mobx-react-lite'
+import ProfilePageData from '../../pages/ProfilePage/data'
+import { IS_ADMIN, IS_TUTOR, IS_STUDENT } from '../../models-one-prop/role'
 
 const SideBar = () => {
   const location = useLocation()
   const pathName = location.pathname
+  const { currentUser } = ProfilePageData
 
   const isDashboardActive = pathName === HOME_PAGE
 
-  const isChatActive = pathName === CHAT_ROOM_LIST_PAGE
+  const temp = [CHAT_ROOM_TUTOR_PAGE, CHAT_ROOM_STUDENT_PAGE]
+  const isChatActive = temp.indexOf(pathName) >= 0
 
   const isMeetingActive = pathName.indexOf(MEETING_LIST_PAGE) >= 0
 
@@ -25,53 +29,63 @@ const SideBar = () => {
         {/* Sidebar navigation*/}
         <nav className="sidebar-nav">
           <ul id="sidebarnav">
+            <SideBarItem
+              href={HOME_PAGE}
+              iconName="icon-home"
+              title="Dashboard"
+              isActive={isDashboardActive}
+            />
+
+            <li className="list-divider" />
+            <li className="nav-small-cap"><span className="hide-menu">Applications</span></li>
+
             {
-              true && ( // for tutor and student
-                <>
-                  <SideBarItem
-                    href={HOME_PAGE}
-                    iconName="icon-home"
-                    title="Dashboard"
-                    isActive={isDashboardActive}
-                  />
-
-                  <li className="list-divider" />
-                  <li className="nav-small-cap"><span className="hide-menu">Applications</span></li>
-
-                  <SideBarItem
-                    href={CHAT_ROOM_LIST_PAGE}
-                    iconName="icon-speech"
-                    title="Chat"
-                    isActive={isChatActive}
-                  />
-
-                  <SideBarItem
-                    href={MEETING_LIST_PAGE}
-                    iconName="icon-calender"
-                    title="Meetings"
-                    isActive={isMeetingActive}
-                  />
-                </>
+              currentUser.role === IS_TUTOR && (
+                <SideBarItem
+                  href={CHAT_ROOM_TUTOR_PAGE}
+                  iconName="icon-speech"
+                  title="Chat"
+                  isActive={isChatActive}
+                />
               )
             }
 
             {
-              true && ( // for only admin
+              currentUser.role === IS_STUDENT && (
+                <SideBarItem
+                  href={CHAT_ROOM_STUDENT_PAGE}
+                  iconName="icon-speech"
+                  title="Chat"
+                  isActive={isChatActive}
+                />
+              )
+            }
+
+
+            <SideBarItem
+              href={MEETING_LIST_PAGE}
+              iconName="icon-calender"
+              title="Meetings"
+              isActive={isMeetingActive}
+            />
+
+            {
+              currentUser.role === IS_ADMIN && ( // for only admin
                 <SideBarItem
                   href={STUDENT_LIST_PAGE}
                   iconName="icon-people"
-                  title="Students (admin-only)"
+                  title="Students"
                   isActive={isStudentsTabActive}
                 />
               )
             }
 
             {
-              true && ( // for only admin
+              currentUser.role === IS_ADMIN && ( // for only admin
                 <SideBarItem
                   href={TUTOR_LIST_PAGE}
                   iconName="icon-people"
-                  title="Tutors (admin-only)"
+                  title="Tutors"
                   isActive={isTutorsTabActive}
                 />
               )

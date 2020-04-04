@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
 import Data from './data'
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 import { HOME_PAGE } from '../../routes'
 import ProfilePageData from '../ProfilePage/data'
 import CustomInput from '../../components-in-managing-resources/CustomInput'
@@ -10,10 +10,11 @@ const { currentUser } = ProfilePageData
 
 const MainForm = () => {
 
-  const history = useHistory()
+  // const history = useHistory()
 
   const onSignInSuccess = () => {
-    history.push(HOME_PAGE)
+    window.location.href = HOME_PAGE
+    // history.push(HOME_PAGE)
   }
 
   const onSubmit = (e: any) => {

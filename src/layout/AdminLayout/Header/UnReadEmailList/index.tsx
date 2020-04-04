@@ -10,7 +10,7 @@ import { getClient, UPDATED_MUTATION_TYPE, CREATED_MUTATION_TYPE, DELETED_MUTATI
 import { getLocalStorageToken } from '../../../../routes'
 
 let client: DefaultClient<unknown>
-let querySubscription: ZenObservable.Subscription
+let querySubscription: ZenObservable.Subscription | null
 
 const setClient = () => {
   if (client) return
@@ -67,7 +67,10 @@ const UnReadEmailList = () => {
       })
     return () => {
       // cleanup
-      if (querySubscription) querySubscription.unsubscribe()
+      if (querySubscription) {
+        querySubscription.unsubscribe()
+        querySubscription = null
+      }
     }
   }, [currentUser.id])
 

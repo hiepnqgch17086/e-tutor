@@ -8,7 +8,8 @@ export const HOME_PAGE = '/home'
 export const PROFILE_PAGE = '/profile'
 export const QUOTE_SEPERATED = '/'
 
-export const CHAT_ROOM_LIST_PAGE = '/chat-rooms'
+export const CHAT_ROOM_TUTOR_PAGE = '/chat-rooms-of-tutor'
+export const CHAT_ROOM_STUDENT_PAGE = '/chat-room-of-student'
 export const CALENDER_PAGE = '/calender'
 export const MEETING_LIST_PAGE = '/meetings'
 export const MEETING_DETAIL_PAGE = '/meetings/:id'
@@ -20,7 +21,7 @@ export const TUTOR_LIST_PAGE = '/tutors'
 export const USER_DETAIL_PAGE = '/users/:id'
 
 export const get_USER_PAGE = (id: string | number) => `/users/${id}`
-export const get_CLASS_PAGE = (id: string | number) => `${CHAT_ROOM_LIST_PAGE}/${id}`
+export const get_CLASS_PAGE = (id: string | number) => `${CHAT_ROOM_TUTOR_PAGE}/${id}`
 export const get_MEETING_DETAIL_PAGE = (id: string | number) => `${MEETING_LIST_PAGE}/${id}`
 export const get_EMAIL_DETAIL_PAGE = (id: string | number) => `${EMAIL_LIST_PAGE}/${id}`
 // export const getIsUserPagePath = (pathName: string) => {
@@ -29,7 +30,7 @@ export const get_EMAIL_DETAIL_PAGE = (id: string | number) => `${EMAIL_LIST_PAGE
 // }
 
 export const getIsClassPagePath = (pathName: string) => {
-  const regex = new RegExp("^\\" + CHAT_ROOM_LIST_PAGE + "\\w+$")
+  const regex = new RegExp("^\\" + CHAT_ROOM_TUTOR_PAGE + "\\w+$")
   return regex.test(pathName)
 }
 

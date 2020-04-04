@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite'
 
 const CurrentRoom = () => {
   return (
-    <div className="chat-box fix-bug-of-list-contact position-relative" style={{ height: 'calc(60vh)' }}>
+    <div className="chat-box fix-bug-of-list-contact position-relative border-top border-left-0" style={{ height: 'calc(60vh)' }}>
       {/*chat Row */}
       <ul className="chat-list list-style-none px-3 pt-3">
         {/*chat Row */}
