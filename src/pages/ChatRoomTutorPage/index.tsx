@@ -27,10 +27,8 @@ const ChatRoomTutorPage = () => {
         <div className="card">
           <div className="row no-gutters">
             <div className="col-lg-6  col-xl-6 border-left-0">
-              <div className="chat-box fix-bug-of-list-contact position-relative border-top border-left-0" style={{ height: 'calc(60vh)' }}>
-                {/*chat Row */}
-                <ListOfMessage />
-              </div>
+              <ListOfMessage />
+
               <IpMessage />
             </div>
             <div className="col-lg-6 col-xl-6 border">
