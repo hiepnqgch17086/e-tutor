@@ -31,6 +31,13 @@ export const Email = types.compose(
       }
     }
   }))
+  .views(self => ({
+    get bodyDisplay(): string {
+      let rs = self.body.replace(/^(.{50}[^\s]*).*/, "$1")
+      if (self.body.length > rs.length) rs += '...'
+      return rs
+    }
+  }))
 
 const Emails = types.compose(
   PaginationModel,
@@ -50,6 +57,16 @@ const Emails = types.compose(
       } catch (error) {
         console.log(error.message)
       }
+    },
+    getDatabaseAuthEmails: async function () {
+      try {
+        const { data, errorMessage } = await API.getEmailsOfAuth({ limit: self.limit, page: self.page })
+        if (errorMessage) throw new Error(errorMessage)
+
+        self.setSnapshotNew(data, self.items)
+      } catch (error) {
+        toast.error(error.message)
+      }
     }
   }))
   .views(self => ({
@@ -63,4 +80,5 @@ const Emails = types.compose(
   }))
 
 export const defaultOfEmail = Email.create({})
+export const defaultOfEmails = Emails.create({})
 export default Emails

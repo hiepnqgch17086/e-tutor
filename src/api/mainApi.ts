@@ -58,6 +58,13 @@ export default class MainApi extends JsonApi {
       errorMessage
     }
   }
+  async getEmailsOfAuth({ limit = 1, page = 1 }): Promise<Response> {
+    const { data: { emailsOfAuth, errorMessage } } = await this.ApiRef.get(`/emails/of-auth?limit=${limit}&page=${page}`)
+    return {
+      data: emailsOfAuth,
+      errorMessage
+    }
+  }
   async getEmail(emailId: number): Promise<Response> {
     const { data: { email, errorMessage } } = await this.ApiRef.get(`/emails/${emailId}`)
     return {
