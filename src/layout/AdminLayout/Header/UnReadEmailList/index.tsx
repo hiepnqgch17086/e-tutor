@@ -8,6 +8,7 @@ import { unReadEmailOfAuth } from './data'
 import DefaultClient, { gql } from 'apollo-boost'
 import { getClient, UPDATED_MUTATION_TYPE, CREATED_MUTATION_TYPE, DELETED_MUTATION_TYPE } from '../../../../ApolloConfig'
 import { getLocalStorageToken } from '../../../../routes'
+import { toast } from 'react-toastify'
 
 let client: DefaultClient<unknown>
 let querySubscription: ZenObservable.Subscription | null
@@ -63,6 +64,10 @@ const UnReadEmailList = () => {
               break;
           }
           // console.log('response.data', response.data)
+        },
+        error(ss) {
+          console.log(ss.message)
+          toast.error('Something went wrong!')
         }
       })
     return () => {

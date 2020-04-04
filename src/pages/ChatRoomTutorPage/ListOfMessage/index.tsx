@@ -4,9 +4,13 @@ import { observer } from 'mobx-react-lite'
 const ListOfMessage = () => {
 
   const scrollToBottom = () => {
-    const messages = document.getElementById('messages');
-    // @ts-ignore
-    messages.scrollTop = messages.scrollHeight;
+    try {
+      const messages = document.getElementById('messages');
+      // @ts-ignore
+      messages.scrollTop = messages.scrollHeight;
+    } catch (error) {
+      console.log(error.message)
+    }
   }
 
   useEffect(() => {
