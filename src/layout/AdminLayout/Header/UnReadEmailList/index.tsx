@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { Link } from 'react-router-dom'
 import { EMAIL_LIST_PAGE } from '../../../../routes'
@@ -10,6 +10,7 @@ import { getClient, UPDATED_MUTATION_TYPE, CREATED_MUTATION_TYPE, DELETED_MUTATI
 import { getLocalStorageToken } from '../../../../routes'
 
 let client: DefaultClient<unknown>
+let querySubscription: ZenObservable.Subscription
 
 const setClient = () => {
   if (client) return
@@ -18,11 +19,11 @@ const setClient = () => {
   client = getClient(jwt)
 }
 
-const getHello = gql`
-  query {
-    hello
-  }
-`
+// const getHello = gql`
+//   query {
+//     hello
+//   }
+// `
 
 const subscribeToEmails = gql`
   subscription{
@@ -44,7 +45,7 @@ const UnReadEmailList = () => {
     unReadEmailOfAuth.getDatabaseUnReadEmailsOfAuth()
 
     setClient()
-    client.subscribe({ query: subscribeToEmails })
+    querySubscription = client.subscribe({ query: subscribeToEmails })
       .subscribe({
         next(response) {
           const { data: { email: { mutation, node } } } = response
@@ -66,6 +67,7 @@ const UnReadEmailList = () => {
       })
     return () => {
       // cleanup
+      if (querySubscription) querySubscription.unsubscribe()
     }
   }, [currentUser.id])
 
