@@ -1,12 +1,13 @@
 import { AxiosResponse } from "axios";
 import JsonApi from "./jsonApi";
-import { PaginationType, Response } from "../models-one-entity/types";
+import { Response } from "../models-one-entity/types";
 
+export const ApiURL = 'http://localhost:4000'
 
 export default class MainApi extends JsonApi {
 
   constructor() {
-    super('http://localhost:4000')
+    super(ApiURL)
   }
 
   //////////////USERS////////////////
