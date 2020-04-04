@@ -53,7 +53,7 @@ function App() {
           <PrivateRoute exact path={EMAIL_LIST_PAGE}>
             <EmailList />
           </PrivateRoute>
-          <PrivateRoute path={EMAIL_DETAIL_PAGE}>
+          <PrivateRoute exact path={EMAIL_DETAIL_PAGE}>
             <EmailDetailPage />
           </PrivateRoute>
 

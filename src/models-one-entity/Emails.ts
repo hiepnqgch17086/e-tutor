@@ -8,8 +8,9 @@ import API from "../api";
 import { User } from "./Users";
 import GeneralModelList from "./GeneralModelList";
 import isRead from "../models-one-prop/isRead";
+import { toast } from "react-toastify";
 
-const Email = types.compose(
+export const Email = types.compose(
   'Email',
   id, title, body, isRead,
   GeneralModel,
@@ -18,10 +19,16 @@ const Email = types.compose(
   }),
 )
   .actions(self => ({
-    getDatabase() {
-      // if(typeof self.userId !== "number") {
-      //   self.userId.
-      // }
+    getDatabase: async function () {
+      try {
+        const { data, errorMessage } = await API.getEmail(self.id)
+        if (errorMessage) throw new Error(errorMessage)
+        // console.log('self')
+        self.setSnapshotNew(data)
+        console.log(data)
+      } catch (error) {
+        toast.error(error.message)
+      }
     }
   }))
 

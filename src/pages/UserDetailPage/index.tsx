@@ -8,10 +8,10 @@ import HomePage from '../HomePage'
 
 const UserDetailPage = () => {
   // const { user } = Data
-  const { id = "" } = useParams()
+  const { id = '' } = useParams()
 
   const user = User.create({
-    id,
+    id: parseInt(id),
     avatar: '',
     name: 'student1',
     role: 3,
