@@ -24,11 +24,14 @@ import UserDetailPage from './pages/UserDetailPage';
 import TutorListPage from './pages/TutorListPage';
 // import CalenderPage from './pages/CalenderPage';
 // import Axios from 'axios';
+// import { ApolloProvider } from '@apollo/react-hooks';
+// import { client } from './ApolloConfig';
 
 const pathAvoid = [SIGN_IN_PAGE, LANDING_PAGE, ADMIN_ERROR_PAGE]
 
 function App() {
   return (
+    // <ApolloProvider client={client}>
     <BrowserRouter>
       <Route exact path={SIGN_IN_PAGE} component={SignInPage} />
       <Route exact path={LANDING_PAGE} component={LandingPage} />
@@ -71,6 +74,7 @@ function App() {
 
       <ToastContainer />
     </BrowserRouter>
+    // </ApolloProvider>
   );
 }
 

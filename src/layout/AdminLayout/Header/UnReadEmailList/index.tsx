@@ -5,6 +5,33 @@ import { EMAIL_LIST_PAGE } from '../../../../routes'
 import UnReadEmailItem from './UnReadEmailItem'
 import ProfilePageData from '../../../../pages/ProfilePage/data'
 import { unReadEmailOfAuth } from './data'
+import DefaultClient, { gql } from 'apollo-boost'
+import { getClient, UPDATED_MUTATION_TYPE, CREATED_MUTATION_TYPE, DELETED_MUTATION_TYPE } from '../../../../ApolloConfig'
+import { getLocalStorageToken } from '../../../../routes'
+
+let client: DefaultClient<unknown>
+
+const setClient = () => {
+  if (client) return
+  const jwt = getLocalStorageToken()
+  if (!jwt) return
+  client = getClient(jwt)
+}
+
+const getHello = gql`
+  query {
+    hello
+  }
+`
+
+const subscribeToEmails = gql`
+  subscription{
+    email{
+      mutation
+      node {id title body isRead createdAt updatedAt}
+    }
+  }
+`
 
 const UnReadEmailList = () => {
 
@@ -15,6 +42,28 @@ const UnReadEmailList = () => {
     if (!currentUser.id) return
 
     unReadEmailOfAuth.getDatabaseUnReadEmailsOfAuth()
+
+    setClient()
+    client.subscribe({ query: subscribeToEmails })
+      .subscribe({
+        next(response) {
+          const { data: { email: { mutation, node } } } = response
+          // console.log(node)
+          switch (mutation) {
+            case UPDATED_MUTATION_TYPE:
+              unReadEmailOfAuth.setItemsToRemove(node.id)
+              break;
+            case CREATED_MUTATION_TYPE:
+              unReadEmailOfAuth.setItemsToAdd(node)
+              break;
+            case DELETED_MUTATION_TYPE:
+              break;
+            default:
+              break;
+          }
+          // console.log('response.data', response.data)
+        }
+      })
     return () => {
       // cleanup
     }
@@ -34,7 +83,13 @@ const UnReadEmailList = () => {
             <div className="message-center notifications position-relative">
               {/* Message */}
               {
-                unReadEmailOfAuth.items.map((item) => (
+                unReadEmailOfAuth.items.slice().sort((a, b) => {
+                  const createdAtA = a.createdAt
+                  const createdAtB = b.createdAt
+                  if (createdAtB > createdAtA) return 1
+                  if (createdAtA > createdAtB) return -1
+                  return 0
+                }).map((item) => (
                   <UnReadEmailItem key={item.id} item={item} />
                 ))
               }

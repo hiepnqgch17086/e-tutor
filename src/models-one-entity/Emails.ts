@@ -25,7 +25,7 @@ export const Email = types.compose(
         if (errorMessage) throw new Error(errorMessage)
         // console.log('self')
         self.setSnapshotNew(data)
-        console.log(data)
+        // console.log(data)
       } catch (error) {
         toast.error(error.message)
       }
@@ -67,7 +67,16 @@ const Emails = types.compose(
       } catch (error) {
         toast.error(error.message)
       }
-    }
+    },
+    setItemsToAdd(snapshot: Object) {
+      const email = Email.create(snapshot)
+      self.items.push(email)
+      // console.log(getSnapshot(self.items))
+    },
+    setItemsToRemove(id: number) {
+      self.items.splice(self.items.findIndex(i => i.id === id), 1)
+      // console.log(getSnapshot(self.items))
+    },
   }))
   .views(self => ({
     get countOfUnReadEmails(): number {

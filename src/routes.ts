@@ -46,7 +46,7 @@ export const setLocalStorageAuthTokenDelete = () => {
   localStorage.removeItem('token')
 }
 
-export const getLocalStorageToken = (): string | number => {
+export const getLocalStorageToken = (): string => {
   try {
     const token = localStorage.getItem('token') || ''
     return token
