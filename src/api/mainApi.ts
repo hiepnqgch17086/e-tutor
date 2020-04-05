@@ -113,7 +113,6 @@ export default class MainApi extends JsonApi {
   }
 
   //////////MEETING
-  //@ts-ignore
   async setMeetingNew(snapshot: any): Promise<Response> {
     const body = {
       ...snapshot, studentId: snapshot.studentId.id
@@ -121,6 +120,18 @@ export default class MainApi extends JsonApi {
     // console.log(ss)
     const { data: { errorMessage } } = await this.ApiRef.post(`/meetings`, body)
     return {
+      errorMessage
+    }
+  }
+
+  async getMeetings({
+    fromAt, toAt
+  }: any): Promise<Response> {
+    const fromAtZ = new Date(fromAt).toISOString()
+    const toAtZ = new Date(toAt).toISOString()
+    const { data: { meetings, errorMessage } } = await this.ApiRef.get(`/meetings?fromAt=${fromAtZ}&toAt=${toAtZ}`)
+    return {
+      data: { meetings },
       errorMessage
     }
   }

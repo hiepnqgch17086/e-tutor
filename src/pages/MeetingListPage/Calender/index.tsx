@@ -7,19 +7,19 @@ import moment from 'moment'
 
 const Calender = ({
   dateString = moment().format(),
-  startDateString = moment().format(),
-  endDateString = moment().format(),
+  fromAt = moment().format(),
+  toAt = moment().format(),
   setDateString = (dateString: string) => { }
 }) => {
 
-  const endDate = moment(endDateString)
-  const startDate = moment(startDateString)
-  let startDateStringList: any[] = []
+  const toDate = moment(toAt)
+  const fromDate = moment(fromAt)
+  let sundayStringList: any[] = []
 
 
-  while (endDate > startDate) {
-    startDateStringList.push(startDate.format())
-    startDate.add(1, 'week')
+  while (toDate > fromDate) {
+    sundayStringList.push(fromDate.format())
+    fromDate.add(1, 'week')
   }
 
   return (
@@ -48,10 +48,10 @@ const Calender = ({
                   <tr>
                     <td>
                       {
-                        startDateStringList.map((startDateString, index) => (
+                        sundayStringList.map((sundayString, index) => (
                           <RowOfDate
                             key={index}
-                            startDateString={startDateString} dateString={dateString}
+                            sundayString={sundayString} dateString={dateString}
                             setDateString={setDateString}
                           />
                         ))

@@ -12,16 +12,16 @@ const MeetingPage = () => {
   const startDayOfMonth = moment(dateString).startOf('month').format('d');
   const endDayOfMonth = moment(dateString).endOf('month').format('d')
 
-  const startDateString = moment(dateString).startOf('month').subtract(parseInt(startDayOfMonth), "days").format() // main
+  const fromAt = moment(dateString).startOf('month').subtract(parseInt(startDayOfMonth), "days").format() // main
 
-  const endDateString = moment(dateString).endOf('month').add((6 - parseInt(endDayOfMonth)), "days").format() // main
+  const toAt = moment(dateString).endOf('month').add((6 - parseInt(endDayOfMonth)), "days").format() // main
 
   useEffect(() => {
-    Data.onDidMountDidUpdate({ startDateString, endDateString })
+    Data.onDidMountDidUpdate({ fromAt, toAt })
     return () => {
     }
     // eslint-disable-next-line
-  }, [startDateString])
+  }, [fromAt])
 
   return (
     <div className="card">
@@ -29,8 +29,8 @@ const MeetingPage = () => {
         <div className="col-lg-8">
           <Calender
             dateString={dateString}
-            startDateString={startDateString}
-            endDateString={endDateString}
+            fromAt={fromAt}
+            toAt={toAt}
             setDateString={setDateString}
           />
         </div>

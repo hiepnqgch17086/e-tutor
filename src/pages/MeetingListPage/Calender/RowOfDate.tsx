@@ -1,21 +1,21 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import moment from 'moment'
+import { Button } from 'reactstrap'
+import MeetingListPageData from '../data'
 
 const RowOfDate = ({
-  startDateString = '',
+  sundayString = '',
   dateString = '',
   setDateString = (dateString: string) => { }
 }) => {
-  const startDateStringArr = []
-  const startDate = moment(startDateString)
-  for (let index = 0; index < 7; index++) {
-    startDateStringArr.push(startDate.format('YYYY-MM-DD'));
-    startDate.add(1, 'day')
-  }
 
-  const onClickDateCell = (dString: string) => {
-    setDateString(dString)
+
+  const daysInWeekString = []
+  const startDate = moment(sundayString)
+  for (let index = 0; index < 7; index++) {
+    daysInWeekString.push(startDate.format('YYYY-MM-DD'));
+    startDate.add(1, 'day')
   }
 
   return (
@@ -25,31 +25,16 @@ const RowOfDate = ({
           <tbody>
             <tr>
               {
-                startDateStringArr.map((dString, index) => {
-                  // LOGIC
+                daysInWeekString.map((dString, index) => {
                   const isToday = dString === moment().format('YYYY-MM-DD')
-
-                  const cellIsCurrentDate = dString === moment(dateString).format('YYYY-MM-DD')
-                  const styleForCurrentDate = cellIsCurrentDate ? {
-                    backgroundColor: '#ffff004f'
-                  } : {}
-
-                  const date = moment(dString).format('DD')
+                  const isCurrenDate = dString === moment(dateString).format('YYYY-MM-DD')
                   const isOtherMonth = moment(dateString).format('MM') !== moment(dString).format('MM')
-                  // LOGIC
-                  return (
-                    <td key={index}
-                      className={`fc-day fc-day-top fc-widget-content ${isToday && 'fc-today'} ${isOtherMonth && 'fc-other-month'}`}
-                      data-date={dString}
-                      style={{
-                        cursor: 'pointer',
-                        ...styleForCurrentDate
-                      }}
-                      onClick={() => onClickDateCell(dString)}
-                    >
-                      <span className="fc-day-number">{date}</span>
-                    </td>
-                  )
+
+                  return <CellOfDateObserver key={dString} dString={dString} setDateString={setDateString}
+                    isToday={isToday}
+                    isCurrenDate={isCurrenDate}
+                    isOtherMonth={isOtherMonth}
+                  />
                 })
               }
             </tr>
@@ -59,5 +44,58 @@ const RowOfDate = ({
     </div>
   )
 }
+
+const CellOfDate = ({
+  dString = '',
+  setDateString = (dString: string) => { },
+  isToday = false,
+  isCurrenDate = false,
+  isOtherMonth = false,
+}) => {
+  const { meetings } = MeetingListPageData
+  const [meetingCount, setMeetingCount] = useState(0)
+
+  useEffect(() => {
+    // effect
+    const count = meetings.getCountOfMeetingsInADay(dString)
+    if (meetingCount !== count) setMeetingCount(count)
+    // for first loading, and for added meeting
+  }, [JSON.stringify(meetings.items[0]), meetings.items.length])
+
+  const styleForCurrentDate = isCurrenDate ? {
+    backgroundColor: '#ffff004f'
+  } : {}
+
+  const date = moment(dString).format('DD')
+
+  // LOGIC
+  return (
+    <td
+      className={`fc-day fc-day-top fc-widget-content ${isToday && 'fc-today'} ${isOtherMonth && 'fc-other-month'}`}
+      data-date={dString}
+      style={{
+        cursor: 'pointer',
+        ...styleForCurrentDate
+      }}
+      onClick={() => setDateString(dString)}
+    >
+      <span className="fc-day-number">{date}</span>
+      <div style={{
+        height: '100%',
+        width: '100%',
+      }} className="d-flex justify-content-center">
+        {
+          meetingCount ? (
+            <Button color="success">
+              {meetingCount}
+            </Button>
+          ) : null
+        }
+      </div>
+    </td>
+  )
+}
+
+const CellOfDateObserver = observer(CellOfDate)
 
 export default observer(RowOfDate)

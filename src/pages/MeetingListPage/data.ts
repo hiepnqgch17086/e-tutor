@@ -1,24 +1,24 @@
 import { types } from "mobx-state-tree";
 import GeneralPageModel from "../GeneralPageModel";
-import { Meeting } from "../../models-one-entity/Meetings";
+import Meetings, { Meeting } from "../../models-one-entity/Meetings";
 
 const MeetingListPageData = types.compose(
   'MeetingListPageData',
   GeneralPageModel,
   types.model({
     newMeeting: types.optional(Meeting, {}),
-    startDateString: types.optional(types.string, ''),
-    endDateString: types.optional(types.string, ''),
+    meetings: types.optional(Meetings, {})
   })
 )
   .actions(self => ({
     onDidMountDidUpdate({
-      startDateString,
-      endDateString,
+      fromAt,
+      toAt,
     }: any) {
-      self.startDateString = startDateString
-      self.endDateString = endDateString
-      // console.log(self.startDateString, self.endDateString)
+      const { meetings } = self
+      meetings.setFromAt(fromAt)
+      meetings.setToAt(toAt)
+      meetings.getDatabaseItems()
     },
     onCreateMeeting: async function (callback: Function = () => { }) {
       // console.log(self.newMeeting)
