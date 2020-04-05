@@ -13,7 +13,7 @@ const ChatRoomStudentPage = types.compose(
 )
   .actions(self => ({
     onDidMountDidUpdate() {
-      self.room.getDatabaseStudentAuth()
+      self.room.getDatabaseMessagesStudentAuth()
     },
     onCreateMessage() {
       // console.log(self.newMessage)

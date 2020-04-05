@@ -2,16 +2,19 @@ import React from 'react'
 import { observer } from 'mobx-react-lite'
 import { defaultOfRoom } from '../../../models-one-entity/Rooms'
 import AvatarInDefault from '../../../images/AvatarInDefault'
-import { defaultOfMessage } from '../../../models-one-entity/Messages'
 import moment from 'moment'
+import Data from '../data'
 
 const ContactOrRoomItem = ({
-  item = defaultOfRoom
+  item = defaultOfRoom,
+  index = 0
 }) => {
   const { studentId: { id: stdId, name, email, avatar }, messages } = item
   const lastMessage = messages[0]
   return (
-    <a href="#!" className="btn message-item d-flex align-items-center border-bottom px-3 py-2">
+    <a href="#!" className="btn message-item d-flex align-items-center border-bottom px-3 py-2"
+      onClick={() => Data.onChooseRoom(index)}
+    >
       <div className="user-img">
         <img src={avatar || AvatarInDefault} alt="user" className="img-fluid rounded-circle" width="40px" title={email} />
         <span className="profile-status online float-right" />

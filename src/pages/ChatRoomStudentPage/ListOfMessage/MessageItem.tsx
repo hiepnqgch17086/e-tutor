@@ -6,7 +6,7 @@ import ChatRoomStudentPage from '../data'
 import ProfilePageData from '../../ProfilePage/data'
 import moment from 'moment'
 
-const ListItemOfMessage = ({
+const MessageItem = ({
   item = defaultOfMessage
 }) => {
 
@@ -48,4 +48,4 @@ const ListItemOfMessage = ({
   )
 }
 
-export default observer(ListItemOfMessage)
+export default observer(MessageItem)

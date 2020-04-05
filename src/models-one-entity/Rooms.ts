@@ -15,12 +15,25 @@ export const Room = types.compose(
       const msg = Message.create(message)
       self.messages.push(msg)
     },
-    getDatabaseStudentAuth: async function () {
+    getDatabaseMessagesStudentAuth: async function () {
       try {
-        const { data, errorMessage } = await API.getRoomOfStudentAuth()
+        const { data, errorMessage } = await API.getRoomMessagesOfStudentAuth()
         if (errorMessage) throw new Error(errorMessage)
         self.setSnapshotNew(data)
         // console.log(self)
+      } catch (error) {
+        console.log(error.messages)
+      }
+    },
+    getDatabaseMessagesInRoom: async function () {
+      try {
+        const roomId = self.id
+        const { data, errorMessage } = await API.getMessagesInRoom({
+          roomId
+        })
+        if (errorMessage) throw new Error(errorMessage)
+        self.setSnapshotNew(data.messages, self.messages)
+        // console.log(data)
       } catch (error) {
         console.log(error.messages)
       }
@@ -41,7 +54,6 @@ const Rooms = types.compose(
         const { data, errorMessage } = await API.getRoomsOfTutorAuth()
         if (errorMessage) throw new Error(errorMessage)
         self.setSnapshotNew(data, self.items)
-        console.log(self)
       } catch (error) {
         console.log(error.messages)
       }

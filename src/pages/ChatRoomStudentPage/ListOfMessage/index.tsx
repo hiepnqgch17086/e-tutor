@@ -1,40 +1,15 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import ChatRoomStudentPage from '../data'
-import ListItemOfMessage from './ListItemOfMessage'
-import { getClient, CREATED_MUTATION_TYPE } from '../../../ApolloConfig'
-import { getLocalStorageToken } from '../../../routes'
-import DefaultClient, { gql } from 'apollo-boost'
-import { toast } from 'react-toastify'
-
-/**
- * For COMMENT subscribe
- */
-let client: DefaultClient<unknown>
-let querySubscription: ZenObservable.Subscription | null
-
-const setClient = () => {
-  if (client) return
-  const jwt = getLocalStorageToken()
-  if (!jwt) return
-  client = getClient(jwt)
-}
-
-// define of subscribe is defined in jwt token and room
-const subscribeToComment = gql`
-  subscription($roomId: ID!) {
-    message(roomId: $roomId){
-      mutation
-      node {id userId { id } text createdAt updatedAt}
-    }
-  }
-`
-/**
- * END of COMMENT subscribe
- */
+import MessageItem from './MessageItem'
+import useSubscribeOneMessageList from '../../../hooks/useSubscribeOneMessageList'
 
 const ListOfMessage = () => {
   const { room } = ChatRoomStudentPage
+  const { setSubscribeMessage, setUnSubscribeMessage } = useSubscribeOneMessageList({
+    roomId: room.id,
+    setMessageCreated: room.setMessageAdded
+  })
 
   const scrollToBottom = () => {
     const msgContainer = document.getElementById('messages');
@@ -55,42 +30,9 @@ const ListOfMessage = () => {
     // validate 
     if (!room.id) return
     //
-    setClient()
-    querySubscription = client.subscribe({
-      query: subscribeToComment,
-      variables: {
-        roomId: room.id
-      }
-    })
-      .subscribe({
-        next(response) {
-          const { data: { message: { mutation, node } } } = response
-          // console.log(mutation, node)
-          switch (mutation) {
-            // case UPDATED_MUTATION_TYPE:
-            //   unReadEmailOfAuth.setItemsToRemove(node.id)
-            //   break;
-            case CREATED_MUTATION_TYPE:
-              room.setMessageAdded(node)
-              break;
-            // case DELETED_MUTATION_TYPE:
-            //   break;
-            default:
-              break;
-          }
-          // console.log('response.data', response.data)
-        },
-        error(ss) {
-          console.log(ss.message)
-          toast.error('Something went wrong!')
-        }
-      })
+    setSubscribeMessage()
     return () => {
-      // cleanup
-      if (querySubscription) {
-        querySubscription.unsubscribe()
-        querySubscription = null
-      }
+      setUnSubscribeMessage()
     }
   }, [room.id])
 
@@ -103,7 +45,7 @@ const ListOfMessage = () => {
             <>
               {
                 room.messages.flatMap(item => (
-                  <ListItemOfMessage key={item.id} item={item} />
+                  <MessageItem key={item.id} item={item} />
                 ))
               }
             </>

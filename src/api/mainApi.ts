@@ -75,8 +75,8 @@ export default class MainApi extends JsonApi {
   }
 
   ////////////// ROOM///////////
-  async getRoomOfStudentAuth(): Promise<Response> {
-    const { data: { room, tutorId, errorMessage } } = await this.ApiRef.get(`/rooms/of-student-auth`)
+  async getRoomMessagesOfStudentAuth(): Promise<Response> {
+    const { data: { room, tutorId, errorMessage } } = await this.ApiRef.get(`/rooms/messages-of-student-auth`)
     room.studentId = {}
     room.studentId.tutorId = tutorId
     return {
@@ -100,6 +100,12 @@ export default class MainApi extends JsonApi {
     const { data: { errorMessage } } = await this.ApiRef.post(`/messages/created-in-room/${roomId}`, { text })
     return {
       errorMessage
+    }
+  }
+  async getMessagesInRoom({ roomId = 0 }): Promise<Response> {
+    const { data: { messages, errorMessage } } = await this.ApiRef.get(`/messages/in-a-room/${roomId}`)
+    return {
+      errorMessage, data: { messages }
     }
   }
 }

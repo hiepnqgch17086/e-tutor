@@ -1,28 +1,33 @@
-import { types } from "mobx-state-tree";
+import { types, getSnapshot } from "mobx-state-tree";
 import GeneralPageModel from "../GeneralPageModel";
-import Rooms from "../../models-one-entity/Rooms";
+import Rooms, { Room } from "../../models-one-entity/Rooms";
 import { Message } from "../../models-one-entity/Messages";
 
-const ChatRoomTutorPage = types.compose(
+const ChatRoomTutorPageData = types.compose(
   'ChatRoomStudentPage',
   GeneralPageModel,
   types.model({
     rooms: types.optional(Rooms, {}),
-    newMessage: types.optional(Message, {})
+    activedRoom: types.optional(Room, {}),
+    newMessage: types.optional(Message, {}),
   })
 )
   .actions(self => ({
     onDidMountDidUpdate() {
       self.rooms.getDatabaseRoomsOfTutorAuth()
     },
+    onChooseRoom(index: number) {
+      const filtered = self.rooms.items[index]
+      self.activedRoom.setSnapshotNew(getSnapshot(filtered))
+      // get message
+      self.activedRoom.getDatabaseMessagesInRoom()
+    },
     onCreateMessage() {
-      // console.log(self.newMessage)
-      // const { newMessage } = self
-      // newMessage.roomId.setId(self.room.id)
-      // newMessage.setDatabase()
-      // self.newMessage.setSnapshotNew()
+      const { newMessage } = self
+      newMessage.roomId.setId(self.activedRoom.id)
+      newMessage.setDatabase()
     }
   }))
   .create({})
 
-export default ChatRoomTutorPage
+export default ChatRoomTutorPageData

@@ -25,8 +25,8 @@ const ListOfContactOrRoom = () => {
             {
               rooms.items.slice()
                 .sort(setRoomsSortedByLastMessage)
-                .map(item => (
-                  <ContactOrRoomItem key={item.id} item={item} />
+                .map((item, index) => (
+                  <ContactOrRoomItem key={item.id} item={item} index={index} />
                 ))
             }
 

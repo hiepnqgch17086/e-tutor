@@ -1,31 +1,61 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
+import MessageItem from './MessageItem'
+import ChatRoomTutorPageData from '../data'
+import useSubscribeOneMessageList from '../../../hooks/useSubscribeOneMessageList'
 
 const ListOfMessage = () => {
+  const { activedRoom } = ChatRoomTutorPageData
+  const { setSubscribeMessage, setUnSubscribeMessage } = useSubscribeOneMessageList({
+    roomId: activedRoom.id,
+    setMessageCreated: activedRoom.setMessageAdded
+  })
 
   const scrollToBottom = () => {
-    try {
-      const messages = document.getElementById('messages');
-      // @ts-ignore
-      messages.scrollTop = messages.scrollHeight;
-    } catch (error) {
-      console.log(error.message)
-    }
+    const msgContainer = document.getElementById('messages');
+    // @ts-ignore
+    msgContainer.scrollTop = msgContainer.scrollHeight;
   }
 
+  // effect of scrolldown if new comment added
   useEffect(() => {
     scrollToBottom()
     return () => {
       // cleanup
     }
-  }, [])
+  }, [activedRoom.messages.length])
+
+  // set-up listener effect
+  useEffect(() => {
+    // validate 
+    if (!activedRoom.id) return
+    // clear previous room listnener
+    setUnSubscribeMessage()
+    // actions
+    setSubscribeMessage()
+    return () => {
+      // cleanup
+      setUnSubscribeMessage()
+    }
+  }, [activedRoom.id])
 
   return (
-    <div className="chat-box fix-bug-of-list-contact position-relative border-top border-left-0" id="messages" style={{ height: 'calc(60vh)' }}>
-      {/*chat Row */}
+    <div className="chat-box fix-bug-of-list-contact position-relative border-top border-left-0" id="messages" style={{ height: 'calc(60vh)' }} >
       <ul className="chat-list list-style-none px-3 pt-3">
         {/*chat Row */}
-        <li className="chat-item list-style-none mt-3">
+        {
+          activedRoom.messages.length ? (
+            <>
+              {
+                activedRoom.messages.flatMap(item => (
+                  <MessageItem key={item.id} item={item} />
+                ))
+              }
+            </>
+          ) : null
+        }
+
+        {/* <li className="chat-item list-style-none mt-3">
           <div className="chat-img d-inline-block">
             <img src="/assets/images/users/1.jpg" alt="user" className="rounded-circle" width={45} />
           </div>
@@ -38,77 +68,9 @@ const ListOfMessage = () => {
           </div>
           <div className="chat-time d-block font-10 mt-1 mr-0 mb-3">10:56 am
             </div>
-        </li>
-        {/*chat Row */}
-        <li className="chat-item list-style-none mt-3">
-          <div className="chat-img d-inline-block"><img src="/assets/images/users/2.jpg" alt="user" className="rounded-circle" width={45} />
-          </div>
-          <div className="chat-content d-inline-block pl-3">
-            <h6 className="font-weight-medium">Bianca Doe</h6>
-            <div className="msg p-2 d-inline-block mb-1">It’s
-            Great opportunity to
-                work.</div>
-          </div>
-          <div className="chat-time d-block font-10 mt-1 mr-0 mb-3">10:57 am
-            </div>
-        </li>
-        {/*chat Row */}
-        <li className="chat-item odd list-style-none mt-3">
-          <div className="chat-content text-right d-inline-block pl-3">
-            <div className="box msg p-2 d-inline-block mb-1">I
-            would love to
-                join the team.</div>
-            <br />
-          </div>
-        </li>
-        {/*chat Row */}
-        <li className="chat-item odd list-style-none mt-3">
-          <div className="chat-content text-right d-inline-block pl-3">
-            <div className="box msg p-2 d-inline-block mb-1 box">
-              Whats budget
-                of the new project.</div>
-            <br />
-          </div>
-          <div className="chat-time text-right d-block font-10 mt-1 mr-0 mb-3">
-            10:59 am</div>
-        </li>
-        {/*chat Row */}
-        <li className="chat-item list-style-none mt-3">
-          <div className="chat-img d-inline-block"><img src="/assets/images/users/3.jpg" alt="user" className="rounded-circle" width={45} />
-          </div>
-          <div className="chat-content d-inline-block pl-3">
-            <h6 className="font-weight-medium">Angelina Rhodes</h6>
-            <div className="msg p-2 d-inline-block mb-1">Well we
-            have good budget
-            for the project
-              </div>
-          </div>
-          <div className="chat-time d-block font-10 mt-1 mr-0 mb-3">11:00 am
-            </div>
-        </li>
-        {/*chat Row */}
-        <li className="chat-item odd list-style-none mt-3">
-          <div className="chat-content text-right d-inline-block pl-3">
-            <div className="box msg p-2 d-inline-block mb-1">I
-            would love to
-                join the team.</div>
-            <br />
-          </div>
-        </li>
-        {/*chat Row */}
-        <li className="chat-item odd list-style-none mt-3">
-          <div className="chat-content text-right d-inline-block pl-3">
-            <div className="box msg p-2 d-inline-block mb-1 box">
-              Whats budget
-                of the new project.</div>
-            <br />
-          </div>
-          <div className="chat-time text-right d-block font-10 mt-1 mr-0 mb-3">
-            10:59 am</div>
-        </li>
+        </li> */}
       </ul>
     </div>
-
   )
 }
 
