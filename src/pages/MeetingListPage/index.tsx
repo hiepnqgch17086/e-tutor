@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import ListOfMeeting from './ListOfMeeting'
 import Calender from './Calender'
 import moment from 'moment'
+import Data from './data'
 
 const MeetingPage = () => {
 
@@ -15,7 +16,12 @@ const MeetingPage = () => {
 
   const endDateString = moment(dateString).endOf('month').add((6 - parseInt(endDayOfMonth)), "days").format() // main
 
-  // console.log('ssdemo', startDateString, endDateString)
+  useEffect(() => {
+    Data.onDidMountDidUpdate({ startDateString, endDateString })
+    return () => {
+    }
+    // eslint-disable-next-line
+  }, [startDateString])
 
   return (
     <div className="card">

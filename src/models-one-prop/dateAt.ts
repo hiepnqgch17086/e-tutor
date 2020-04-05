@@ -26,7 +26,7 @@ export const updatedAt = types.model({
 
 export const startAt = types.model({
   startAt: types.optional(
-    types.union(types.string, types.number),
+    types.string,
     ""
   ),
   isStartAtError: types.maybeNull(types.boolean)
@@ -44,11 +44,10 @@ export const startAt = types.model({
       _setIsStartAtError(newValue: boolean) {
         self.isStartAtError = newValue
       },
-      setStartAt(newValue: string | number, shouldValidate: boolean = true) {
+      setStartAt(newValue: string, shouldValidate: boolean = true) {
         self.startAt = newValue
         if (shouldValidate) {
-          // @ts-ignore
-          self._getStartAtConstraint()
+          this._getStartAtConstraint()
         }
       }
     }
@@ -56,7 +55,7 @@ export const startAt = types.model({
 
 export const endAt = types.model({
   endAt: types.optional(
-    types.union(types.string, types.number),
+    types.string,
     ""
   ),
   isEndAtError: types.maybeNull(types.boolean)
@@ -66,7 +65,7 @@ export const endAt = types.model({
       _getEndAtConstraint(): string {
         if (!self.endAt) {
           this._setIsEndAtError(true)
-          return 'Start At is required!'
+          return 'End At is required!'
         }
         this._setIsEndAtError(false)
         return ''
@@ -74,7 +73,7 @@ export const endAt = types.model({
       _setIsEndAtError(newValue: boolean) {
         self.isEndAtError = newValue
       },
-      setEndAt(newValue: string | number, shouldValidate: boolean = true) {
+      setEndAt(newValue: string, shouldValidate: boolean = true) {
         self.endAt = newValue
         if (shouldValidate) {
           this._getEndAtConstraint()

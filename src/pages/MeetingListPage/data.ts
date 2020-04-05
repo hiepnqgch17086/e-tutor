@@ -6,7 +6,26 @@ const MeetingListPageData = types.compose(
   'MeetingListPageData',
   GeneralPageModel,
   types.model({
-    newMeeting: types.optional(Meeting, {})
+    newMeeting: types.optional(Meeting, {}),
+    startDateString: types.optional(types.string, ''),
+    endDateString: types.optional(types.string, ''),
   })
 )
-  .on
+  .actions(self => ({
+    onDidMountDidUpdate({
+      startDateString,
+      endDateString,
+    }: any) {
+      self.startDateString = startDateString
+      self.endDateString = endDateString
+      // console.log(self.startDateString, self.endDateString)
+    },
+    onCreateMeeting: async function (callback: Function = () => { }) {
+      // console.log(self.newMeeting)
+      const { errorMessage } = await self.newMeeting.setDatabaseNew()
+      if (!errorMessage) callback()
+    }
+  }))
+  .create({})
+
+export default MeetingListPageData

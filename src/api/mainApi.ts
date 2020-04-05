@@ -34,6 +34,9 @@ export default class MainApi extends JsonApi {
   getStudentUsers({ limit, page, emailContains }: any): Promise<AxiosResponse<any>> {
     return this.ApiRef.get(`/users/students?limit=${limit}&page=${page}&emailContains=${emailContains}`)
   }
+  getStudentsOfTutor({ limit = 1, page = 1, textContains = '' }): Promise<AxiosResponse<any>> {
+    return this.ApiRef.get(`/users/students-of-tutor?limit=${limit}&page=${page}&textContains=${textContains}`)
+  }
   getStudentUsersWhoHaveNotTutor({ limit, page, emailContains }: any): Promise<AxiosResponse<any>> {
     return this.ApiRef.get(`/users/students-have-not-tutor?limit=${limit}&page=${page}&emailContains=${emailContains}`)
   }
@@ -106,6 +109,19 @@ export default class MainApi extends JsonApi {
     const { data: { messages, errorMessage } } = await this.ApiRef.get(`/messages/in-a-room/${roomId}`)
     return {
       errorMessage, data: { messages }
+    }
+  }
+
+  //////////MEETING
+  //@ts-ignore
+  async setMeetingNew(snapshot: any): Promise<Response> {
+    const body = {
+      ...snapshot, studentId: snapshot.studentId.id
+    }
+    // console.log(ss)
+    const { data: { errorMessage } } = await this.ApiRef.post(`/meetings`, body)
+    return {
+      errorMessage
     }
   }
 }
