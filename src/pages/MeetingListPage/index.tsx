@@ -11,9 +11,9 @@ const MeetingPage = () => {
   const startDayOfMonth = moment(dateString).startOf('month').format('d');
   const endDayOfMonth = moment(dateString).endOf('month').format('d')
 
-  let startDateString = moment(dateString).startOf('month').subtract(parseInt(startDayOfMonth), "days").format() // main
+  const startDateString = moment(dateString).startOf('month').subtract(parseInt(startDayOfMonth), "days").format() // main
 
-  let endDateString = moment(dateString).endOf('month').add((6 - parseInt(endDayOfMonth)), "days").format() // main
+  const endDateString = moment(dateString).endOf('month').add((6 - parseInt(endDayOfMonth)), "days").format() // main
 
   // console.log('ssdemo', startDateString, endDateString)
 
