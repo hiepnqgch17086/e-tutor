@@ -60,7 +60,7 @@ const Rooms = types.compose(
   .actions(self => ({
     getDatabaseRoomsOfTutorAuth: async function () {
       try {
-        const { data, errorMessage } = await API.getRoomsOfTutorAuth()
+        const { data, errorMessage } = await API.getRoomsOfTutorAuth(self.textContains)
         if (errorMessage) throw new Error(errorMessage)
         self.setSnapshotNew(data, self.items)
       } catch (error) {

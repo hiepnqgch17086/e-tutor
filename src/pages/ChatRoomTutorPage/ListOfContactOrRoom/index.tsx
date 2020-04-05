@@ -42,13 +42,15 @@ const ListOfContactOrRoom = () => {
       <ul className="mailbox list-style-none">
         <li>
           <div className="message-center">
-            {/* Message */}
+            {/* 
+              // eslint-disable-next-line
+            */}
             {rooms.items.length ?
               rooms.items.slice()
                 .sort(setRoomsSortedByLastMessage)
                 .flatMap((item, index) => (
                   <ContactOrRoomItem key={item.id} item={item}
-                  // isActivedRoom={item.id === Data.activedRoom.id}
+                    isActivedRoom={item.id === Data.activedRoom.id}
                   />
                 ))
 

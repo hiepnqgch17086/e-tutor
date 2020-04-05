@@ -5,16 +5,16 @@ import IpMessage from '../ChatRoomComponents/IpMessage'
 import ProfilePageData from '../ProfilePage/data'
 import ListOfMessage from './ListOfMessage'
 import Data from './data'
-import { IS_STUDENT } from '../../models-one-prop/role'
+// import { IS_STUDENT } from '../../models-one-prop/role'
 
 const ChatRoomStudentPage = () => {
   const { currentUser } = ProfilePageData
 
   // THIS SHOULD SET ONLY ONE TIME
   useEffect(() => {
-    if (ProfilePageData.currentUser.role === IS_STUDENT) {
-      Data.onDidMountDidUpdate()
-    }
+    Data.onDidMountDidUpdate()
+    // if (ProfilePageData.currentUser.role === IS_STUDENT) {
+    // }
   }, [currentUser.id])
 
   return (

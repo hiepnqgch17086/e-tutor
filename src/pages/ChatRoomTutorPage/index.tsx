@@ -6,19 +6,20 @@ import ListOfContactOrRoom from './ListOfContactOrRoom'
 import ListOfMessage from './ListOfMessage'
 import Data from './data'
 import IpMessage from '../ChatRoomComponents/IpMessage'
-import ProfilePageData from '../ProfilePage/data'
-import { IS_TUTOR } from '../../models-one-prop/role'
+// import ProfilePageData from '../ProfilePage/data'
+// import { IS_TUTOR } from '../../models-one-prop/role'
 
 const ChatRoomTutorPage = () => {
 
   useEffect(() => {
-    if (ProfilePageData.currentUser.role === IS_TUTOR) {
-      Data.onDidMountDidUpdate()
-    }
+    Data.onDidMountDidUpdate()
+    // if (ProfilePageData.currentUser.role === IS_TUTOR) {
+    // }
     return () => {
       // cleanup
     }
-  }, [])
+    // eslint-disable-next-line
+  }, [Data.rooms.textContains])
   return (
     <div className="row">
       <div className="col-md-12">
