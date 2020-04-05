@@ -1,6 +1,5 @@
 import { types } from "mobx-state-tree";
 import ProfilePageData from "../pages/ProfilePage/data";
-import { User } from "../models-one-entity/Users";
 
 const id = types.model({
   id: types.optional(types.number, 0)

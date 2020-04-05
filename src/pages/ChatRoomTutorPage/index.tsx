@@ -4,23 +4,17 @@ import IpSearchContact from './IpSearchContact'
 import './index.css'
 import ListOfContactOrRoom from './ListOfContactOrRoom'
 import ListOfMessage from './ListOfMessage'
-import ProfilePageData from '../ProfilePage/data'
-import { IS_TUTOR } from '../../models-one-prop/role'
-import { useHistory } from 'react-router-dom'
-import { HOME_PAGE } from '../../routes'
 import Data from './data'
 import IpMessage from '../ChatRoomComponents/IpMessage'
+import ProfilePageData from '../ProfilePage/data'
+import { IS_TUTOR } from '../../models-one-prop/role'
 
 const ChatRoomTutorPage = () => {
-  const history = useHistory()
-  // const {} = Data
 
   useEffect(() => {
-    // validate
-    const { currentUser } = ProfilePageData
-    if (currentUser.role !== IS_TUTOR) history.push(HOME_PAGE)
-    // action
-    Data.onDidMountDidUpdate()
+    if (ProfilePageData.currentUser.role === IS_TUTOR) {
+      Data.onDidMountDidUpdate()
+    }
     return () => {
       // cleanup
     }

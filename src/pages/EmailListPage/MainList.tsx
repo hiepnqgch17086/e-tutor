@@ -1,11 +1,9 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import CustomTable from '../../components-in-managing-resources/CustomTable'
 import moment from 'moment'
-import { Button } from 'reactstrap'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { get_EMAIL_DETAIL_PAGE } from '../../routes'
-import { defaultOfEmails, defaultOfEmail } from '../../models-one-entity/Emails'
+import { defaultOfEmails } from '../../models-one-entity/Emails'
 
 const MainList = ({
   emailList = defaultOfEmails

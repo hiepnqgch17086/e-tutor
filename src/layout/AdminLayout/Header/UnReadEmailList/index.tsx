@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { Link } from 'react-router-dom'
 import { EMAIL_LIST_PAGE } from '../../../../routes'
@@ -41,35 +41,35 @@ const UnReadEmailList = () => {
 
   useEffect(() => {
     // effect
-    if (!currentUser.id) return
+    if (currentUser.id) {
+      unReadEmailOfAuth.getDatabaseUnReadEmailsOfAuth()
 
-    unReadEmailOfAuth.getDatabaseUnReadEmailsOfAuth()
-
-    setClient()
-    querySubscription = client.subscribe({ query: subscribeToEmails })
-      .subscribe({
-        next(response) {
-          const { data: { email: { mutation, node } } } = response
-          // console.log(node)
-          switch (mutation) {
-            case UPDATED_MUTATION_TYPE:
-              unReadEmailOfAuth.setItemsToRemove(node.id)
-              break;
-            case CREATED_MUTATION_TYPE:
-              unReadEmailOfAuth.setItemsToAdd(node)
-              break;
-            case DELETED_MUTATION_TYPE:
-              break;
-            default:
-              break;
+      setClient()
+      querySubscription = client.subscribe({ query: subscribeToEmails })
+        .subscribe({
+          next(response) {
+            const { data: { email: { mutation, node } } } = response
+            // console.log(node)
+            switch (mutation) {
+              case UPDATED_MUTATION_TYPE:
+                unReadEmailOfAuth.setItemsToRemove(node.id)
+                break;
+              case CREATED_MUTATION_TYPE:
+                unReadEmailOfAuth.setItemsToAdd(node)
+                break;
+              case DELETED_MUTATION_TYPE:
+                break;
+              default:
+                break;
+            }
+            // console.log('response.data', response.data)
+          },
+          error(ss) {
+            console.log(ss.message)
+            toast.error('Something went wrong!')
           }
-          // console.log('response.data', response.data)
-        },
-        error(ss) {
-          console.log(ss.message)
-          toast.error('Something went wrong!')
-        }
-      })
+        })
+    }
     return () => {
       // cleanup
       if (querySubscription) {

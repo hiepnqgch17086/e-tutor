@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { observer } from 'mobx-react-lite'
-import Users, { defaultOfUser, defaultOfUsers } from '../../../models-one-entity/Users'
+import { defaultOfUser, defaultOfUsers } from '../../../models-one-entity/Users'
 import { goUserPage } from '../../../routes'
 import CustomTable from '../../../components-in-managing-resources/CustomTable'
 import { Button, ButtonGroup } from 'reactstrap'

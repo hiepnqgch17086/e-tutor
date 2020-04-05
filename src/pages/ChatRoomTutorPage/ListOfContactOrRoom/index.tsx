@@ -25,12 +25,14 @@ const ListOfContactOrRoom = () => {
   }
 
   useEffect(() => {
-    if (!ProfilePageData.currentUser.id) return
-    setUnSubscribeMessage()
-    setSubscribeMessage()
+    if (ProfilePageData.currentUser.id) {
+      setUnSubscribeMessage()
+      setSubscribeMessage()
+    }
     return () => {
       setUnSubscribeMessage()
     }
+    // eslint-disable-next-line
   }, [ProfilePageData.currentUser.id])
 
   return (
@@ -41,14 +43,16 @@ const ListOfContactOrRoom = () => {
         <li>
           <div className="message-center">
             {/* Message */}
-            {
+            {rooms.items.length ?
               rooms.items.slice()
                 .sort(setRoomsSortedByLastMessage)
-                .map((item, index) => (
+                .flatMap((item, index) => (
                   <ContactOrRoomItem key={item.id} item={item}
-                    isActivedRoom={item.id === Data.activedRoom.id}
+                  // isActivedRoom={item.id === Data.activedRoom.id}
                   />
                 ))
+
+              : null
             }
 
           </div>

@@ -24,20 +24,18 @@ const ListOfMessage = () => {
   // effect of scrolldown if new comment added
   useEffect(() => {
     scrollToBottom()
-    return () => {
-      // cleanup
-    }
   }, [room.messages.length])
 
   // set-up listener effect
   useEffect(() => {
     // validate 
-    if (!room.id) return
-    //
-    setSubscribeMessage()
+    if (room.id) {
+      setSubscribeMessage()
+    }
     return () => {
       setUnSubscribeMessage()
     }
+    // eslint-disable-next-line
   }, [room.id])
 
   return (
@@ -51,10 +49,10 @@ const ListOfMessage = () => {
                 room.messages.flatMap(item => {
                   const { room: { studentId: { tutorId } } } = ChatRoomStudentPageData
                   const { currentUser } = ProfilePageData
-                  return <>
+                  return <div key={item.id}>
                     {item.userId.id === currentUser.id ? <MessageItemForAuth message={item} /> : null}
                     {item.userId.id === tutorId?.id ? <MessageItemForPartner message={item} partner={tutorId} /> : null}
-                  </>
+                  </div>
                 })
               }
             </>

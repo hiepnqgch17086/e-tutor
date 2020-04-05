@@ -1,7 +1,7 @@
 import { types } from "mobx-state-tree";
 import setSnapshotNew from "../../models-one-action/setSnapshotNew";
 import Users from "../../models-one-entity/Users";
-import { STUDENTS, STUDENTS_WHO_HAVE_NOT_TUTOR as STUDENTS_WHO_HAVE_NOT_TUTOR } from "./definitions";
+import { STUDENTS, STUDENTS_WHO_HAVE_NOT_TUTOR } from "./definitions";
 
 const AllUsersPageData = types.compose(
   'AllUsersPageData',

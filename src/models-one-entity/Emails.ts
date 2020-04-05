@@ -83,6 +83,7 @@ const Emails = types.compose(
       let count = 0
       self.items.map(email => {
         if (!email.isRead) count++
+        return null
       })
       return count
     }

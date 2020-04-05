@@ -1,5 +1,5 @@
 import { types, getParent } from "mobx-state-tree";
-import id, { tutorId } from "../models-one-prop/id";
+import id from "../models-one-prop/id";
 import email from "../models-one-prop/email";
 import password from "../models-one-prop/password";
 import name from "../models-one-prop/name";

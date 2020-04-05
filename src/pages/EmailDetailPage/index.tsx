@@ -4,8 +4,7 @@ import moment from 'moment'
 import { useParams, useHistory } from 'react-router-dom'
 import { Email } from '../../models-one-entity/Emails'
 import { observer } from 'mobx-react-lite'
-import ProfilePageData from '../ProfilePage/data'
-import { HOME_PAGE, EMAIL_LIST_PAGE } from '../../routes'
+import { EMAIL_LIST_PAGE } from '../../routes'
 
 const email = Email.create({})
 
@@ -15,16 +14,16 @@ const EmailDetailPage = () => {
 
   useEffect(() => {
     // validate
-    if (!ProfilePageData.currentUser.id) {
-      history.push(HOME_PAGE)
-      return
-    }
+    // if (!ProfilePageData.currentUser.id) {
+    //   history.push(HOME_PAGE)
+    //   return
+    // }
     email.setId(parseInt(id))
     email.getDatabase()
     return () => {
       email.setSnapshotNew({})
     }
-  }, [])
+  }, [id])
 
   return (
     <>

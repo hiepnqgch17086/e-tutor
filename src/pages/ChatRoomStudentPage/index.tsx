@@ -3,20 +3,18 @@ import { observer } from 'mobx-react-lite'
 import './index.css'
 import IpMessage from '../ChatRoomComponents/IpMessage'
 import ProfilePageData from '../ProfilePage/data'
-import { IS_STUDENT } from '../../models-one-prop/role'
-import { useHistory } from 'react-router-dom'
-import { HOME_PAGE } from '../../routes'
 import ListOfMessage from './ListOfMessage'
 import Data from './data'
+import { IS_STUDENT } from '../../models-one-prop/role'
 
-const ChatRoomTutorPage = () => {
-  const history = useHistory()
+const ChatRoomStudentPage = () => {
   const { currentUser } = ProfilePageData
 
   // THIS SHOULD SET ONLY ONE TIME
   useEffect(() => {
-    if (currentUser.role !== IS_STUDENT) history.push(HOME_PAGE)
-    Data.onDidMountDidUpdate()
+    if (ProfilePageData.currentUser.role === IS_STUDENT) {
+      Data.onDidMountDidUpdate()
+    }
   }, [currentUser.id])
 
   return (
@@ -37,4 +35,4 @@ const ChatRoomTutorPage = () => {
   )
 }
 
-export default observer(ChatRoomTutorPage)
+export default observer(ChatRoomStudentPage)

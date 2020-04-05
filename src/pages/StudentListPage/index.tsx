@@ -23,16 +23,13 @@ const StudentListPage = () => {
 
   useEffect(() => {
     // validate for ADMIN
-    if (ProfilePageData.currentUser.role !== IS_ADMIN) {
+    if (ProfilePageData.currentUser.role === IS_ADMIN) {
+      Data.onDidMountDidUpdate(category)
+      // eslint-disable-next-line
+    } {
       history.push(HOME_PAGE)
-      return
     }
-    // effect
-    Data.onDidMountDidUpdate(category)
-    return () => {
-      // cleanup
-      // Data.onWillUnMount()
-    }
+    // eslint-disable-next-line
   }, [category, limit, page, emailContains])
 
   return (

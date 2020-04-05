@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import MessageItem from './MessageItem'
-import ChatRoomTutorPageData from '../data'
-import useSubscribeMessageOfOneRoom from '../../../hooks/useSubscribeMessageOfOneRoom'
-import MessageItemForAuth from '../../ChatRoomComponents/MessageItemForAuth'
-import MessageItemForPartner from '../../ChatRoomComponents/MessageItemForPartner'
-import ProfilePageData from '../../ProfilePage/data'
+import ChatRoomTutorPageData from './data'
+import useSubscribeMessageOfOneRoom from '../../hooks/useSubscribeMessageOfOneRoom'
+import MessageItemForAuth from '../ChatRoomComponents/MessageItemForAuth'
+import MessageItemForPartner from '../ChatRoomComponents/MessageItemForPartner'
+import ProfilePageData from '../ProfilePage/data'
 
 const ListOfMessage = () => {
   const { activedRoom } = ChatRoomTutorPageData
@@ -31,15 +30,17 @@ const ListOfMessage = () => {
   // set-up listener effect
   useEffect(() => {
     // validate 
-    if (!activedRoom.id) return
-    // clear previous room listnener
-    setUnSubscribeMessage()
-    // actions
-    setSubscribeMessage()
+    if (activedRoom.id) {
+      // clear previous room listnener
+      setUnSubscribeMessage()
+      // actions
+      setSubscribeMessage()
+    }
     return () => {
       // cleanup
       setUnSubscribeMessage()
     }
+    // eslint-disable-next-line
   }, [activedRoom.id])
 
   return (
@@ -53,12 +54,16 @@ const ListOfMessage = () => {
                 activedRoom.messages.flatMap((item, index) => {
                   const { activedRoom: { studentId } } = ChatRoomTutorPageData
                   const { currentUser } = ProfilePageData
-                  return <>
-                    {item.userId.id === currentUser.id ? <MessageItemForAuth message={item} /> : null}
-                    {item.userId.id === studentId.id ? <MessageItemForPartner message={item} partner={studentId}
+                  if (item.userId.id === currentUser.id) {
+                    return <MessageItemForAuth message={item} key={item.id} />
+                  }
+                  if (item.userId.id === studentId.id) {
+                    return <MessageItemForPartner message={item} partner={studentId}
                       shouldHideAvatarAndName={activedRoom.getShouldHideAvatarAndNameOfMessage(index)}
-                    /> : null}
-                  </>
+                      key={item.id}
+                    />
+                  }
+                  return null
                 })
               }
             </>

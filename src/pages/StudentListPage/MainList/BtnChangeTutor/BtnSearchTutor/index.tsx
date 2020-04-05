@@ -1,13 +1,14 @@
+// @typescript-eslint/no-unused-vars
+
 import React, { useState, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import SearchBar from '../../../../../components-in-managing-resources/SearchBar';
 import { Button } from 'reactstrap';
-import AvatarInDefault from '../../../../../images/AvatarInDefault';
 import Users from '../../../../../models-one-entity/Users';
 import ListItemOfTutor from './ListItemOfTutor';
 
 const BtnSearchTutor = () => {
-
+  // eslint-disable-next-line
   const [tutorList, setTutorList] = useState(Users.create({}))
   const { emailContains } = tutorList
 
@@ -17,6 +18,7 @@ const BtnSearchTutor = () => {
     } else {
       tutorList.setSnapshotNew([], tutorList.items)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [emailContains])
 
   return (
