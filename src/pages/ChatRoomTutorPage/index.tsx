@@ -36,6 +36,7 @@ const ChatRoomTutorPage = () => {
               <IpMessage
                 message={Data.newMessage}
                 onCreateMessage={Data.onCreateMessage}
+                disabled={Data.activedRoom.id ? false : true}
               />
             </div>
             <div className="col-lg-6 col-xl-6 border">

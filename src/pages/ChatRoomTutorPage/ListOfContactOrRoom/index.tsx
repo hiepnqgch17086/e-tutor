@@ -45,7 +45,9 @@ const ListOfContactOrRoom = () => {
               rooms.items.slice()
                 .sort(setRoomsSortedByLastMessage)
                 .map((item, index) => (
-                  <ContactOrRoomItem key={item.id} item={item} />
+                  <ContactOrRoomItem key={item.id} item={item}
+                    isActivedRoom={item.id === Data.activedRoom.id}
+                  />
                 ))
             }
 

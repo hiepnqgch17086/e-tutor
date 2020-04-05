@@ -4,7 +4,8 @@ import { defaultOfMessage } from '../../models-one-entity/Messages'
 
 const IpMessage = ({
   message = defaultOfMessage,
-  onCreateMessage = () => { }
+  onCreateMessage = () => { },
+  disabled = false
 }) => {
 
   const onChangeText = (text: string) => {
@@ -18,11 +19,12 @@ const IpMessage = ({
   return (
     <div className="card-body border border-left-0">
       <div className="d-flex">
-        <div className="input-field mt-0 mb-0 border flex-grow-1">
+        <div className="input-field mt-0 mb-0 flex-grow-1">
           <input
+            disabled={disabled}
             id="textarea1"
             placeholder="Type and enter"
-            className="form-control border-0" type="text"
+            className="form-control border" type="text"
             value={message.text}
             onKeyUp={onKeyUp}
             onChange={e => {

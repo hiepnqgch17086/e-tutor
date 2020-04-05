@@ -7,6 +7,7 @@ import Data from '../data'
 
 const ContactOrRoomItem = ({
   item = defaultOfRoom,
+  isActivedRoom = false
 }) => {
   const { studentId: { id: stdId, name, email, avatar }, messages } = item
   const lastMessage = messages[0]
@@ -19,7 +20,7 @@ const ContactOrRoomItem = ({
         <span className="profile-status online float-right" />
       </div>
       <div className="w-75 d-inline-block v-middle pl-2">
-        <h6 className="message-title mb-0 mt-1 text-left">{name}</h6>
+        <h6 className={`message-title mb-0 mt-1 text-left ${isActivedRoom && 'text-dark font-weight-medium'}`}>{name}</h6>
         {
           lastMessage ? (
             <>
