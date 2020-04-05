@@ -57,7 +57,7 @@ const CellOfDate = ({
 
   useEffect(() => {
     // effect
-    const count = meetings.getCountOfMeetingsInADay(dString)
+    const { count } = meetings.getMeetingListInfoInADay(dString)
     if (meetingCount !== count) setMeetingCount(count)
     // for first loading, and for added meeting
   }, [JSON.stringify(meetings.items[0]), meetings.items.length])

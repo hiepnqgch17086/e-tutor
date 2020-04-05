@@ -70,16 +70,19 @@ const Meetings = types.compose(
         console.log(error.message)
       }
     },
-    getCountOfMeetingsInADay(dateString: string) {
-      const format1 = moment(dateString).format('YYYY-MM-DD')
+    getMeetingListInfoInADay(anyDateString: string) {
+      const format1 = moment(anyDateString).format('YYYY-MM-DD')
       let count: number = 0
-      self.items.map(item => {
+      const meetingsInDay = self.items.filter(item => {
         const format2 = moment(item.startAt).format('YYYY-MM-DD')
         const format3 = moment(item.endAt).format('YYYY-MM-DD')
-        if (format1 === format2 || format1 === format3) count += 1
-        return null
+        if (format1 === format2 || format1 === format3) {
+          count += 1
+          return true
+        }
+        return false
       })
-      return count
+      return { count, meetingsInDay }
     }
   }))
 
