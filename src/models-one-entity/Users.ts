@@ -6,7 +6,7 @@ import name from "../models-one-prop/name";
 import GeneralModel from "./GeneralModel";
 import { ErrorMessage, Response } from "./types";
 import API from "../api";
-import { setLocalStorageAuthIdToken, setLocalStorageAuthTokenDelete } from "../routes";
+import { setLocalStorageAuthIdToken, setLocalStorageAuthTokenDelete, getLocalStorageToken } from "../routes";
 import GeneralModelList from "./GeneralModelList";
 import avatar from "../models-one-prop/avatar";
 import role, { IS_ADMIN, IS_TUTOR, IS_STUDENT } from "../models-one-prop/role";
@@ -42,6 +42,9 @@ export const User = types.compose(
     // Login
     getApiToken: async function (): Promise<ErrorMessage> {
       try {
+        // validate
+        const jwtToken = getLocalStorageToken()
+        if (!jwtToken) return ''
         // will change later
         const response = await API.getAuthToken({ email: self.email, password: self.password })
         // console.log('data')
