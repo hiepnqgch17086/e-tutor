@@ -9,7 +9,7 @@ const MessageItemForAuth = ({
   return (
     <li className="chat-item odd list-style-none mt-3" title={moment(message.createdAt).calendar()}>
       <div className="chat-content text-right d-inline-block pl-3">
-        <div className="box msg p-2 d-inline-block mb-1 box">
+        <div className="box msg p-2 d-inline-block mb-1 box bg-primary text-white">
           {message.text}
         </div>
         <br />

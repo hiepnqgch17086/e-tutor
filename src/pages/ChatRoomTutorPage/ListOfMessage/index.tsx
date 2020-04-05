@@ -50,12 +50,14 @@ const ListOfMessage = () => {
           activedRoom.messages.length ? (
             <>
               {
-                activedRoom.messages.flatMap(item => {
+                activedRoom.messages.flatMap((item, index) => {
                   const { activedRoom: { studentId } } = ChatRoomTutorPageData
                   const { currentUser } = ProfilePageData
                   return <>
                     {item.userId.id === currentUser.id ? <MessageItemForAuth message={item} /> : null}
-                    {item.userId.id === studentId.id ? <MessageItemForPartner message={item} partner={studentId} /> : null}
+                    {item.userId.id === studentId.id ? <MessageItemForPartner message={item} partner={studentId}
+                      shouldHideAvatarAndName={activedRoom.getShouldHideAvatarAndNameOfMessage(index)}
+                    /> : null}
                   </>
                 })
               }

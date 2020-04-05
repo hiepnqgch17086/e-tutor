@@ -37,6 +37,15 @@ export const Room = types.compose(
       } catch (error) {
         console.log(error.messages)
       }
+    },
+    getShouldHideAvatarAndNameOfMessage(index: number) {
+      let rs = false
+      const currentMesssage = self.messages[index]
+      const nextMessage = self.messages[index + 1]
+      if (currentMesssage && nextMessage) {
+        if (currentMesssage.userId.id === nextMessage.userId.id) rs = true
+      }
+      return rs
     }
   }))
 
