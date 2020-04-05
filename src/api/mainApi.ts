@@ -84,6 +84,15 @@ export default class MainApi extends JsonApi {
       errorMessage
     }
   }
+  async getRoomsOfTutorAuth(): Promise<Response> {
+    const { data: { rooms, errorMessage } } = await this.ApiRef.get(`/rooms/of-tutor-auth`)
+    // room.studentId = {}
+    // room.studentId.tutorId = tutorId
+    return {
+      data: rooms,
+      errorMessage
+    }
+  }
 
 
   //////// MESSAGE //
