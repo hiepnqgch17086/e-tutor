@@ -16,8 +16,9 @@ const ChatRoomTutorPageData = types.compose(
     onDidMountDidUpdate() {
       self.rooms.getDatabaseRoomsOfTutorAuth()
     },
-    onChooseRoom(index: number) {
-      const filtered = self.rooms.items[index]
+    onChooseRoom(id: number) {
+      const filtered = self.rooms.items.find(item => item.id === id)
+      if (!filtered) return
       self.activedRoom.setSnapshotNew(getSnapshot(filtered))
       // get message
       self.activedRoom.getDatabaseMessagesInRoom()

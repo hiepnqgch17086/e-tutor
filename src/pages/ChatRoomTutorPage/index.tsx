@@ -4,12 +4,12 @@ import IpSearchContact from './IpSearchContact'
 import './index.css'
 import ListOfContactOrRoom from './ListOfContactOrRoom'
 import ListOfMessage from './ListOfMessage'
-import IpMessage from './IpMessage'
 import ProfilePageData from '../ProfilePage/data'
 import { IS_TUTOR } from '../../models-one-prop/role'
 import { useHistory } from 'react-router-dom'
 import { HOME_PAGE } from '../../routes'
 import Data from './data'
+import IpMessage from '../ChatRoomComponents/IpMessage'
 
 const ChatRoomTutorPage = () => {
   const history = useHistory()
@@ -28,12 +28,15 @@ const ChatRoomTutorPage = () => {
   return (
     <div className="row">
       <div className="col-md-12">
-        <div className="card border">
+        <div className="card">
           <div className="row no-gutters">
             <div className="col-lg-6  col-xl-6 border-left-0">
               <ListOfMessage />
 
-              <IpMessage />
+              <IpMessage
+                message={Data.newMessage}
+                onCreateMessage={Data.onCreateMessage}
+              />
             </div>
             <div className="col-lg-6 col-xl-6 border">
               <IpSearchContact />

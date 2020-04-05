@@ -7,13 +7,12 @@ import Data from '../data'
 
 const ContactOrRoomItem = ({
   item = defaultOfRoom,
-  index = 0
 }) => {
   const { studentId: { id: stdId, name, email, avatar }, messages } = item
   const lastMessage = messages[0]
   return (
     <a href="#!" className="btn message-item d-flex align-items-center border-bottom px-3 py-2"
-      onClick={() => Data.onChooseRoom(index)}
+      onClick={() => Data.onChooseRoom(item.id)}
     >
       <div className="user-img">
         <img src={avatar || AvatarInDefault} alt="user" className="img-fluid rounded-circle" width="40px" title={email} />

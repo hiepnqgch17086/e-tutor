@@ -1,15 +1,19 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import ChatRoomStudentPage from '../data'
-import MessageItem from './MessageItem'
-import useSubscribeOneMessageList from '../../../hooks/useSubscribeOneMessageList'
+import ChatRoomStudentPageData from './data'
+import useSubscribeMessageOfOneRoom from '../../hooks/useSubscribeMessageOfOneRoom'
+import ProfilePageData from '../ProfilePage/data'
+import MessageItemForAuth from '../ChatRoomComponents/MessageItemForAuth'
+import MessageItemForPartner from '../ChatRoomComponents/MessageItemForPartner'
 
 const ListOfMessage = () => {
-  const { room } = ChatRoomStudentPage
-  const { setSubscribeMessage, setUnSubscribeMessage } = useSubscribeOneMessageList({
+  const { room } = ChatRoomStudentPageData
+  const { setSubscribeMessage, setUnSubscribeMessage } = useSubscribeMessageOfOneRoom({
     roomId: room.id,
     setMessageCreated: room.setMessageAdded
   })
+
+
 
   const scrollToBottom = () => {
     const msgContainer = document.getElementById('messages');
@@ -44,28 +48,19 @@ const ListOfMessage = () => {
           room.messages.length ? (
             <>
               {
-                room.messages.flatMap(item => (
-                  <MessageItem key={item.id} item={item} />
-                ))
+                room.messages.flatMap(item => {
+                  const { room: { studentId: { tutorId } } } = ChatRoomStudentPageData
+                  const { currentUser } = ProfilePageData
+                  return <>
+                    {item.userId.id === currentUser.id ? <MessageItemForAuth message={item} /> : null}
+                    {item.userId.id === tutorId?.id ? <MessageItemForPartner message={item} partner={tutorId} /> : null}
+                  </>
+                })
               }
             </>
           ) : null
         }
 
-        {/* <li className="chat-item list-style-none mt-3">
-          <div className="chat-img d-inline-block">
-            <img src="/assets/images/users/1.jpg" alt="user" className="rounded-circle" width={45} />
-          </div>
-          <div className="chat-content d-inline-block pl-3">
-            <h6 className="font-weight-medium">James Anderson</h6>
-            <div className="msg p-2 d-inline-block mb-1">Lorem
-            Ipsum is simply
-            dummy text of the
-                printing &amp; type setting industry.</div>
-          </div>
-          <div className="chat-time d-block font-10 mt-1 mr-0 mb-3">10:56 am
-            </div>
-        </li> */}
       </ul>
     </div>
   )

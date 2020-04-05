@@ -1,4 +1,4 @@
-import { types } from "mobx-state-tree";
+import { types, clone } from "mobx-state-tree";
 import { Message } from './Messages'
 import API from "../api";
 import { RoomBase } from "./BaseModels";
@@ -57,6 +57,24 @@ const Rooms = types.compose(
       } catch (error) {
         console.log(error.messages)
       }
+    },
+    setLatestMessageOfRoom(message: object) {
+      const msg = Message.create(message)
+      // remove room
+      let idx: number = -1
+      const msgRoom = self.items.find((item, index) => {
+        const rs = item.id === msg.roomId.id
+        if (rs) idx = index
+        return rs
+      })
+      // validate msgRoom
+      if (!msgRoom) return
+      // update latest message to clone
+      const cloneMsgRoom = clone(msgRoom)
+      cloneMsgRoom.setSnapshotNew([msg], cloneMsgRoom.messages)
+      // move to the first
+      self.items.splice(idx, 1)
+      self.items.unshift(cloneMsgRoom)
     }
   }))
 

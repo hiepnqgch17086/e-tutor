@@ -3,7 +3,7 @@ import GeneralPageModel from "../GeneralPageModel";
 import { Room } from "../../models-one-entity/Rooms";
 import { Message } from "../../models-one-entity/Messages";
 
-const ChatRoomStudentPage = types.compose(
+const ChatRoomStudentPageData = types.compose(
   'ChatRoomStudentPage',
   GeneralPageModel,
   types.model({
@@ -25,4 +25,4 @@ const ChatRoomStudentPage = types.compose(
   }))
   .create({})
 
-export default ChatRoomStudentPage
+export default ChatRoomStudentPageData

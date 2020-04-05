@@ -35,12 +35,8 @@ const MessageItem = ({
         </div>
         <br />
       </div>
-      {/* <div className="chat-time text-right d-block font-10 mt-1 mr-0 mb-3">
-        10:59 am</div> */}
     </li>
   )
-
-  // console.log(item.userId.id === currentUser.id, item.userId.id === tutorId?.id)
 
   return (
     <>

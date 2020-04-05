@@ -30,7 +30,7 @@ type Props = {
   setMessageCreated: Function
 }
 
-const useSubscribeOneMessageList = ({
+const useSubscribeMessageOfOneRoom = ({
   roomId,
   setMessageCreated = (node: object) => { },
 }: Props) => {
@@ -81,4 +81,4 @@ const useSubscribeOneMessageList = ({
   return { setSubscribeMessage, setUnSubscribeMessage }
 }
 
-export default useSubscribeOneMessageList
+export default useSubscribeMessageOfOneRoom

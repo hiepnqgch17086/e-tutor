@@ -2,11 +2,14 @@ import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import MessageItem from './MessageItem'
 import ChatRoomTutorPageData from '../data'
-import useSubscribeOneMessageList from '../../../hooks/useSubscribeOneMessageList'
+import useSubscribeMessageOfOneRoom from '../../../hooks/useSubscribeMessageOfOneRoom'
+import MessageItemForAuth from '../../ChatRoomComponents/MessageItemForAuth'
+import MessageItemForPartner from '../../ChatRoomComponents/MessageItemForPartner'
+import ProfilePageData from '../../ProfilePage/data'
 
 const ListOfMessage = () => {
   const { activedRoom } = ChatRoomTutorPageData
-  const { setSubscribeMessage, setUnSubscribeMessage } = useSubscribeOneMessageList({
+  const { setSubscribeMessage, setUnSubscribeMessage } = useSubscribeMessageOfOneRoom({
     roomId: activedRoom.id,
     setMessageCreated: activedRoom.setMessageAdded
   })
@@ -47,9 +50,14 @@ const ListOfMessage = () => {
           activedRoom.messages.length ? (
             <>
               {
-                activedRoom.messages.flatMap(item => (
-                  <MessageItem key={item.id} item={item} />
-                ))
+                activedRoom.messages.flatMap(item => {
+                  const { activedRoom: { studentId } } = ChatRoomTutorPageData
+                  const { currentUser } = ProfilePageData
+                  return <>
+                    {item.userId.id === currentUser.id ? <MessageItemForAuth message={item} /> : null}
+                    {item.userId.id === studentId.id ? <MessageItemForPartner message={item} partner={studentId} /> : null}
+                  </>
+                })
               }
             </>
           ) : null
