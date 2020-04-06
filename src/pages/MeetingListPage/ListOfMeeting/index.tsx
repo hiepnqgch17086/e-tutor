@@ -30,6 +30,7 @@ const ListOfMeeting = ({
     return () => {
       setUnSubscribeMeeting()
     }
+    // eslint-disable-next-line
   }, [fromAt])
   return (
     <>
@@ -40,6 +41,8 @@ const ListOfMeeting = ({
         <div className="row">
           <div className="col-md-12">
             <div id="calendar-events" className="">
+              <BtnAddMeeting dateString={dateString} />
+              <div className="mt-2" />
               {
                 meetings.items.filter(item => {
                   const format2 = moment(item.startAt).format('YYYY-MM-DD')
@@ -61,7 +64,6 @@ const ListOfMeeting = ({
                     return <MeetingItem key={index} item={item} />
                   })
               }
-              <BtnAddMeeting dateString={dateString} />
             </div>
           </div>
         </div>

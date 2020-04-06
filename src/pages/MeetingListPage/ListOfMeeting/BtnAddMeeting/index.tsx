@@ -32,6 +32,8 @@ const BtnAddMeeting = ({
   useEffect(() => {
     if (!modal) {
       newMeeting.setSnapshotNew({})
+      setStartAt('')
+      setEndAt('')
     }
     // eslint-disable-next-line
   }, [modal])

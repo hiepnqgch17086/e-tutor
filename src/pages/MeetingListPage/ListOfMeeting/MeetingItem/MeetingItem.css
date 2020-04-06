@@ -1,0 +1,7 @@
+.icon-trash-custom {
+  opacity: 0.5;
+}
+
+.icon-trash-custom:hover {
+  opacity: 1;
+}

@@ -28,6 +28,7 @@ const CustomInput = ({
       // type="datetime-local"
       // @ts-ignore
       type={type}
+      data-date-format="DD-MM-YYYY HH:mm:ss"
       name="text" placeholder={placeholder}
       {...idProp}
     />
