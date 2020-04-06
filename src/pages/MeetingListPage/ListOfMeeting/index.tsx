@@ -1,18 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import MeetingItem from './MeetingItem'
 import moment from 'moment'
 import BtnAddMeeting from './BtnAddMeeting'
 import Data from '../data'
+import useSubscribeMeetingInRangeOfDate from '../../../hooks/useSubscribeMeetingInRangeOfDate'
 
 const ListOfMeeting = ({
+  fromAt = '',
+  toAt = '',
   dateString = ''
 }) => {
   const { meetings } = Data
-
   const format1 = moment(dateString).format('YYYY-MM-DD')
-
   const style = { paddingRight: '0px' }
+
+  const { setSubscribeMeeting, setUnSubscribeMeeting } = useSubscribeMeetingInRangeOfDate({
+    fromAt,
+    toAt,
+    setMeetingCreated: (meeting: Object) => {
+      meetings.setMeetingAdded(meeting)
+    }
+  })
+
+  useEffect(() => {
+    setUnSubscribeMeeting()
+    setSubscribeMeeting()
+    // effect
+    return () => {
+      setUnSubscribeMeeting()
+    }
+  }, [fromAt])
   return (
     <>
       {/* <div className="card-body border-bottom" style={style}>

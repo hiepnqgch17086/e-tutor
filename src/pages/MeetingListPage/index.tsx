@@ -37,6 +37,8 @@ const MeetingPage = () => {
         <div className="col-lg-4">
           <ListOfMeeting
             dateString={dateString}
+            fromAt={fromAt}
+            toAt={toAt}
           />
         </div>
 

@@ -53,6 +53,10 @@ const Meetings = types.compose(
   })
 )
   .actions(self => ({
+    setMeetingAdded(meeting: object) {
+      const newMeeting = Meeting.create(meeting)
+      self.items.push(newMeeting)
+    },
     setFromAt(newV: string) {
       self.fromAt = newV
     },
