@@ -59,7 +59,8 @@ const ListOfMessage = () => {
                   }
                   if (item.userId.id === studentId.id) {
                     return <MessageItemForPartner message={item} partner={studentId}
-                      shouldHideAvatarAndName={activedRoom.getShouldHideAvatarAndNameOfMessage(index)}
+                      shouldHideAvatar={activedRoom.getShouldHideAvatarOfMessage(index)}
+                      shouldHideName={activedRoom.getShouldHideNameOfMessage(index)}
                       key={item.id}
                     />
                   }

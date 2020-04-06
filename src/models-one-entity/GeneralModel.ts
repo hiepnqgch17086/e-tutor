@@ -75,19 +75,17 @@ const GeneralModel = types.compose(
      */
     getDatabase: async function (): Promise<Response> {
       try {
+        throw new Error('Legacy')
         // @ts-ignore
         const res = await self._getMainThreadOfGettingDatabase()
         self.setSnapshotUpdate(res.data)
         return {
-          isSuccess: true,
-          // @ts-ignore
           data: getSnapshot(self)
         }
       } catch ({ message }) {
         console.log('getDatabase()', message)
         toast.error(message)
         return {
-          isSuccess: false,
           errorMessage: message
         }
       }

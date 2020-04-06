@@ -1,9 +1,12 @@
-import { types } from "mobx-state-tree";
+import { types, getSnapshot } from "mobx-state-tree";
 import { User } from "./Users";
 import { MeetingBase } from "./BaseModels";
 import API from "../api";
 import GeneralModelList from "./GeneralModelList";
 import moment from "moment";
+import { Comment } from './Comments'
+import { Response } from "./types";
+import { toast } from "react-toastify";
 
 export const Meeting = types.compose(
   'Meeting',
@@ -11,9 +14,26 @@ export const Meeting = types.compose(
   types.model({
     studentId: types.optional(User, {}),
     creatorId: types.optional(User, {}),
+    comments: types.array(Comment)
   }),
 )
   .actions(self => ({
+    getDatabase: async function (): Promise<Response> {
+      try {
+        const { data: { meeting }, errorMessage } = await API.getMeeting(self.id)
+        if (errorMessage) throw new Error(errorMessage)
+        self.setSnapshotUpdate(meeting)
+        return {
+          data: getSnapshot(self)
+        }
+      } catch ({ message }) {
+        console.log('getDatabase()', message)
+        toast.error(message)
+        return {
+          errorMessage: message
+        }
+      }
+    },
     /**
      * @override
      */

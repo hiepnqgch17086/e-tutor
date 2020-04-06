@@ -144,4 +144,10 @@ export default class MainApi extends JsonApi {
       errorMessage
     }
   }
+  async getMeeting(id: number): Promise<Response> {
+    const { data: { meeting, errorMessage } } = await this.ApiRef.get(`/meetings/${id}`)
+    return {
+      data: { meeting, errorMessage }
+    }
+  }
 }

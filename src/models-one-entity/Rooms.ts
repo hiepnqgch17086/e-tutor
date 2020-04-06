@@ -38,12 +38,21 @@ export const Room = types.compose(
         console.log(error.messages)
       }
     },
-    getShouldHideAvatarAndNameOfMessage(index: number) {
+    getShouldHideAvatarOfMessage(index: number) {
       let rs = false
       const currentMesssage = self.messages[index]
       const nextMessage = self.messages[index + 1]
       if (currentMesssage && nextMessage) {
         if (currentMesssage.userId.id === nextMessage.userId.id) rs = true
+      }
+      return rs
+    },
+    getShouldHideNameOfMessage(index: number) {
+      let rs = false
+      const currentMesssage = self.messages[index]
+      const prevMessage = self.messages[index - 1]
+      if (currentMesssage && prevMessage) {
+        if (currentMesssage.userId.id === prevMessage.userId.id) rs = true
       }
       return rs
     }
