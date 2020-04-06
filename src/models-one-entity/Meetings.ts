@@ -24,7 +24,7 @@ export const Meeting = types.compose(
      * @override
      */
     _getValidation(): Array<string> {
-      const constraintOther = self.startAt > self.endAt
+      const constraintOther = moment(self.startAt).format() > moment(self.endAt).format()
         ? 'Start at should be smaller than End at'
         : ''
       const constraintOther2 = self.studentId.id ? '' : 'Student is required!'

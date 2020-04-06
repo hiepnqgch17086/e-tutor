@@ -43,8 +43,8 @@ export const User = types.compose(
     getApiToken: async function (): Promise<ErrorMessage> {
       try {
         // validate
-        const jwtToken = getLocalStorageToken()
-        if (!jwtToken) return ''
+        // const jwtToken = getLocalStorageToken()
+        // if (!jwtToken) return ''
         // will change later
         const response = await API.getAuthToken({ email: self.email, password: self.password })
         // console.log('data')
