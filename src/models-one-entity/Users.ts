@@ -42,9 +42,7 @@ export const User = types.compose(
     // Login
     getApiToken: async function (): Promise<ErrorMessage> {
       try {
-        // validate
-        // const jwtToken = getLocalStorageToken()
-        // if (!jwtToken) return ''
+
         // will change later
         const response = await API.getAuthToken({ email: self.email, password: self.password })
         // console.log('data')
@@ -65,6 +63,9 @@ export const User = types.compose(
     },
     getMyProfile: async function (): Promise<ErrorMessage> {
       try {
+        // validate
+        const jwtToken = getLocalStorageToken()
+        if (!jwtToken) return ''
         const { data: { user, errorMessage } } = await API.getMyProfile()
         if (errorMessage) throw new Error(errorMessage)
         self.setSnapshotUpdate(user)

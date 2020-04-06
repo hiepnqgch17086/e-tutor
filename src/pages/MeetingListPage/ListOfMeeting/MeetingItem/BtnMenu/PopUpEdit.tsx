@@ -7,6 +7,7 @@ import { getSnapshot } from 'mobx-state-tree';
 //@ts-ignore
 import DateTimePicker from 'react-datetime-picker';
 import { toast } from 'react-toastify';
+import AvatarInDefault from '../../../../../images/AvatarInDefault';
 // import DateTimePicker from 'react-datetime-picker/dist/entry.nostyle
 
 const PopUpEdit = ({
@@ -42,8 +43,21 @@ const PopUpEdit = ({
   return (
     <div className="d-flex" style={{ width: '100%' }}>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle} className="text-dark">{meeting.title}</ModalHeader>
+        <ModalHeader toggle={toggle} className="text-dark">Meeting: {meeting.title}</ModalHeader>
         <ModalBody>
+          <div>Student</div>
+          <a href="#!" className="message-item d-flex align-items-center px-3 py-2 d-flex justify-content-start">
+            <img src={meeting.studentId.avatar || AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
+            <div className="d-inline-block v-middle pl-2">
+              <h6 className="message-title mb-0 mt-1">
+                {meeting.studentId.name}
+              </h6>
+              <span className="font-12 text-nowrap d-block text-muted">
+                {meeting.studentId.email}
+              </span>
+              <span className="font-12 text-nowrap d-block text-muted"></span>
+            </div>
+          </a>
           <div className="d-flex">
             {/* START TIME */}
             <div className="flex-grow-1">

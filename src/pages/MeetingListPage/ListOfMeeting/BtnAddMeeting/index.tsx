@@ -56,7 +56,7 @@ const BtnAddMeeting = ({
           {
             newMeeting.studentId.id ? (
               <a href="#!" className="message-item d-flex align-items-center px-3 py-2 d-flex justify-content-start">
-                <img src={AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
+                <img src={newMeeting.studentId.avatar || AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
                 <div className="d-inline-block v-middle pl-2">
                   <h6 className="message-title mb-0 mt-1">
                     {newMeeting.studentId.name}

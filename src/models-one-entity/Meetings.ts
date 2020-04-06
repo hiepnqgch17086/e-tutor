@@ -1,4 +1,4 @@
-import { types, flow } from "mobx-state-tree";
+import { types } from "mobx-state-tree";
 import { User } from "./Users";
 import { MeetingBase } from "./BaseModels";
 import API from "../api";

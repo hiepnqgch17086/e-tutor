@@ -5,6 +5,9 @@ import AvatarInDefault from '../../../../images/AvatarInDefault'
 import { defaultOfMeeting } from '../../../../models-one-entity/Meetings'
 import './MeetingItem.css'
 import BtnMenu from './BtnMenu'
+import ProfilePageData from '../../../ProfilePage/data'
+import { IS_TUTOR } from '../../../../models-one-prop/role'
+import { observer } from 'mobx-react-lite'
 
 const MeetingItem = ({ item = defaultOfMeeting }) => {
   // const item = {
@@ -20,7 +23,7 @@ const MeetingItem = ({ item = defaultOfMeeting }) => {
     <div className="calendar-events mb-2 d-flex border-top" data-class="bg-success"
       style={{ cursor: 'pointer' }}
     >
-      <a href={get_MEETING_DETAIL_PAGE(item.id)} className="message-item d-flex align-items-center mr-auto" target="_blank" rel="noopener noreferrer">
+      <a href={get_MEETING_DETAIL_PAGE(item.id)} className="message-item d-flex align-items-center flex-grow-1" target="_blank" rel="noopener noreferrer">
         <div className="d-flex align-items-center mr-auto">
           <img src={item.studentId.avatar || AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
           <div className="w-75 d-inline-block v-middle pl-2">
@@ -35,9 +38,12 @@ const MeetingItem = ({ item = defaultOfMeeting }) => {
           </div>
         </div>
       </a>
-      <BtnMenu meeting={item} />
+      {
+        ProfilePageData.currentUser.role === IS_TUTOR &&
+        <BtnMenu meeting={item} />
+      }
     </div>
   )
 }
 
-export default MeetingItem
+export default observer(MeetingItem)
