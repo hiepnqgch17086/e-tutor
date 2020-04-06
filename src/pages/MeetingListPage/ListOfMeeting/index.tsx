@@ -20,6 +20,9 @@ const ListOfMeeting = ({
     toAt,
     setMeetingCreated: (meeting: Object) => {
       meetings.setMeetingAdded(meeting)
+    },
+    setMeetingUpdated: (meeting: Object) => {
+      meetings.setMeetingUpdated(meeting)
     }
   })
 

@@ -28,7 +28,7 @@ const MessageItemForPartner = ({
           }
         </div>
         <div className="chat-content d-inline-block pl-3">
-          <div className="msg p-2 d-inline-block mb-1">{message?.text}</div>
+          <div className="msg p-2 d-inline-block mb-1 text-dark">{message?.text}</div>
 
         </div>
 

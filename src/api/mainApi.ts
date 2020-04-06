@@ -123,7 +123,16 @@ export default class MainApi extends JsonApi {
       errorMessage
     }
   }
-
+  async setMeetingUpdate(id: number, snapshot: any): Promise<Response> {
+    const body = {
+      meeting: snapshot
+    }
+    // console.log(ss)
+    const { data: { errorMessage } } = await this.ApiRef.put(`/meetings/${id}`, body)
+    return {
+      errorMessage
+    }
+  }
   async getMeetings({
     fromAt, toAt
   }: any): Promise<Response> {

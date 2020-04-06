@@ -67,15 +67,20 @@ const CellOfDate = ({
     backgroundColor: '#ffff004f'
   } : {}
 
+  const styleForToDay = isToday ? {
+    backgroundColor: '#3250e22e'
+  } : {}
+
   const date = moment(dString).format('DD')
 
   // LOGIC
   return (
     <td
-      className={`fc-day fc-day-top fc-widget-content ${isToday && 'fc-today'} ${isOtherMonth && 'fc-other-month'}`}
+      className={`fc-day fc-day-top fc-widget-content ${isOtherMonth && 'fc-other-month'}`}
       data-date={dString}
       style={{
         cursor: 'pointer',
+        ...styleForToDay,
         ...styleForCurrentDate
       }}
       onClick={() => setDateString(dString)}

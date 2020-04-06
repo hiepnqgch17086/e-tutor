@@ -1,4 +1,4 @@
-import { types } from "mobx-state-tree";
+import { types, flow } from "mobx-state-tree";
 import { User } from "./Users";
 import { MeetingBase } from "./BaseModels";
 import API from "../api";
@@ -38,6 +38,13 @@ export const Meeting = types.compose(
     },
     _getMainThreadOfSettingDatabaseNew: async function (snapshot: object) {
       return API.setMeetingNew(snapshot)
+    },
+    _getMainThreadOfSettingDatabaseUpdate: async function (snapshot: object) {
+      // @ts-ignore
+      const id = snapshot.id
+      // @ts-ignore
+      delete snapshot.id
+      return API.setMeetingUpdate(id, snapshot)
     }
   }))
 
@@ -56,6 +63,15 @@ const Meetings = types.compose(
     setMeetingAdded(meeting: object) {
       const newMeeting = Meeting.create(meeting)
       self.items.push(newMeeting)
+    },
+    setMeetingUpdated(meeting: object) {
+      // @ts-ignore
+      const existMeeting = self.items.splice(self.items.findIndex(i => i.id === meeting.id), 1)
+      if (existMeeting) {
+        setTimeout(() => {
+          this.setMeetingAdded(meeting)
+        }, 200)
+      }
     },
     setFromAt(newV: string) {
       self.fromAt = newV

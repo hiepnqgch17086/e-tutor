@@ -43,7 +43,7 @@ const BtnAddMeeting = ({
     <div>
       <Button color="danger" onClick={toggle}>Add Meeting</Button>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>{moment(dateString).format('dddd DD-MM-YYYY')}</ModalHeader>
+        <ModalHeader toggle={toggle} className="text-dark">{moment(dateString).format('dddd DD-MM-YYYY')}</ModalHeader>
         <ModalBody>
           <BtnSearchStudent
             onSetStudentInMeeting={(student: typeof defaultOfUser) => {

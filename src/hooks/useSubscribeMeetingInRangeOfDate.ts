@@ -1,6 +1,6 @@
 import DefaultClient, { gql } from "apollo-boost"
 import { getLocalStorageToken } from "../routes"
-import { getClient, CREATED_MUTATION_TYPE } from "../ApolloConfig"
+import { getClient, CREATED_MUTATION_TYPE, UPDATED_MUTATION_TYPE } from "../ApolloConfig"
 import { toast } from "react-toastify"
 
 /**
@@ -35,13 +35,15 @@ const subscribeToMeeting = gql`
 type Props = {
   fromAt: string,
   toAt: string,
-  setMeetingCreated: Function
+  setMeetingCreated: Function,
+  setMeetingUpdated: Function
 }
 
 const useSubscribeMeetingInRangeOfDate = ({
   fromAt = new Date().toISOString(),
   toAt = new Date().toISOString(),
   setMeetingCreated = (node: object) => { },
+  setMeetingUpdated = (node: object) => { },
 }: Props) => {
 
   const setSubscribeMeeting = () => {
@@ -63,9 +65,9 @@ const useSubscribeMeetingInRangeOfDate = ({
           const { data: { meeting: { mutation, node } } } = response
           // console.log(mutation, node)
           switch (mutation) {
-            // case UPDATED_MUTATION_TYPE:
-            //   unReadEmailOfAuth.setItemsToRemove(node.id)
-            //   break;
+            case UPDATED_MUTATION_TYPE:
+              setMeetingUpdated(node)
+              break;
             case CREATED_MUTATION_TYPE:
               setMeetingCreated(node)
               break;

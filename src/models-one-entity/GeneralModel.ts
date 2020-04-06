@@ -42,7 +42,7 @@ const GeneralModel = types.compose(
       throw new Error(`Should override method _getMainThreadOfGettingDatabase()`)
     },
     // should override
-    _getMainThreadOfSettingDatabaseUpdate(): Promise<AxiosResponse<any>> | Promise<any> {
+    _getMainThreadOfSettingDatabaseUpdate(snapshotUpdate: object): Promise<AxiosResponse<any>> | Promise<any> {
       console.log('\n')
       console.log('Name of model: ', getType(self).name)
       throw new Error(`Should override method _getMainThreadOfSettingDatabaseUpdate()`)
@@ -146,11 +146,12 @@ const GeneralModel = types.compose(
 
         // get key value in need,
         //@ts-ignore, reference to this._getMainProperties()
-        const updatedProps = propertiesUpdated ? [...propertiesUpdated, 'updatedAt'] : [...self._getMainProperties(), 'updatedAt']
+        const updatedProps = propertiesUpdated ? ['id', ...propertiesUpdated] : [...self._getMainProperties()]
         const snapshotUpdate = self._getSnapshotWithProperties(updatedProps)
         if (typeof snapshotUpdate === 'string') throw new Error(snapshotUpdate)
 
-        const res = await this._getMainThreadOfSettingDatabaseUpdate()
+        //@ts-ignore, reference to this._getMainThreadOfSettingDatabaseUpdate()
+        const res = await self._getMainThreadOfSettingDatabaseUpdate(snapshotUpdate)
         const data = res.data
         return {
           isSuccess: true,
@@ -158,6 +159,7 @@ const GeneralModel = types.compose(
         }
       } catch ({ message }) {
         console.log('setDatabaseUpdate():', message)
+        toast.error(message)
         return {
           isSuccess: false,
           errorMessage: message
