@@ -19,6 +19,15 @@ export const blogId = types.model({
     }
   }))
 
+export const cloudId = types.model({
+  cloudId: types.optional(types.string, '')
+})
+  .actions(self => ({
+    setCloudId(newId: string): void {
+      self.cloudId = newId
+    }
+  }))
+
 export const creatorId = types.model({
   creatorId: types.optional(
     types.union(types.string, types.number),

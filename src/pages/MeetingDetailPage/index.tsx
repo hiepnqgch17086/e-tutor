@@ -8,7 +8,7 @@ import ListOfComment from './ListOfComment'
 
 const MeetingPage = () => {
   const { id = '' } = useParams()
-  const { meeting } = Data
+  const { meeting, onCreateComment, newComment } = Data
   const { creatorId, studentId, isCreatorOn, isStudentOn } = meeting
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const MeetingPage = () => {
     return () => {
       Data.setSnapshotNew({})
     }
-  }, [])
+  }, [id])
 
   return (
     <div className="row">
@@ -25,7 +25,10 @@ const MeetingPage = () => {
           <div className="row no-gutters">
             <div className="col-lg-6">
               <ListOfComment />
-              <IpComment />
+              <IpComment
+                comment={newComment}
+                onCreateComment={onCreateComment}
+              />
             </div>
             <div className="col-lg-6">
               <div className="border-bottom border-top card p-2 d-flex align-items-center">

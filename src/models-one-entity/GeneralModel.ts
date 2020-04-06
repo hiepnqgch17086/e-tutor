@@ -77,6 +77,7 @@ const GeneralModel = types.compose(
       try {
         throw new Error('Legacy')
         // @ts-ignore
+        // eslint-disable-next-line
         const res = await self._getMainThreadOfGettingDatabase()
         self.setSnapshotUpdate(res.data)
         return {
@@ -105,12 +106,11 @@ const GeneralModel = types.compose(
         if (typeof snapshot === 'string') throw new Error(snapshot)
 
         //@ts-ignore, reference to this._getMainThreadOfSettingDatabaseNew()
-        const res = await self._getMainThreadOfSettingDatabaseNew(snapshot)
-        const data = res.data
+        await self._getMainThreadOfSettingDatabaseNew(snapshot)
+
 
         return {
           isSuccess: true,
-          data
         }
       } catch ({ message }) {
         console.log('setDatabaseNew()', message)

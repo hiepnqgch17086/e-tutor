@@ -17,45 +17,48 @@ const setClient = () => {
 }
 
 // define of subscribe is defined in jwt token and room
-const subscribeToMessage = gql`
-  subscription($roomId: ID!) {
-    message(roomId: $roomId){
+const subscribeToComment = gql`
+  subscription($meetingId: ID!) {
+    comment(meetingId: $meetingId){
       mutation
-      node {id userId { id } text createdAt updatedAt}
+      node {
+        id userId { id email name avatar } createdAt updatedAt text
+        fileUploads { id cloudId createdAt updatedAt }
+      }
     }
   }
 `
 type Props = {
-  roomId: number,
-  setMessageCreated: Function
+  meetingId: number,
+  setCommentCreated: Function
 }
 
-const useSubscribeMessageOfOneRoom = ({
-  roomId,
-  setMessageCreated = (node: object) => { },
+const useSubscribeCommentOfOneMeeting = ({
+  meetingId,
+  setCommentCreated = (node: object) => { },
 }: Props) => {
 
   const setSubscribeMessage = () => {
     // validate
-    if (!roomId) return
-    // action
+    if (!meetingId) return
+    // action!!!!!!!!!
     setClient()
     querySubscription = client.subscribe({
-      query: subscribeToMessage,
+      query: subscribeToComment,
       variables: {
-        roomId
+        meetingId
       }
     })
       .subscribe({
         next(response) {
-          const { data: { message: { mutation, node } } } = response
+          const { data: { comment: { mutation, node } } } = response
           // console.log(mutation, node)
           switch (mutation) {
             // case UPDATED_MUTATION_TYPE:
             //   unReadEmailOfAuth.setItemsToRemove(node.id)
             //   break;
             case CREATED_MUTATION_TYPE:
-              setMessageCreated(node)
+              setCommentCreated(node)
               break;
             // case DELETED_MUTATION_TYPE:
             //   break;
@@ -81,4 +84,4 @@ const useSubscribeMessageOfOneRoom = ({
   return { setSubscribeMessage, setUnSubscribeMessage }
 }
 
-export default useSubscribeMessageOfOneRoom
+export default useSubscribeCommentOfOneMeeting

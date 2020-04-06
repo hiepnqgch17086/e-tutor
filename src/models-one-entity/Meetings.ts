@@ -34,6 +34,10 @@ export const Meeting = types.compose(
         }
       }
     },
+    setCommentAdded(comment: object) {
+      const newComment = Comment.create(comment)
+      self.comments.push(newComment)
+    },
     /**
      * @override
      */

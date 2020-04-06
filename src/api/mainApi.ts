@@ -147,7 +147,21 @@ export default class MainApi extends JsonApi {
   async getMeeting(id: number): Promise<Response> {
     const { data: { meeting, errorMessage } } = await this.ApiRef.get(`/meetings/${id}`)
     return {
-      data: { meeting, errorMessage }
+      data: { meeting },
+      errorMessage,
+    }
+  }
+
+
+  //////////MEETING
+  async setCommentNew(snapshot: object): Promise<Response> {
+    // @ts-ignore
+    const meetingId = snapshot.meetingId.id
+    const { data: { errorMessage } } = await this.ApiRef.post(`/comments/meeting/${meetingId}`, {
+      comment: snapshot
+    })
+    return {
+      errorMessage,
     }
   }
 }

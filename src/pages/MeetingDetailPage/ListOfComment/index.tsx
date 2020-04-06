@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import Data from '../data'
 import CommentItem from './CommentItem'
-import { getSnapshot } from 'mobx-state-tree'
+import useSubscribeCommentOfOneMeeting from '../../../hooks/useSubscribeCommentOfOneMeeting'
 // import useSubscribeMessageOfOneRoom from '../../hooks/useSubscribeMessageOfOneRoom'
 // import MessageItemForAuth from '../ChatRoomComponents/MessageItemForAuth'
 // import MessageItemForPartner from '../ChatRoomComponents/MessageItemForPartner'
@@ -10,8 +10,17 @@ import { getSnapshot } from 'mobx-state-tree'
 
 const ListOfComment = () => {
   const { meeting } = Data
+
+  const { setSubscribeMessage, setUnSubscribeMessage } = useSubscribeCommentOfOneMeeting({
+    meetingId: meeting.id,
+    setCommentCreated: (comment: object) => {
+      meeting.setCommentAdded(comment)
+      // console.log(comment)
+    }
+  })
+
   const scrollToBottom = () => {
-    const msgContainer = document.getElementById('messages');
+    const msgContainer = document.getElementById('comments');
     // @ts-ignore
     msgContainer.scrollTop = msgContainer.scrollHeight;
   }
@@ -28,14 +37,17 @@ const ListOfComment = () => {
   useEffect(() => {
     // validate 
     if (meeting.id) {
+      setUnSubscribeMessage()
+      setSubscribeMessage()
     }
     return () => {
+      setUnSubscribeMessage()
     }
     // eslint-disable-next-line
   }, [meeting.id])
 
   return (
-    <div className="chat-box fix-bug-of-list-contact position-relative border-top border-left-0" id="messages" style={{ height: 'calc(60vh)' }} >
+    <div className="chat-box fix-bug-of-list-contact position-relative border-top border-left-0" id="comments" style={{ height: 'calc(60vh)' }} >
       <ul className="chat-list list-style-none px-3 pt-3">
         {/*chat Row */}
 
