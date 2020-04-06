@@ -60,6 +60,7 @@ const CellOfDate = ({
     const { count } = meetings.getMeetingListInfoInADay(dString)
     if (meetingCount !== count) setMeetingCount(count)
     // for first loading, and for added meeting
+    // eslint-disable-next-line
   }, [JSON.stringify(meetings.items[0]), meetings.items.length])
 
   const styleForCurrentDate = isCurrenDate ? {

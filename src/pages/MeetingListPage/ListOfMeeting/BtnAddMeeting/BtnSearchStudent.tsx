@@ -9,6 +9,7 @@ const BtnSearchStudent = ({
   onSetStudentInMeeting = (student: typeof defaultOfUser) => { }
 }) => {
 
+  // eslint-disable-next-line
   const [studentList, setStudentList] = useState(defaultOfUsers)
   const { textContains } = studentList
 
@@ -22,6 +23,7 @@ const BtnSearchStudent = ({
     return () => {
 
     }
+    // eslint-disable-next-line
   }, [studentList.textContains])
 
   return (
