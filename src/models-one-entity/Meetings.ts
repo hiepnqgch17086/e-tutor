@@ -66,12 +66,15 @@ const Meetings = types.compose(
     },
     setMeetingUpdated(meeting: object) {
       // @ts-ignore
-      const existMeeting = self.items.splice(self.items.findIndex(i => i.id === meeting.id), 1)
+      const existMeeting = this.setMeetingRemove(meeting.id)
       if (existMeeting) {
         setTimeout(() => {
           this.setMeetingAdded(meeting)
         }, 200)
       }
+    },
+    setMeetingRemove(id: number) {
+      return self.items.splice(self.items.findIndex(i => i.id === id), 1)
     },
     setFromAt(newV: string) {
       self.fromAt = newV
