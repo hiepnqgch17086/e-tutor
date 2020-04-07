@@ -13,6 +13,7 @@ import { onError } from 'apollo-link-error'
 import { ApolloLink, Observable } from 'apollo-link'
 import { WebSocketLink } from "apollo-link-ws"
 import { getMainDefinition } from 'apollo-utilities'
+import { mainHttpURL, mainWebsocketURL } from './api/mainApi'
 
 export const UPDATED_MUTATION_TYPE = 'UPDATED'
 export const CREATED_MUTATION_TYPE = 'CREATED'
@@ -36,7 +37,7 @@ export const DELETED_MUTATION_TYPE = 'DELETED'
 
 
 
-export const getClient = (jwt: string, httpURL = 'http://localhost:4000', websocketURL = 'ws://localhost:4000') => {
+export const getClient = (jwt: string, httpURL = mainHttpURL, websocketURL = mainWebsocketURL) => {
   // Setup the authorization header for the http client
   const request = async (operation: any) => {
     if (jwt) {
