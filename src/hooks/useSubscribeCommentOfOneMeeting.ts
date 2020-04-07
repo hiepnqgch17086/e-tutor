@@ -38,7 +38,7 @@ const useSubscribeCommentOfOneMeeting = ({
   setCommentCreated = (node: object) => { },
 }: Props) => {
 
-  const setSubscribeMessage = () => {
+  const setSubscribeComment = () => {
     // validate
     if (!meetingId) return
     // action!!!!!!!!!
@@ -74,14 +74,14 @@ const useSubscribeCommentOfOneMeeting = ({
       })
   }
 
-  const setUnSubscribeMessage = () => {
+  const setUnSubscribeComment = () => {
     if (querySubscription) {
       querySubscription.unsubscribe()
       querySubscription = null
     }
   }
 
-  return { setSubscribeMessage, setUnSubscribeMessage }
+  return { setSubscribeComment, setUnSubscribeComment }
 }
 
 export default useSubscribeCommentOfOneMeeting

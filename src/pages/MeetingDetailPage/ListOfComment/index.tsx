@@ -11,7 +11,7 @@ import useSubscribeCommentOfOneMeeting from '../../../hooks/useSubscribeCommentO
 const ListOfComment = () => {
   const { meeting } = Data
 
-  const { setSubscribeMessage, setUnSubscribeMessage } = useSubscribeCommentOfOneMeeting({
+  const { setSubscribeComment, setUnSubscribeComment } = useSubscribeCommentOfOneMeeting({
     meetingId: meeting.id,
     setCommentCreated: (comment: object) => {
       meeting.setCommentAdded(comment)
@@ -37,11 +37,11 @@ const ListOfComment = () => {
   useEffect(() => {
     // validate 
     if (meeting.id) {
-      setUnSubscribeMessage()
-      setSubscribeMessage()
+      setUnSubscribeComment()
+      setSubscribeComment()
     }
     return () => {
-      setUnSubscribeMessage()
+      setUnSubscribeComment()
     }
     // eslint-disable-next-line
   }, [meeting.id])
