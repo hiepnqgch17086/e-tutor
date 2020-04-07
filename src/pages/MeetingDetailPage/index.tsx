@@ -8,35 +8,35 @@ import ListOfComment from './ListOfComment'
 import useSubscribeMeetingStatus from '../../hooks/useSubscribeMeetingStatus'
 import ProfilePageData from '../ProfilePage/data'
 // @ts-ignore
-// import { Beforeunload } from 'react-beforeunload';
+import { Beforeunload } from 'react-beforeunload';
 
 const MeetingPage = () => {
   const { id = '' } = useParams()
   const { currentUser } = ProfilePageData
   const { meeting, onCreateComment, newComment } = Data
   const { creatorId, studentId, isCreatorOn, isStudentOn } = meeting
-  const { setSubscribeMeetingStatus, setUnSubscribeMeetingStatus } = useSubscribeMeetingStatus({
-    meetingId: parseInt(id),
-    setMeetingUpdated: (meetingSnapshot: object) => {
-      console.log(meetingSnapshot)
-      meeting.setSnapshotUpdate(meetingSnapshot)
-    }
-  })
+  // const { setSubscribeMeetingStatus, setUnSubscribeMeetingStatus } = useSubscribeMeetingStatus({
+  //   meetingId: parseInt(id),
+  //   setMeetingUpdated: (meetingSnapshot: object) => {
+  //     console.log(meetingSnapshot)
+  //     meeting.setSnapshotUpdate(meetingSnapshot)
+  //   }
+  // })
 
   useEffect(() => {
     Data.onDidMountDidUpdate(parseInt(id))
     // update status of meeting: isAuthOn
     // meeting.setDatabaseUpdateIsOnOrOff(true)
     // listen
-    setUnSubscribeMeetingStatus()
-    setSubscribeMeetingStatus()
+    // setUnSubscribeMeetingStatus()
+    // setSubscribeMeetingStatus()
     // detach close tab
     return () => {
-      meeting.setDatabaseUpdateIsOnOrOff(false)
+      // setUnSubscribeMeetingStatus()
+      // meeting.setDatabaseUpdateIsOnOrOff(false)
       // update status of meeting: isAuthOff
       // console.log('ss')
       // unlisten
-      setUnSubscribeMeetingStatus()
       Data.setSnapshotNew({})
     }
   }, [id])
@@ -74,9 +74,12 @@ const MeetingPage = () => {
                       {creatorId.name}
                     </h6>
                     <span className="font-12 text-nowrap d-block text-muted" >{currentUser.id === creatorId.id ? 'You' : 'Tutor'}</span>
-                    <span className={`font-12 text-nowrap d-block font-weight-bold ${isCreatorOn && 'text-success'}`}>
-                      {isCreatorOn ? 'is On' : 'is Off'}
+                    <span className={`font-12 text-nowrap d-block font-weight-normal`}>
+                      <i className="far fa-envelope mr-1" />{creatorId.email}
                     </span>
+                    {/* <span className={`font-12 text-nowrap d-block font-weight-bold ${isCreatorOn && 'text-success'}`}>
+                      {isCreatorOn ? 'is On' : 'is Off'}
+                    </span> */}
                   </div>
                 </div>
                 {/* Student */}
@@ -89,9 +92,12 @@ const MeetingPage = () => {
                       {studentId.name}
                     </h6>
                     <span className="font-12 text-nowrap d-block text-muted" >{currentUser.id === studentId.id ? 'You' : 'Student'}</span>
-                    <span className={`font-12 text-nowrap d-block font-weight-bold ${isStudentOn && 'text-success'}`}>
-                      {isStudentOn ? 'is On' : 'is Off'}
+                    <span className={`font-12 text-nowrap d-block font-weight-normal`}>
+                      <i className="far fa-envelope mr-1" />{studentId.email}
                     </span>
+                    {/* <span className={`font-12 text-nowrap d-block font-weight-bold ${isStudentOn && 'text-success'}`}>
+                      {isStudentOn ? 'is On' : 'is Off'}
+                    </span> */}
                   </div>
                 </div>
 
