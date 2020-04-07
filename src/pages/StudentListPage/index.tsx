@@ -26,7 +26,7 @@ const StudentListPage = () => {
     if (ProfilePageData.currentUser.role === IS_ADMIN) {
       Data.onDidMountDidUpdate(category)
       // eslint-disable-next-line
-    } {
+    } else {
       history.push(HOME_PAGE)
     }
     // eslint-disable-next-line

@@ -61,13 +61,19 @@ const SideBar = () => {
               )
             }
 
+            {
+              currentUser.role && currentUser.role !== IS_ADMIN ? (
+                <SideBarItem
+                  href={MEETING_LIST_PAGE}
+                  iconName="icon-calender"
+                  title="Meetings"
+                  isActive={isMeetingActive}
+                />
+              ) : null
+            }
 
-            <SideBarItem
-              href={MEETING_LIST_PAGE}
-              iconName="icon-calender"
-              title="Meetings"
-              isActive={isMeetingActive}
-            />
+
+
 
             {
               currentUser.role === IS_ADMIN && ( // for only admin

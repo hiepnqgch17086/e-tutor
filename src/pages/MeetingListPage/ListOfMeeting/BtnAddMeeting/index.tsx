@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import ProfilePageData from '../../../ProfilePage/data';
-import { IS_STUDENT } from '../../../../models-one-prop/role';
+import { IS_TUTOR } from '../../../../models-one-prop/role';
 import { observer } from 'mobx-react-lite';
 import BtnSearchStudent from './BtnSearchStudent';
 import CustomInput from '../../../../components-in-managing-resources/CustomInput';
@@ -38,7 +38,7 @@ const BtnAddMeeting = ({
     // eslint-disable-next-line
   }, [modal])
 
-  if (currentUser.role === IS_STUDENT) return <div></div>
+  if (currentUser.role !== IS_TUTOR) return <div></div>
   return (
     <div>
       <Button color="danger" onClick={toggle}>Add Meeting</Button>
