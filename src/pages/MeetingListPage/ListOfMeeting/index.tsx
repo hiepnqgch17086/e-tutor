@@ -22,7 +22,7 @@ const ListOfMeeting = ({
       meetings.setMeetingAdded(meeting)
     },
     setMeetingUpdated: (meeting: Object) => {
-      meetings.setMeetingUpdated(meeting)
+      meetings.setMeetingUpdateStartAtEndAt(meeting)
     }
   })
 

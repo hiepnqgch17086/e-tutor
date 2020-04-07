@@ -5,15 +5,33 @@ import AvatarInDefault from '../../images/AvatarInDefault'
 import { useParams } from 'react-router-dom'
 import Data from './data'
 import ListOfComment from './ListOfComment'
+import useSubscribeMeetingStatus from '../../hooks/useSubscribeMeetingStatus'
 
 const MeetingPage = () => {
   const { id = '' } = useParams()
   const { meeting, onCreateComment, newComment } = Data
   const { creatorId, studentId, isCreatorOn, isStudentOn } = meeting
+  const { setSubscribeMeetingStatus, setUnSubscribeMeetingStatus } = useSubscribeMeetingStatus({
+    meetingId: parseInt(id),
+    setMeetingUpdated: (meetingSnapshot: object) => {
+      meeting.setSnapshotUpdate(meetingSnapshot)
+    }
+  })
 
   useEffect(() => {
     Data.onDidMountDidUpdate(parseInt(id))
+    // update status of meeting: isAuthOn
+    meeting.setDatabaseUpdateIsOnOrOff(true)
+    // listen
+    setUnSubscribeMeetingStatus()
+    setSubscribeMeetingStatus()
+    // detach close tab
     return () => {
+      meeting.setDatabaseUpdateIsOnOrOff(false)
+      // update status of meeting: isAuthOff
+      // console.log('ss')
+      // unlisten
+      setUnSubscribeMeetingStatus()
       Data.setSnapshotNew({})
     }
   }, [id])

@@ -17,60 +17,51 @@ const setClient = () => {
 }
 
 // define of subscribe is defined in jwt token and room
-const subscribeToMeeting = gql`
-  subscription($fromAt: DateTime!, $toAt: DateTime!) {
-    meeting(fromAt: $fromAt, toAt: $toAt){
+const subscribeToMeetingStatus = gql`
+  subscription($meetingId: ID!) {
+    meetingStatus(meetingId: $meetingId){
       mutation
       node {
-        id
-        title
-        studentId {id name email name}
-        creatorId {id name email name}
-        startAt
-        endAt
+        isCreatorOn
+        isStudentOn
+        isStudentTyping
+        isCreatorTyping
       }
     }
   }
 `
 type Props = {
-  fromAt: string,
-  toAt: string,
-  setMeetingCreated: Function,
+  meetingId: Number
   setMeetingUpdated: Function
 }
 
-const useSubscribeMeetingInRangeOfDate = ({
-  fromAt = new Date().toISOString(),
-  toAt = new Date().toISOString(),
-  setMeetingCreated = (node: object) => { },
+const useSubscribeMeetingStatus = ({
+  meetingId = 0,
   setMeetingUpdated = (node: object) => { },
 }: Props) => {
 
-  const setSubscribeMeeting = () => {
+  const setSubscribeMeetingStatus = () => {
     // validate
-    if (!fromAt) return
+    if (!meetingId) return
     // action
-    const fromAtISO = new Date(fromAt).toISOString()
-    const toAtISO = new Date(toAt).toISOString()
     setClient()
     querySubscription = client.subscribe({
-      query: subscribeToMeeting,
+      query: subscribeToMeetingStatus,
       variables: {
-        fromAt: fromAtISO,
-        toAt: toAtISO,
+        meetingId
       }
     })
       .subscribe({
         next(response) {
-          const { data: { meeting: { mutation, node } } } = response
-          // console.log(mutation, node)
+          const { data: { meetingStatus: { mutation, node } } } = response
+          // console.log(data)
           switch (mutation) {
             case UPDATED_MUTATION_TYPE:
               setMeetingUpdated(node)
               break;
-            case CREATED_MUTATION_TYPE:
-              setMeetingCreated(node)
-              break;
+            // case CREATED_MUTATION_TYPE:
+            //   setMeetingCreated(node)
+            //   break;
             // case DELETED_MUTATION_TYPE:
             //   break;
             default:
@@ -85,14 +76,14 @@ const useSubscribeMeetingInRangeOfDate = ({
       })
   }
 
-  const setUnSubscribeMeeting = () => {
+  const setUnSubscribeMeetingStatus = () => {
     if (querySubscription) {
       querySubscription.unsubscribe()
       querySubscription = null
     }
   }
 
-  return { setSubscribeMeeting, setUnSubscribeMeeting }
+  return { setSubscribeMeetingStatus, setUnSubscribeMeetingStatus }
 }
 
-export default useSubscribeMeetingInRangeOfDate
+export default useSubscribeMeetingStatus

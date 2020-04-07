@@ -133,6 +133,14 @@ export default class MainApi extends JsonApi {
       errorMessage
     }
   }
+  async setMeetingUpdateIsOnOrOff(id: number, isOn: boolean = false): Promise<Response> {
+    const { data: { errorMessage } } = await this.ApiRef.put(`/meetings/${id}/status-is-on-or-off`, {
+      isOn
+    })
+    return {
+      errorMessage
+    }
+  }
   async getMeetings({
     fromAt, toAt
   }: any): Promise<Response> {

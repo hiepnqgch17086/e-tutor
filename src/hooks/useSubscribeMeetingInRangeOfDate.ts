@@ -63,7 +63,6 @@ const useSubscribeMeetingInRangeOfDate = ({
       .subscribe({
         next(response) {
           const { data: { meeting: { mutation, node } } } = response
-          // console.log(mutation, node)
           switch (mutation) {
             case UPDATED_MUTATION_TYPE:
               setMeetingUpdated(node)

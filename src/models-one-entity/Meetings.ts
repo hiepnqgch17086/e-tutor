@@ -69,6 +69,17 @@ export const Meeting = types.compose(
       // @ts-ignore
       delete snapshot.id
       return API.setMeetingUpdate(id, snapshot)
+    },
+    setDatabaseUpdateIsOnOrOff(isOn: boolean = false) {
+      try {
+        // just allow to modify some field
+        if (!self.id) return
+        // console.log(willPassedMeeting)
+        const meetingId = self.id
+        return API.setMeetingUpdateIsOnOrOff(meetingId, isOn)
+      } catch (error) {
+        console.log(error.message)
+      }
     }
   }))
 
@@ -85,10 +96,31 @@ const Meetings = types.compose(
 )
   .actions(self => ({
     setMeetingAdded(meeting: object) {
-      const newMeeting = Meeting.create(meeting)
-      self.items.push(newMeeting)
+      // add when meeting not existing in list
+      // @ts-ignore
+      const index = self.items.findIndex(i => i.id === meeting.id)
+      if (index < 0) {
+        const newMeeting = Meeting.create(meeting)
+        self.items.push(newMeeting)
+      }
     },
-    setMeetingUpdated(meeting: object) {
+    setMeetingUpdateStartAtEndAt(meeting: object) {
+      let shouldUpdate = false
+      // find meeting
+      // @ts-ignore
+      const meetingInCurrently = self.items.find(i => i.id === meeting.id)
+      // check should update
+      const updatedFields = ['startAt', 'endAt']
+      for (let index = 0; index < updatedFields.length; index++) {
+        const element = updatedFields[index];
+        // @ts-ignore
+        if (meeting[element] !== meetingInCurrently[element]) {
+          shouldUpdate = true
+          break;
+        }
+      }
+
+      if (!shouldUpdate) return
       // @ts-ignore
       const existMeeting = this.setMeetingRemove(meeting.id)
       if (existMeeting) {
