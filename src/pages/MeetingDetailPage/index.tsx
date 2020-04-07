@@ -41,14 +41,14 @@ const MeetingPage = () => {
       <div className="col-md-12">
         <div className="card">
           <div className="row no-gutters">
-            <div className="col-lg-6">
+            <div className="col-md-6">
               <ListOfComment />
               <IpComment
                 comment={newComment}
                 onCreateComment={onCreateComment}
               />
             </div>
-            <div className="col-lg-6">
+            <div className="col-md-6">
               <div className="border-bottom border-top card p-2 d-flex align-items-center">
                 <h3>{meeting.title}</h3>
               </div>
