@@ -2,9 +2,11 @@ import React from 'react'
 import { observer } from 'mobx-react-lite'
 import BtnUploadFile from './BtnUploadFile'
 import { defaultOfComment } from '../../../models-one-entity/Comments'
+import { defaultOfMeeting } from '../../../models-one-entity/Meetings'
 
 const IpMessage = ({
   comment = defaultOfComment,
+  meeting = defaultOfMeeting,
   onCreateComment = () => { },
 }) => {
 
@@ -21,7 +23,10 @@ const IpMessage = ({
     if (e.keyCode === 13) onSubmit()
   }
 
-
+  const onFocus = () => {
+    // update status of meeting: isAuthOn
+    // meeting.setDatabaseUpdateIsOnOrOff(true)
+  }
 
 
   return (
@@ -35,6 +40,7 @@ const IpMessage = ({
               const text = e.target.value
               onChangeText(text)
             }}
+            onFocus={onFocus}
           />
         </div>
         <div>
