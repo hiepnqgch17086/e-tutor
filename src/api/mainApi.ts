@@ -2,7 +2,7 @@ import { AxiosResponse } from "axios";
 import JsonApi from "./jsonApi";
 import { Response } from "../models-one-entity/types";
 
-export const ApiURL = 'http://3ff44111.ngrok.io'
+export const ApiURL = 'http://localhost:4000'
 
 export default class MainApi extends JsonApi {
 
