@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import TableOfNextMeetings from './TableOfNextMeetings'
 import TableOfTopStudentsMessage from './TableOfTopStudentsMessage'
 import TableOfTopStudentsMeeting from './TableOfTopStudentsMeeting'
+import Data from './data'
 
 const ForStudent = () => {
+
+  useEffect(() => {
+    // effect
+    Data.onDidMountDidUpdate()
+    return () => {
+      // cleanup
+    }
+  }, [])
+
   return (
     <div>
       <div className="row">

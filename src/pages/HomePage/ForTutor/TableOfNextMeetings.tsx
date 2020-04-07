@@ -5,27 +5,13 @@ import moment from 'moment'
 import { Link } from 'react-router-dom'
 import AvatarInDefault from '../../../images/AvatarInDefault'
 import { get_MEETING_DETAIL_PAGE } from '../../../routes'
+import Data from './data'
+import { defaultOfMeeting } from '../../../models-one-entity/Meetings'
+import { IS_STUDENT } from '../../../models-one-prop/role'
 
 const TableOfNextMeetings = () => {
-  const defaultItem = {
-    id: 1,
-    avatar: '',
-    name: 'Student 1',
-    title: 'Title1',
-    startAt: moment().format(),
-    endAt: moment().format(),
-  }
-
-  const defaultItem2 = {
-    id: 1,
-    avatar: '',
-    name: 'Student 2',
-    title: 'Title2',
-    startAt: moment().format(),
-    endAt: moment().format(),
-  }
-
-  const defaultData = [defaultItem, defaultItem2]
+  const { nextMeetings } = Data
+  const { role } = nextMeetings
 
   return (
     <>
@@ -36,19 +22,23 @@ const TableOfNextMeetings = () => {
       </div>
       <CustomTable
         headerArray={[]}
-        data={defaultData}
-        renderItemCellsInRow={({ item = defaultItem, index = 0 }) => {
+        data={nextMeetings.items}
+        renderItemCellsInRow={({ item = defaultOfMeeting, index = 0 }) => {
+          // const 
+          const auth = role === IS_STUDENT
+            ? item.studentId
+            : item.creatorId
           return [
-            <Link to={get_MEETING_DETAIL_PAGE(item.id)} className="message-item d-flex align-items-center">
-              <img src={item.avatar || AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
+            <div className="message-item d-flex align-items-center">
+              <img src={auth.avatar || AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
               <div className="w-75 d-inline-block v-middle pl-2">
-                <h6 className="message-title mb-0 mt-1">{item.name}</h6>
+                <h6 className="message-title mb-0 mt-1">{auth.name}</h6>
                 <span className="font-12 text-nowrap d-block text-muted">Meeting's title: {item.title}</span>
                 <span className="font-12 text-nowrap d-block text-muted">
                   {moment(item.startAt).calendar() + " - " + moment(item.endAt).format('LT')}
                 </span>
               </div>
-            </Link>
+            </div>
           ]
         }}
       />

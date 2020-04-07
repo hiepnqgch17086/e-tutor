@@ -12,6 +12,20 @@ export default class MainApi extends JsonApi {
   }
 
   //////////////USERS////////////////
+  async getTop10StudentsMessageToThisTutor(): Promise<Response> {
+    const { data: { students, errorMessage } } = await this.ApiRef.get('/users/get-top-students-message-to-this-tutor/top-10-students-message')
+    return {
+      data: { students },
+      errorMessage
+    }
+  }
+  async getTop10StudentsMeetingToThisTutor(): Promise<Response> {
+    const { data: { students, errorMessage } } = await this.ApiRef.get('/users/get-top-students-meeting-to-this-tutor/top-10-students-meeting')
+    return {
+      data: { students },
+      errorMessage
+    }
+  }
   /**
    * @override
    */
@@ -172,5 +186,14 @@ export default class MainApi extends JsonApi {
     return {
       errorMessage,
     }
+  }
+  async getNextMeetingsInFuture(): Promise<Response> {
+
+    const { data: { nextMeetings, errorMessage, role } } = await this.ApiRef.get('/meetings/next/meetings')
+    return {
+      data: { nextMeetings, role },
+      errorMessage
+    }
+
   }
 }

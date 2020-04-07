@@ -8,7 +8,7 @@ import { Comment } from './Comments'
 import { Response } from "./types";
 import { toast } from "react-toastify";
 import ProfilePageData from "../pages/ProfilePage/data";
-import { IS_TUTOR, IS_STUDENT } from "../models-one-prop/role";
+import role, { IS_TUTOR, IS_STUDENT } from "../models-one-prop/role";
 
 export const Meeting = types.compose(
   'Meeting',
@@ -98,6 +98,7 @@ export const defaultOfMeeting = Meeting.create({})
 
 const Meetings = types.compose(
   'Meetings',
+  role,
   GeneralModelList,
   types.model({
     items: types.array(Meeting),
@@ -173,7 +174,19 @@ const Meetings = types.compose(
         return false
       })
       return { count, meetingsInDay }
-    }
+    },
+    getDatabaseNextMeetingsInFuture: async function () {
+      try {
+        const { data: { nextMeetings, errorMessage, role } } = await API.getNextMeetingsInFuture()
+        if (errorMessage) throw new Error(errorMessage)
+        // self.setSnapshotNew()
+        self.setSnapshotNew(nextMeetings, self.items)
+        self.setRole(role)
+      } catch (error) {
+        console.log(error.message)
+        toast.error('Something went wrong')
+      }
+    },
   }))
 
 export default Meetings

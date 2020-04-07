@@ -1,4 +1,4 @@
-import { types, getParent } from "mobx-state-tree";
+import { types, getParent, getSnapshot } from "mobx-state-tree";
 import id from "../models-one-prop/id";
 import email from "../models-one-prop/email";
 import password from "../models-one-prop/password";
@@ -23,6 +23,13 @@ export const User = types.compose(
   UserBase,
   types.model({
     tutorId: types.maybeNull(UserBase),
+    // for report
+    totalOfMessages: types.optional(
+      types.union(types.number, types.string), ""
+    ),
+    totalOfMeetings: types.optional(
+      types.union(types.number, types.string), ""
+    ),
   })
 )
   .actions(self => ({
@@ -37,8 +44,7 @@ export const User = types.compose(
         self._getRepeatPasswordConstraint()
       ]
     },
-
-    // SPECIAL METHODS
+    // SPECIAL METHODS    
     // Login
     getApiToken: async function (): Promise<ErrorMessage> {
       try {
@@ -204,6 +210,24 @@ const Users = types.compose(
           page: self.page,
         })
         self.setSnapshotNew(data.tutors, self.items)
+      } catch (error) {
+        console.log(error.message)
+      }
+    },
+    getDatabaseTop10StudentsMessage: async function () {
+      try {
+        const { data: { students }, errorMessage } = await API.getTop10StudentsMessageToThisTutor()
+        if (errorMessage) throw new Error(errorMessage)
+        self.setSnapshotNew(students, self.items)
+      } catch (error) {
+        console.log(error.message)
+      }
+    },
+    getDatabaseTop10StudentsMeeting: async function () {
+      try {
+        const { data: { students }, errorMessage } = await API.getTop10StudentsMeetingToThisTutor()
+        if (errorMessage) throw new Error(errorMessage)
+        self.setSnapshotNew(students, self.items)
       } catch (error) {
         console.log(error.message)
       }
