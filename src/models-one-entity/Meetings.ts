@@ -7,6 +7,8 @@ import moment from "moment";
 import { Comment } from './Comments'
 import { Response } from "./types";
 import { toast } from "react-toastify";
+import ProfilePageData from "../pages/ProfilePage/data";
+import { IS_TUTOR, IS_STUDENT } from "../models-one-prop/role";
 
 export const Meeting = types.compose(
   'Meeting',
@@ -74,9 +76,18 @@ export const Meeting = types.compose(
       try {
         // just allow to modify some field
         if (!self.id) return
-        // console.log(willPassedMeeting)
         const meetingId = self.id
-        return API.setMeetingUpdateIsOnOrOff(meetingId, isOn)
+
+        const { currentUser: { role } } = ProfilePageData
+        // in need
+        if (role === IS_TUTOR && self.isCreatorOn !== isOn) {
+          return API.setMeetingUpdateIsOnOrOff(meetingId, isOn)
+        }
+        if (role === IS_STUDENT && self.isStudentOn !== isOn) {
+          return API.setMeetingUpdateIsOnOrOff(meetingId, isOn)
+        }
+
+        return null
       } catch (error) {
         console.log(error.message)
       }

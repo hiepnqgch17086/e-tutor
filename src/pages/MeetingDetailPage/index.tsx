@@ -8,7 +8,7 @@ import ListOfComment from './ListOfComment'
 import useSubscribeMeetingStatus from '../../hooks/useSubscribeMeetingStatus'
 import ProfilePageData from '../ProfilePage/data'
 // @ts-ignore
-import { Beforeunload } from 'react-beforeunload';
+// import { Beforeunload } from 'react-beforeunload';
 
 const MeetingPage = () => {
   const { id = '' } = useParams()
@@ -18,6 +18,7 @@ const MeetingPage = () => {
   const { setSubscribeMeetingStatus, setUnSubscribeMeetingStatus } = useSubscribeMeetingStatus({
     meetingId: parseInt(id),
     setMeetingUpdated: (meetingSnapshot: object) => {
+      console.log(meetingSnapshot)
       meeting.setSnapshotUpdate(meetingSnapshot)
     }
   })
@@ -42,10 +43,12 @@ const MeetingPage = () => {
 
   return (
     <div className="row">
-      <Beforeunload onBeforeunload={(e: any) => {
-        console.log('ssss', Data.onCloseTabOrBrowser())
-        return 'sss'
-      }} />
+      {/* <Beforeunload onBeforeunload={async (e: any) => {
+        await Data.onCloseTabOrBrowser()
+        // e.preventDefault()
+        // console.log('sss')
+        return e.preventDefault()
+      }} /> */}
       <div className="col-md-12">
         <div className="card">
           <div className="row no-gutters">

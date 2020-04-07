@@ -39,7 +39,7 @@ const MeetingDetailPageData = types.compose(
     },
     onCloseTabOrBrowser() {
       // set is Off
-      self.meeting.setDatabaseUpdateIsOnOrOff(false)
+      return self.meeting.setDatabaseUpdateIsOnOrOff(false)
       // if (role === IS_TUTOR && !meeting.isCreatorOn) {
       //   return
       // }
