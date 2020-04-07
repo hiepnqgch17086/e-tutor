@@ -2,13 +2,15 @@ import React from 'react'
 import { observer } from 'mobx-react-lite'
 import BtnUploadFile from './BtnUploadFile'
 import { defaultOfComment } from '../../../models-one-entity/Comments'
-import { defaultOfMeeting } from '../../../models-one-entity/Meetings'
+// import { defaultOfMeeting } from '../../../models-one-entity/Meetings'
+import Data from '../data'
 
 const IpMessage = ({
   comment = defaultOfComment,
-  meeting = defaultOfMeeting,
   onCreateComment = () => { },
 }) => {
+
+  const { onForcusInputComment } = Data
 
   const onSubmit = () => {
     if (comment._getTextConstraint()) return
@@ -23,12 +25,6 @@ const IpMessage = ({
     if (e.keyCode === 13) onSubmit()
   }
 
-  const onFocus = () => {
-    // update status of meeting: isAuthOn
-    // meeting.setDatabaseUpdateIsOnOrOff(true)
-  }
-
-
   return (
     <div className="card-body border-top border-right">
       <div className="d-flex">
@@ -40,7 +36,7 @@ const IpMessage = ({
               const text = e.target.value
               onChangeText(text)
             }}
-            onFocus={onFocus}
+            onFocus={onForcusInputComment}
           />
         </div>
         <div>

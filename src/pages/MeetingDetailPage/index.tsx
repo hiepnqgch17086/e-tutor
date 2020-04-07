@@ -6,9 +6,13 @@ import { useParams } from 'react-router-dom'
 import Data from './data'
 import ListOfComment from './ListOfComment'
 import useSubscribeMeetingStatus from '../../hooks/useSubscribeMeetingStatus'
+import ProfilePageData from '../ProfilePage/data'
+// @ts-ignore
+import { Beforeunload } from 'react-beforeunload';
 
 const MeetingPage = () => {
   const { id = '' } = useParams()
+  const { currentUser } = ProfilePageData
   const { meeting, onCreateComment, newComment } = Data
   const { creatorId, studentId, isCreatorOn, isStudentOn } = meeting
   const { setSubscribeMeetingStatus, setUnSubscribeMeetingStatus } = useSubscribeMeetingStatus({
@@ -21,7 +25,7 @@ const MeetingPage = () => {
   useEffect(() => {
     Data.onDidMountDidUpdate(parseInt(id))
     // update status of meeting: isAuthOn
-    meeting.setDatabaseUpdateIsOnOrOff(true)
+    // meeting.setDatabaseUpdateIsOnOrOff(true)
     // listen
     setUnSubscribeMeetingStatus()
     setSubscribeMeetingStatus()
@@ -38,6 +42,10 @@ const MeetingPage = () => {
 
   return (
     <div className="row">
+      <Beforeunload onBeforeunload={(e: any) => {
+        e.preventDefault()
+        Data.onCloseTabOrBrowser()
+      }} />
       <div className="col-md-12">
         <div className="card">
           <div className="row no-gutters">
@@ -62,7 +70,7 @@ const MeetingPage = () => {
                     <h6 className="message-title mb-0 mt-1">
                       {creatorId.name}
                     </h6>
-                    <span className="font-12 text-nowrap d-block text-muted" >Tutor</span>
+                    <span className="font-12 text-nowrap d-block text-muted" >{currentUser.id === creatorId.id ? 'You' : 'Tutor'}</span>
                     <span className={`font-12 text-nowrap d-block font-weight-bold ${isCreatorOn && 'text-success'}`}>
                       {isCreatorOn ? 'is On' : 'is Off'}
                     </span>
@@ -77,7 +85,7 @@ const MeetingPage = () => {
                     <h6 className="message-title mb-0 mt-1">
                       {studentId.name}
                     </h6>
-                    <span className="font-12 text-nowrap d-block text-muted" >Student</span>
+                    <span className="font-12 text-nowrap d-block text-muted" >{currentUser.id === studentId.id ? 'You' : 'Student'}</span>
                     <span className={`font-12 text-nowrap d-block font-weight-bold ${isStudentOn && 'text-success'}`}>
                       {isStudentOn ? 'is On' : 'is Off'}
                     </span>
