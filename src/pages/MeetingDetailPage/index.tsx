@@ -43,8 +43,8 @@ const MeetingPage = () => {
   return (
     <div className="row">
       <Beforeunload onBeforeunload={(e: any) => {
-        e.preventDefault()
-        Data.onCloseTabOrBrowser()
+        console.log('ssss', Data.onCloseTabOrBrowser())
+        return 'sss'
       }} />
       <div className="col-md-12">
         <div className="card">
