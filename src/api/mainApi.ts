@@ -65,6 +65,35 @@ export default class MainApi extends JsonApi {
       errorMessage
     }
   }
+  async getUserTotalOfMessages(id: number): Promise<Response> {
+    const { data: { totalOfMessages, errorMessage } } = await this.ApiRef.get(`/users/${id}/total-of-messages`)
+    return {
+      data: { totalOfMessages },
+      errorMessage
+    }
+  }
+  async getUserTotalOfComments(id: number): Promise<Response> {
+    const { data: { totalOfComments, errorMessage } } = await this.ApiRef.get(`/users/${id}/total-of-comments`)
+    return {
+      data: { totalOfComments },
+      errorMessage
+    }
+  }
+  async getUserTotalOfEmails(id: number): Promise<Response> {
+    const { data: { totalOfEmails, errorMessage } } = await this.ApiRef.get(`/users/${id}/total-of-emails`)
+    return {
+      data: { totalOfEmails },
+      errorMessage
+    }
+  }
+  async getStudentTotalOfMeetings(id: number): Promise<Response> {
+    const { data: { totalOfMeetings, errorMessage } } = await this.ApiRef.get(`/users/${id}/total-of-meetings-of-student`)
+    // console.log(totalOfMeetings)
+    return {
+      data: { totalOfMeetings },
+      errorMessage
+    }
+  }
   async setTutorOfStudent(studentId: string | number = 0, tutorId: string | number = 0): Promise<Response> {
     const { data: { errorMessage } } = await this.ApiRef.put('/users/set-tutor-for-student', {
       studentId,

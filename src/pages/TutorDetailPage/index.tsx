@@ -3,8 +3,7 @@ import { observer } from 'mobx-react-lite'
 import ProfileDetail from '../ProfilePage/ProfileDetail'
 import { useParams } from 'react-router-dom'
 import { User } from '../../models-one-entity/Users'
-import HomePage from '../HomePage'
-import { IS_TUTOR, IS_ADMIN } from '../../models-one-prop/role'
+import { IS_ADMIN, IS_TUTOR } from '../../models-one-prop/role'
 import { TutorHomePageModel } from '../HomePage/ForTutor/data'
 import TableOfNextMeetings from '../../components/Dashboard/TableOfNextMeetings'
 import TableOfTopStudentsMessage from '../../components/Dashboard/TableOfTopStudentsMessage'
@@ -12,7 +11,7 @@ import TableOfTopStudentsMeeting from '../../components/Dashboard/TableOfTopStud
 import ProfilePageData from '../ProfilePage/data'
 
 const dashboardData = TutorHomePageModel.create({})
-const tutorData = User.create({ role: 2 })
+const tutorData = User.create({ role: IS_TUTOR })
 
 const TutorDetailPage = () => {
   const { id = '' } = useParams()

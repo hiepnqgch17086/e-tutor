@@ -15,6 +15,7 @@ export const TutorHomePageModel = types.compose(
 )
   .actions(self => ({
     onDidMountDidUpdate(tutorId: number) {
+      if (!tutorId) return
       self.nextMeetings.getDatabaseNextMeetingsInFuture(tutorId)
       self.topTenStudentsMessage.getDatabaseTop10StudentsMessage(tutorId)
       self.topTenStudentsMeeting.getDatabaseTop10StudentsMeeting(tutorId)

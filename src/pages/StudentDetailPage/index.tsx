@@ -3,27 +3,59 @@ import { observer } from 'mobx-react-lite'
 import ProfileDetail from '../ProfilePage/ProfileDetail'
 import { useParams } from 'react-router-dom'
 import { User } from '../../models-one-entity/Users'
-import HomePage from '../HomePage'
+import { IS_ADMIN, IS_STUDENT } from '../../models-one-prop/role'
+import TableOfNextMeetings from '../../components/Dashboard/TableOfNextMeetings'
+import TableOfTopStudentsMessage from '../../components/Dashboard/TableOfTopStudentsMessage'
+import TableOfTopStudentsMeeting from '../../components/Dashboard/TableOfTopStudentsMeeting'
+import ProfilePageData from '../ProfilePage/data'
+import { StudentHomePageModel } from '../HomePage/ForStudent/data'
+import CardsCounterOfMessagesMeetingsCommentsEmails from '../../components/Dashboard/CardsCounterOfMessagesMeetingsCommentsEmails'
+import TableOfNewestComments from '../../components/Dashboard/TableOfNewestComments'
+
+const dashboardData = StudentHomePageModel.create({})
+const studentProfile = User.create({ role: IS_STUDENT })
 
 const StudentDetailPage = () => {
   const { id = '' } = useParams()
 
-  const user = User.create({
-    id: parseInt(id) || 0,
-    avatar: '',
-    name: 'student1',
-    role: 3,
-  })
-
   useEffect(() => {
-    // Data.onDidMountDidUpdate(parseInt(id?)
-  }, [])
-  // console.log('ss', id)
+    if (id) {
+      studentProfile.setId(parseInt(id))
+      studentProfile.getDatabase()
+      dashboardData.onDidMountDidUpdate(parseInt(id))
+    }
+  }, [id])
+
   return (
     <div>
       <ProfileDetail
-      // user={user}
+        user={studentProfile}
       />
+      {
+        ProfilePageData.currentUser.role === IS_ADMIN && (
+          <>
+            <CardsCounterOfMessagesMeetingsCommentsEmails
+              numberOfComments={dashboardData.student.totalOfComments}
+              numberOfMessages={dashboardData.student.totalOfMessages}
+              numberOfMeetings={dashboardData.student.totalOfMeetings}
+              numberOfEmails={dashboardData.student.totalOfEmails}
+            />
+            <div className="row">
+              <div className="col-md-4">
+                <TableOfNextMeetings
+                  nextMeetings={dashboardData.nextMeetings}
+                />
+              </div>
+              <div className="col-md-8">
+                <TableOfNewestComments />
+              </div>
+
+            </div>
+          </>
+        )
+      }
+
+
     </div>
   )
 }

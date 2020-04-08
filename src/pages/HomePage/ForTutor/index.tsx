@@ -19,19 +19,19 @@ const ForTutor = () => {
   return (
     <div>
       <div className="row">
-        <div className="col-lg-6">
+        <div className="col-mg-6">
           <TableOfNextMeetings
             nextMeetings={Data.nextMeetings}
           />
         </div>
       </div>
       <div className="row">
-        <div className="col-lg-6">
+        <div className="col-mg-6">
           <TableOfTopStudentsMessage
             students={Data.topTenStudentsMessage}
           />
         </div>
-        <div className="col-lg-6">
+        <div className="col-mg-6">
           <TableOfTopStudentsMeeting
             students={Data.topTenStudentsMeeting}
           />

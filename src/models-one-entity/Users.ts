@@ -25,11 +25,17 @@ export const User = types.compose(
     tutorId: types.maybeNull(UserBase),
     // for report
     totalOfMessages: types.optional(
-      types.union(types.number, types.string), ""
+      types.union(types.number, types.string), 0
     ),
     totalOfMeetings: types.optional(
-      types.union(types.number, types.string), ""
+      types.union(types.number, types.string), 0
     ),
+    totalOfComments: types.optional(
+      types.union(types.number, types.string), 0
+    ),
+    totalOfEmails: types.optional(
+      types.union(types.number, types.string), 0
+    )
   })
 )
   .actions(self => ({
@@ -42,7 +48,71 @@ export const User = types.compose(
         self.setSnapshotNew(user)
       } catch ({ message }) {
         console.log('getDatabase()', message)
-        toast.error(message)
+        toast.error('Something went wrong!')
+        return {
+          errorMessage: message
+        }
+      }
+    },
+    getDatabaseTotalOfMessages: async function () {
+      try {
+        // @ts-ignore
+        // eslint-disable-next-line
+        const id = self.id
+        const { data: { totalOfMessages, errorMessage } } = await API.getUserTotalOfMessages(id)
+        if (errorMessage) throw new Error(errorMessage)
+        self.setSnapshotUpdate({ totalOfMessages })
+      } catch ({ message }) {
+        console.log('getDatabase()', message)
+        toast.error('Something went wrong!')
+        return {
+          errorMessage: message
+        }
+      }
+    },
+    getDatabaseTotalOfComments: async function () {
+      try {
+        // @ts-ignore
+        // eslint-disable-next-line
+        const id = self.id
+        const { data: { totalOfComments, errorMessage } } = await API.getUserTotalOfComments(id)
+        if (errorMessage) throw new Error(errorMessage)
+        self.setSnapshotUpdate({ totalOfComments })
+      } catch ({ message }) {
+        console.log('getDatabase()', message)
+        toast.error('Something went wrong!')
+        return {
+          errorMessage: message
+        }
+      }
+    },
+    getDatabaseTotalOfEmails: async function () {
+      try {
+        // @ts-ignore
+        // eslint-disable-next-line
+        const id = self.id
+        const { data: { totalOfEmails, errorMessage } } = await API.getUserTotalOfEmails(id)
+        if (errorMessage) throw new Error(errorMessage)
+        self.setSnapshotUpdate({ totalOfEmails })
+      } catch ({ message }) {
+        console.log('getDatabase()', message)
+        toast.error('Something went wrong!')
+        return {
+          errorMessage: message
+        }
+      }
+    },
+    getDatabaseTotalOfMeetingsOfStudent: async function () {
+      try {
+        // @ts-ignore
+        // eslint-disable-next-line
+        const id = self.id
+        const { data: { totalOfMeetings, errorMessage } } = await API.getStudentTotalOfMeetings(id)
+        if (errorMessage) throw new Error(errorMessage)
+        self.setSnapshotUpdate({ totalOfMeetings })
+      } catch ({ message }) {
+        console.log('getDatabase()', message)
+        toast.error('Something went wrong!')
         return {
           errorMessage: message
         }

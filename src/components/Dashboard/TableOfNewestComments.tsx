@@ -24,7 +24,7 @@ const TableOfNewestComments = () => {
     <>
       <div className="card m-0">
         <div className="card-body p-3">
-          <h4 className="card-title">New Comments Received</h4>
+          <h4 className="card-title">10 New Comments Received</h4>
         </div>
       </div>
       <CustomTable

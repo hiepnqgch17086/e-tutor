@@ -1,23 +1,43 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import CardsCounterOfMessagesMeetingsComments from '../../../components/Dashboard/CardsCounterOfMessagesMeetingsComments'
-import TableOfNewestMessages from '../../../components/Dashboard/TableOfNewestMessages'
+import CardsCounterOfMessagesMeetingsCommentsEmails from '../../../components/Dashboard/CardsCounterOfMessagesMeetingsCommentsEmails'
 import TableOfNewestComments from '../../../components/Dashboard/TableOfNewestComments'
 import TableOfNextMeetings from '../../../components/Dashboard/TableOfNextMeetings'
+import Data from './data'
+import ProfilePageData from '../../ProfilePage/data'
 
 const ForStudent = () => {
+  const { student, nextMeetings } = Data
+  const { id } = ProfilePageData.currentUser
+
+  useEffect(() => {
+    // effect
+    Data.onDidMountDidUpdate(id)
+    return () => {
+      // cleanup
+    }
+  }, [id])
+
   return (
     <div>
-      <CardsCounterOfMessagesMeetingsComments />
+      <CardsCounterOfMessagesMeetingsCommentsEmails
+        numberOfComments={student.totalOfComments}
+        numberOfMessages={student.totalOfMessages}
+        numberOfMeetings={student.totalOfMeetings}
+        numberOfEmails={student.totalOfEmails}
+      />
       <div className="row">
-        <div className="col-lg-6">
-          <TableOfNewestMessages />
+        <div className="col-md-4">
+          <TableOfNextMeetings
+            nextMeetings={nextMeetings}
+          />
         </div>
-        <div className="col-lg-6">
-          <TableOfNextMeetings />
+        <div className="col-md-8">
+          <TableOfNewestComments />
         </div>
+
       </div>
-      <TableOfNewestComments />
+
     </div>
   )
 }
