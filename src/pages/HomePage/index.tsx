@@ -7,19 +7,15 @@ import ForAdmin from './ForAdmin';
 import ForTutor from './ForTutor';
 
 // or DashboardPage
-const HomePage = ({ user = {} }: any) => {
+const HomePage = () => {
   const { currentUser } = ProfilePageData
-  const { role: propRole = '' } = user
 
-  let role = propRole || currentUser.role
-  const userId = user.id || currentUser.id
-  // role = IS_ADMIN
 
-  switch (role) {
+  switch (currentUser.role) {
     case IS_STUDENT:
       return <ForStudent />;
     case IS_TUTOR:
-      return <ForTutor tutorId={userId} />;
+      return <ForTutor />;
     case IS_ADMIN:
       return <ForAdmin />;
     default:

@@ -4,27 +4,24 @@ import ProfileDetail from '../ProfilePage/ProfileDetail'
 import { useParams } from 'react-router-dom'
 import { User } from '../../models-one-entity/Users'
 import HomePage from '../HomePage'
-import Data from './data'
 import { IS_TUTOR } from '../../models-one-prop/role'
+
+const tutor = User.create({ role: IS_TUTOR })
 
 const TutorDetailPage = () => {
   const { id = '' } = useParams()
-  const { user } = Data
 
   useEffect(() => {
-    Data.onDidMountDidUpdate(parseInt(id))
+    tutor.setId(parseInt(id))
+    // tutor.getDatabase()
   }, [])
-  // console.log('ss', id)
+
   return (
     <div>
-      {user.role}
-      {user.id}
       <ProfileDetail
-      // user={user}
+        user={tutor}
       />
-      <HomePage
-      // user={user} 
-      />
+      <HomePage />
 
     </div>
   )

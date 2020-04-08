@@ -14,7 +14,8 @@ const TutorHomePageData = types.compose(
   })
 )
   .actions(self => ({
-    onDidMountDidUpdate(tutorId: number = ProfilePageData.currentUser.id) {
+    onDidMountDidUpdate() {
+      const tutorId = ProfilePageData.currentUser.id
       self.nextMeetings.getDatabaseNextMeetingsInFuture(tutorId)
       self.topTenStudentsMessage.getDatabaseTop10StudentsMessage(tutorId)
       self.topTenStudentsMeeting.getDatabaseTop10StudentsMeeting(tutorId)

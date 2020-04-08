@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
 import { defaultOfUser, defaultOfUsers } from '../../../models-one-entity/Users'
-import { goUserPage } from '../../../routes'
+import { goUserPage, goTutorPage } from '../../../routes'
 import CustomTable from '../../../components-in-managing-resources/CustomTable'
 import { Button, ButtonGroup } from 'reactstrap'
 import AvatarInDefault from '../../../images/AvatarInDefault'
@@ -25,7 +25,7 @@ const MainList = ({
           item.email,
           item.role === IS_STUDENT ? 'Student' : item.role === IS_TUTOR ? 'Tutor' : 'Other',
           <ButtonGroup>
-            <Button onClick={() => goUserPage(item.id)}>
+            <Button onClick={() => goTutorPage(item.id)}>
               Detail
             </Button>
           </ButtonGroup>

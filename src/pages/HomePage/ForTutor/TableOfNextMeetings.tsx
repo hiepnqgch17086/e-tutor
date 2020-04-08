@@ -6,14 +6,14 @@ import { Link } from 'react-router-dom'
 import AvatarInDefault from '../../../images/AvatarInDefault'
 import { get_MEETING_DETAIL_PAGE } from '../../../routes'
 import Data from './data'
-import { defaultOfMeeting } from '../../../models-one-entity/Meetings'
+import { defaultOfMeeting, defaultOfMeetings } from '../../../models-one-entity/Meetings'
 import { IS_STUDENT } from '../../../models-one-prop/role'
+import ProfilePageData from '../../ProfilePage/data'
 
-const TableOfNextMeetings = () => {
-  const { nextMeetings } = Data
-  const { role } = nextMeetings
-
-
+const TableOfNextMeetings = ({
+  nextMeetings = defaultOfMeetings
+}) => {
+  const { role } = ProfilePageData.currentUser
   return (
     <>
       <div className="card m-0">

@@ -5,11 +5,11 @@ import TableOfTopStudentsMessage from './TableOfTopStudentsMessage'
 import TableOfTopStudentsMeeting from './TableOfTopStudentsMeeting'
 import Data from './data'
 
-const ForTutor = ({ tutorId = 0 }) => {
-
+const ForTutor = () => {
   useEffect(() => {
+
     // effect
-    Data.onDidMountDidUpdate(tutorId)
+    Data.onDidMountDidUpdate()
     return () => {
       // cleanup
     }
@@ -19,7 +19,9 @@ const ForTutor = ({ tutorId = 0 }) => {
     <div>
       <div className="row">
         <div className="col-lg-6">
-          <TableOfNextMeetings />
+          <TableOfNextMeetings
+            nextMeetings={Data.nextMeetings}
+          />
         </div>
       </div>
       <div className="row">

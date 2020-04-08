@@ -5,7 +5,7 @@ const id = types.model({
   id: types.optional(types.number, 0)
 })
   .actions(self => ({
-    setId(newId: number): void {
+    setId(newId: number = 0): void {
       self.id = newId
     }
   }))
