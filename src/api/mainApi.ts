@@ -12,15 +12,15 @@ export default class MainApi extends JsonApi {
   }
 
   //////////////USERS////////////////
-  async getTop10StudentsMessageToThisTutor(): Promise<Response> {
-    const { data: { students, errorMessage } } = await this.ApiRef.get('/users/get-top-students-message-to-this-tutor/top-10-students-message')
+  async getTop10StudentsMessageToThisTutor(tutorId: number): Promise<Response> {
+    const { data: { students, errorMessage } } = await this.ApiRef.get(`/users/${tutorId}/get-top10-students-message-to-this-tutor`)
     return {
       data: { students },
       errorMessage
     }
   }
-  async getTop10StudentsMeetingToThisTutor(): Promise<Response> {
-    const { data: { students, errorMessage } } = await this.ApiRef.get('/users/get-top-students-meeting-to-this-tutor/top-10-students-meeting')
+  async getTop10StudentsMeetingToThisTutor(tutorId: number): Promise<Response> {
+    const { data: { students, errorMessage } } = await this.ApiRef.get(`/users/${tutorId}/get-top10-students-meeting-to-this-tutor`)
     return {
       data: { students },
       errorMessage
@@ -126,6 +126,7 @@ export default class MainApi extends JsonApi {
       errorMessage, data: { messages }
     }
   }
+  // async getTotalOfMessagesOfUser(id: number = 0)
 
   //////////MEETING
   async setMeetingNew(snapshot: any): Promise<Response> {
@@ -187,9 +188,9 @@ export default class MainApi extends JsonApi {
       errorMessage,
     }
   }
-  async getNextMeetingsInFuture(): Promise<Response> {
+  async getNextMeetingsInFuture(userId: number): Promise<Response> {
 
-    const { data: { nextMeetings, errorMessage, role } } = await this.ApiRef.get('/meetings/next/meetings')
+    const { data: { nextMeetings, errorMessage, role } } = await this.ApiRef.get(`/meetings/next-meetings-of/${userId}`)
     return {
       data: { nextMeetings, role },
       errorMessage

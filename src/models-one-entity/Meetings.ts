@@ -175,9 +175,9 @@ const Meetings = types.compose(
       })
       return { count, meetingsInDay }
     },
-    getDatabaseNextMeetingsInFuture: async function () {
+    getDatabaseNextMeetingsInFuture: async function (userId: number) {
       try {
-        const { data: { nextMeetings, errorMessage, role } } = await API.getNextMeetingsInFuture()
+        const { data: { nextMeetings, errorMessage, role } } = await API.getNextMeetingsInFuture(userId)
         if (errorMessage) throw new Error(errorMessage)
         // self.setSnapshotNew()
         self.setRole(role)

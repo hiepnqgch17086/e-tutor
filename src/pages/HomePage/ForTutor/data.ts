@@ -2,6 +2,7 @@ import { types } from "mobx-state-tree";
 import GeneralPageModel from "../../GeneralPageModel";
 import Meetings from "../../../models-one-entity/Meetings";
 import Users from "../../../models-one-entity/Users";
+import ProfilePageData from "../../ProfilePage/data";
 
 const TutorHomePageData = types.compose(
   'TutorHomePageDate',
@@ -13,10 +14,10 @@ const TutorHomePageData = types.compose(
   })
 )
   .actions(self => ({
-    onDidMountDidUpdate() {
-      self.nextMeetings.getDatabaseNextMeetingsInFuture()
-      self.topTenStudentsMessage.getDatabaseTop10StudentsMessage()
-      self.topTenStudentsMeeting.getDatabaseTop10StudentsMeeting()
+    onDidMountDidUpdate(tutorId: number = ProfilePageData.currentUser.id) {
+      self.nextMeetings.getDatabaseNextMeetingsInFuture(tutorId)
+      self.topTenStudentsMessage.getDatabaseTop10StudentsMessage(tutorId)
+      self.topTenStudentsMeeting.getDatabaseTop10StudentsMeeting(tutorId)
     }
   }))
   .create({})

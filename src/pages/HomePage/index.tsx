@@ -12,14 +12,14 @@ const HomePage = ({ user = {} }: any) => {
   const { role: propRole = '' } = user
 
   let role = propRole || currentUser.role
-
+  const userId = user.id || currentUser.id
   // role = IS_ADMIN
 
   switch (role) {
     case IS_STUDENT:
       return <ForStudent />;
     case IS_TUTOR:
-      return <ForTutor />;
+      return <ForTutor tutorId={userId} />;
     case IS_ADMIN:
       return <ForAdmin />;
     default:

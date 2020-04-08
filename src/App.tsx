@@ -5,7 +5,7 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom'
-import { SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE, LANDING_PAGE, ADMIN_ERROR_PAGE, PROFILE_PAGE, CHAT_ROOM_TUTOR_PAGE, MEETING_LIST_PAGE, MEETING_DETAIL_PAGE, EMAIL_LIST_PAGE, EMAIL_DETAIL_PAGE, STUDENT_LIST_PAGE, USER_DETAIL_PAGE, TUTOR_LIST_PAGE, CHAT_ROOM_STUDENT_PAGE } from './routes'
+import { SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE, LANDING_PAGE, ADMIN_ERROR_PAGE, PROFILE_PAGE, CHAT_ROOM_TUTOR_PAGE, MEETING_LIST_PAGE, MEETING_DETAIL_PAGE, EMAIL_LIST_PAGE, EMAIL_DETAIL_PAGE, STUDENT_LIST_PAGE, USER_DETAIL_PAGE, TUTOR_LIST_PAGE, CHAT_ROOM_STUDENT_PAGE, TUTOR_DETAIL_PAGE } from './routes'
 import SignInPage from './pages/SignInPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -23,6 +23,7 @@ import StudentListPage from './pages/StudentListPage';
 import UserDetailPage from './pages/UserDetailPage';
 import TutorListPage from './pages/TutorListPage';
 import ChatRoomStudentPage from './pages/ChatRoomStudentPage';
+import TutorDetailPage from './pages/TutorDetailPage';
 // import CalenderPage from './pages/CalenderPage';
 // import Axios from 'axios';
 // import { ApolloProvider } from '@apollo/react-hooks';
@@ -69,6 +70,9 @@ function App() {
           </PrivateRoute>
           <PrivateRoute exact path={TUTOR_LIST_PAGE}>
             <TutorListPage />
+          </PrivateRoute>
+          <PrivateRoute path={TUTOR_DETAIL_PAGE}>
+            <TutorDetailPage />
           </PrivateRoute>
           <PrivateRoute path={USER_DETAIL_PAGE}>
             <UserDetailPage />

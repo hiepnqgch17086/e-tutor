@@ -1,27 +1,24 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import ProfileDetail from '../../pages/ProfilePage/ProfileDetail'
+import ProfileDetail from '../ProfilePage/ProfileDetail'
 import { useParams } from 'react-router-dom'
 import { User } from '../../models-one-entity/Users'
 import HomePage from '../HomePage'
 import Data from './data'
+import { IS_TUTOR } from '../../models-one-prop/role'
 
-const UserDetailPage = () => {
+const TutorDetailPage = () => {
   const { id = '' } = useParams()
-
-  const user = User.create({
-    id: parseInt(id) || 0,
-    avatar: '',
-    name: 'student1',
-    role: 3,
-  })
+  const { user } = Data
 
   useEffect(() => {
-    // Data.onDidMountDidUpdate(parseInt(id?)
+    Data.onDidMountDidUpdate(parseInt(id))
   }, [])
   // console.log('ss', id)
   return (
     <div>
+      {user.role}
+      {user.id}
       <ProfileDetail
       // user={user}
       />
@@ -33,4 +30,4 @@ const UserDetailPage = () => {
   )
 }
 
-export default observer(UserDetailPage)
+export default observer(TutorDetailPage)

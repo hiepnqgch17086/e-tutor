@@ -18,9 +18,11 @@ export const EMAIL_DETAIL_PAGE = '/emails/:id'
 
 export const STUDENT_LIST_PAGE = '/students'
 export const TUTOR_LIST_PAGE = '/tutors'
+export const TUTOR_DETAIL_PAGE = '/tutors/:id'
 export const USER_DETAIL_PAGE = '/users/:id'
 
 export const get_USER_PAGE = (id: string | number) => `/users/${id}`
+export const get_TUTOR_PAGE = (id: string | number) => `/tutors/${id}`
 export const get_CLASS_PAGE = (id: string | number) => `${CHAT_ROOM_TUTOR_PAGE}/${id}`
 export const get_MEETING_DETAIL_PAGE = (id: string | number) => `${MEETING_LIST_PAGE}/${id}`
 export const get_EMAIL_DETAIL_PAGE = (id: string | number) => `${EMAIL_LIST_PAGE}/${id}`
@@ -58,4 +60,8 @@ export const getLocalStorageToken = (): string => {
 
 export const goUserPage = (userId: any) => {
   window.open(get_USER_PAGE(`${userId}`))
+}
+
+export const goTutorPage = (tutorId: any) => {
+  window.open(get_TUTOR_PAGE(`${tutorId}`))
 }

@@ -1,6 +1,7 @@
 import { types } from "mobx-state-tree";
-import GeneralPageModel from "../../pages/GeneralPageModel";
+import GeneralPageModel from "../GeneralPageModel";
 import { User } from "../../models-one-entity/Users";
+import { IS_TUTOR } from "../../models-one-prop/role";
 
 const UserDetailPageData = types.compose(
   'UserDetailPage',
@@ -10,10 +11,13 @@ const UserDetailPageData = types.compose(
   })
 )
   .actions(self => ({
-    onDidMountDidUpdate(userId = 0) {
-
+    onDidMountDidUpdate(tutorId = 0) {
+      self.user.setId(tutorId)
+      // self.user.getDatabase
     }
   }))
-  .create({})
+  .create({
+    user: { role: IS_TUTOR }
+  })
 
 export default UserDetailPageData

@@ -214,18 +214,18 @@ const Users = types.compose(
         console.log(error.message)
       }
     },
-    getDatabaseTop10StudentsMessage: async function () {
+    getDatabaseTop10StudentsMessage: async function (tutorId: number) {
       try {
-        const { data: { students }, errorMessage } = await API.getTop10StudentsMessageToThisTutor()
+        const { data: { students }, errorMessage } = await API.getTop10StudentsMessageToThisTutor(tutorId)
         if (errorMessage) throw new Error(errorMessage)
         self.setSnapshotNew(students, self.items)
       } catch (error) {
         console.log(error.message)
       }
     },
-    getDatabaseTop10StudentsMeeting: async function () {
+    getDatabaseTop10StudentsMeeting: async function (tutorId: number) {
       try {
-        const { data: { students }, errorMessage } = await API.getTop10StudentsMeetingToThisTutor()
+        const { data: { students }, errorMessage } = await API.getTop10StudentsMeetingToThisTutor(tutorId)
         if (errorMessage) throw new Error(errorMessage)
         self.setSnapshotNew(students, self.items)
       } catch (error) {

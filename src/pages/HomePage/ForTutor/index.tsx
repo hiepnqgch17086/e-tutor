@@ -5,11 +5,11 @@ import TableOfTopStudentsMessage from './TableOfTopStudentsMessage'
 import TableOfTopStudentsMeeting from './TableOfTopStudentsMeeting'
 import Data from './data'
 
-const ForStudent = () => {
+const ForTutor = ({ tutorId = 0 }) => {
 
   useEffect(() => {
     // effect
-    Data.onDidMountDidUpdate()
+    Data.onDidMountDidUpdate(tutorId)
     return () => {
       // cleanup
     }
@@ -34,4 +34,4 @@ const ForStudent = () => {
   )
 }
 
-export default observer(ForStudent)
+export default observer(ForTutor)
