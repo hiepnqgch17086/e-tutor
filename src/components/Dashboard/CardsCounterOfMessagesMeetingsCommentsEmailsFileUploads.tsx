@@ -1,11 +1,12 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
 
-const CardListOfCounter = ({
+const CardsCounterOfMessagesMeetingsCommentsEmailsFileUploads = ({
   numberOfMessages = '',
   numberOfMeetings = '',
   numberOfComments = '',
-  numberOfEmails = ''
+  numberOfEmails = '',
+  numberOfFileUploads = '',
 }: any) => {
   return (
     <div className="card-group">
@@ -53,6 +54,19 @@ const CardListOfCounter = ({
           <div className="d-flex d-lg-flex d-md-block align-items-center">
             <div>
               <div className="d-inline-flex align-items-center">
+                <h2 className="text-dark mb-1 font-weight-medium">{numberOfFileUploads}</h2>
+              </div>
+              <h6 className="text-muted font-weight-normal mb-0 w-100 text-truncate">File Uploads(dev...)</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="card border-right">
+        <div className="card-body">
+          <div className="d-flex d-lg-flex d-md-block align-items-center">
+            <div>
+              <div className="d-inline-flex align-items-center">
                 <h2 className="text-dark mb-1 font-weight-medium">{numberOfEmails}</h2>
               </div>
               <h6 className="text-muted font-weight-normal mb-0 w-100 text-truncate">Emails</h6>
@@ -61,8 +75,10 @@ const CardListOfCounter = ({
         </div>
       </div>
 
+
+
     </div>
   )
 }
 
-export default observer(CardListOfCounter)
+export default observer(CardsCounterOfMessagesMeetingsCommentsEmailsFileUploads)

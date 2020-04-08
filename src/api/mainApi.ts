@@ -12,6 +12,20 @@ export default class MainApi extends JsonApi {
   }
 
   //////////////USERS////////////////
+  async getTotalOfStudents(): Promise<Response> {
+    const { data: { totalOfStudents, errorMessage } } = await this.ApiRef.get(`/users/total-of-students`)
+    return {
+      data: { totalOfStudents },
+      errorMessage
+    }
+  }
+  async getTotalOfTutors(): Promise<Response> {
+    const { data: { totalOfTutors, errorMessage } } = await this.ApiRef.get(`/users/total-of-tutors`)
+    return {
+      data: { totalOfTutors },
+      errorMessage
+    }
+  }
   async getTop10StudentsMessageToThisTutor(tutorId: number): Promise<Response> {
     const { data: { students, errorMessage } } = await this.ApiRef.get(`/users/${tutorId}/get-top10-students-message-to-this-tutor`)
     return {
@@ -59,7 +73,7 @@ export default class MainApi extends JsonApi {
     return this.ApiRef.get(`/users/tutors?limit=${limit}&page=${page}&emailContains=${emailContains}`)
   }
   async getUserProfile(userId: number): Promise<Response> {
-    const { data: { user, errorMessage } } = await this.ApiRef.get(`/users/${userId}`)
+    const { data: { user, errorMessage } } = await this.ApiRef.get(`/users/${userId}/profile`)
     return {
       data: { user },
       errorMessage
@@ -88,6 +102,14 @@ export default class MainApi extends JsonApi {
   }
   async getStudentTotalOfMeetings(id: number): Promise<Response> {
     const { data: { totalOfMeetings, errorMessage } } = await this.ApiRef.get(`/users/${id}/total-of-meetings-of-student`)
+    // console.log(totalOfMeetings)
+    return {
+      data: { totalOfMeetings },
+      errorMessage
+    }
+  }
+  async getTutorTotalOfMeetings(id: number): Promise<Response> {
+    const { data: { totalOfMeetings, errorMessage } } = await this.ApiRef.get(`/users/${id}/total-of-meetings-of-tutor`)
     // console.log(totalOfMeetings)
     return {
       data: { totalOfMeetings },

@@ -5,9 +5,11 @@ import TableOfNextMeetings from '../../../components/Dashboard/TableOfNextMeetin
 import TableOfTopStudentsMeeting from '../../../components/Dashboard/TableOfTopStudentsMeeting'
 import TableOfTopStudentsMessage from '../../../components/Dashboard/TableOfTopStudentsMessage'
 import ProfilePageData from '../../ProfilePage/data'
+import CardsCounterOfMessagesMeetingsCommentsEmailsFileUploads from '../../../components/Dashboard/CardsCounterOfMessagesMeetingsCommentsEmailsFileUploads'
 
 const ForTutor = () => {
   const tutorId = ProfilePageData.currentUser.id
+  const { tutor } = Data
   useEffect(() => {
     // effect
     Data.onDidMountDidUpdate(tutorId)
@@ -18,20 +20,26 @@ const ForTutor = () => {
 
   return (
     <div>
+      <CardsCounterOfMessagesMeetingsCommentsEmailsFileUploads
+        numberOfComments={tutor.totalOfComments}
+        numberOfMessages={tutor.totalOfMessages}
+        numberOfMeetings={tutor.totalOfMeetings}
+        numberOfEmails={tutor.totalOfEmails}
+      />
       <div className="row">
-        <div className="col-mg-6">
+        <div className="col-md-6">
           <TableOfNextMeetings
             nextMeetings={Data.nextMeetings}
           />
         </div>
       </div>
       <div className="row">
-        <div className="col-mg-6">
+        <div className="col-md-6">
           <TableOfTopStudentsMessage
             students={Data.topTenStudentsMessage}
           />
         </div>
-        <div className="col-mg-6">
+        <div className="col-md-6">
           <TableOfTopStudentsMeeting
             students={Data.topTenStudentsMeeting}
           />

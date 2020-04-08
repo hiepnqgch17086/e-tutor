@@ -118,6 +118,22 @@ export const User = types.compose(
         }
       }
     },
+    getDatabaseTotalOfMeetingsOfTutor: async function () {
+      try {
+        // @ts-ignore
+        // eslint-disable-next-line
+        const id = self.id
+        const { data: { totalOfMeetings, errorMessage } } = await API.getTutorTotalOfMeetings(id)
+        if (errorMessage) throw new Error(errorMessage)
+        self.setSnapshotUpdate({ totalOfMeetings })
+      } catch ({ message }) {
+        console.log('getDatabase()', message)
+        toast.error('Something went wrong!')
+        return {
+          errorMessage: message
+        }
+      }
+    },
     /**
      * @override
      */

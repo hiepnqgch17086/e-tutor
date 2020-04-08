@@ -7,7 +7,7 @@ import { IS_ADMIN, IS_STUDENT } from '../../models-one-prop/role'
 import TableOfNextMeetings from '../../components/Dashboard/TableOfNextMeetings'
 import ProfilePageData from '../ProfilePage/data'
 import { StudentHomePageModel } from '../HomePage/ForStudent/data'
-import CardsCounterOfMessagesMeetingsCommentsEmails from '../../components/Dashboard/CardsCounterOfMessagesMeetingsCommentsEmails'
+import CardsCounterOfMessagesMeetingsCommentsEmails from '../../components/Dashboard/CardsCounterOfMessagesMeetingsCommentsEmailsFileUploads'
 import TableOfNewestComments from '../../components/Dashboard/TableOfNewestComments'
 
 const dashboardData = StudentHomePageModel.create({})

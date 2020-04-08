@@ -12,7 +12,7 @@ const ProfileDetail = ({
       <div className="card-body">
         <Row>
           <Col md={4} sm={12} className="d-flex flex-column align-items-center">
-            <img width="200px" height="200px" src={user.avatar || AvatarInDefault} alt="Card cap" />
+            <img width="200px" height="200px" src={user.avatar || AvatarInDefault} alt="Card cap" className="rounded-circle" />
           </Col>
           <Col md={8} sm={12}>
             <h1 className="text-dark">Profile</h1>
