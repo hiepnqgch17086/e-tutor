@@ -1,14 +1,14 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import CardListOfCounter from './CardListOfCounter'
-import TableOfNewestMessages from './TableOfNewestMessages'
-import TableOfNextMeetings from './TableOfNextMeetings'
-import TableOfNewComments from './TableOfNewComments'
+import CardsCounterOfMessagesMeetingsComments from '../../../components/Dashboard/CardsCounterOfMessagesMeetingsComments'
+import TableOfNewestMessages from '../../../components/Dashboard/TableOfNewestMessages'
+import TableOfNewestComments from '../../../components/Dashboard/TableOfNewestComments'
+import TableOfNextMeetings from '../../../components/Dashboard/TableOfNextMeetings'
 
 const ForStudent = () => {
   return (
     <div>
-      <CardListOfCounter />
+      <CardsCounterOfMessagesMeetingsComments />
       <div className="row">
         <div className="col-lg-6">
           <TableOfNewestMessages />
@@ -17,7 +17,7 @@ const ForStudent = () => {
           <TableOfNextMeetings />
         </div>
       </div>
-      <TableOfNewComments />
+      <TableOfNewestComments />
     </div>
   )
 }

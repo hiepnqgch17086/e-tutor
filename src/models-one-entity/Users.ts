@@ -33,6 +33,21 @@ export const User = types.compose(
   })
 )
   .actions(self => ({
+    getDatabase: async function () {
+      try {
+        // @ts-ignore
+        // eslint-disable-next-line
+        const { data: { user, errorMessage } } = await API.getUserProfile(self.id)
+        if (errorMessage) throw new Error(errorMessage)
+        self.setSnapshotNew(user)
+      } catch ({ message }) {
+        console.log('getDatabase()', message)
+        toast.error(message)
+        return {
+          errorMessage: message
+        }
+      }
+    },
     /**
      * @override
      */

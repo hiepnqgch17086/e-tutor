@@ -4,8 +4,8 @@ import Meetings from "../../../models-one-entity/Meetings";
 import Users from "../../../models-one-entity/Users";
 import ProfilePageData from "../../ProfilePage/data";
 
-const TutorHomePageData = types.compose(
-  'TutorHomePageDate',
+export const TutorHomePageModel = types.compose(
+  'TutorHomePageData',
   GeneralPageModel,
   types.model({
     nextMeetings: types.optional(Meetings, {}),
@@ -14,13 +14,12 @@ const TutorHomePageData = types.compose(
   })
 )
   .actions(self => ({
-    onDidMountDidUpdate() {
-      const tutorId = ProfilePageData.currentUser.id
+    onDidMountDidUpdate(tutorId: number) {
       self.nextMeetings.getDatabaseNextMeetingsInFuture(tutorId)
       self.topTenStudentsMessage.getDatabaseTop10StudentsMessage(tutorId)
       self.topTenStudentsMeeting.getDatabaseTop10StudentsMeeting(tutorId)
     }
   }))
-  .create({})
 
+const TutorHomePageData = TutorHomePageModel.create({})
 export default TutorHomePageData

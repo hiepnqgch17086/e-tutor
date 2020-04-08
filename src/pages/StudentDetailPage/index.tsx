@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import ProfileDetail from '../../pages/ProfilePage/ProfileDetail'
+import ProfileDetail from '../ProfilePage/ProfileDetail'
 import { useParams } from 'react-router-dom'
 import { User } from '../../models-one-entity/Users'
 import HomePage from '../HomePage'
-import Data from './data'
 
-const UserDetailPage = () => {
+const StudentDetailPage = () => {
   const { id = '' } = useParams()
 
   const user = User.create({
@@ -25,12 +24,8 @@ const UserDetailPage = () => {
       <ProfileDetail
       // user={user}
       />
-      <HomePage
-      // user={user} 
-      />
-
     </div>
   )
 }
 
-export default observer(UserDetailPage)
+export default observer(StudentDetailPage)

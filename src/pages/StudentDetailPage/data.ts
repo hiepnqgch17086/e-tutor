@@ -1,8 +1,8 @@
 import { types } from "mobx-state-tree";
-import GeneralPageModel from "../../pages/GeneralPageModel";
+import GeneralPageModel from "../GeneralPageModel";
 import { User } from "../../models-one-entity/Users";
 
-const UserDetailPageData = types.compose(
+const StudentDetailPageData = types.compose(
   'UserDetailPage',
   GeneralPageModel,
   types.model({
@@ -16,4 +16,4 @@ const UserDetailPageData = types.compose(
   }))
   .create({})
 
-export default UserDetailPageData
+export default StudentDetailPageData

@@ -1,18 +1,18 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import CustomTable from '../../../components-in-managing-resources/CustomTable'
-import AvatarInDefault from '../../../images/AvatarInDefault'
-import Data from './data'
-import { defaultOfUser } from '../../../models-one-entity/Users'
+import CustomTable from '../../components-in-managing-resources/CustomTable'
+import AvatarInDefault from '../../images/AvatarInDefault'
+import { defaultOfUser, defaultOfUsers } from '../../models-one-entity/Users'
 
-const TableOfNextMeetings = () => {
-  const { topTenStudentsMeeting: students } = Data
+const TableOfTopStudentsMessage = ({
+  students = defaultOfUsers
+}) => {
 
   return (
     <>
       <div className="card m-0">
         <div className="card-body p-3">
-          <h4 className="card-title">Top 10 Students Meeting</h4>
+          <h4 className="card-title">Top 10 Students Message</h4>
         </div>
       </div>
       <CustomTable
@@ -25,7 +25,7 @@ const TableOfNextMeetings = () => {
               <div className="w-75 d-inline-block v-middle pl-2">
                 <h6 className="message-title mb-0 mt-1">{item.name}</h6>
 
-                <span className="font-12 text-nowrap d-block text-muted">Number of meetings: {item.totalOfMeetings}</span>
+                <span className="font-12 text-nowrap d-block text-muted">Number of messages: {item.totalOfMessages}</span>
 
               </div>
             </div>
@@ -36,4 +36,4 @@ const TableOfNextMeetings = () => {
   )
 }
 
-export default observer(TableOfNextMeetings)
+export default observer(TableOfTopStudentsMessage)

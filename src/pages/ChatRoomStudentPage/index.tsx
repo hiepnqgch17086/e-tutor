@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import './index.css'
-import IpMessage from '../ChatRoomComponents/IpMessage'
+import IpMessage from '../../components/ChatRoom/IpMessage'
 import ProfilePageData from '../ProfilePage/data'
 import ListOfMessage from './ListOfMessage'
 import Data from './data'

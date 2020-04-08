@@ -3,8 +3,8 @@ import { observer } from 'mobx-react-lite'
 import ChatRoomStudentPageData from './data'
 import useSubscribeMessageOfOneRoom from '../../hooks/useSubscribeMessageOfOneRoom'
 import ProfilePageData from '../ProfilePage/data'
-import MessageItemForAuth from '../ChatRoomComponents/MessageItemForAuth'
-import MessageItemForPartner from '../ChatRoomComponents/MessageItemForPartner'
+import MessageItemForAuth from '../../components/ChatRoom/MessageItemForAuth'
+import MessageItemForPartner from '../../components/ChatRoom/MessageItemForPartner'
 
 const ListOfMessage = () => {
   const { room } = ChatRoomStudentPageData

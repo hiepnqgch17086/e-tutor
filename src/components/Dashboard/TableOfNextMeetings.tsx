@@ -1,19 +1,16 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import CustomTable from '../../../components-in-managing-resources/CustomTable'
+import CustomTable from '../../components-in-managing-resources/CustomTable'
 import moment from 'moment'
-import { Link } from 'react-router-dom'
-import AvatarInDefault from '../../../images/AvatarInDefault'
-import { get_MEETING_DETAIL_PAGE } from '../../../routes'
-import Data from './data'
-import { defaultOfMeeting, defaultOfMeetings } from '../../../models-one-entity/Meetings'
-import { IS_STUDENT } from '../../../models-one-prop/role'
-import ProfilePageData from '../../ProfilePage/data'
+import AvatarInDefault from '../../images/AvatarInDefault'
+import { defaultOfMeeting, defaultOfMeetings } from '../../models-one-entity/Meetings'
+import { IS_STUDENT } from '../../models-one-prop/role'
 
 const TableOfNextMeetings = ({
   nextMeetings = defaultOfMeetings
 }) => {
-  const { role } = ProfilePageData.currentUser
+  const { role } = nextMeetings
+
   return (
     <>
       <div className="card m-0">

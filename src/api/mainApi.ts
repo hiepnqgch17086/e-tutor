@@ -58,6 +58,13 @@ export default class MainApi extends JsonApi {
   getTutorUsers({ limit, page, emailContains }: any): Promise<AxiosResponse<any>> {
     return this.ApiRef.get(`/users/tutors?limit=${limit}&page=${page}&emailContains=${emailContains}`)
   }
+  async getUserProfile(userId: number): Promise<Response> {
+    const { data: { user, errorMessage } } = await this.ApiRef.get(`/users/${userId}`)
+    return {
+      data: { user },
+      errorMessage
+    }
+  }
   async setTutorOfStudent(studentId: string | number = 0, tutorId: string | number = 0): Promise<Response> {
     const { data: { errorMessage } } = await this.ApiRef.put('/users/set-tutor-for-student', {
       studentId,
@@ -67,7 +74,6 @@ export default class MainApi extends JsonApi {
       errorMessage
     }
   }
-
 
   /////////////EMAILS///////////////
   async getUnReadEmailsOfAuth(): Promise<Response> {

@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import ChatRoomTutorPageData from './data'
 import useSubscribeMessageOfOneRoom from '../../hooks/useSubscribeMessageOfOneRoom'
-import MessageItemForAuth from '../ChatRoomComponents/MessageItemForAuth'
-import MessageItemForPartner from '../ChatRoomComponents/MessageItemForPartner'
+import MessageItemForAuth from '../../components/ChatRoom/MessageItemForAuth'
+import MessageItemForPartner from '../../components/ChatRoom/MessageItemForPartner'
 import ProfilePageData from '../ProfilePage/data'
 
 const ListOfMessage = () => {

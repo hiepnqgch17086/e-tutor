@@ -5,7 +5,7 @@ import './index.css'
 import ListOfContactOrRoom from './ListOfContactOrRoom'
 import ListOfMessage from './ListOfMessage'
 import Data from './data'
-import IpMessage from '../ChatRoomComponents/IpMessage'
+import IpMessage from '../../components/ChatRoom/IpMessage'
 // import ProfilePageData from '../ProfilePage/data'
 // import { IS_TUTOR } from '../../models-one-prop/role'
 

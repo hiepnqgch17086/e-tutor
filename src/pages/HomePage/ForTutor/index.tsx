@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import TableOfNextMeetings from './TableOfNextMeetings'
-import TableOfTopStudentsMessage from './TableOfTopStudentsMessage'
-import TableOfTopStudentsMeeting from './TableOfTopStudentsMeeting'
 import Data from './data'
+import TableOfNextMeetings from '../../../components/Dashboard/TableOfNextMeetings'
+import TableOfTopStudentsMeeting from '../../../components/Dashboard/TableOfTopStudentsMeeting'
+import TableOfTopStudentsMessage from '../../../components/Dashboard/TableOfTopStudentsMessage'
+import ProfilePageData from '../../ProfilePage/data'
 
 const ForTutor = () => {
+  const tutorId = ProfilePageData.currentUser.id
   useEffect(() => {
-
     // effect
-    Data.onDidMountDidUpdate()
+    Data.onDidMountDidUpdate(tutorId)
     return () => {
       // cleanup
     }
@@ -26,10 +27,14 @@ const ForTutor = () => {
       </div>
       <div className="row">
         <div className="col-lg-6">
-          <TableOfTopStudentsMessage />
+          <TableOfTopStudentsMessage
+            students={Data.topTenStudentsMessage}
+          />
         </div>
         <div className="col-lg-6">
-          <TableOfTopStudentsMeeting />
+          <TableOfTopStudentsMeeting
+            students={Data.topTenStudentsMeeting}
+          />
         </div>
       </div>
     </div>
