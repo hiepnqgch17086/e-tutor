@@ -13,6 +13,7 @@ const TableOfNextMeetings = () => {
   const { nextMeetings } = Data
   const { role } = nextMeetings
 
+
   return (
     <>
       <div className="card m-0">
@@ -24,8 +25,7 @@ const TableOfNextMeetings = () => {
         headerArray={[]}
         data={nextMeetings.items}
         renderItemCellsInRow={({ item = defaultOfMeeting, index = 0 }) => {
-          // const 
-          const auth = role === IS_STUDENT
+          const auth = role !== IS_STUDENT
             ? item.studentId
             : item.creatorId
           return [

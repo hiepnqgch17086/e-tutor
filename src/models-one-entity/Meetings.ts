@@ -180,8 +180,8 @@ const Meetings = types.compose(
         const { data: { nextMeetings, errorMessage, role } } = await API.getNextMeetingsInFuture()
         if (errorMessage) throw new Error(errorMessage)
         // self.setSnapshotNew()
-        self.setSnapshotNew(nextMeetings, self.items)
         self.setRole(role)
+        self.setSnapshotNew(nextMeetings, self.items)
       } catch (error) {
         console.log(error.message)
         toast.error('Something went wrong')
