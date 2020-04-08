@@ -5,16 +5,13 @@ import AvatarInDefault from '../../images/AvatarInDefault'
 import { useParams } from 'react-router-dom'
 import Data from './data'
 import ListOfComment from './ListOfComment'
-import useSubscribeMeetingStatus from '../../hooks/useSubscribeMeetingStatus'
 import ProfilePageData from '../ProfilePage/data'
-// @ts-ignore
-import { Beforeunload } from 'react-beforeunload';
 
 const MeetingPage = () => {
   const { id = '' } = useParams()
   const { currentUser } = ProfilePageData
   const { meeting, onCreateComment, newComment } = Data
-  const { creatorId, studentId, isCreatorOn, isStudentOn } = meeting
+  const { creatorId, studentId } = meeting
   // const { setSubscribeMeetingStatus, setUnSubscribeMeetingStatus } = useSubscribeMeetingStatus({
   //   meetingId: parseInt(id),
   //   setMeetingUpdated: (meetingSnapshot: object) => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
 import { defaultOfUser, defaultOfUsers } from '../../../models-one-entity/Users'
-import { goStudentPage, goTutorPage } from '../../../routes'
+import { goTutorPage } from '../../../routes'
 import CustomTable from '../../../components-in-managing-resources/CustomTable'
 import { Button, ButtonGroup } from 'reactstrap'
 import AvatarInDefault from '../../../images/AvatarInDefault'

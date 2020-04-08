@@ -1,4 +1,4 @@
-import { types, getParent, getSnapshot } from "mobx-state-tree";
+import { types, getParent } from "mobx-state-tree";
 import id from "../models-one-prop/id";
 import email from "../models-one-prop/email";
 import password from "../models-one-prop/password";

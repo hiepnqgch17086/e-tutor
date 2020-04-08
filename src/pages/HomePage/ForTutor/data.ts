@@ -2,7 +2,6 @@ import { types } from "mobx-state-tree";
 import GeneralPageModel from "../../GeneralPageModel";
 import Meetings from "../../../models-one-entity/Meetings";
 import Users from "../../../models-one-entity/Users";
-import ProfilePageData from "../../ProfilePage/data";
 
 export const TutorHomePageModel = types.compose(
   'TutorHomePageData',
