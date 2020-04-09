@@ -116,12 +116,31 @@ const Meetings = types.compose(
         self.items.push(newMeeting)
       }
     },
+    setMeetingAddedInCalendar(meeting: object) {
+      // add when meeting not existing in list
+      const newMeeting = Meeting.create(meeting)
+      // validate whether meeting is from in calender time
+      if (
+        moment(newMeeting.startAt).toISOString() > moment(self.toAt).toISOString()
+        || moment(newMeeting.endAt).toISOString() < moment(self.fromAt).toISOString()
+      ) return
+      // validate whether meeting is in list
+      const index = self.items.findIndex(i => i.id === newMeeting.id)
+      if (index < 0) {
+        self.items.push(newMeeting)
+      }
+    },
     setMeetingUpdateStartAtEndAt(meeting: object) {
       let shouldUpdate = false
       // find meeting
       // @ts-ignore
       const meetingInCurrently = self.items.find(i => i.id === meeting.id)
-      // check should update
+      // if not found, should add meeting in calendar
+      if (!meetingInCurrently) {
+        this.setMeetingAddedInCalendar(meeting)
+        return
+      }
+      // check should update in specific props
       const updatedFields = ['startAt', 'endAt']
       for (let index = 0; index < updatedFields.length; index++) {
         const element = updatedFields[index];
@@ -137,7 +156,7 @@ const Meetings = types.compose(
       const existMeeting = this.setMeetingRemove(meeting.id)
       if (existMeeting) {
         setTimeout(() => {
-          this.setMeetingAdded(meeting)
+          this.setMeetingAddedInCalendar(meeting)
         }, 200)
       }
     },

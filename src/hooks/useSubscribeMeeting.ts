@@ -7,7 +7,7 @@ import { toast } from "react-toastify"
  * For COMMENT subscribe
  */
 let client: DefaultClient<unknown>
-let querySubscription: ZenObservable.Subscription | null
+// let querySubscription: ZenObservable.Subscription | null
 
 const setClient = () => {
   if (client) return
@@ -18,8 +18,8 @@ const setClient = () => {
 
 // define of subscribe is defined in jwt token and room
 const subscribeToMeeting = gql`
-  subscription($fromAt: DateTime!, $toAt: DateTime!) {
-    meeting(fromAt: $fromAt, toAt: $toAt){
+  subscription {
+    meeting {
       mutation
       node {
         id
@@ -33,32 +33,37 @@ const subscribeToMeeting = gql`
   }
 `
 type Props = {
-  fromAt: string,
-  toAt: string,
+  // fromAt: string,
+  // toAt: string,
   setMeetingCreated: Function,
-  setMeetingUpdated: Function
+  setMeetingUpdated: Function,
+  querySubscription: ZenObservable.Subscription | null,
+  setQuerySubscription: Function,
+  setQuerySubscriptionNull: Function,
 }
 
 const useSubscribeMeetingInRangeOfDate = ({
-  fromAt = new Date().toISOString(),
-  toAt = new Date().toISOString(),
+  // fromAt = new Date().toISOString(),
+  // toAt = new Date().toISOString(),
   setMeetingCreated = (node: object) => { },
   setMeetingUpdated = (node: object) => { },
+  querySubscription,
+  setQuerySubscription = (temp: ZenObservable.Subscription | null) => { },
 }: Props) => {
 
   const setSubscribeMeeting = () => {
     // validate
-    if (!fromAt) return
+    // if (!fromAt) return
     // action
-    const fromAtISO = new Date(fromAt).toISOString()
-    const toAtISO = new Date(toAt).toISOString()
+    // const fromAtISO = new Date(fromAt).toISOString()
+    // const toAtISO = new Date(toAt).toISOString()
     setClient()
-    querySubscription = client.subscribe({
+    const temp = client.subscribe({
       query: subscribeToMeeting,
-      variables: {
-        fromAt: fromAtISO,
-        toAt: toAtISO,
-      }
+      // variables: {
+      //   fromAt: fromAtISO,
+      //   toAt: toAtISO,
+      // }
     })
       .subscribe({
         next(response) {
@@ -82,12 +87,15 @@ const useSubscribeMeetingInRangeOfDate = ({
           toast.error('Something went wrong!')
         }
       })
+
+    setQuerySubscription(temp)
   }
 
   const setUnSubscribeMeeting = () => {
     if (querySubscription) {
       querySubscription.unsubscribe()
-      querySubscription = null
+      setQuerySubscription(null)
+      // querySubscription = null
     }
   }
 

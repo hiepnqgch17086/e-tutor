@@ -4,37 +4,39 @@ import MeetingItem from './MeetingItem'
 import moment from 'moment'
 import BtnAddMeeting from './BtnAddMeeting'
 import Data from '../data'
-import useSubscribeMeetingInRangeOfDate from '../../../hooks/useSubscribeMeetingInRangeOfDate'
+// import useSubscribeMeetingInRangeOfDate from '../../../hooks/useSubscribeMeetingInRangeOfDate'
 
 const ListOfMeeting = ({
-  fromAt = '',
-  toAt = '',
+  // fromAt = '',
+  // toAt = '',
   dateString = ''
 }) => {
-  const { meetings } = Data
+  const { meetings, setComponent_ListOfMeeting_onDidMountDidUpdate, setComponent_ListOfMeeting_onWillUnMount } = Data
   const format1 = moment(dateString).format('YYYY-MM-DD')
   const style = { paddingRight: '0px' }
 
-  const { setSubscribeMeeting, setUnSubscribeMeeting } = useSubscribeMeetingInRangeOfDate({
-    fromAt,
-    toAt,
-    setMeetingCreated: (meeting: Object) => {
-      meetings.setMeetingAdded(meeting)
-    },
-    setMeetingUpdated: (meeting: Object) => {
-      meetings.setMeetingUpdateStartAtEndAt(meeting)
-    }
-  })
+  // const { setSubscribeMeeting, setUnSubscribeMeeting } = useSubscribeMeetingInRangeOfDate({
+  //   fromAt,
+  //   toAt,
+  //   setMeetingCreated: (meeting: Object) => {
+  //     meetings.setMeetingAdded(meeting)
+  //   },
+  //   setMeetingUpdated: (meeting: Object) => {
+  //     meetings.setMeetingUpdateStartAtEndAt(meeting)
+  //   }
+  // })
 
   useEffect(() => {
-    setUnSubscribeMeeting()
-    setSubscribeMeeting()
+    // setUnSubscribeMeeting()
+    // setSubscribeMeeting()
+    setComponent_ListOfMeeting_onDidMountDidUpdate()
     // effect
     return () => {
-      setUnSubscribeMeeting()
+      // setUnSubscribeMeeting()
+      setComponent_ListOfMeeting_onWillUnMount()
     }
     // eslint-disable-next-line
-  }, [fromAt])
+  }, [])
   return (
     <>
       {/* <div className="card-body border-bottom" style={style}>

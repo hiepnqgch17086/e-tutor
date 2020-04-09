@@ -41,8 +41,8 @@ const MeetingPage = () => {
           <div className="col-md-4">
             <ListOfMeeting
               dateString={dateString}
-              fromAt={fromAt}
-              toAt={toAt}
+            // fromAt={fromAt}
+            // toAt={toAt}
             />
           </div>
         </div>

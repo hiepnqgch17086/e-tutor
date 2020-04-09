@@ -1,6 +1,20 @@
 import { types } from "mobx-state-tree";
 import GeneralPageModel from "../GeneralPageModel";
 import Meetings, { Meeting } from "../../models-one-entity/Meetings";
+import getSubscribeMeetingMethods from "../../subscribes/getSubscribeMeetingMethods";
+
+let meetingSubscription: ZenObservable.Subscription | null = null
+
+const { setSubscribeMeeting, setUnSubscribeMeeting } = getSubscribeMeetingMethods({
+  querySubscription: meetingSubscription,
+  setMeetingCreated: (meeting) => {
+    MeetingListPageData.meetings.setMeetingAddedInCalendar(meeting)
+  },
+  setMeetingUpdated: (meeting) => {
+    MeetingListPageData.meetings.setMeetingUpdateStartAtEndAt(meeting)
+  },
+  setQuerySubscription: (sub) => meetingSubscription = sub,
+})
 
 const MeetingListPageData = types.compose(
   'MeetingListPageData',
@@ -34,6 +48,14 @@ const MeetingListPageData = types.compose(
     },
     onPageChange() {
       self.meetingsByPagination.getDatabaseItemsByPagination()
+    },
+    // COMPONENT-One: ListOfMeeting
+    setComponent_ListOfMeeting_onDidMountDidUpdate() {
+      setUnSubscribeMeeting()
+      setSubscribeMeeting()
+    },
+    setComponent_ListOfMeeting_onWillUnMount() {
+      setUnSubscribeMeeting()
     }
   }))
   .create({})
