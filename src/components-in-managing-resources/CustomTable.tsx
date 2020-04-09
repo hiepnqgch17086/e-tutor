@@ -11,7 +11,7 @@ const CustomTable = ({
   return (
     <div className={`card ${className}`}>
       <div className="table-responsive">
-        <table className="table">
+        <table className="table mb-0">
           <thead>
             <tr>
               {

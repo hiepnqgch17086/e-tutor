@@ -25,16 +25,19 @@ export const User = types.compose(
     tutorId: types.maybeNull(UserBase),
     // for report
     totalOfMessages: types.optional(
-      types.union(types.number, types.string), 0
+      types.union(types.number, types.string), ''
+    ),
+    totalOfMessagesInNumberOfDays: types.optional(
+      types.union(types.number, types.string), ''
     ),
     totalOfMeetings: types.optional(
-      types.union(types.number, types.string), 0
+      types.union(types.number, types.string), ''
     ),
     totalOfComments: types.optional(
-      types.union(types.number, types.string), 0
+      types.union(types.number, types.string), ''
     ),
     totalOfEmails: types.optional(
-      types.union(types.number, types.string), 0
+      types.union(types.number, types.string), ''
     )
   })
 )
@@ -62,6 +65,22 @@ export const User = types.compose(
         const { data: { totalOfMessages, errorMessage } } = await API.getUserTotalOfMessages(id)
         if (errorMessage) throw new Error(errorMessage)
         self.setSnapshotUpdate({ totalOfMessages })
+      } catch ({ message }) {
+        console.log('getDatabase()', message)
+        toast.error('Something went wrong!')
+        return {
+          errorMessage: message
+        }
+      }
+    },
+    getDatabaseTotalOfMessagesInNumberOfDays: async function (numberOfDays: number) {
+      try {
+        // @ts-ignore
+        // eslint-disable-next-line
+        const id = self.id
+        const { data: { totalOfMessagesInNumberOfDays, errorMessage } } = await API.getUserTotalOfMessagesInNumberOfDays(id, numberOfDays)
+        if (errorMessage) throw new Error(errorMessage)
+        self.setSnapshotUpdate({ totalOfMessagesInNumberOfDays })
       } catch ({ message }) {
         console.log('getDatabase()', message)
         toast.error('Something went wrong!')

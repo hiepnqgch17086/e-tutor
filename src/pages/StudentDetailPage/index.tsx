@@ -7,8 +7,8 @@ import { IS_ADMIN, IS_STUDENT } from '../../models-one-prop/role'
 import TableOfNextMeetings from '../../components/Dashboard/TableOfNextMeetings'
 import ProfilePageData from '../ProfilePage/data'
 import { StudentHomePageModel } from '../HomePage/ForStudent/data'
-import CardsCounterOfMessagesMeetingsCommentsEmails from '../../components/Dashboard/CardsCounterOfMessagesMeetingsCommentsEmailsFileUploads'
-import TableOfNewestComments from '../../components/Dashboard/TableOfNewestComments'
+import CardsCounterOfMessagesMeetingsCommentsEmails from '../../components/Dashboard/CardsCounterOfMessagesMeetingsCommentsEmails'
+// import TableOfNewestComments from '../../components/Dashboard/TableOfNewestComments'
 
 const dashboardData = StudentHomePageModel.create({})
 const studentProfile = User.create({ role: IS_STUDENT })
@@ -37,18 +37,11 @@ const StudentDetailPage = () => {
               numberOfMessages={dashboardData.student.totalOfMessages}
               numberOfMeetings={dashboardData.student.totalOfMeetings}
               numberOfEmails={dashboardData.student.totalOfEmails}
+              numberOfMessagesIn7Days={dashboardData.student.totalOfMessagesInNumberOfDays}
             />
-            <div className="row">
-              <div className="col-md-4">
-                <TableOfNextMeetings
-                  nextMeetings={dashboardData.nextMeetings}
-                />
-              </div>
-              <div className="col-md-8">
-                <TableOfNewestComments />
-              </div>
-
-            </div>
+            <TableOfNextMeetings
+              nextMeetings={dashboardData.nextMeetings}
+            />
           </>
         )
       }

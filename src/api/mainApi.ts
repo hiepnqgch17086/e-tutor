@@ -86,6 +86,13 @@ export default class MainApi extends JsonApi {
       errorMessage
     }
   }
+  async getUserTotalOfMessagesInNumberOfDays(id: number, numberOfDays: number): Promise<Response> {
+    const { data: { totalOfMessagesInNumberOfDays, errorMessage } } = await this.ApiRef.get(`/users/${id}/total-of-messages-in-number-of-days/${numberOfDays}`)
+    return {
+      data: { totalOfMessagesInNumberOfDays },
+      errorMessage
+    }
+  }
   async getUserTotalOfComments(id: number): Promise<Response> {
     const { data: { totalOfComments, errorMessage } } = await this.ApiRef.get(`/users/${id}/total-of-comments`)
     return {

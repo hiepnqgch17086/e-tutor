@@ -1,0 +1,9 @@
+.n30px_custom {
+  margin-top: -30px;
+}
+
+@media (min-width: 768px){
+  .n30px_custom {
+      margin-top: 0px;
+  }
+}

@@ -17,6 +17,7 @@ export const StudentHomePageModel = types.compose(
       const { student } = self
       student.setId(studentId)
       student.getDatabaseTotalOfMessages()
+      student.getDatabaseTotalOfMessagesInNumberOfDays(7)
       student.getDatabaseTotalOfMeetingsOfStudent()
       student.getDatabaseTotalOfComments()
       student.getDatabaseTotalOfEmails()

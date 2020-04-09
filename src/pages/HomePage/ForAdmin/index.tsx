@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import CardListOfCounter from './CardListOfCounter'
 import Data from './data'
+import CardsCounterOfStudentsTutors from '../../../components/Dashboard/CardsCounterOfStudentsTutors'
 
 const ForAdmin = () => {
   const { totalOfStudents, totalOfTutors } = Data
@@ -12,7 +12,7 @@ const ForAdmin = () => {
 
   return (
     <div>
-      <CardListOfCounter
+      <CardsCounterOfStudentsTutors
         numberOfStudents={totalOfStudents}
         numberOfTutors={totalOfTutors}
       />

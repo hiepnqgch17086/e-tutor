@@ -6,7 +6,7 @@ type Props = {
   numberOfTutors?: string | number,
 }
 
-const CardListOfCounter = ({
+const CardsCounterOfStudentsTutors = ({
   numberOfStudents = '',
   numberOfTutors = ''
 }: Props) => {
@@ -42,4 +42,4 @@ const CardListOfCounter = ({
   )
 }
 
-export default observer(CardListOfCounter)
+export default observer(CardsCounterOfStudentsTutors)

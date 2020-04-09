@@ -30,10 +30,10 @@ const MeetingItem = ({ item = defaultOfMeeting }) => {
             <h6 className="message-title mb-0 mt-1">{item.studentId.name}</h6>
             <span className="font-12 text-nowrap d-block text-dark">Title: {item.title}</span>
             <span className="font-12 text-nowrap d-block text-muted">
-              {'Start At: ' + moment(item.startAt).calendar()}
+              {'Start At: ' + moment(item.startAt).format('LT')}
             </span>
             <span className="font-12 text-nowrap d-block text-muted">
-              {'End At: ' + moment(item.endAt).calendar()}
+              {'End At: ' + moment(item.endAt).format('LT')}
             </span>
           </div>
         </div>

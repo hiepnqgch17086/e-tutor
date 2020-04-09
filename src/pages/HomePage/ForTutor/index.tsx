@@ -5,7 +5,7 @@ import TableOfNextMeetings from '../../../components/Dashboard/TableOfNextMeetin
 import TableOfTopStudentsMeeting from '../../../components/Dashboard/TableOfTopStudentsMeeting'
 import TableOfTopStudentsMessage from '../../../components/Dashboard/TableOfTopStudentsMessage'
 import ProfilePageData from '../../ProfilePage/data'
-import CardsCounterOfMessagesMeetingsCommentsEmailsFileUploads from '../../../components/Dashboard/CardsCounterOfMessagesMeetingsCommentsEmailsFileUploads'
+import CardsCounterOfMessagesMeetingsCommentsEmails from '../../../components/Dashboard/CardsCounterOfMessagesMeetingsCommentsEmails'
 
 const ForTutor = () => {
   const tutorId = ProfilePageData.currentUser.id
@@ -20,19 +20,20 @@ const ForTutor = () => {
 
   return (
     <div>
-      <CardsCounterOfMessagesMeetingsCommentsEmailsFileUploads
+      <CardsCounterOfMessagesMeetingsCommentsEmails
         numberOfComments={tutor.totalOfComments}
         numberOfMessages={tutor.totalOfMessages}
         numberOfMeetings={tutor.totalOfMeetings}
         numberOfEmails={tutor.totalOfEmails}
+        numberOfMessagesIn7Days={tutor.totalOfMessagesInNumberOfDays}
       />
-      <div className="row">
-        <div className="col-md-6">
-          <TableOfNextMeetings
-            nextMeetings={Data.nextMeetings}
-          />
-        </div>
-      </div>
+      <TableOfNextMeetings
+        nextMeetings={Data.nextMeetings}
+      />
+      {/* <div className="row">
+
+
+      </div> */}
       <div className="row">
         <div className="col-md-6">
           <TableOfTopStudentsMessage
