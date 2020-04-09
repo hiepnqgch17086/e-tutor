@@ -1,10 +1,11 @@
 import React from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import { HOME_PAGE, CHAT_ROOM_TUTOR_PAGE, MEETING_LIST_PAGE, STUDENT_LIST_PAGE, TUTOR_LIST_PAGE, CHAT_ROOM_STUDENT_PAGE } from '../../routes'
-// import ProfilePageData from '../../pages/ProfilePage/data'
+import { HOME_PAGE, CHAT_ROOM_TUTOR_PAGE, MEETING_LIST_PAGE, STUDENT_LIST_PAGE, TUTOR_LIST_PAGE, CHAT_ROOM_STUDENT_PAGE } from '../../../routes'
+// import ProfilePageData from '../../../pages/ProfilePage/data'
 import { observer } from 'mobx-react-lite'
-import ProfilePageData from '../../pages/ProfilePage/data'
-import { IS_ADMIN, IS_TUTOR, IS_STUDENT } from '../../models-one-prop/role'
+import ProfilePageData from '../../../pages/ProfilePage/data'
+import { IS_ADMIN, IS_TUTOR, IS_STUDENT } from '../../../models-one-prop/role'
+import NumberOfMeetingsToday from './NumberOfMeetingsToday'
 
 const SideBar = () => {
   const location = useLocation()
@@ -66,7 +67,12 @@ const SideBar = () => {
                 <SideBarItem
                   href={MEETING_LIST_PAGE}
                   iconName="icon-calender"
-                  title="Meetings"
+                  title={(
+                    <>
+                      Meetings
+                      <NumberOfMeetingsToday />
+                    </>
+                  )}
                   isActive={isMeetingActive}
                 />
               ) : null
@@ -108,7 +114,7 @@ const SideBar = () => {
   )
 }
 
-const SideBarItem = ({ isActive = false, iconName = '', title = '', href = "" }) => {
+const SideBarItem = ({ isActive = false, iconName = '', title = '', href = "" }: any) => {
   return <li className={`sidebar-item ${isActive ? 'selected' : ''}`}>
     <Link to={href} className={`sidebar-link ${isActive ? 'active' : ''}`} aria-expanded="false">
       <i className={iconName} />

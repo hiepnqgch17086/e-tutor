@@ -246,8 +246,22 @@ export default class MainApi extends JsonApi {
       errorMessage,
     }
   }
+  async getNextMeetingsInFuture(userId: number): Promise<Response> {
+    const { data: { nextMeetings, errorMessage, role } } = await this.ApiRef.get(`/meetings/next-meetings-of/${userId}`)
+    return {
+      data: { nextMeetings, role },
+      errorMessage
+    }
+  }
+  async getNumberOfMeetingsToday(): Promise<Response> {
+    const { data: { numberOfMeetingsToday, errorMessage } } = await this.ApiRef.get(`/meetings/analysis/number-of-meetings-today`)
+    return {
+      data: { numberOfMeetingsToday },
+      errorMessage
+    }
+  }
 
-  //////////MEETING
+  //////////COMMENT
   async setCommentNew(snapshot: object): Promise<Response> {
     // @ts-ignore
     const meetingId = snapshot.meetingId.id
@@ -258,13 +272,5 @@ export default class MainApi extends JsonApi {
       errorMessage,
     }
   }
-  async getNextMeetingsInFuture(userId: number): Promise<Response> {
 
-    const { data: { nextMeetings, errorMessage, role } } = await this.ApiRef.get(`/meetings/next-meetings-of/${userId}`)
-    return {
-      data: { nextMeetings, role },
-      errorMessage
-    }
-
-  }
 }

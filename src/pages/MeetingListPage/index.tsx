@@ -50,15 +50,21 @@ const MeetingPage = () => {
 
       <div className="card">
         <div className="row">
+
+
           <div className="col-md-12">
-            <SearchBar
-              setPropInput={(text: string) => {
-                Data.meetingsByPagination.setTextContains(text)
-                Data.onTitleSearchChange()
-              }}
-              placeholder="meeting's title"
-              className="mb-0"
-            />
+            <div className="card-body p-2">
+              <h4 className="card-title">All Meetings</h4>
+            </div>
+            <div className="m-2 mt-0">
+              <SearchBar
+                setPropInput={(text: string) => {
+                  Data.meetingsByPagination.setTextContains(text)
+                  Data.onTitleSearchChange()
+                }}
+                placeholder="meeting's title"
+              />
+            </div>
             <TableOfMeetingByPagination
               meetings={Data.meetingsByPagination}
             />
