@@ -239,7 +239,13 @@ export default class MainApi extends JsonApi {
       errorMessage,
     }
   }
-
+  async getMeetingsByPagination({ limit = 1, page = 1, textContains = '' }): Promise<Response> {
+    const { data: { meetingsByPagination, errorMessage } } = await this.ApiRef.get(`/meetings/list-of-meetings-by-pagination?limit=${limit}&page=${page}&textContains=${textContains}`)
+    return {
+      data: { meetingsByPagination },
+      errorMessage,
+    }
+  }
 
   //////////MEETING
   async setCommentNew(snapshot: object): Promise<Response> {

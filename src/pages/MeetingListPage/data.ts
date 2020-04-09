@@ -7,7 +7,8 @@ const MeetingListPageData = types.compose(
   GeneralPageModel,
   types.model({
     newMeeting: types.optional(Meeting, {}),
-    meetings: types.optional(Meetings, {})
+    meetings: types.optional(Meetings, {}),
+    meetingsByPagination: types.optional(Meetings, {}),
   })
 )
   .actions(self => ({
@@ -15,15 +16,24 @@ const MeetingListPageData = types.compose(
       fromAt,
       toAt,
     }: any) {
-      const { meetings } = self
+      const { meetings, meetingsByPagination } = self
       meetings.setFromAt(fromAt)
       meetings.setToAt(toAt)
       meetings.getDatabaseItems()
+
+      meetingsByPagination.getDatabaseItemsByPagination()
     },
     onCreateMeeting: async function (callback: Function = () => { }) {
       // console.log(self.newMeeting)
       const { errorMessage } = await self.newMeeting.setDatabaseNew()
       if (!errorMessage) callback()
+    },
+    // for table of meetings pagination
+    onTitleSearchChange() {
+      self.meetingsByPagination.getDatabaseItemsByPagination()
+    },
+    onPageChange() {
+      self.meetingsByPagination.getDatabaseItemsByPagination()
     }
   }))
   .create({})

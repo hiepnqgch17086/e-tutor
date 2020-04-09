@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 const CustomTable = ({
   headerArray = ['#'],
   data = [],
-  renderItemCellsInRow = ({ item, index }: any) => [],
+  renderItemCellsInRow = ({ item, index = 0 }: any) => [],
   className = ''
 }: any) => {
 

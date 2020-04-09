@@ -161,6 +161,17 @@ const Meetings = types.compose(
         console.log(error.message)
       }
     },
+    getDatabaseItemsByPagination: async function () {
+      try {
+        // validate
+        const { limit, page, textContains } = self
+        const { data: { meetingsByPagination }, errorMessage } = await API.getMeetingsByPagination({ limit, page, textContains })
+        if (errorMessage) throw new Error(errorMessage)
+        self.setSnapshotNew(meetingsByPagination, self.items)
+      } catch (error) {
+        console.log(error.message)
+      }
+    },
     getMeetingListInfoInADay(anyDateString: string) {
       const format1 = moment(anyDateString).format('YYYY-MM-DD')
       let count: number = 0
