@@ -29,9 +29,9 @@ const NumberOfMeetingsToday = () => {
   }, [currentUser.id, startOfToday])
 
   return (
-    <>
+    <span>
       {' '}{numberOfMeetingsToday ? `(${numberOfMeetingsToday})` : ''}
-    </>
+    </span>
   )
 }
 

@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import ChatRoomTutorPageData from './data'
-import useSubscribeMessageOfOneRoom from '../../hooks/useSubscribeMessageOfOneRoom'
+// import useSubscribeMessageOfOneRoom from '../../hooks/useSubscribeMessageOfOneRoom'
 import MessageItemForAuth from '../../components/ChatRoom/MessageItemForAuth'
 import MessageItemForPartner from '../../components/ChatRoom/MessageItemForPartner'
 import ProfilePageData from '../ProfilePage/data'
+import { getSnapshot } from 'mobx-state-tree'
 
 const ListOfMessage = () => {
-  const { activedRoom } = ChatRoomTutorPageData
-  const { setSubscribeMessage, setUnSubscribeMessage } = useSubscribeMessageOfOneRoom({
-    roomId: activedRoom.id,
-    setMessageCreated: activedRoom.setMessageAdded
-  })
+  const { activedRoom, ListOfMessage_onDidMountDidUpDate, ListOfMessage_onWillUnMount } = ChatRoomTutorPageData
+  // const { setSubscribeMessage, setUnSubscribeMessage } = useSubscribeMessageOfOneRoom({
+  //   roomId: activedRoom.id,
+  //   setMessageCreated: activedRoom.setMessageAdded
+  // })
 
   const scrollToBottom = () => {
     const msgContainer = document.getElementById('messages');
@@ -25,20 +26,23 @@ const ListOfMessage = () => {
     return () => {
       // cleanup
     }
-  }, [activedRoom.messages.length])
+  }, [activedRoom.messages.length, activedRoom.messages[activedRoom.messages.length - 1]?.isSeenByPartner])
 
   // set-up listener effect
   useEffect(() => {
     // validate 
-    if (activedRoom.id) {
-      // clear previous room listnener
-      setUnSubscribeMessage()
-      // actions
-      setSubscribeMessage()
-    }
+    ListOfMessage_onDidMountDidUpDate()
+    // if (activedRoom.id) {
+    //   // clear previous room listnener
+
+    //   // setUnSubscribeMessage()
+    //   // // actions
+    //   // setSubscribeMessage()
+    // }
     return () => {
       // cleanup
-      setUnSubscribeMessage()
+      // setUnSubscribeMessage()
+      ListOfMessage_onWillUnMount()
     }
     // eslint-disable-next-line
   }, [activedRoom.id])
@@ -55,7 +59,10 @@ const ListOfMessage = () => {
                   const { activedRoom: { studentId } } = ChatRoomTutorPageData
                   const { currentUser } = ProfilePageData
                   if (item.userId.id === currentUser.id) {
-                    return <MessageItemForAuth message={item} key={item.id} />
+                    return <MessageItemForAuth
+                      message={item} key={item.id}
+                    // shouldShow_isSeen={index === activedRoom.messages.length - 1 && item.isSeenByPartner}
+                    />
                   }
                   if (item.userId.id === studentId.id) {
                     return <MessageItemForPartner message={item} partner={studentId}
@@ -85,6 +92,11 @@ const ListOfMessage = () => {
           <div className="chat-time d-block font-10 mt-1 mr-0 mb-3">10:56 am
             </div>
         </li> */}
+        {
+          activedRoom.messages.length && activedRoom.messages[activedRoom.messages.length - 1]?.isSeenByPartner && activedRoom.messages[activedRoom.messages.length - 1]?.userId.id === ProfilePageData.currentUser.id ? (
+            <li>Seen</li>
+          ) : null
+        }
       </ul>
     </div>
   )

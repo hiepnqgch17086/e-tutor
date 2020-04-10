@@ -25,7 +25,7 @@ const ChatRoomTutorPage = () => {
       <div className="col-md-12">
         <div className="card">
           <div className="row no-gutters">
-            <div className="col-lg-6  col-xl-6 border-left-0">
+            <div className="col-md-6  col-xl-6 border-left-0">
               <ListOfMessage />
 
               <IpMessage
@@ -34,7 +34,7 @@ const ChatRoomTutorPage = () => {
                 disabled={Data.activedRoom.id ? false : true}
               />
             </div>
-            <div className="col-lg-6 col-xl-6 border">
+            <div className="col-md-6 col-xl-6 border">
               <IpSearchContact />
               <ListOfContactOrRoom />
             </div>

@@ -1,6 +1,8 @@
+
+
 import DefaultClient, { gql } from "apollo-boost"
 import { getLocalStorageToken } from "../routes"
-import { getClient, CREATED_MUTATION_TYPE, UPDATED_MUTATION_TYPE } from "../ApolloConfig"
+import { getClient, CREATED_MUTATION_TYPE } from "../ApolloConfig"
 import { toast } from "react-toastify"
 
 /**
@@ -16,48 +18,39 @@ const setClient = () => {
   client = getClient(jwt)
 }
 
-// define of subscribe is defined in jwt token and room
+// define of subscribe is defined in jwt token, 
 const subscribeToMessage = gql`
-  subscription($roomId: ID!) {
-    message(roomId: $roomId){
+  subscription {
+    messageToOrCreatedByUser {
       mutation
-      node {id userId { id } text createdAt updatedAt isSeenByPartner}
+      node {id userId { id } text createdAt updatedAt roomId {id}}
     }
   }
 `
 type Props = {
-  roomId: number,
-  setMessageCreated: Function,
-  setMessageUpdated_isSeenByPartner_true?: Function,
+  setMessageCreated: Function
 }
 
-const useSubscribeMessageOfOneRoom = ({
-  roomId,
-  setMessageCreated = (node: object) => { },
-  setMessageUpdated_isSeenByPartner_true = (message: object) => {
-    // console.log('message is updated', message)
-  }
+/**
+ * This subscrube is used for who relate to many rooms, like tutor
+ */
+const getSubscribeMessageToOrCreatedByUser = ({
+  setMessageCreated = (message: object) => { },
 }: Props) => {
 
-  const setSubscribeMessage = () => {
+  const setSubscribeMessageToOrCreatedByUser = () => {
     // validate
-    if (!roomId) return
-    // action
     setClient()
     querySubscription = client.subscribe({
-      query: subscribeToMessage,
-      variables: {
-        roomId
-      }
+      query: subscribeToMessage
     })
       .subscribe({
         next(response) {
-          const { data: { message: { mutation, node } } } = response
-          // console.log(mutation, node)
+          const { data: { messageToOrCreatedByUser: { mutation, node } } } = response
           switch (mutation) {
-            case UPDATED_MUTATION_TYPE:
-              setMessageUpdated_isSeenByPartner_true(node)
-              break;
+            // case UPDATED_MUTATION_TYPE:
+            //   unReadEmailOfAuth.setItemsToRemove(node.id)
+            //   break;
             case CREATED_MUTATION_TYPE:
               setMessageCreated(node)
               break;
@@ -75,14 +68,14 @@ const useSubscribeMessageOfOneRoom = ({
       })
   }
 
-  const setUnSubscribeMessage = () => {
+  const setUnSubscribeMessageToOrCreatedByUser = () => {
     if (querySubscription) {
       querySubscription.unsubscribe()
       querySubscription = null
     }
   }
 
-  return { setSubscribeMessage, setUnSubscribeMessage }
+  return { setSubscribeMessageToOrCreatedByUser, setUnSubscribeMessageToOrCreatedByUser }
 }
 
-export default useSubscribeMessageOfOneRoom
+export default getSubscribeMessageToOrCreatedByUser

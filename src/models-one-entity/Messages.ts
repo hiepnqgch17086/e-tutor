@@ -12,7 +12,8 @@ export const Message = types.compose(
   id, GeneralModel, text,
   types.model({
     userId: types.optional(User, {}),
-    roomId: types.optional(RoomBase, {})
+    roomId: types.optional(RoomBase, {}),
+    isSeenByPartner: types.optional(types.boolean, false)
   })
 )
   .actions(self => ({
@@ -32,6 +33,14 @@ export const Message = types.compose(
           roomId, text,
         })
         if (errorMessage) throw new Error('Something went wrong')
+      } catch (error) {
+        toast.error(error.message)
+      }
+    },
+    setDatabaseUpdateStatus_isSeenByPartner_true: async function () {
+      try {
+        const { errorMessage } = await API.setMessageUpdateStatus_isSeenByPartner_true(self.id)
+        if (errorMessage) throw new Error(errorMessage)
       } catch (error) {
         toast.error(error.message)
       }

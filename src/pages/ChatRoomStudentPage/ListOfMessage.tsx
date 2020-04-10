@@ -10,7 +10,10 @@ const ListOfMessage = () => {
   const { room } = ChatRoomStudentPageData
   const { setSubscribeMessage, setUnSubscribeMessage } = useSubscribeMessageOfOneRoom({
     roomId: room.id,
-    setMessageCreated: room.setMessageAdded
+    setMessageCreated: room.setMessageAdded,
+    setMessageUpdated_isSeenByPartner_true: (message: any) => {
+      room.setMessageUpdated(message)
+    }
   })
 
 
@@ -24,7 +27,7 @@ const ListOfMessage = () => {
   // effect of scrolldown if new comment added
   useEffect(() => {
     scrollToBottom()
-  }, [room.messages.length])
+  }, [room.messages.length, room.messages[room.messages.length - 1]?.isSeenByPartner])
 
   // set-up listener effect
   useEffect(() => {
@@ -50,20 +53,31 @@ const ListOfMessage = () => {
                   const { room } = ChatRoomStudentPageData
                   const { studentId: { tutorId } } = room
                   const { currentUser } = ProfilePageData
-                  return <div key={item.id}>
-                    {item.userId.id === currentUser.id ? <MessageItemForAuth message={item} /> : null}
-                    {item.userId.id === tutorId?.id ? (
-                      <MessageItemForPartner
-                        message={item}
-                        partner={tutorId}
-                        shouldHideAvatar={room.getShouldHideAvatarOfMessage(index)}
-                        shouldHideName={room.getShouldHideNameOfMessage(index)}
-                      />
-                    ) : null}
-                  </div>
+                  if (item.userId.id === currentUser.id) {
+                    return <MessageItemForAuth
+                      key={item.id}
+                      message={item}
+                    // shouldShow_isSeen={index === room.messages.length - 1 && item.isSeenByPartner}
+                    />
+                  }
+                  if (item.userId.id === tutorId?.id) {
+                    return <MessageItemForPartner
+                      key={item.id}
+                      message={item}
+                      partner={tutorId}
+                      shouldHideAvatar={room.getShouldHideAvatarOfMessage(index)}
+                      shouldHideName={room.getShouldHideNameOfMessage(index)}
+                    />
+                  }
+                  return null
                 })
               }
             </>
+          ) : null
+        }
+        {
+          room.messages.length && room.messages[room.messages.length - 1]?.isSeenByPartner && room.messages[room.messages.length - 1]?.userId.id === ProfilePageData.currentUser.id ? (
+            <li>Seen</li>
           ) : null
         }
 

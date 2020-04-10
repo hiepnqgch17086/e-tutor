@@ -14,9 +14,9 @@ const NumberOfLastMessagesIsNotSeenByAuth = () => {
   }, [])
 
   return (
-    <>
+    <span>
       {' '}{numberOfLastMessagesIsNotSeenByAuth ? `(${numberOfLastMessagesIsNotSeenByAuth})` : ''}
-    </>
+    </span>
   )
 }
 

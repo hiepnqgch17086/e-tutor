@@ -4,10 +4,12 @@ import API from "../../api";
 import { toast } from "react-toastify";
 import getSubscribeMeetingMethods from "../../subscribes/getSubscribeMeetingMethods";
 import moment from "moment";
+import getSubscribeMessageToOrCreatedByUser from "../../subscribes/getSubscribeMessageToOrCreatedByUser";
+import ProfilePageData from "../../pages/ProfilePage/data";
 
 let meetingSubscription: ZenObservable.Subscription | null = null
 
-const subs = getSubscribeMeetingMethods({
+const subsOfMeeting = getSubscribeMeetingMethods({
   querySubscription: meetingSubscription,
   setMeetingCreated: (meeting) => {
     const startOfTodayStr = moment().startOf('day').toISOString()
@@ -37,6 +39,14 @@ const subs = getSubscribeMeetingMethods({
   setQuerySubscription: (sub) => meetingSubscription = sub
 })
 
+const subsOfMessage = getSubscribeMessageToOrCreatedByUser({
+  setMessageCreated: (message: any) => {
+    if (message.userId.id !== ProfilePageData.currentUser.id) {
+      AdminLayoutData.getDatabaseNumberOfLastMessagesIsNotSeenByAuth()
+    }
+  }
+})
+
 const AdminLayoutData = types.compose(
   'AdminLayoutData',
   GeneralPageModel,
@@ -48,20 +58,22 @@ const AdminLayoutData = types.compose(
   .actions(self => ({
     NumberOfMeetingsToday_onDidMountDidUpdate: async function () {
       // subs
-      subs.setUnSubscribeMeeting()
-      subs.setSubscribeMeeting()
+      subsOfMeeting.setUnSubscribeMeeting()
+      subsOfMeeting.setSubscribeMeeting()
       // console.log('sss')
       this.getDatabaseNumberOfMeetingsToday()
     },
     NumberOfMeetingsToday_onWillUnMount() {
       self.setSnapshotUpdate({ numberOfMeetingsToday: '' })
-      subs.setUnSubscribeMeeting()
+      subsOfMeeting.setUnSubscribeMeeting()
     },
     NumberOfLastMessagesIsNotSeenByAuth_onDidMountDidUpdate: async function () {
+      subsOfMessage.setUnSubscribeMessageToOrCreatedByUser()
+      subsOfMessage.setSubscribeMessageToOrCreatedByUser()
       this.getDatabaseNumberOfLastMessagesIsNotSeenByAuth()
     },
     NumberOfLastMessagesIsNotSeenByAuth_onWillUnMount: async function () {
-
+      subsOfMessage.setUnSubscribeMessageToOrCreatedByUser()
     },
     getDatabaseNumberOfLastMessagesIsNotSeenByAuth: async function () {
       try {
@@ -86,7 +98,7 @@ const AdminLayoutData = types.compose(
           errorMessage
         } = await API.getNumberOfMeetingsToday()
         if (errorMessage) throw new Error(errorMessage)
-        // console.log('numberOfMeetingsToday', numberOfMeetingsToday)
+        console.log('numberOfMeetingsToday', numberOfMeetingsToday)
         self.setSnapshotUpdate({ numberOfMeetingsToday })
       } catch (error) {
         console.log(error.message)

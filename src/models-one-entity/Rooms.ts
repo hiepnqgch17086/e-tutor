@@ -15,6 +15,10 @@ export const Room = types.compose(
       const msg = Message.create(message)
       self.messages.push(msg)
     },
+    setMessageUpdated(message: any) {
+      const messageNode = self.messages.find(item => item.id === message.id)
+      messageNode?.setSnapshotUpdate(message)
+    },
     getDatabaseMessagesStudentAuth: async function () {
       try {
         const { data, errorMessage } = await API.getRoomMessagesOfStudentAuth()

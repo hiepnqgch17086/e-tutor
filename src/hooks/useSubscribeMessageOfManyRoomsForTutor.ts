@@ -19,7 +19,7 @@ const setClient = () => {
 }
 
 // define of subscribe is defined in jwt token, 
-const subscribeToComment = gql`
+const subscribeToMessage = gql`
   subscription {
     messageToTutor {
       mutation
@@ -42,7 +42,7 @@ const useSubscribeMessageOfManyRoomsForTutor = ({
     // validate
     setClient()
     querySubscription = client.subscribe({
-      query: subscribeToComment
+      query: subscribeToMessage
     })
       .subscribe({
         next(response) {

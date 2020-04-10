@@ -190,6 +190,13 @@ export default class MainApi extends JsonApi {
       errorMessage, data: { messages }
     }
   }
+  async setMessageUpdateStatus_isSeenByPartner_true(messageId: number): Promise<Response> {
+    const { data: { errorMessage } } = await this.ApiRef.put(
+      `/messages/${messageId}/update-status/is-seen-by-partner-true`)
+    return {
+      errorMessage
+    }
+  }
   // async getTotalOfMessagesOfUser(id: number = 0)
 
   //////////MEETING

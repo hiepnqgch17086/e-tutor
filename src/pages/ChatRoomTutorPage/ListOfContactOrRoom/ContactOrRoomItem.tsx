@@ -4,6 +4,7 @@ import { defaultOfRoom } from '../../../models-one-entity/Rooms'
 import AvatarInDefault from '../../../images/AvatarInDefault'
 import moment from 'moment'
 import Data from '../data'
+import ProfilePageData from '../../ProfilePage/data'
 
 const ContactOrRoomItem = ({
   item = defaultOfRoom,
@@ -11,8 +12,10 @@ const ContactOrRoomItem = ({
 }) => {
   const { studentId: { id: stdId, name, email, avatar }, messages } = item
   const lastMessage = messages[0]
+  const { currentUser } = ProfilePageData
+  // console.log(lastMessage)
   return (
-    <a href="#!" className="btn message-item d-flex align-items-center border-bottom px-3 py-2"
+    <a href="#!" className={`btn message-item d-flex align-items-center border-bottom px-3 py-2 ${!lastMessage.isSeenByPartner && currentUser.id !== lastMessage.userId.id && '-bg-light'}`}
       onClick={() => Data.onChooseRoom(item.id)}
     >
       <div className="user-img">
