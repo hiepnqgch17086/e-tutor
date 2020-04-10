@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite'
 import ProfilePageData from '../../../pages/ProfilePage/data'
 import { IS_ADMIN, IS_TUTOR, IS_STUDENT } from '../../../models-one-prop/role'
 import NumberOfMeetingsToday from './NumberOfMeetingsToday'
+import NumberOfLastMessagesIsNotSeenByAuth from './NumberOfLastMessagesIsNotSeenByAuth'
 
 const SideBar = () => {
   const location = useLocation()
@@ -45,7 +46,12 @@ const SideBar = () => {
                 <SideBarItem
                   href={CHAT_ROOM_TUTOR_PAGE}
                   iconName="icon-speech"
-                  title="Chat"
+                  title={(
+                    <>
+                      Chat
+                      <NumberOfLastMessagesIsNotSeenByAuth />
+                    </>
+                  )}
                   isActive={isChatActive}
                 />
               )
@@ -56,7 +62,12 @@ const SideBar = () => {
                 <SideBarItem
                   href={CHAT_ROOM_STUDENT_PAGE}
                   iconName="icon-speech"
-                  title="Chat"
+                  title={(
+                    <>
+                      Chat
+                      <NumberOfLastMessagesIsNotSeenByAuth />
+                    </>
+                  )}
                   isActive={isChatActive}
                 />
               )

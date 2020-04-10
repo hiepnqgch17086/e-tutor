@@ -19,7 +19,7 @@ const NumberOfMeetingsToday = () => {
       const newStartOfToday = getStartOfToday()
       if (newStartOfToday !== startOfToday) setStartOfToday(newStartOfToday)
     }, 1000)
-  }, [count])
+  }, [count, startOfToday])
 
   useEffect(() => {
     Data.NumberOfMeetingsToday_onDidMountDidUpdate()

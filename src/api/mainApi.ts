@@ -260,6 +260,13 @@ export default class MainApi extends JsonApi {
       errorMessage
     }
   }
+  async getNumberOfLastMessagesIsNotSeenByAuth(): Promise<Response> {
+    const { data: { numberOfLastMessagesIsNotSeenByAuth, errorMessage } } = await this.ApiRef.get(`/messages/number-of-last-messages-is-not-seen-by-auth`)
+    return {
+      data: { numberOfLastMessagesIsNotSeenByAuth },
+      errorMessage
+    }
+  }
 
   //////////COMMENT
   async setCommentNew(snapshot: object): Promise<Response> {

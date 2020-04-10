@@ -41,7 +41,8 @@ const AdminLayoutData = types.compose(
   'AdminLayoutData',
   GeneralPageModel,
   types.model({
-    numberOfMeetingsToday: types.optional(types.union(types.number, types.string), '')
+    numberOfMeetingsToday: types.optional(types.union(types.number, types.string), ''),
+    numberOfLastMessagesIsNotSeenByAuth: types.optional(types.union(types.number, types.string), ''),
   })
 )
   .actions(self => ({
@@ -55,6 +56,27 @@ const AdminLayoutData = types.compose(
     NumberOfMeetingsToday_onWillUnMount() {
       self.setSnapshotUpdate({ numberOfMeetingsToday: '' })
       subs.setUnSubscribeMeeting()
+    },
+    NumberOfLastMessagesIsNotSeenByAuth_onDidMountDidUpdate: async function () {
+      this.getDatabaseNumberOfLastMessagesIsNotSeenByAuth()
+    },
+    NumberOfLastMessagesIsNotSeenByAuth_onWillUnMount: async function () {
+
+    },
+    getDatabaseNumberOfLastMessagesIsNotSeenByAuth: async function () {
+      try {
+        // get db
+        const {
+          data: { numberOfLastMessagesIsNotSeenByAuth },
+          errorMessage
+        } = await API.getNumberOfLastMessagesIsNotSeenByAuth()
+        if (errorMessage) throw new Error(errorMessage)
+        // console.log('numberOfLastMessagesIsNotSeenByAuth', numberOfLastMessagesIsNotSeenByAuth)
+        self.setSnapshotUpdate({ numberOfLastMessagesIsNotSeenByAuth })
+      } catch (error) {
+        console.log(error.message)
+        toast.error('Something went wrong!')
+      }
     },
     getDatabaseNumberOfMeetingsToday: async function () {
       try {
