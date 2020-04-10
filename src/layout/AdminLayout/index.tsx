@@ -8,6 +8,7 @@ const AdminLayout = ({ children = <></>, pathAvoid = ['str'] }) => {
   let location = useLocation();
   // console.log();
   const shouldAvoid = pathAvoid.indexOf(location.pathname) >= 0
+  // display: 'none' will not fire up componentDidMount DidUpdate
   return (
     <>
       {shouldAvoid && children}

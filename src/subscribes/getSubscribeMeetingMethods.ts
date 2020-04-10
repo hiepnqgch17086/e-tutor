@@ -29,6 +29,11 @@ const subscribeToMeeting = gql`
         startAt
         endAt
       }
+      previousValues {
+        id
+        startAt
+        endAt
+      }
     }
   }
 `
@@ -44,8 +49,8 @@ type Props = {
 const getSubscribeMeetingMethods = ({
   // fromAt = new Date().toISOString(),
   // toAt = new Date().toISOString(),
-  setMeetingCreated = (node: object) => { },
-  setMeetingUpdated = (node: object) => { },
+  setMeetingCreated = (node: object, previousValues: object) => { },
+  setMeetingUpdated = (node: object, previousValues: object) => { },
   querySubscription = defaultQuerySubscription,
   setQuerySubscription = (temp: ZenObservable.Subscription | null) => { },
 }) => {
@@ -66,13 +71,13 @@ const getSubscribeMeetingMethods = ({
     })
       .subscribe({
         next(response) {
-          const { data: { meeting: { mutation, node } } } = response
+          const { data: { meeting: { mutation, node, previousValues } } } = response
           switch (mutation) {
             case UPDATED_MUTATION_TYPE:
-              setMeetingUpdated(node)
+              setMeetingUpdated(node, previousValues)
               break;
             case CREATED_MUTATION_TYPE:
-              setMeetingCreated(node)
+              setMeetingCreated(node, previousValues)
               break;
             // case DELETED_MUTATION_TYPE:
             //   break;
