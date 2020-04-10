@@ -39,13 +39,13 @@ const subsOfMeeting = getSubscribeMeetingMethods({
   setQuerySubscription: (sub) => meetingSubscription = sub
 })
 
-const subsOfMessage = getSubscribeMessageToOrCreatedByUser({
-  setMessageCreated: (message: any) => {
-    if (message.userId.id !== ProfilePageData.currentUser.id) {
-      AdminLayoutData.getDatabaseNumberOfLastMessagesIsNotSeenByAuth()
-    }
-  }
-})
+// const subsOfMessage = getSubscribeMessageToOrCreatedByUser({
+//   setMessageCreated: (message: any) => {
+//     if (message.userId.id !== ProfilePageData.currentUser.id) {
+//       AdminLayoutData.getDatabaseNumberOfLastMessagesIsNotSeenByAuth()
+//     }
+//   }
+// })
 
 const AdminLayoutData = types.compose(
   'AdminLayoutData',
@@ -68,12 +68,12 @@ const AdminLayoutData = types.compose(
       subsOfMeeting.setUnSubscribeMeeting()
     },
     NumberOfLastMessagesIsNotSeenByAuth_onDidMountDidUpdate: async function () {
-      subsOfMessage.setUnSubscribeMessageToOrCreatedByUser()
-      subsOfMessage.setSubscribeMessageToOrCreatedByUser()
+      // subsOfMessage.setUnSubscribeMessageToOrCreatedByUser()
+      // subsOfMessage.setSubscribeMessageToOrCreatedByUser()
       this.getDatabaseNumberOfLastMessagesIsNotSeenByAuth()
     },
     NumberOfLastMessagesIsNotSeenByAuth_onWillUnMount: async function () {
-      subsOfMessage.setUnSubscribeMessageToOrCreatedByUser()
+      // subsOfMessage.setUnSubscribeMessageToOrCreatedByUser()
     },
     getDatabaseNumberOfLastMessagesIsNotSeenByAuth: async function () {
       try {

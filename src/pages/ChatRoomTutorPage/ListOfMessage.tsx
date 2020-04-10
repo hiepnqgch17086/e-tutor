@@ -26,20 +26,24 @@ const ListOfMessage = () => {
     return () => {
       // cleanup
     }
-  }, [activedRoom.messages.length, activedRoom.messages[activedRoom.messages.length - 1]?.isSeenByPartner])
+  }, [activedRoom.messages.length])
+
+  // useEffect(() => {
+  //   if (
+  //     activedRoom.messages[activedRoom.messages.length - 1]?.isSeenByPartner === false
+  //     && activedRoom.messages[activedRoom.messages.length - 1]?.userId.id !== ProfilePageData.currentUser.id
+  //   ) {
+  //     activedRoom.messages[activedRoom.messages.length - 1]?.setSnapshotUpdate({ isSeenByPartner: true })
+  //     activedRoom.messages[activedRoom.messages.length - 1]?.setDatabaseUpdateStatus_isSeenByPartner_true()
+  //   }
+  // }, [activedRoom.messages[activedRoom.messages.length - 1]])
 
   // set-up listener effect
   useEffect(() => {
     // validate 
     ListOfMessage_onDidMountDidUpDate()
-    // if (activedRoom.id) {
-    //   // clear previous room listnener
-
-    //   // setUnSubscribeMessage()
-    //   // // actions
-    //   // setSubscribeMessage()
-    // }
     return () => {
+      console.log('will unmint')
       // cleanup
       // setUnSubscribeMessage()
       ListOfMessage_onWillUnMount()
@@ -92,11 +96,13 @@ const ListOfMessage = () => {
           <div className="chat-time d-block font-10 mt-1 mr-0 mb-3">10:56 am
             </div>
         </li> */}
+
+        {/*         
         {
           activedRoom.messages.length && activedRoom.messages[activedRoom.messages.length - 1]?.isSeenByPartner && activedRoom.messages[activedRoom.messages.length - 1]?.userId.id === ProfilePageData.currentUser.id ? (
             <li>Seen</li>
           ) : null
-        }
+        } */}
       </ul>
     </div>
   )

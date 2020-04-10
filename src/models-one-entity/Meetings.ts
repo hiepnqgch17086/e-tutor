@@ -197,7 +197,7 @@ const Meetings = types.compose(
       const meetingsInDay = self.items.filter(item => {
         const format2 = moment(item.startAt).format('YYYY-MM-DD')
         const format3 = moment(item.endAt).format('YYYY-MM-DD')
-        if (format1 === format2 || format1 === format3) {
+        if (format1 >= format2 && format1 <= format3) {
           count += 1
           return true
         }

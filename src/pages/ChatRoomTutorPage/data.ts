@@ -36,13 +36,14 @@ const ChatRoomTutorPageData = types.compose(
         roomId: ChatRoomTutorPageData.activedRoom.id,// .activedRoom.id,
         setMessageCreated: (message: any) => {
           // update: is seen by partner, if not auth
-          const isAuth = message.userId.id === ProfilePageData.currentUser.id
-          if (!isAuth) {
-            // update comment, isSeenByPartner = true
-            message.isSeenByPartner = true
-            const messageNode = Message.create(message)
-            messageNode.setDatabaseUpdateStatus_isSeenByPartner_true()
-          }
+          // const isAuth = message.userId.id === ProfilePageData.currentUser.id
+          // if (!isAuth) {
+          //   // update comment, isSeenByPartner = true
+          //   message.isSeenByPartner = true
+          //   const messageNode = Message.create(message)
+          //   messageNode.setDatabaseUpdateStatus_isSeenByPartner_true()
+          // }
+          console.log(message)
           ChatRoomTutorPageData.activedRoom.setMessageAdded(message)
         },
         setMessageUpdated_isSeenByPartner_true: (message: any) => {
