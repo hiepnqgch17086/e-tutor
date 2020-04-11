@@ -34,7 +34,7 @@ const ListOfMessage = () => {
       && lastMessage.userId.id !== ProfilePageData.currentUser.id
     ) {
       // fix bug
-      if (lastMessage.roomId.id === activedRoom.id) {
+      if (lastMessage.roomId.id === activedRoom.id && lastMessage.userId.id !== ProfilePageData.currentUser.id) {
         lastMessage.setSnapshotUpdate({ isSeenByPartner: true })
         lastMessage.setDatabaseUpdateStatus_isSeenByPartner_true()
       }

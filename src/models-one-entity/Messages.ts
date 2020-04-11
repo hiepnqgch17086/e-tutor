@@ -6,6 +6,7 @@ import text from "../models-one-prop/text";
 import { toast } from "react-toastify";
 import API from "../api";
 import { RoomBase } from "./BaseModels";
+import ProfilePageData from "../pages/ProfilePage/data";
 
 export const Message = types.compose(
   'Message',
@@ -39,6 +40,7 @@ export const Message = types.compose(
     },
     setDatabaseUpdateStatus_isSeenByPartner_true: async function () {
       try {
+        // console.log('authId', ProfilePageData.currentUser.id)
         const { errorMessage } = await API.setMessageUpdateStatus_isSeenByPartner_true(self.id)
         if (errorMessage) throw new Error(errorMessage)
       } catch (error) {
