@@ -14,27 +14,13 @@ import { ApolloLink, Observable } from 'apollo-link'
 import { WebSocketLink } from "apollo-link-ws"
 import { getMainDefinition } from 'apollo-utilities'
 import { mainHttpURL, mainWebsocketURL } from './api/mainApi'
+import DefaultClient from 'apollo-boost'
 
 export const UPDATED_MUTATION_TYPE = 'UPDATED'
 export const CREATED_MUTATION_TYPE = 'CREATED'
 export const DELETED_MUTATION_TYPE = 'DELETED'
-// export const client = new ApolloClient({
-//   uri: ApiURL,
-// });
 
-// export const getClient = (jwt: string) => new ApolloClient({
-//   uri: ApiURL,
-//   request(operation) {
-//     if (jwt) {
-//       operation.setContext({
-//         headers: {
-//           Authorizations: `Bearer ${jwt}`
-//         }
-//       })
-//     }
-//   }
-// });
-
+let client: DefaultClient<unknown> | null = null
 
 
 export const getClient = (jwt: string, httpURL = mainHttpURL, websocketURL = mainWebsocketURL) => {

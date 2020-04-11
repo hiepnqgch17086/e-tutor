@@ -20,7 +20,7 @@ const subscribeToMessage = gql`
   subscription($roomId: ID!) {
     message(roomId: $roomId){
       mutation
-      node {id userId { id } text createdAt updatedAt isSeenByPartner}
+      node {id userId { id } text createdAt updatedAt isSeenByPartner roomId {id}}
     }
   }
 `

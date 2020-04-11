@@ -41,7 +41,7 @@ const ListOfMessage = () => {
       lastMessage.setSnapshotUpdate({ isSeenByPartner: true })
       lastMessage.setDatabaseUpdateStatus_isSeenByPartner_true()
     }
-  }, [lastMessage])
+  }, [room.messages.length, lastMessage])
 
   // set-up listener effect
   useEffect(() => {

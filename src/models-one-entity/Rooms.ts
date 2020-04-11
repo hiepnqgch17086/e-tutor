@@ -84,19 +84,16 @@ const Rooms = types.compose(
       const msg = Message.create(message)
       // remove room
       let idx: number = -1
-      const msgRoom = self.items.find((item, index) => {
-        const rs = item.id === msg.roomId.id
-        if (rs) idx = index
-        return rs
-      })
+      const msgRoom = self.items.find((item, index) => item.id === msg.roomId.id)
       // validate msgRoom
       if (!msgRoom) return
       // update latest message to clone
-      const cloneMsgRoom = clone(msgRoom)
-      cloneMsgRoom.setSnapshotNew([msg], cloneMsgRoom.messages)
-      // move to the first
-      self.items.splice(idx, 1)
-      self.items.unshift(cloneMsgRoom)
+      msgRoom.setSnapshotNew([msg], msgRoom.messages)
+      // const cloneMsgRoom = clone(msgRoom)
+      // cloneMsgRoom.setSnapshotNew([msg], cloneMsgRoom.messages)
+      // // move to the first
+      // self.items.splice(idx, 1)
+      // self.items.unshift(cloneMsgRoom)
     }
   }))
 

@@ -3,7 +3,8 @@ import GeneralPageModel from "../GeneralPageModel";
 import Rooms, { Room } from "../../models-one-entity/Rooms";
 import { Message } from "../../models-one-entity/Messages";
 import useSubscribeMessageOfOneRoom from "../../hooks/useSubscribeMessageOfOneRoom";
-import AdminLayoutData from "../../layout/AdminLayout/data";
+// import AdminLayoutData from "../../layout/AdminLayout/data";
+
 
 const ChatRoomTutorPageData = types.compose(
   'ChatRoomStudentPage',
@@ -17,7 +18,8 @@ const ChatRoomTutorPageData = types.compose(
   .actions(self => ({
     onDidMountDidUpdate() {
       self.rooms.getDatabaseRoomsOfTutorAuth()
-      // effect: clear and turn off listener of unread email
+      // effect: clear and turn off listener of unread message
+      // subsOfLastMessagesIsNotSeenByAuth.setUnSubscribeMessageToOrCreatedByUser()
       // if (AdminLayoutData.numberOfLastMessagesIsNotSeenByAuth) {
       //   // check if, not only for check, but also for rename attribute
       //   AdminLayoutData.setSnapshotUpdate({
@@ -27,13 +29,19 @@ const ChatRoomTutorPageData = types.compose(
       // }
     },
     onWillUnMount() {
-      self.activedRoom.setSnapshotNew({})
-      // effect: get and turn on listener of unread email
+      self.setSnapshotNew({})
+      // // effect: get and turn on listener of unread message
       // AdminLayoutData.getDatabaseNumberOfLastMessagesIsNotSeenByAuth()
+
+      // subsOfLastMessagesIsNotSeenByAuth.setSubscribeMessageToOrCreatedByUser()
     },
     onChooseRoom(id: number) {
       const filtered = self.rooms.items.find(item => item.id === id)
       if (!filtered) return
+      // will onmount previous room
+      this.ListOfMessage_onWillUnMount()
+      // mount current room
+      // this.ListOfMessage_onDidMountDidUpDate()
       self.activedRoom.setSnapshotNew(getSnapshot(filtered))
       // get message
       self.activedRoom.getDatabaseMessagesInRoom()
@@ -47,15 +55,6 @@ const ChatRoomTutorPageData = types.compose(
       const { setSubscribeMessage, setUnSubscribeMessage } = useSubscribeMessageOfOneRoom({
         roomId: ChatRoomTutorPageData.activedRoom.id,// .activedRoom.id,
         setMessageCreated: (message: any) => {
-          // update: is seen by partner, if not auth
-          // const isAuth = message.userId.id === ProfilePageData.currentUser.id
-          // if (!isAuth) {
-          //   // update comment, isSeenByPartner = true
-          //   message.isSeenByPartner = true
-          //   const messageNode = Message.create(message)
-          //   messageNode.setDatabaseUpdateStatus_isSeenByPartner_true()
-          // }
-          // console.log(message)
           ChatRoomTutorPageData.activedRoom.setMessageAdded(message)
         },
         setMessageUpdated_isSeenByPartner_true: (message: any) => {

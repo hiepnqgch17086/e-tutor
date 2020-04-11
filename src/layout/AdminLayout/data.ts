@@ -39,13 +39,13 @@ const subsOfMeeting = getSubscribeMeetingMethods({
   setQuerySubscription: (sub) => meetingSubscription = sub
 })
 
-// const subsOfMessage = getSubscribeMessageToOrCreatedByUser({
-//   setMessageCreated: (message: any) => {
-//     if (message.userId.id !== ProfilePageData.currentUser.id) {
-//       AdminLayoutData.getDatabaseNumberOfLastMessagesIsNotSeenByAuth()
-//     }
-//   }
-// })
+const subsOfLastMessagesIsNotSeenByAuth = getSubscribeMessageToOrCreatedByUser({
+  setMessageCreated: (message: any) => {
+    if (message.userId.id !== ProfilePageData.currentUser.id) {
+      AdminLayoutData.getDatabaseNumberOfLastMessagesIsNotSeenByAuth()
+    }
+  }
+})
 
 const AdminLayoutData = types.compose(
   'AdminLayoutData',
@@ -53,7 +53,6 @@ const AdminLayoutData = types.compose(
   types.model({
     numberOfMeetingsToday: types.optional(types.union(types.number, types.string), ''),
     numberOfLastMessagesIsNotSeenByAuth: types.optional(types.union(types.number, types.string), ''),
-    preventUpdateNumberOfLastMessagesIsNotSeenByAuth: types.optional(types.boolean, false)
   })
 )
   .actions(self => ({
@@ -69,12 +68,13 @@ const AdminLayoutData = types.compose(
       subsOfMeeting.setUnSubscribeMeeting()
     },
     NumberOfLastMessagesIsNotSeenByAuth_onDidMountDidUpdate: async function () {
-      // subsOfMessage.setUnSubscribeMessageToOrCreatedByUser()
-      // subsOfMessage.setSubscribeMessageToOrCreatedByUser()
+      subsOfLastMessagesIsNotSeenByAuth.setUnSubscribeMessageToOrCreatedByUser()
+      subsOfLastMessagesIsNotSeenByAuth.setSubscribeMessageToOrCreatedByUser()
       this.getDatabaseNumberOfLastMessagesIsNotSeenByAuth()
     },
     NumberOfLastMessagesIsNotSeenByAuth_onWillUnMount: async function () {
-      // subsOfMessage.setUnSubscribeMessageToOrCreatedByUser()
+      self.setSnapshotUpdate({ numberOfLastMessagesIsNotSeenByAuth: 0 })
+      subsOfLastMessagesIsNotSeenByAuth.setUnSubscribeMessageToOrCreatedByUser()
     },
     getDatabaseNumberOfLastMessagesIsNotSeenByAuth: async function () {
       try {

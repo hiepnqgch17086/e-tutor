@@ -27,25 +27,24 @@ const ListOfMessage = () => {
   }, [activedRoom.messages.length, lastMessage?.isSeenByPartner])
 
   useEffect(() => {
-
+    // const lastMessage = activedRoom.messages[activedRoom.messages.length - 1]
     if (
       lastMessage &&
       lastMessage.isSeenByPartner === false
       && lastMessage.userId.id !== ProfilePageData.currentUser.id
     ) {
-      lastMessage.setSnapshotUpdate({ isSeenByPartner: true })
-      lastMessage.setDatabaseUpdateStatus_isSeenByPartner_true()
+      // fix bug
+      if (lastMessage.roomId.id === activedRoom.id) {
+        lastMessage.setSnapshotUpdate({ isSeenByPartner: true })
+        lastMessage.setDatabaseUpdateStatus_isSeenByPartner_true()
+      }
     }
-  }, [lastMessage])
+  }, [activedRoom.messages.length, lastMessage])
 
   // set-up listener effect
   useEffect(() => {
-    // validate 
     ListOfMessage_onDidMountDidUpDate()
     return () => {
-      console.log('will unmint')
-      // cleanup
-      // setUnSubscribeMessage()
       ListOfMessage_onWillUnMount()
     }
     // eslint-disable-next-line
