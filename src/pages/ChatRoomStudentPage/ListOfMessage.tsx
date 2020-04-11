@@ -29,6 +29,7 @@ const ListOfMessage = () => {
   // effect of scrolldown if new comment added
   useEffect(() => {
     scrollToBottom()
+    // eslint-disable-next-line
   }, [room.messages.length, lastMessage?.isSeenByPartner])
 
   useEffect(() => {

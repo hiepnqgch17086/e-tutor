@@ -1,4 +1,4 @@
-import { types, getSnapshot } from "mobx-state-tree";
+import { types } from "mobx-state-tree";
 import id from "../models-one-prop/id";
 import title from "../models-one-prop/title";
 import body from "../models-one-prop/body";

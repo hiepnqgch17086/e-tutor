@@ -6,7 +6,7 @@ import text from "../models-one-prop/text";
 import { toast } from "react-toastify";
 import API from "../api";
 import { RoomBase } from "./BaseModels";
-import ProfilePageData from "../pages/ProfilePage/data";
+// import ProfilePageData from "../pages/ProfilePage/data";
 
 export const Message = types.compose(
   'Message',

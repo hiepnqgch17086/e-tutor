@@ -1,4 +1,4 @@
-import { types, clone } from "mobx-state-tree";
+import { types } from "mobx-state-tree";
 import { Message } from './Messages'
 import API from "../api";
 import { RoomBase } from "./BaseModels";
@@ -83,7 +83,7 @@ const Rooms = types.compose(
     setLatestMessageOfRoom(message: object) {
       const msg = Message.create(message)
       // remove room
-      let idx: number = -1
+      // let idx: number = -1
       const msgRoom = self.items.find((item, index) => item.id === msg.roomId.id)
       // validate msgRoom
       if (!msgRoom) return

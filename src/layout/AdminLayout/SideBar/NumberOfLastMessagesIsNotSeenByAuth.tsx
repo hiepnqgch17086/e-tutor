@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom'
 import { CHAT_ROOM_TUTOR_PAGE, CHAT_ROOM_STUDENT_PAGE } from '../../../routes'
 
 const NumberOfLastMessagesIsNotSeenByAuth = () => {
-  const { numberOfLastMessagesIsNotSeenByAuth: numberOfLastMessagesIsNotSeenByAuth } = Data
+  const { numberOfLastMessagesIsNotSeenByAuth } = Data
   const location = useLocation()
   const pathName = location.pathname
 

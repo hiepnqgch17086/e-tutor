@@ -5,7 +5,7 @@ import ChatRoomTutorPageData from './data'
 import MessageItemForAuth from '../../components/ChatRoom/MessageItemForAuth'
 import MessageItemForPartner from '../../components/ChatRoom/MessageItemForPartner'
 import ProfilePageData from '../ProfilePage/data'
-import { getSnapshot } from 'mobx-state-tree'
+// import { getSnapshot } from 'mobx-state-tree'
 
 const ListOfMessage = () => {
   const { activedRoom, ListOfMessage_onDidMountDidUpDate, ListOfMessage_onWillUnMount } = ChatRoomTutorPageData
@@ -24,6 +24,7 @@ const ListOfMessage = () => {
   // effect of scrolldown if new comment added
   useEffect(() => {
     scrollToBottom()
+    // eslint-disable-next-line
   }, [activedRoom.messages.length, lastMessage?.isSeenByPartner])
 
   useEffect(() => {
@@ -39,7 +40,8 @@ const ListOfMessage = () => {
         lastMessage.setDatabaseUpdateStatus_isSeenByPartner_true()
       }
     }
-  }, [activedRoom.messages.length, lastMessage])
+
+  }, [activedRoom.id, activedRoom.messages.length, lastMessage])
 
   // set-up listener effect
   useEffect(() => {
