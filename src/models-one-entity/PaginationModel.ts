@@ -18,8 +18,9 @@ const PaginationModel = types.model({
       self.emailContains = newValue
       if (shouldSetPage1) this.setPage(1)
     },
-    setTextContains(newValue: string = '') {
+    setTextContains(newValue: string = '', shouldSetPage1: boolean = true) {
       self.textContains = newValue
+      if (shouldSetPage1) this.setPage(1)
     }
   }))
 

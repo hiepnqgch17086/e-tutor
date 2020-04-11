@@ -12,6 +12,18 @@ export default class MainApi extends JsonApi {
   }
 
   //////////////USERS////////////////
+  async getStudentNotInteractive({
+    textContains,
+    limit,
+    page,
+    numberOfDays,
+  }: any): Promise<Response> {
+    const { data: { studentsWhoNotInteractive, errorMessage } } = await this.ApiRef.get(`/users/students-who-not-interactive?numberOfDays=${numberOfDays}&page=${page}&limit=${limit}&textContains=${textContains}`)
+    return {
+      data: { studentsWhoNotInteractive },
+      errorMessage
+    }
+  }
   async getTotalOfStudents(): Promise<Response> {
     const { data: { totalOfStudents, errorMessage } } = await this.ApiRef.get(`/users/total-of-students`)
     return {

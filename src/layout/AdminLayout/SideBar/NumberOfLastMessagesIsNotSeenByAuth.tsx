@@ -13,7 +13,7 @@ const NumberOfLastMessagesIsNotSeenByAuth = () => {
   const isChatActive = temp.indexOf(pathName) >= 0
 
   useEffect(() => {
-    console.log(isChatActive)
+    // console.log(isChatActive)
     if (isChatActive) {
       Data.NumberOfLastMessagesIsNotSeenByAuth_onWillUnMount()
 

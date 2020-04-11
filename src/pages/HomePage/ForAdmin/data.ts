@@ -2,6 +2,7 @@ import { types } from "mobx-state-tree";
 import GeneralPageModel from "../../GeneralPageModel";
 import API from "../../../api";
 import { toast } from "react-toastify";
+import Users from "../../../models-one-entity/Users";
 
 const AdminHomePageData = types.compose(
   'AdminHomePageData',
@@ -9,12 +10,17 @@ const AdminHomePageData = types.compose(
   types.model({
     totalOfStudents: types.optional(types.union(types.number, types.string), ''),
     totalOfTutors: types.optional(types.union(types.number, types.string), ''),
+    studentsNotInteractive: types.optional(Users, {}),
   })
 )
   .actions(self => ({
-    onDidMountDidUpdate() {
+    onDidMountDidUpdate(numberOfDays: number) {
       this.getDatabaseTotalOfStudents()
       this.getDatabaseTotalOfTutors()
+      this.getDatabaseStudentsNotInteractive(numberOfDays)
+    },
+    getDatabaseStudentsNotInteractive(numberOfDays: number) {
+      self.studentsNotInteractive.getDatabaseStudentsNotInteractive(numberOfDays)
     },
     getDatabaseTotalOfStudents: async function () {
       try {

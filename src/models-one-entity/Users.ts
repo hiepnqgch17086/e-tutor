@@ -1,4 +1,4 @@
-import { types, getParent } from "mobx-state-tree";
+import { types, getParent, getSnapshot } from "mobx-state-tree";
 import id from "../models-one-prop/id";
 import email from "../models-one-prop/email";
 import password from "../models-one-prop/password";
@@ -351,6 +351,23 @@ const Users = types.compose(
       } catch (error) {
         console.log(error.message)
       }
+    },
+    getDatabaseStudentsNotInteractive: async function (numberOfDays: number) {
+      try {
+        const { data: { studentsWhoNotInteractive }, errorMessage } = await API.getStudentNotInteractive({
+          textContains: self.textContains,
+          limit: self.limit,
+          page: self.page,
+          numberOfDays,
+        })
+        if (errorMessage) throw new Error(errorMessage)
+        self.setSnapshotNew(studentsWhoNotInteractive, self.items)
+        // console.log(getSnapshot(self.items))
+      } catch (error) {
+        console.log(error.message)
+        toast.error('Something went wrong!')
+      }
+
     }
   }))
 

@@ -63,6 +63,7 @@ export const Meeting = types.compose(
       ]
     },
     _getMainThreadOfSettingDatabaseNew: async function (snapshot: object) {
+      // console.log(snapshot)
       return API.setMeetingNew(snapshot)
     },
     _getMainThreadOfSettingDatabaseUpdate: async function (snapshot: object) {
