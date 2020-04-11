@@ -16,7 +16,7 @@ const EmailListPage = () => {
 
   return (
     <div>
-      <h3 className="text-dark">Emails</h3>
+      {/* <h3 className="text-dark">Emails</h3> */}
       <SlNumberOfItems
         limit={emailList.limit}
         setLimit={emailList.setLimit}

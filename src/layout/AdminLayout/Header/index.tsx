@@ -1,10 +1,27 @@
 import React from 'react'
 import Auth from './Auth'
 import UnReadEmailList from './UnReadEmailList'
-import { Link } from 'react-router-dom'
-import { LANDING_PAGE } from '../../../routes'
+import { Link, useLocation } from 'react-router-dom'
+import { LANDING_PAGE, HOME_PAGE, CHAT_ROOM_TUTOR_PAGE, CHAT_ROOM_STUDENT_PAGE, MEETING_LIST_PAGE, STUDENT_LIST_PAGE, TUTOR_LIST_PAGE, EMAIL_LIST_PAGE, EMAIL_DETAIL_PAGE } from '../../../routes'
 
 const Header = () => {
+  const location = useLocation()
+  const pathName = location.pathname
+
+  const isDashboardActive = pathName === HOME_PAGE
+
+  const temp = [CHAT_ROOM_TUTOR_PAGE, CHAT_ROOM_STUDENT_PAGE]
+  const isChatActive = temp.indexOf(pathName) >= 0
+
+  const isMeetingActive = pathName.indexOf(MEETING_LIST_PAGE) >= 0
+
+  // const userRoutes = [USER_LIST_PAGE, USER_ADD_PAGE]
+  const isStudentsTabActive = pathName.indexOf(STUDENT_LIST_PAGE) >= 0
+  const isTutorsTabActive = pathName.indexOf(TUTOR_LIST_PAGE) >= 0
+
+  const isEmailsActive = pathName.indexOf(EMAIL_LIST_PAGE) >= 0
+  const isEmailDetailActive = pathName.indexOf(EMAIL_DETAIL_PAGE) >= 0
+
   return (
     <header className="topbar" data-navbarbg="skin6">
       <nav className="navbar top-navbar navbar-expand-md">
@@ -45,21 +62,28 @@ const Header = () => {
         {/* End Logo */}
         {/* ============================================================== */}
         <div className="navbar-collapse collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav float-left mr-auto ml-3 pl-1">
-
+          <ul className="navbar-nav float-left mr-auto ml-3 pl-1 mt-3 mt-md-1 ">
+            {/* <UnReadEmailList /> */}
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" href="#!">
+                <div className="customize-input">
+                  {/* <input className="form-control custom-shadow custom-radius border-0 bg-white" type="search" placeholder="Search" aria-label="Search" /> */}
+                  {/* <i className="form-control-icon" data-feather="search" /> */}
+                  <h1 className="text-secondary">
+                    {isDashboardActive && 'Dashboard'}
+                    {isChatActive && 'Chat'}
+                    {isMeetingActive && 'Meetings'}
+                    {isStudentsTabActive && 'Students'}
+                    {isTutorsTabActive && 'Tutors'}
+                    {isEmailsActive && 'Email'}
+                    {isEmailDetailActive && 'Email'}
+                  </h1>
+                </div>
+              </a>
+            </li>
           </ul>
           <ul className="navbar-nav float-right">
             <UnReadEmailList />
-            {/* <li className="nav-item d-none d-md-block">
-              <a className="nav-link" href="#!">
-                <form>
-                  <div className="customize-input">
-                    <input className="form-control custom-shadow custom-radius border-0 bg-white" type="search" placeholder="Search" aria-label="Search" />
-                    <i className="form-control-icon" data-feather="search" />
-                  </div>
-                </form>
-              </a>
-            </li> */}
             <Auth />
           </ul>
         </div>

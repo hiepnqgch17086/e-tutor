@@ -27,7 +27,7 @@ const EmailDetailPage = () => {
 
   return (
     <>
-      <h3 className="text-dark">Email detail</h3>
+      {/* <h3 className="text-dark">Email detail</h3> */}
       {
         email.createdAt ? (
           <>
