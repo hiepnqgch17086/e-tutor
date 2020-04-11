@@ -1,4 +1,4 @@
-import { types } from "mobx-state-tree";
+import { types, getSnapshot } from "mobx-state-tree";
 import id from "../models-one-prop/id";
 import title from "../models-one-prop/title";
 import body from "../models-one-prop/body";
@@ -74,8 +74,10 @@ const Emails = types.compose(
       // console.log(getSnapshot(self.items))
     },
     setItemsToRemove(id: number) {
-      self.items.splice(self.items.findIndex(i => i.id === id), 1)
-      // console.log(getSnapshot(self.items))
+      const index = self.items.findIndex(i => i.id === id)
+      if (index >= 0) {
+        self.items.splice(index, 1)
+      }
     },
   }))
   .views(self => ({

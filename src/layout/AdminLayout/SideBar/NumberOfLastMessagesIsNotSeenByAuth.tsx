@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite'
 import Data from '../data'
 
 const NumberOfLastMessagesIsNotSeenByAuth = () => {
-  const { numberOfLastMessagesIsNotSeenByAuth } = Data
+  const { numberOfLastMessagesIsNotSeenByAuth: numberOfLastMessagesIsNotSeenByAuth } = Data
 
   useEffect(() => {
     // effect

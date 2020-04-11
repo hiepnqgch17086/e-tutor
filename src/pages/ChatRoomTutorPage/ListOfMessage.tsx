@@ -9,6 +9,7 @@ import { getSnapshot } from 'mobx-state-tree'
 
 const ListOfMessage = () => {
   const { activedRoom, ListOfMessage_onDidMountDidUpDate, ListOfMessage_onWillUnMount } = ChatRoomTutorPageData
+  const lastMessage = activedRoom.messages[activedRoom.messages.length - 1]
   // const { setSubscribeMessage, setUnSubscribeMessage } = useSubscribeMessageOfOneRoom({
   //   roomId: activedRoom.id,
   //   setMessageCreated: activedRoom.setMessageAdded
@@ -23,20 +24,19 @@ const ListOfMessage = () => {
   // effect of scrolldown if new comment added
   useEffect(() => {
     scrollToBottom()
-    return () => {
-      // cleanup
-    }
-  }, [activedRoom.messages.length])
+  }, [activedRoom.messages.length, lastMessage?.isSeenByPartner])
 
-  // useEffect(() => {
-  //   if (
-  //     activedRoom.messages[activedRoom.messages.length - 1]?.isSeenByPartner === false
-  //     && activedRoom.messages[activedRoom.messages.length - 1]?.userId.id !== ProfilePageData.currentUser.id
-  //   ) {
-  //     activedRoom.messages[activedRoom.messages.length - 1]?.setSnapshotUpdate({ isSeenByPartner: true })
-  //     activedRoom.messages[activedRoom.messages.length - 1]?.setDatabaseUpdateStatus_isSeenByPartner_true()
-  //   }
-  // }, [activedRoom.messages[activedRoom.messages.length - 1]])
+  useEffect(() => {
+
+    if (
+      lastMessage &&
+      lastMessage.isSeenByPartner === false
+      && lastMessage.userId.id !== ProfilePageData.currentUser.id
+    ) {
+      lastMessage.setSnapshotUpdate({ isSeenByPartner: true })
+      lastMessage.setDatabaseUpdateStatus_isSeenByPartner_true()
+    }
+  }, [lastMessage])
 
   // set-up listener effect
   useEffect(() => {
@@ -97,12 +97,14 @@ const ListOfMessage = () => {
             </div>
         </li> */}
 
-        {/*         
+
         {
           activedRoom.messages.length && activedRoom.messages[activedRoom.messages.length - 1]?.isSeenByPartner && activedRoom.messages[activedRoom.messages.length - 1]?.userId.id === ProfilePageData.currentUser.id ? (
-            <li>Seen</li>
+            <li className="mt-n4">
+              seen
+            </li>
           ) : null
-        } */}
+        }
       </ul>
     </div>
   )

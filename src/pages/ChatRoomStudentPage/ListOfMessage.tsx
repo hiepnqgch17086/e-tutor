@@ -8,6 +8,8 @@ import MessageItemForPartner from '../../components/ChatRoom/MessageItemForPartn
 
 const ListOfMessage = () => {
   const { room } = ChatRoomStudentPageData
+  const lastMessage = room.messages[room.messages.length - 1]
+
   const { setSubscribeMessage, setUnSubscribeMessage } = useSubscribeMessageOfOneRoom({
     roomId: room.id,
     setMessageCreated: room.setMessageAdded,
@@ -27,17 +29,19 @@ const ListOfMessage = () => {
   // effect of scrolldown if new comment added
   useEffect(() => {
     scrollToBottom()
-  }, [room.messages.length])
+  }, [room.messages.length, lastMessage?.isSeenByPartner])
 
-  // useEffect(() => {
-  //   if (
-  //     room.messages[room.messages.length - 1]?.isSeenByPartner === false
-  //     && room.messages[room.messages.length - 1]?.userId.id !== ProfilePageData.currentUser.id
-  //   ) {
-  //     room.messages[room.messages.length - 1]?.setSnapshotUpdate({ isSeenByPartner: true })
-  //     room.messages[room.messages.length - 1]?.setDatabaseUpdateStatus_isSeenByPartner_true()
-  //   }
-  // }, [room.messages[room.messages.length - 1]])
+  useEffect(() => {
+
+    if (
+      lastMessage &&
+      lastMessage.isSeenByPartner === false
+      && lastMessage.userId.id !== ProfilePageData.currentUser.id
+    ) {
+      lastMessage.setSnapshotUpdate({ isSeenByPartner: true })
+      lastMessage.setDatabaseUpdateStatus_isSeenByPartner_true()
+    }
+  }, [lastMessage])
 
   // set-up listener effect
   useEffect(() => {
@@ -86,11 +90,11 @@ const ListOfMessage = () => {
             </>
           ) : null
         }
-        {/* {
-          room.messages.length && room.messages[room.messages.length - 1]?.isSeenByPartner && room.messages[room.messages.length - 1]?.userId.id === ProfilePageData.currentUser.id ? (
-            <li>Seen</li>
+        {
+          room.messages.length && lastMessage?.isSeenByPartner && lastMessage?.userId.id === ProfilePageData.currentUser.id ? (
+            <li className="mt-n4">seen</li>
           ) : null
-        } */}
+        }
 
       </ul>
     </div>

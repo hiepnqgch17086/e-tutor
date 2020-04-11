@@ -53,6 +53,7 @@ const AdminLayoutData = types.compose(
   types.model({
     numberOfMeetingsToday: types.optional(types.union(types.number, types.string), ''),
     numberOfLastMessagesIsNotSeenByAuth: types.optional(types.union(types.number, types.string), ''),
+    preventUpdateNumberOfLastMessagesIsNotSeenByAuth: types.optional(types.boolean, false)
   })
 )
   .actions(self => ({

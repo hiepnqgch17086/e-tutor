@@ -3,8 +3,7 @@ import GeneralPageModel from "../GeneralPageModel";
 import Rooms, { Room } from "../../models-one-entity/Rooms";
 import { Message } from "../../models-one-entity/Messages";
 import useSubscribeMessageOfOneRoom from "../../hooks/useSubscribeMessageOfOneRoom";
-import ProfilePageData from "../ProfilePage/data";
-
+import AdminLayoutData from "../../layout/AdminLayout/data";
 
 const ChatRoomTutorPageData = types.compose(
   'ChatRoomStudentPage',
@@ -18,6 +17,19 @@ const ChatRoomTutorPageData = types.compose(
   .actions(self => ({
     onDidMountDidUpdate() {
       self.rooms.getDatabaseRoomsOfTutorAuth()
+      // effect: clear and turn off listener of unread email
+      // if (AdminLayoutData.numberOfLastMessagesIsNotSeenByAuth) {
+      //   // check if, not only for check, but also for rename attribute
+      //   AdminLayoutData.setSnapshotUpdate({
+      //     numberOfLastMessagesIsNotSeenByAuth: 0,
+      //   })
+      //   // 
+      // }
+    },
+    onWillUnMount() {
+      self.activedRoom.setSnapshotNew({})
+      // effect: get and turn on listener of unread email
+      // AdminLayoutData.getDatabaseNumberOfLastMessagesIsNotSeenByAuth()
     },
     onChooseRoom(id: number) {
       const filtered = self.rooms.items.find(item => item.id === id)
@@ -43,7 +55,7 @@ const ChatRoomTutorPageData = types.compose(
           //   const messageNode = Message.create(message)
           //   messageNode.setDatabaseUpdateStatus_isSeenByPartner_true()
           // }
-          console.log(message)
+          // console.log(message)
           ChatRoomTutorPageData.activedRoom.setMessageAdded(message)
         },
         setMessageUpdated_isSeenByPartner_true: (message: any) => {

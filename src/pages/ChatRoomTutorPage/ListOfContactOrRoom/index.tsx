@@ -13,6 +13,10 @@ const ListOfContactOrRoom = () => {
     setMessageCreated: (message: object) => {
       rooms.setLatestMessageOfRoom(message)
       // console.log(message)
+    },
+    setMessageUpdated: (message: object) => {
+      // console.log(message)
+      rooms.setLatestMessageOfRoom(message)
     }
   })
 

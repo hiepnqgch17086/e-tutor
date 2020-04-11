@@ -2,7 +2,7 @@
 
 import DefaultClient, { gql } from "apollo-boost"
 import { getLocalStorageToken } from "../routes"
-import { getClient, CREATED_MUTATION_TYPE } from "../ApolloConfig"
+import { getClient, CREATED_MUTATION_TYPE, UPDATED_MUTATION_TYPE } from "../ApolloConfig"
 import { toast } from "react-toastify"
 
 /**
@@ -23,12 +23,13 @@ const subscribeToMessage = gql`
   subscription {
     messageToTutor {
       mutation
-      node {id userId { id } text createdAt updatedAt roomId {id}}
+      node {id userId { id } text createdAt updatedAt roomId {id} isSeenByPartner}
     }
   }
 `
 type Props = {
-  setMessageCreated: Function
+  setMessageCreated: Function,
+  setMessageUpdated: Function,
 }
 
 /**
@@ -36,6 +37,7 @@ type Props = {
  */
 const useSubscribeMessageOfManyRoomsForTutor = ({
   setMessageCreated = (node: object) => { },
+  setMessageUpdated = (node: object) => { }
 }: Props) => {
 
   const setSubscribeMessage = () => {
@@ -48,9 +50,9 @@ const useSubscribeMessageOfManyRoomsForTutor = ({
         next(response) {
           const { data: { messageToTutor: { mutation, node } } } = response
           switch (mutation) {
-            // case UPDATED_MUTATION_TYPE:
-            //   unReadEmailOfAuth.setItemsToRemove(node.id)
-            //   break;
+            case UPDATED_MUTATION_TYPE:
+              setMessageUpdated(node)
+              break;
             case CREATED_MUTATION_TYPE:
               setMessageCreated(node)
               break;
