@@ -8,6 +8,8 @@ const text = types.model({
       return text ? '' : customConstraintString
     },
     setText(newValue: string = '') {
+      const setRegexToAvoidTags = /[<|>]/gi
+      if (setRegexToAvoidTags.test(newValue)) return
       self.text = newValue
     }
   }))

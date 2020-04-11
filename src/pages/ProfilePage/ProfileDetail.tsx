@@ -19,6 +19,12 @@ const ProfileDetail = ({
             <div><i className="fas fa-chevron-right" /> Name: {user.name}</div>
             <div><i className="fas fa-chevron-right" /> Email: {user.email}</div>
             <div><i className="fas fa-chevron-right" /> Role: {user.isTutor && 'Tutor'}{user.isAdmin && 'Admin'}{user.isStudent && 'Student'}</div>
+            {
+              user.tutorId ? (
+                <div><i className="fas fa-chevron-right" /> Tutor: {user.tutorId.email}</div>
+              ) : null
+            }
+
           </Col>
         </Row>
       </div>
