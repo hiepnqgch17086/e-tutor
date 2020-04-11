@@ -12,29 +12,32 @@ let meetingSubscription: ZenObservable.Subscription | null = null
 const subsOfMeeting = getSubscribeMeetingMethods({
   querySubscription: meetingSubscription,
   setMeetingCreated: (meeting) => {
-    const startOfTodayStr = moment().startOf('day').toISOString()
-    const endOfTodayStr = moment().endOf('day').toISOString()
-    // @ts-ignore
-    const meetingStartAt = meeting.startAt
-    if (startOfTodayStr <= meetingStartAt && meetingStartAt <= endOfTodayStr) {
-      AdminLayoutData.getDatabaseNumberOfMeetingsToday()
-    }
+    AdminLayoutData.getDatabaseNumberOfMeetingsToday()
+    // const startOfTodayStr = moment().startOf('day').toISOString()
+    // const endOfTodayStr = moment().endOf('day').toISOString()
+    // // @ts-ignore
+    // const meetingStartAt = meeting.startAt
+    // if (startOfTodayStr <= meetingStartAt && meetingStartAt <= endOfTodayStr) {
+    //   AdminLayoutData.getDatabaseNumberOfMeetingsToday()
+    // }
   },
   setMeetingUpdated: (meeting, previousValues) => {
-    const startOfTodayStr = moment().startOf('day').toISOString()
-    const endOfTodayStr = moment().endOf('day').toISOString()
-    // @ts-ignore
-    const meetingStartAt = meeting.startAt
-    // @ts-ignore
-    const prevMeetingStartAt = previousValues.startAt
-    if (startOfTodayStr <= meetingStartAt && meetingStartAt <= endOfTodayStr) {
-      AdminLayoutData.getDatabaseNumberOfMeetingsToday()
-      return
-    }
-    if (startOfTodayStr <= prevMeetingStartAt && prevMeetingStartAt <= endOfTodayStr) {
-      AdminLayoutData.getDatabaseNumberOfMeetingsToday()
-      return
-    }
+    AdminLayoutData.getDatabaseNumberOfMeetingsToday()
+    // const startOfTodayStr = moment().startOf('day').toISOString()
+    // const endOfTodayStr = moment().endOf('day').toISOString()
+    // console.log(meeting)
+    // // @ts-ignore
+    // const meetingStartAt = moment(meeting.startAt).toISOString()
+    // // @ts-ignore
+    // const prevMeetingStartAt = moment(previousValues.startAt).toISOString()
+    // if (startOfTodayStr <= meetingStartAt && meetingStartAt <= endOfTodayStr) {
+    //   AdminLayoutData.getDatabaseNumberOfMeetingsToday()
+    //   return
+    // }
+    // if (startOfTodayStr <= prevMeetingStartAt && prevMeetingStartAt <= endOfTodayStr) {
+    //   AdminLayoutData.getDatabaseNumberOfMeetingsToday()
+    //   return
+    // }
   },
   setQuerySubscription: (sub) => meetingSubscription = sub
 })

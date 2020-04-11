@@ -5,20 +5,20 @@ import { EMAIL_LIST_PAGE } from '../../../../routes'
 import UnReadEmailItem from './UnReadEmailItem'
 import ProfilePageData from '../../../../pages/ProfilePage/data'
 import { unReadEmailOfAuth } from './data'
-import DefaultClient, { gql } from 'apollo-boost'
-import { getClient, UPDATED_MUTATION_TYPE, CREATED_MUTATION_TYPE, DELETED_MUTATION_TYPE } from '../../../../ApolloConfig'
-import { getLocalStorageToken } from '../../../../routes'
+import { gql } from 'apollo-boost'
+import { client, setClient, UPDATED_MUTATION_TYPE, CREATED_MUTATION_TYPE, DELETED_MUTATION_TYPE } from '../../../../ApolloConfig'
+// import { getLocalStorageToken } from '../../../../routes'
 import { toast } from 'react-toastify'
 
-let client: DefaultClient<unknown>
+// let client: DefaultClient<unknown>
 let querySubscription: ZenObservable.Subscription | null
 
-const setClient = () => {
-  if (client) return
-  const jwt = getLocalStorageToken()
-  if (!jwt) return
-  client = getClient(jwt)
-}
+// const setClient = () => {
+//   if (client) return
+//   const jwt = getLocalStorageToken()
+//   if (!jwt) return
+//   client = _getClient(jwt)
+// }
 
 // const getHello = gql`
 //   query {

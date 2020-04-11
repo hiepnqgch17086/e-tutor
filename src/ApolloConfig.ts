@@ -15,15 +15,22 @@ import { WebSocketLink } from "apollo-link-ws"
 import { getMainDefinition } from 'apollo-utilities'
 import { mainHttpURL, mainWebsocketURL } from './api/mainApi'
 import DefaultClient from 'apollo-boost'
+import { getLocalStorageToken } from './routes'
 
 export const UPDATED_MUTATION_TYPE = 'UPDATED'
 export const CREATED_MUTATION_TYPE = 'CREATED'
 export const DELETED_MUTATION_TYPE = 'DELETED'
 
-let client: DefaultClient<unknown> | null = null
+export let client: DefaultClient<unknown>
 
+export const setClient = () => {
+  if (client) return
+  const jwt = getLocalStorageToken()
+  if (!jwt) return
+  client = _getClient(jwt)
+}
 
-export const getClient = (jwt: string, httpURL = mainHttpURL, websocketURL = mainWebsocketURL) => {
+const _getClient = (jwt: string, httpURL = mainHttpURL, websocketURL = mainWebsocketURL) => {
   // Setup the authorization header for the http client
   const request = async (operation: any) => {
     if (jwt) {

@@ -1,20 +1,20 @@
-import DefaultClient, { gql } from "apollo-boost"
-import { getLocalStorageToken } from "../routes"
-import { getClient, CREATED_MUTATION_TYPE, UPDATED_MUTATION_TYPE } from "../ApolloConfig"
+import { gql } from "apollo-boost"
+// import { getLocalStorageToken } from "../routes"
+import { client, setClient, CREATED_MUTATION_TYPE, UPDATED_MUTATION_TYPE } from "../ApolloConfig"
 import { toast } from "react-toastify"
 
 /**
  * For COMMENT subscribe
  */
-let client: DefaultClient<unknown>
+// let client: DefaultClient<unknown>
 let defaultQuerySubscription: ZenObservable.Subscription | null = null
 
-const setClient = () => {
-  if (client) return
-  const jwt = getLocalStorageToken()
-  if (!jwt) return
-  client = getClient(jwt)
-}
+// const setClient = () => {
+//   if (client) return
+//   const jwt = getLocalStorageToken()
+//   if (!jwt) return
+//   client = _getClient(jwt)
+// }
 
 // define of subscribe is defined in jwt token and room
 const subscribeToMeeting = gql`
