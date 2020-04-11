@@ -6,14 +6,13 @@ import { toast } from "react-toastify"
 /**
  * For COMMENT subscribe
  */
-let client: DefaultClient<unknown>
+// let client: DefaultClient<unknown>
 let querySubscription: ZenObservable.Subscription | null
 
 const setClient = () => {
-  if (client) return
+  // if (client) return
   const jwt = getLocalStorageToken()
-  if (!jwt) return
-  client = getClient(jwt)
+  return getClient(jwt)
 }
 
 // define of subscribe is defined in jwt token and room
@@ -43,7 +42,7 @@ const useSubscribeMessageOfOneRoom = ({
     // validate
     if (!roomId) return
     // action
-    setClient()
+    const client = setClient()
     querySubscription = client.subscribe({
       query: subscribeToMessage,
       variables: {
@@ -77,6 +76,7 @@ const useSubscribeMessageOfOneRoom = ({
 
   const setUnSubscribeMessage = () => {
     if (querySubscription) {
+      console.log('unsubscribe')
       querySubscription.unsubscribe()
       querySubscription = null
     }

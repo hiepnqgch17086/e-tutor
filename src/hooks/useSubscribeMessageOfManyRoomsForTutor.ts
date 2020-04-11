@@ -12,7 +12,7 @@ let client: DefaultClient<unknown>
 let querySubscription: ZenObservable.Subscription | null
 
 const setClient = () => {
-  if (client) return
+  // if (client) return
   const jwt = getLocalStorageToken()
   if (!jwt) return
   client = getClient(jwt)
