@@ -16,7 +16,7 @@ const ContactOrRoomItem = ({
   const { activedRoom } = Data
   // console.log(lastMessage)
   return (
-    <a href="#!" className={`btn message-item d-flex align-items-center border-bottom px-3 py-2 ${!lastMessage.isSeenByPartner && currentUser.id !== lastMessage.userId.id && item.id !== activedRoom.id && 'bg-light'}`}
+    <a href="#!" className={`btn message-item d-flex align-items-center border-bottom px-3 py-2 ${lastMessage && !lastMessage.isSeenByPartner && currentUser.id !== lastMessage.userId.id && item.id !== activedRoom.id && 'bg-light'}`}
       onClick={() => Data.onChooseRoom(item.id)}
     >
       <div className="user-img">

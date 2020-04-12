@@ -1,4 +1,4 @@
-import { types, getParent, getSnapshot } from "mobx-state-tree";
+import { types, getParent } from "mobx-state-tree";
 import id from "../models-one-prop/id";
 import email from "../models-one-prop/email";
 import password from "../models-one-prop/password";
@@ -38,7 +38,10 @@ export const User = types.compose(
     ),
     totalOfEmails: types.optional(
       types.union(types.number, types.string), ''
-    )
+    ),
+    totalOfMeetingFileUploads: types.optional(
+      types.union(types.number, types.string), ''
+    ),
   })
 )
   .actions(self => ({
@@ -65,6 +68,22 @@ export const User = types.compose(
         const { data: { totalOfMessages, errorMessage } } = await API.getUserTotalOfMessages(id)
         if (errorMessage) throw new Error(errorMessage)
         self.setSnapshotUpdate({ totalOfMessages })
+      } catch ({ message }) {
+        console.log('getDatabase()', message)
+        toast.error('Something went wrong!')
+        return {
+          errorMessage: message
+        }
+      }
+    },
+    getDatabaseTotalOfMeetingFileUploads: async function () {
+      try {
+        // @ts-ignore
+        // eslint-disable-next-line
+        const id = self.id
+        const { data: { totalOfMeetingFileUploads, errorMessage } } = await API.getUserTotalOfMeetingFileUploads(id)
+        if (errorMessage) throw new Error(errorMessage)
+        self.setSnapshotUpdate({ totalOfMeetingFileUploads })
       } catch ({ message }) {
         console.log('getDatabase()', message)
         toast.error('Something went wrong!')

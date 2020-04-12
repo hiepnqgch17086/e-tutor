@@ -24,7 +24,7 @@ const FileUploadsOfCreator = ({
           </h6>
           <span className="font-12 text-nowrap d-block text-muted" >
             <i className="far fa-envelope mr-1" title={creator.email} />
-            {currentUser.id === creator.id ? 'You' : 'Student'}
+            {currentUser.id === creator.id ? 'You' : 'Tutor'}
           </span>
         </div>
       </div>

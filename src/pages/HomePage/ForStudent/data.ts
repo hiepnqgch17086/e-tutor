@@ -21,6 +21,7 @@ export const StudentHomePageModel = types.compose(
       student.getDatabaseTotalOfMeetingsOfStudent()
       student.getDatabaseTotalOfComments()
       student.getDatabaseTotalOfEmails()
+      student.getDatabaseTotalOfMeetingFileUploads()
 
       self.nextMeetings.getDatabaseNextMeetingsInFuture(studentId)
     }

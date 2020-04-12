@@ -1,10 +1,11 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
 
-const CardsCounterOfMessagesMeetingsCommentsEmails = ({
+const CardsCounterOfMessagesMeetingsFileUploadsCommentsEmails = ({
   numberOfMessages = '',
   numberOfMessagesIn7Days = '',
   numberOfMeetings = '',
+  numberOfMeetingFileUploads = '',
   numberOfComments = '',
   numberOfEmails = '',
 }: any) => {
@@ -60,9 +61,22 @@ const CardsCounterOfMessagesMeetingsCommentsEmails = ({
           <div className="d-flex d-lg-flex d-md-block align-items-center">
             <div>
               <div className="d-inline-flex align-items-center">
+                <h2 className="text-dark mb-1 font-weight-medium">{numberOfMeetingFileUploads}</h2>
+              </div>
+              <h6 className="text-muted font-weight-normal mb-0 w-100 text-truncate">Meeting <br /> File Uploads</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="card border-right">
+        <div className="card-body">
+          <div className="d-flex d-lg-flex d-md-block align-items-center">
+            <div>
+              <div className="d-inline-flex align-items-center">
                 <h2 className="text-dark mb-1 font-weight-medium">{numberOfComments}</h2>
               </div>
-              <h6 className="text-muted font-weight-normal mb-0 w-100 text-truncate">Comments</h6>
+              <h6 className="text-muted font-weight-normal mb-0 w-100 text-truncate">Meeting <br /> Comments</h6>
             </div>
           </div>
         </div>
@@ -87,4 +101,4 @@ const CardsCounterOfMessagesMeetingsCommentsEmails = ({
   )
 }
 
-export default observer(CardsCounterOfMessagesMeetingsCommentsEmails)
+export default observer(CardsCounterOfMessagesMeetingsFileUploadsCommentsEmails)

@@ -7,7 +7,7 @@ import { IS_ADMIN, IS_STUDENT } from '../../models-one-prop/role'
 import TableOfNextMeetings from '../../components/Dashboard/TableOfNextMeetings'
 import ProfilePageData from '../ProfilePage/data'
 import { StudentHomePageModel } from '../HomePage/ForStudent/data'
-import CardsCounterOfMessagesMeetingsCommentsEmails from '../../components/Dashboard/CardsCounterOfMessagesMeetingsCommentsEmails'
+import CardsCounterOfMessagesMeetingsFileUploadsCommentsEmails from '../../components/Dashboard/CardsCounterOfMessagesMeetingsFileUploadsCommentsEmails'
 // import TableOfNewestComments from '../../components/Dashboard/TableOfNewestComments'
 
 const dashboardData = StudentHomePageModel.create({})
@@ -32,12 +32,13 @@ const StudentDetailPage = () => {
       {
         ProfilePageData.currentUser.role === IS_ADMIN && (
           <>
-            <CardsCounterOfMessagesMeetingsCommentsEmails
+            <CardsCounterOfMessagesMeetingsFileUploadsCommentsEmails
               numberOfComments={dashboardData.student.totalOfComments}
               numberOfMessages={dashboardData.student.totalOfMessages}
               numberOfMeetings={dashboardData.student.totalOfMeetings}
               numberOfEmails={dashboardData.student.totalOfEmails}
               numberOfMessagesIn7Days={dashboardData.student.totalOfMessagesInNumberOfDays}
+              numberOfMeetingFileUploads={dashboardData.student.totalOfMeetingFileUploads}
             />
             <TableOfNextMeetings
               nextMeetings={dashboardData.nextMeetings}

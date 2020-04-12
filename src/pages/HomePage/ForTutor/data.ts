@@ -23,6 +23,7 @@ export const TutorHomePageModel = types.compose(
       tutor.getDatabaseTotalOfComments()
       tutor.getDatabaseTotalOfEmails()
       tutor.getDatabaseTotalOfMessagesInNumberOfDays(7)
+      tutor.getDatabaseTotalOfMeetingFileUploads()
 
       self.nextMeetings.getDatabaseNextMeetingsInFuture(tutorId)
       self.topTenStudentsMessage.getDatabaseTop10StudentsMessage(tutorId)

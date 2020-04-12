@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import CardsCounterOfMessagesMeetingsCommentsEmails from '../../../components/Dashboard/CardsCounterOfMessagesMeetingsCommentsEmails'
+import CardsCounterOfMessagesMeetingsFileUploadsCommentsEmails from '../../../components/Dashboard/CardsCounterOfMessagesMeetingsFileUploadsCommentsEmails'
 import TableOfNextMeetings from '../../../components/Dashboard/TableOfNextMeetings'
 import Data from './data'
 import ProfilePageData from '../../ProfilePage/data'
@@ -19,12 +19,13 @@ const ForStudent = () => {
 
   return (
     <div>
-      <CardsCounterOfMessagesMeetingsCommentsEmails
+      <CardsCounterOfMessagesMeetingsFileUploadsCommentsEmails
         numberOfComments={student.totalOfComments}
         numberOfMessages={student.totalOfMessages}
         numberOfMeetings={student.totalOfMeetings}
         numberOfEmails={student.totalOfEmails}
         numberOfMessagesIn7Days={student.totalOfMessagesInNumberOfDays}
+        numberOfMeetingFileUploads={student.totalOfMeetingFileUploads}
       />
       <TableOfNextMeetings
         nextMeetings={nextMeetings}

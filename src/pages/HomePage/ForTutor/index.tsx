@@ -5,7 +5,7 @@ import TableOfNextMeetings from '../../../components/Dashboard/TableOfNextMeetin
 import TableOfTopStudentsMeeting from '../../../components/Dashboard/TableOfTopStudentsMeeting'
 import TableOfTopStudentsMessage from '../../../components/Dashboard/TableOfTopStudentsMessage'
 import ProfilePageData from '../../ProfilePage/data'
-import CardsCounterOfMessagesMeetingsCommentsEmails from '../../../components/Dashboard/CardsCounterOfMessagesMeetingsCommentsEmails'
+import CardsCounterOfMessagesMeetingsFileUploadsCommentsEmails from '../../../components/Dashboard/CardsCounterOfMessagesMeetingsFileUploadsCommentsEmails'
 
 const ForTutor = () => {
   const tutorId = ProfilePageData.currentUser.id
@@ -20,12 +20,13 @@ const ForTutor = () => {
 
   return (
     <div>
-      <CardsCounterOfMessagesMeetingsCommentsEmails
+      <CardsCounterOfMessagesMeetingsFileUploadsCommentsEmails
         numberOfComments={tutor.totalOfComments}
         numberOfMessages={tutor.totalOfMessages}
         numberOfMeetings={tutor.totalOfMeetings}
         numberOfEmails={tutor.totalOfEmails}
         numberOfMessagesIn7Days={tutor.totalOfMessagesInNumberOfDays}
+        numberOfMeetingFileUploads={tutor.totalOfMeetingFileUploads}
       />
       <TableOfNextMeetings
         nextMeetings={Data.nextMeetings}

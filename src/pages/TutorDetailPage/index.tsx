@@ -9,7 +9,7 @@ import TableOfNextMeetings from '../../components/Dashboard/TableOfNextMeetings'
 import TableOfTopStudentsMessage from '../../components/Dashboard/TableOfTopStudentsMessage'
 import TableOfTopStudentsMeeting from '../../components/Dashboard/TableOfTopStudentsMeeting'
 import ProfilePageData from '../ProfilePage/data'
-import CardsCounterOfMessagesMeetingsCommentsEmails from '../../components/Dashboard/CardsCounterOfMessagesMeetingsCommentsEmails'
+import CardsCounterOfMessagesMeetingsFileUploadsCommentsEmails from '../../components/Dashboard/CardsCounterOfMessagesMeetingsFileUploadsCommentsEmails'
 
 const dashboardData = TutorHomePageModel.create({})
 const tutorData = User.create({ role: IS_TUTOR })
@@ -33,12 +33,13 @@ const TutorDetailPage = () => {
       {
         ProfilePageData.currentUser.role === IS_ADMIN && (
           <div>
-            <CardsCounterOfMessagesMeetingsCommentsEmails
+            <CardsCounterOfMessagesMeetingsFileUploadsCommentsEmails
               numberOfComments={dashboardData.tutor.totalOfComments}
               numberOfMessages={dashboardData.tutor.totalOfMessages}
               numberOfMeetings={dashboardData.tutor.totalOfMeetings}
               numberOfEmails={dashboardData.tutor.totalOfEmails}
               numberOfMessagesIn7Days={dashboardData.tutor.totalOfMessagesInNumberOfDays}
+              numberOfMeetingFileUploads={dashboardData.tutor.totalOfMeetingFileUploads}
             />
             <TableOfNextMeetings
               nextMeetings={dashboardData.nextMeetings}
