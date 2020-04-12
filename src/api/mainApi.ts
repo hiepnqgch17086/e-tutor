@@ -299,4 +299,21 @@ export default class MainApi extends JsonApi {
     }
   }
 
+  //////////MEETING_FILE_UPLOAD
+  async setMeetingUploadFileNew(snapshot: object): Promise<Response> {
+    // @ts-ignore
+    const { data: { errorMessage } } = await this.ApiRef.post(`/meeting-file-uploads`, {
+      meetingFileUpload: snapshot
+    })
+    return {
+      errorMessage,
+    }
+  }
+  async setMeetingFileUploadDelete(fileId: number): Promise<Response> {
+    // @ts-ignore
+    const { data: { errorMessage } } = await this.ApiRef.delete(`/meeting-file-uploads/${fileId}`)
+    return {
+      errorMessage,
+    }
+  }
 }

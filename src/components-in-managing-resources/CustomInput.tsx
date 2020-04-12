@@ -9,6 +9,7 @@ type Props = {
   placeholder?: string,
   type?: string,
   id?: string,
+  disabled?: boolean
 }
 
 const CustomInput = ({
@@ -18,10 +19,12 @@ const CustomInput = ({
   placeholder = "",
   type = "text",
   id,
+  disabled = false,
 }: Props) => {
   const idProp = id ? { id } : {}
   return (
     <Input
+      disabled={disabled}
       className={`${error === false && 'is-valid'} ${error === true && 'is-invalid'}`}
       value={value}
       onChange={e => onChangeText(e.target.value)}

@@ -3,16 +3,18 @@ import { observer } from 'mobx-react-lite'
 import { defaultOfUser } from '../../models-one-entity/Users'
 import ProfilePageData from '../ProfilePage/data'
 import AvatarInDefault from '../../images/AvatarInDefault'
-import FileUploadFirebase from '../../components/FileUpload/FileUploadFirebase'
+import FileUploadOfMeetingInFirebase from '../../components/FileUpload/FileUploadOfMeetingInFirebase'
 import ListOfFileUpload from './ListOfFileUpload'
+import Data from './data'
 
 const FileUploadsOfStudent = ({
   student = defaultOfUser
 }) => {
   const { currentUser } = ProfilePageData
+  const { meeting } = Data
   return (
     <div>
-      <div className="message-item px-3 py-2 d-flex align-items-center">
+      <div className="message-item py-2 d-flex align-items-center">
         <div>
           <img src={student.avatar || AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
         </div>
@@ -26,9 +28,11 @@ const FileUploadsOfStudent = ({
           </span>
         </div>
       </div>
-      {currentUser.id === student.id && (
-        <FileUploadFirebase />
-      )}
+      {currentUser.id && currentUser.id === student.id ? (
+        <FileUploadOfMeetingInFirebase
+          meeting={meeting}
+        />
+      ) : null}
       <ListOfFileUpload />
     </div>
   )

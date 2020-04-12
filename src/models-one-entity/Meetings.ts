@@ -9,7 +9,7 @@ import { Response } from "./types";
 import { toast } from "react-toastify";
 import ProfilePageData from "../pages/ProfilePage/data";
 import role, { IS_TUTOR, IS_STUDENT } from "../models-one-prop/role";
-import { FileUpload } from "./FileUploads";
+import { MeetingFileUpload } from "./MeetingFileUploads";
 
 export const Meeting = types.compose(
   'Meeting',
@@ -18,7 +18,7 @@ export const Meeting = types.compose(
     studentId: types.optional(User, {}),
     creatorId: types.optional(User, {}),
     comments: types.array(Comment),
-    fileUploads: types.array(FileUpload),
+    fileUploads: types.array(MeetingFileUpload),
   }),
 )
   .actions(self => ({
@@ -94,6 +94,18 @@ export const Meeting = types.compose(
       } catch (error) {
         console.log(error.message)
       }
+    },
+    setFileUploadRemove(id: number) {
+      const index = self.fileUploads.findIndex(item => item.id === id)
+      if (index >= 0) {
+        // console.log(index)
+        self.fileUploads.splice(index, 1)
+      }
+    }
+  }))
+  .views(self => ({
+    get fileUploadsByAuth() {
+      return self.fileUploads.filter(item => item.uploaderId.id === ProfilePageData.currentUser.id)
     }
   }))
 
