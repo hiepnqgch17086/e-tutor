@@ -28,12 +28,17 @@ const FileUploadsOfStudent = ({
           </span>
         </div>
       </div>
-      {currentUser.id && currentUser.id === student.id ? (
-        <FileUploadOfMeetingInFirebase
-          meeting={meeting}
-        />
-      ) : null}
-      <ListOfFileUpload />
+      <ListOfFileUpload
+        isAuth={currentUser.id === student.id}
+        meeting={meeting}
+      />
+      <div className="mt-1">
+        {currentUser.id && currentUser.id === student.id ? (
+          <FileUploadOfMeetingInFirebase
+            meeting={meeting}
+          />
+        ) : null}
+      </div>
     </div>
   )
 }

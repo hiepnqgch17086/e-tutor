@@ -101,11 +101,10 @@ export const Meeting = types.compose(
         // console.log(index)
         self.fileUploads.splice(index, 1)
       }
-    }
-  }))
-  .views(self => ({
-    get fileUploadsByAuth() {
-      return self.fileUploads.filter(item => item.uploaderId.id === ProfilePageData.currentUser.id)
+    },
+    setFileUploadAdded(node: object) {
+      const newMeetingFileUpload = MeetingFileUpload.create(node)
+      self.fileUploads.push(newMeetingFileUpload)
     }
   }))
 

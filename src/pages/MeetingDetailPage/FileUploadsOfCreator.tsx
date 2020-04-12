@@ -28,14 +28,18 @@ const FileUploadsOfCreator = ({
           </span>
         </div>
       </div>
-      {currentUser.id && currentUser.id === creator.id ? (
-        <FileUploadOfMeetingInFirebase
-          meeting={meeting}
-        />
-      ) : null}
+
       <ListOfFileUpload
+        isAuth={currentUser.id === creator.id}
         meeting={meeting}
       />
+      <div className="mt-1">
+        {currentUser.id && currentUser.id === creator.id ? (
+          <FileUploadOfMeetingInFirebase
+            meeting={meeting}
+          />
+        ) : null}
+      </div>
     </div>
   )
 }

@@ -2,6 +2,7 @@ import { types } from "mobx-state-tree";
 import GeneralPageModel from "../GeneralPageModel";
 import Meetings, { Meeting } from "../../models-one-entity/Meetings";
 import getSubscribeMeetingMethods from "../../subscribes/getSubscribeMeetingMethods";
+import { toast } from "react-toastify";
 
 let meetingSubscription: ZenObservable.Subscription | null = null
 
@@ -40,7 +41,10 @@ const MeetingListPageData = types.compose(
     onCreateMeeting: async function (callback: Function = () => { }) {
       // console.log(self.newMeeting)
       const { errorMessage } = await self.newMeeting.setDatabaseNew()
-      if (!errorMessage) callback()
+      if (!errorMessage) {
+        toast.success('Add meeting successfully!')
+        callback()
+      }
     },
     // for table of meetings pagination
     onTitleSearchChange() {

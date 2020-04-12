@@ -2,17 +2,6 @@ import { types } from "mobx-state-tree";
 import GeneralPageModel from "../GeneralPageModel";
 import { Meeting } from "../../models-one-entity/Meetings";
 import { Comment } from "../../models-one-entity/Comments";
-import ProfilePageData from "../ProfilePage/data";
-import { IS_TUTOR, IS_STUDENT } from "../../models-one-prop/role";
-import getSubscribeMeetingFileUploadMethods from "../../subscribes/getSubscribeMeetingFileUploadMethods";
-
-let querySubscription: ZenObservable.Subscription | null = null
-
-const { } = getSubscribeMeetingFileUploadMethods({
-  meetingId: '',
-  querySubscription,
-  setQuerySubscription: (value) => { querySubscription = value }
-})
 
 const MeetingDetailPageData = types.compose(
   'MeetingDetailPageData',
@@ -23,10 +12,11 @@ const MeetingDetailPageData = types.compose(
   })
 )
   .actions(self => ({
-    onDidMountDidUpdate(id: number) {
+    onDidMountDidUpdate(id: number, callback: Function = () => { }) {
       if (!id) return
       self.meeting.setId(id)
       self.meeting.getDatabase()
+      callback()
     },
     onCreateComment() {
       self.newComment.meetingId.setId(self.meeting.id)
@@ -35,8 +25,8 @@ const MeetingDetailPageData = types.compose(
     },
     onForcusInputComment() {
       // set Is On
-      const { currentUser: { role } } = ProfilePageData
-      const { meeting } = self
+      // const { currentUser: { role } } = ProfilePageData
+      // const { meeting } = self
       // if (role === IS_TUTOR && !meeting.isCreatorOn) {
       //   meeting.setDatabaseUpdateIsOnOrOff(true)
       //   return

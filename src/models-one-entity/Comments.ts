@@ -21,7 +21,7 @@ export const Comment = types.compose(
      * @override
      */
     _getMainProperties(): Array<string> {
-      return ['text', 'meetingId', 'fileUploads']
+      return ['text', 'meetingId']
     },
     /**
      * @override

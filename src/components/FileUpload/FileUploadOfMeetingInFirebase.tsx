@@ -49,14 +49,7 @@ const FileUploadOfMeetingInFirebase = ({
       // console.log(fileUpload.meetingId)
       await fileUpload.setDatabaseNew()
 
-      // reset field
-      setFile(null)
-      setFileExtension('')
-      setIsUploadingFile(false)
-      setFileUpload(MeetingFileUpload.create({}))
-      // reset file input
-      // @ts-ignore
-      if (inputFileId) document.getElementById(inputFileId).value = null
+      onResetFile()
     }
 
     const onUploadError = (error: any) => {
@@ -88,6 +81,17 @@ const FileUploadOfMeetingInFirebase = ({
     }
   }
 
+  const onResetFile = () => {
+    // reset field
+    setFile(null)
+    setFileExtension('')
+    setIsUploadingFile(false)
+    setFileUpload(MeetingFileUpload.create({}))
+    // reset file input
+    // @ts-ignore
+    if (inputFileId) document.getElementById(inputFileId).value = null
+  }
+
   return (
     <div>
 
@@ -102,20 +106,32 @@ const FileUploadOfMeetingInFirebase = ({
       {
         file ? (
           <div>
-            <button onClick={onSaveFile} disabled={isUploadingFile}>
-              Save
-            </button>
+            <div className="mt-1">
+              <CustomInput
+                disabled={isUploadingFile}
+                value={fileUpload.name}
+                onChangeText={fileUpload.setName}
+                placeholder="file's name"
+                onPressEnter={onSaveFile}
+              />
+            </div>
+
+            <div className="btn-group mt-1 mb-1">
+              <button className="btn btn-light btn-sm" onClick={onSaveFile} disabled={isUploadingFile}>
+                Save
+              </button>
+              <button className="btn btn-light btn-sm ml-1"
+                disabled={isUploadingFile}
+                onClick={onResetFile}
+              >
+                Close
+              </button>
+            </div>
             {
               isUploadingFile && (
                 <Spinner color="primary" size="sm" />
               )
             }
-            <CustomInput
-              disabled={isUploadingFile}
-              value={fileUpload.name}
-              onChangeText={fileUpload.setName}
-              placeholder="file's name"
-            />
           </div>
         ) : null
       }

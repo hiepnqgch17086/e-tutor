@@ -4,10 +4,13 @@ import { defaultOfMeetingFileUpload } from '../../../../models-one-entity/Meetin
 import './index.css'
 import { Spinner } from 'reactstrap'
 import IconDelete from './IconDelete'
+import ProfilePageData from '../../../ProfilePage/data'
 
 const FileUploadItem = ({
   item = defaultOfMeetingFileUpload
 }) => {
+  const { currentUser } = ProfilePageData
+
   const [isCallingApi, setIsCallingApi] = useState(false)
 
   const onDownload = async () => {
@@ -15,6 +18,10 @@ const FileUploadItem = ({
     await item.getFileUploaded()
     setIsCallingApi(false)
   }
+
+  const isAuth = currentUser.id && currentUser.id === item.uploaderId.id
+    ? true
+    : false
 
   return (
     <div className="d-flex justify-content-between border-bottom">
@@ -28,10 +35,14 @@ const FileUploadItem = ({
       </div>
       <div>
         <i className="icon-cloud-download cursor-pointer x-item" onClick={onDownload} />
-        <IconDelete
-          meetingFileUpload={item}
-          setIsCallingApi={setIsCallingApi}
-        />
+        {
+          isAuth && (
+            <IconDelete
+              meetingFileUpload={item}
+              setIsCallingApi={setIsCallingApi}
+            />
+          )
+        }
       </div>
     </div>
   )

@@ -8,35 +8,34 @@ import ListOfComment from './ListOfComment'
 import ProfilePageData from '../ProfilePage/data'
 import FileUploadsOfStudent from './FileUploadsOfStudent'
 import FileUploadsOfCreator from './FileUploadsOfCreator'
+import getSubscribeMeetingFileUploadMethods from '../../subscribes/getSubscribeMeetingFileUploadMethods'
+import { MeetingFileUpload } from '../../models-one-entity/MeetingFileUploads'
+
+let querySubscription: ZenObservable.Subscription | null = null
 
 const MeetingPage = () => {
   const { id = '' } = useParams()
-  const { currentUser } = ProfilePageData
   const { meeting, onCreateComment, newComment } = Data
   const { creatorId, studentId } = meeting
-  // const { setSubscribeMeetingStatus, setUnSubscribeMeetingStatus } = useSubscribeMeetingStatus({
-  //   meetingId: parseInt(id),
-  //   setMeetingUpdated: (meetingSnapshot: object) => {
-  //     console.log(meetingSnapshot)
-  //     meeting.setSnapshotUpdate(meetingSnapshot)
-  //   }
-  // })
+
+  const { setSubscribeMeetingFileUpload, setUnSubscribeMeetingFileUpload } = getSubscribeMeetingFileUploadMethods({
+    meetingId: parseInt(id) || 0,
+    querySubscription,
+    setQuerySubscription: (value) => { querySubscription = value },
+    setMeetingFileUploadCreated: meeting.setFileUploadAdded,
+    setMeetingFileUploadDelete: (node: any, previousValues: any) => {
+      meeting.setFileUploadRemove(previousValues.id)
+    }
+  })
 
   useEffect(() => {
-    Data.onDidMountDidUpdate(parseInt(id))
-    // update status of meeting: isAuthOn
-    // meeting.setDatabaseUpdateIsOnOrOff(true)
-    // listen
-    // setUnSubscribeMeetingStatus()
-    // setSubscribeMeetingStatus()
-    // detach close tab
+    Data.onDidMountDidUpdate(parseInt(id), () => {
+      setUnSubscribeMeetingFileUpload()
+      setSubscribeMeetingFileUpload()
+    })
     return () => {
-      // setUnSubscribeMeetingStatus()
-      // meeting.setDatabaseUpdateIsOnOrOff(false)
-      // update status of meeting: isAuthOff
-      // console.log('ss')
-      // unlisten
       Data.setSnapshotNew({})
+      setUnSubscribeMeetingFileUpload()
     }
   }, [id])
 
@@ -60,7 +59,7 @@ const MeetingPage = () => {
             </div>
             <div className="col-md-6 p-2">
               <div className="border-bottom border-top card p-2 d-flex align-items-center">
-                <h3>{meeting.title}</h3>
+                <h3 className="text-dark">{meeting.title}</h3>
               </div>
               <div className="row">
                 <div className="col-md-6">

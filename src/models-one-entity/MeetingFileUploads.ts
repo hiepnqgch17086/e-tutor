@@ -75,8 +75,6 @@ export const MeetingFileUpload = types.compose(
         const { errorMessage } = await API.setMeetingFileUploadDelete(self.id)
         if (errorMessage) throw new Error(errorMessage)
         await this.setFileUploadedDelete()
-        // @ts-ignore, to delete in browser
-        getParent(self, 2).setFileUploadRemove(self.id)
         return ''
       } catch (error) {
         console.log(error.message)

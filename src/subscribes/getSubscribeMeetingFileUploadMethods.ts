@@ -1,6 +1,6 @@
 import { gql } from "apollo-boost"
 // import { getLocalStorageToken } from "../routes"
-import { client, setClient, CREATED_MUTATION_TYPE, UPDATED_MUTATION_TYPE } from "../ApolloConfig"
+import { client, setClient, CREATED_MUTATION_TYPE, UPDATED_MUTATION_TYPE, DELETED_MUTATION_TYPE } from "../ApolloConfig"
 import { toast } from "react-toastify"
 
 /**
@@ -27,6 +27,9 @@ const subscribeToMeetingFileUpload = gql`
         path 
         name
       }
+      previousValues {
+        id
+      }
     }
   }
 `
@@ -44,7 +47,8 @@ const getSubscribeMeetingFileUploadMethods = ({
   // toAt = new Date().toISOString(),
   setMeetingFileUploadCreated = (node: object, previousValues: object) => { },
   setMeetingFileUploadUpdated = (node: object, previousValues: object) => { },
-  meetingId = '',
+  setMeetingFileUploadDelete = (node: object, previousValues: object) => { },
+  meetingId = 0,
   querySubscription = defaultQuerySubscription,
   setQuerySubscription = (temp: ZenObservable.Subscription | null) => { },
 }) => {
@@ -73,8 +77,9 @@ const getSubscribeMeetingFileUploadMethods = ({
               case CREATED_MUTATION_TYPE:
                 setMeetingFileUploadCreated(node, previousValues)
                 break;
-              // case DELETED_MUTATION_TYPE:
-              //   break;
+              case DELETED_MUTATION_TYPE:
+                setMeetingFileUploadDelete(node, previousValues)
+                break;
               default:
                 break;
             }

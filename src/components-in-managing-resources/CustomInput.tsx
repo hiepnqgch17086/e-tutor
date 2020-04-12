@@ -9,21 +9,29 @@ type Props = {
   placeholder?: string,
   type?: string,
   id?: string,
-  disabled?: boolean
+  disabled?: boolean,
+  onPressEnter?: Function,
 }
 
 const CustomInput = ({
   error = false || null,
   value = '',
   onChangeText = (text: string) => { },
+  onPressEnter = () => { },
   placeholder = "",
   type = "text",
   id,
   disabled = false,
 }: Props) => {
   const idProp = id ? { id } : {}
+  const onKeyUp = (e: any) => {
+    if (e.keyCode === 13) {
+      onPressEnter()
+    }
+  }
   return (
     <Input
+      onKeyUp={onKeyUp}
       disabled={disabled}
       className={`${error === false && 'is-valid'} ${error === true && 'is-invalid'}`}
       value={value}

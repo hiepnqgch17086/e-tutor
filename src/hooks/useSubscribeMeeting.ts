@@ -58,37 +58,37 @@ const useSubscribeMeetingInRangeOfDate = ({
     // const fromAtISO = new Date(fromAt).toISOString()
     // const toAtISO = new Date(toAt).toISOString()
     setClient()
-    const temp = client.subscribe({
-      query: subscribeToMeeting,
-      // variables: {
-      //   fromAt: fromAtISO,
-      //   toAt: toAtISO,
-      // }
-    })
-      .subscribe({
-        next(response) {
-          const { data: { meeting: { mutation, node } } } = response
-          switch (mutation) {
-            case UPDATED_MUTATION_TYPE:
-              setMeetingUpdated(node)
-              break;
-            case CREATED_MUTATION_TYPE:
-              setMeetingCreated(node)
-              break;
-            // case DELETED_MUTATION_TYPE:
-            //   break;
-            default:
-              break;
-          }
-          // console.log('response.data', response.data)
-        },
-        error(ss) {
-          console.log(ss.message)
-          toast.error('Something went wrong!')
-        }
+    setQuerySubscription(
+      client.subscribe({
+        query: subscribeToMeeting,
+        // variables: {
+        //   fromAt: fromAtISO,
+        //   toAt: toAtISO,
+        // }
       })
-
-    setQuerySubscription(temp)
+        .subscribe({
+          next(response) {
+            const { data: { meeting: { mutation, node } } } = response
+            switch (mutation) {
+              case UPDATED_MUTATION_TYPE:
+                setMeetingUpdated(node)
+                break;
+              case CREATED_MUTATION_TYPE:
+                setMeetingCreated(node)
+                break;
+              // case DELETED_MUTATION_TYPE:
+              //   break;
+              default:
+                break;
+            }
+            // console.log('response.data', response.data)
+          },
+          error(ss) {
+            console.log(ss.message)
+            toast.error('Something went wrong!')
+          }
+        })
+    )
   }
 
   const setUnSubscribeMeeting = () => {
