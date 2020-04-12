@@ -1,0 +1,7 @@
+.x-item {
+  opacity: 0.5;
+}
+
+.x-item:hover {
+  opacity: 1;
+}

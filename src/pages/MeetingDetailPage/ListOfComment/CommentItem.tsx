@@ -13,10 +13,12 @@ const CommentItem = ({
     <li className="chat-item list-style-none mt-3">
       <div>
         <div className="chat-img d-inline-block">
-          <img src={user?.avatar || AvatarInDefault} alt="user" className="rounded-circle" width={45} title={user.email} />
+          <img src={user?.avatar || AvatarInDefault} alt="user" className="rounded-circle mt-1" width={45} title={user.email} />
         </div>
         <div className="chat-content d-inline-block pl-3">
-          <h6 className="font-weight-medium">{user.name}</h6>
+          <h6 className="font-weight-medium">
+            {user.id === ProfilePageData.currentUser.id ? 'You' : user.name}
+          </h6>
           <div className={`msg p-2 d-inline-block mb-1 ${user.id === ProfilePageData.currentUser.id ? 'bg-primary text-white' : 'text-dark'}`}>
             {comment.text}
           </div>

@@ -72,11 +72,10 @@ const Header = () => {
                   <h1 className="text-secondary">
                     {isDashboardActive && 'Dashboard'}
                     {isChatActive && 'Chat'}
-                    {isMeetingActive && 'Meetings'}
-                    {isStudentsTabActive && 'Students'}
-                    {isTutorsTabActive && 'Tutors'}
+                    {isMeetingActive && 'Meeting'}
+                    {isStudentsTabActive && 'Student'}
+                    {isTutorsTabActive && 'Tutor'}
                     {isEmailsActive && 'Email'}
-                    {isEmailDetailActive && 'Email'}
                   </h1>
                 </div>
               </a>

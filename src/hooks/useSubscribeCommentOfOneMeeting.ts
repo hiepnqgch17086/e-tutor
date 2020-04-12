@@ -23,7 +23,6 @@ const subscribeToComment = gql`
       mutation
       node {
         id userId { id email name avatar } createdAt updatedAt text
-        fileUploads { id cloudId createdAt updatedAt }
       }
     }
   }

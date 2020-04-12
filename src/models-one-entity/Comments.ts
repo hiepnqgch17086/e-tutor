@@ -5,7 +5,6 @@ import GeneralModel from "./GeneralModel";
 import { User } from "./Users";
 import { MeetingBase } from './BaseModels'
 import API from "../api";
-import { FileUpload } from "./FileUploads";
 
 export const Comment = types.compose(
   'Comment',
@@ -14,7 +13,6 @@ export const Comment = types.compose(
   types.model({
     userId: types.optional(User, {}),
     meetingId: types.optional(MeetingBase, {}),
-    fileUploads: types.array(FileUpload)
   }),
   text,
 )

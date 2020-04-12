@@ -19,6 +19,6 @@ export const RoomBase = types.compose(
 export const MeetingBase = types.compose(
   'MeetingBase',
   id, GeneralModel,
-  title, isCreatorOn, isStudentOn, isCreatorTyping, isStudentTyping,
+  title, //isCreatorOn, isStudentOn, isCreatorTyping, isStudentTyping,
   startAt, endAt
 )

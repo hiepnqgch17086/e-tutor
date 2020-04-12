@@ -9,6 +9,7 @@ import { Response } from "./types";
 import { toast } from "react-toastify";
 import ProfilePageData from "../pages/ProfilePage/data";
 import role, { IS_TUTOR, IS_STUDENT } from "../models-one-prop/role";
+import { FileUpload } from "./FileUploads";
 
 export const Meeting = types.compose(
   'Meeting',
@@ -16,7 +17,8 @@ export const Meeting = types.compose(
   types.model({
     studentId: types.optional(User, {}),
     creatorId: types.optional(User, {}),
-    comments: types.array(Comment)
+    comments: types.array(Comment),
+    fileUploads: types.array(FileUpload),
   }),
 )
   .actions(self => ({
@@ -81,12 +83,12 @@ export const Meeting = types.compose(
 
         const { currentUser: { role } } = ProfilePageData
         // in need
-        if (role === IS_TUTOR && self.isCreatorOn !== isOn) {
-          return API.setMeetingUpdateIsOnOrOff(meetingId, isOn)
-        }
-        if (role === IS_STUDENT && self.isStudentOn !== isOn) {
-          return API.setMeetingUpdateIsOnOrOff(meetingId, isOn)
-        }
+        // if (role === IS_TUTOR && self.isCreatorOn !== isOn) {
+        //   return API.setMeetingUpdateIsOnOrOff(meetingId, isOn)
+        // }
+        // if (role === IS_STUDENT && self.isStudentOn !== isOn) {
+        //   return API.setMeetingUpdateIsOnOrOff(meetingId, isOn)
+        // }
 
         return null
       } catch (error) {

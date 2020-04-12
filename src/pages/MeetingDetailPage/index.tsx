@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom'
 import Data from './data'
 import ListOfComment from './ListOfComment'
 import ProfilePageData from '../ProfilePage/data'
+import FileUploadsOfStudent from './FileUploadsOfStudent'
+import FileUploadsOfCreator from './FileUploadsOfCreator'
 
 const MeetingPage = () => {
   const { id = '' } = useParams()
@@ -56,46 +58,23 @@ const MeetingPage = () => {
                 onCreateComment={onCreateComment}
               />
             </div>
-            <div className="col-md-6">
+            <div className="col-md-6 p-2">
               <div className="border-bottom border-top card p-2 d-flex align-items-center">
                 <h3>{meeting.title}</h3>
               </div>
-              <div className="d-flex flex-column">
-                {/* Tutor/creator */}
-                <div className="message-item px-3 py-2 d-flex align-items-center">
-                  <div>
-                    <img src={creatorId.avatar || AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
-                  </div>
-                  <div className="d-inline-block v-middle pl-2">
-                    <h6 className="message-title mb-0 mt-1">
-                      {creatorId.name}
-                    </h6>
-                    <span className="font-12 text-nowrap d-block text-muted" >{currentUser.id === creatorId.id ? 'You' : 'Tutor'}</span>
-                    <span className={`font-12 text-nowrap d-block font-weight-normal`}>
-                      <i className="far fa-envelope mr-1" />{creatorId.email}
-                    </span>
-                    {/* <span className={`font-12 text-nowrap d-block font-weight-bold ${isCreatorOn && 'text-success'}`}>
-                      {isCreatorOn ? 'is On' : 'is Off'}
-                    </span> */}
-                  </div>
+              <div className="row">
+                <div className="col-md-6">
+                  {/* Student */}
+                  <FileUploadsOfStudent
+                    student={studentId}
+                  />
                 </div>
-                {/* Student */}
-                <div className="message-item px-3 py-2 d-flex align-items-center">
-                  <div>
-                    <img src={studentId.avatar || AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
-                  </div>
-                  <div className="d-inline-block v-middle pl-2">
-                    <h6 className="message-title mb-0 mt-1">
-                      {studentId.name}
-                    </h6>
-                    <span className="font-12 text-nowrap d-block text-muted" >{currentUser.id === studentId.id ? 'You' : 'Student'}</span>
-                    <span className={`font-12 text-nowrap d-block font-weight-normal`}>
-                      <i className="far fa-envelope mr-1" />{studentId.email}
-                    </span>
-                    {/* <span className={`font-12 text-nowrap d-block font-weight-bold ${isStudentOn && 'text-success'}`}>
-                      {isStudentOn ? 'is On' : 'is Off'}
-                    </span> */}
-                  </div>
+
+                <div className="col-md-6">
+                  {/* Tutor/creator */}
+                  <FileUploadsOfCreator
+                    creator={creatorId}
+                  />
                 </div>
 
               </div>

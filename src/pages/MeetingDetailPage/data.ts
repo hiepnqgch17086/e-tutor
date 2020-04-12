@@ -28,14 +28,14 @@ const MeetingDetailPageData = types.compose(
       // set Is On
       const { currentUser: { role } } = ProfilePageData
       const { meeting } = self
-      if (role === IS_TUTOR && !meeting.isCreatorOn) {
-        meeting.setDatabaseUpdateIsOnOrOff(true)
-        return
-      }
-      if (role === IS_STUDENT && !meeting.isStudentOn) {
-        meeting.setDatabaseUpdateIsOnOrOff(true)
-        return
-      }
+      // if (role === IS_TUTOR && !meeting.isCreatorOn) {
+      //   meeting.setDatabaseUpdateIsOnOrOff(true)
+      //   return
+      // }
+      // if (role === IS_STUDENT && !meeting.isStudentOn) {
+      //   meeting.setDatabaseUpdateIsOnOrOff(true)
+      //   return
+      // }
     },
     onCloseTabOrBrowser() {
       // set is Off
