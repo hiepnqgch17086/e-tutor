@@ -1,4 +1,4 @@
-import { types, getParent } from "mobx-state-tree";
+import { types } from "mobx-state-tree";
 import id from "../models-one-prop/id";
 import GeneralModel from "./GeneralModel";
 import GeneralModelList from "./GeneralModelList";

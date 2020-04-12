@@ -2,7 +2,7 @@ import React from 'react'
 import Auth from './Auth'
 import UnReadEmailList from './UnReadEmailList'
 import { Link, useLocation } from 'react-router-dom'
-import { LANDING_PAGE, HOME_PAGE, CHAT_ROOM_TUTOR_PAGE, CHAT_ROOM_STUDENT_PAGE, MEETING_LIST_PAGE, STUDENT_LIST_PAGE, TUTOR_LIST_PAGE, EMAIL_LIST_PAGE, EMAIL_DETAIL_PAGE } from '../../../routes'
+import { LANDING_PAGE, HOME_PAGE, CHAT_ROOM_TUTOR_PAGE, CHAT_ROOM_STUDENT_PAGE, MEETING_LIST_PAGE, STUDENT_LIST_PAGE, TUTOR_LIST_PAGE, EMAIL_LIST_PAGE } from '../../../routes'
 
 const Header = () => {
   const location = useLocation()
@@ -20,7 +20,7 @@ const Header = () => {
   const isTutorsTabActive = pathName.indexOf(TUTOR_LIST_PAGE) >= 0
 
   const isEmailsActive = pathName.indexOf(EMAIL_LIST_PAGE) >= 0
-  const isEmailDetailActive = pathName.indexOf(EMAIL_DETAIL_PAGE) >= 0
+  // const isEmailDetailActive = pathName.indexOf(EMAIL_DETAIL_PAGE) >= 0
 
   return (
     <header className="topbar" data-navbarbg="skin6">

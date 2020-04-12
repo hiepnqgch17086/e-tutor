@@ -14,7 +14,7 @@ const ForAdmin = () => {
 
   useEffect(() => {
     Data.onDidMountDidUpdate(numberOfDays)
-  }, [])
+  }, [numberOfDays])
 
   return (
     <div>

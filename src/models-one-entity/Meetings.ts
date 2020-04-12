@@ -7,8 +7,7 @@ import moment from "moment";
 import { Comment } from './Comments'
 import { Response } from "./types";
 import { toast } from "react-toastify";
-import ProfilePageData from "../pages/ProfilePage/data";
-import role, { IS_TUTOR, IS_STUDENT } from "../models-one-prop/role";
+import role from "../models-one-prop/role";
 import { MeetingFileUpload } from "./MeetingFileUploads";
 
 export const Meeting = types.compose(
@@ -75,13 +74,11 @@ export const Meeting = types.compose(
       delete snapshot.id
       return API.setMeetingUpdate(id, snapshot)
     },
-    setDatabaseUpdateIsOnOrOff(isOn: boolean = false) {
+    setDatabaseUpdateIsOnOrOff() {
       try {
         // just allow to modify some field
         if (!self.id) return
-        const meetingId = self.id
 
-        const { currentUser: { role } } = ProfilePageData
         // in need
         // if (role === IS_TUTOR && self.isCreatorOn !== isOn) {
         //   return API.setMeetingUpdateIsOnOrOff(meetingId, isOn)

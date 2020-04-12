@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import IpComment from './IpComment'
-import AvatarInDefault from '../../images/AvatarInDefault'
 import { useParams } from 'react-router-dom'
 import Data from './data'
 import ListOfComment from './ListOfComment'
-import ProfilePageData from '../ProfilePage/data'
 import FileUploadsOfStudent from './FileUploadsOfStudent'
 import FileUploadsOfCreator from './FileUploadsOfCreator'
 import getSubscribeMeetingFileUploadMethods from '../../subscribes/getSubscribeMeetingFileUploadMethods'
-import { MeetingFileUpload } from '../../models-one-entity/MeetingFileUploads'
 
 let querySubscription: ZenObservable.Subscription | null = null
 
@@ -18,17 +15,18 @@ const MeetingPage = () => {
   const { meeting, onCreateComment, newComment } = Data
   const { creatorId, studentId } = meeting
 
-  const { setSubscribeMeetingFileUpload, setUnSubscribeMeetingFileUpload } = getSubscribeMeetingFileUploadMethods({
-    meetingId: parseInt(id) || 0,
-    querySubscription,
-    setQuerySubscription: (value) => { querySubscription = value },
-    setMeetingFileUploadCreated: meeting.setFileUploadAdded,
-    setMeetingFileUploadDelete: (node: any, previousValues: any) => {
-      meeting.setFileUploadRemove(previousValues.id)
-    }
-  })
+
 
   useEffect(() => {
+    const { setSubscribeMeetingFileUpload, setUnSubscribeMeetingFileUpload } = getSubscribeMeetingFileUploadMethods({
+      meetingId: parseInt(id) || 0,
+      querySubscription,
+      setQuerySubscription: (value) => { querySubscription = value },
+      setMeetingFileUploadCreated: Data.meeting.setFileUploadAdded,
+      setMeetingFileUploadDelete: (node: any, previousValues: any) => {
+        Data.meeting.setFileUploadRemove(previousValues.id)
+      }
+    })
     Data.onDidMountDidUpdate(parseInt(id), () => {
       setUnSubscribeMeetingFileUpload()
       setSubscribeMeetingFileUpload()

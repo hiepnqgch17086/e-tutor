@@ -1,4 +1,4 @@
-import React, { useState, SetStateAction, useRef } from 'react'
+import React, { useState } from 'react'
 import firebase from 'firebase'
 import { Spinner } from 'reactstrap'
 import CustomInput from '../../components-in-managing-resources/CustomInput'
@@ -6,7 +6,6 @@ import { MeetingFileUpload } from '../../models-one-entity/MeetingFileUploads'
 import { toast } from 'react-toastify'
 import { observer } from 'mobx-react-lite'
 import { defaultOfMeeting } from '../../models-one-entity/Meetings'
-import { getSnapshot } from 'mobx-state-tree'
 import ProfilePageData from '../../pages/ProfilePage/data'
 
 const FileUploadOfMeetingInFirebase = ({
@@ -30,7 +29,7 @@ const FileUploadOfMeetingInFirebase = ({
     setFile(file)
   }
 
-  const onSaveFile = async (e: any) => {
+  const onSaveFile = async () => {
     // validate file upload name
     const nameConstraint = fileUpload._getNameConstraint()
     if (nameConstraint) return toast.error(nameConstraint)
