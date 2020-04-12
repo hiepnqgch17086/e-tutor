@@ -17,68 +17,61 @@ let defaultQuerySubscription: ZenObservable.Subscription | null = null
 // }
 
 // define of subscribe is defined in jwt token and room
-const subscribeToMeeting = gql`
-  subscription {
-    meeting {
+const subscribeToMeetingFileUpload = gql`
+  subscription($meetingId: ID!) {
+    meetingFileUpload(meetingId: $meetingId) {
       mutation
       node {
         id
-        title
-        studentId {id name email name}
-        creatorId {id name email name}
-        startAt
-        endAt
-      }
-      previousValues {
-        id
-        startAt
-        endAt
+        uploaderId {id}
+        path 
+        name
       }
     }
   }
 `
-type Props = {
-  // fromAt: string,
-  // toAt: string,
-  setMeetingCreated: Function,
-  setMeetingUpdated: Function,
-  querySubscription: ZenObservable.Subscription | null,
-  setQuerySubscription: Function,
-}
+// type Props = {
+//   // fromAt: string,
+//   // toAt: string,
+//   setMeetingCreated: Function,
+//   setMeetingUpdated: Function,
+//   querySubscription: ZenObservable.Subscription | null,
+//   setQuerySubscription: Function,
+// }
 
-const getSubscribeMeetingMethods = ({
+const getSubscribeMeetingFileUploadMethods = ({
   // fromAt = new Date().toISOString(),
   // toAt = new Date().toISOString(),
-  setMeetingCreated = (node: object, previousValues: object) => { },
-  setMeetingUpdated = (node: object, previousValues: object) => { },
+  setMeetingFileUploadCreated = (node: object, previousValues: object) => { },
+  setMeetingFileUploadUpdated = (node: object, previousValues: object) => { },
+  meetingId = '',
   querySubscription = defaultQuerySubscription,
   setQuerySubscription = (temp: ZenObservable.Subscription | null) => { },
 }) => {
 
-  const setSubscribeMeeting = () => {
+  const setSubscribeMeetingFileUpload = () => {
     // validate
-    // if (!fromAt) return
+    if (!meetingId) return
     // action
     // const fromAtISO = new Date(fromAt).toISOString()
     // const toAtISO = new Date(toAt).toISOString()
     setClient()
     setQuerySubscription(
       client.subscribe({
-        query: subscribeToMeeting,
-        // variables: {
-        //   fromAt: fromAtISO,
-        //   toAt: toAtISO,
-        // }
+        query: subscribeToMeetingFileUpload,
+        variables: {
+          meetingId
+        }
       })
         .subscribe({
           next(response) {
-            const { data: { meeting: { mutation, node, previousValues } } } = response
+            const { data: { meetingFileUpload: { mutation, node, previousValues } } } = response
             switch (mutation) {
               case UPDATED_MUTATION_TYPE:
-                setMeetingUpdated(node, previousValues)
+                setMeetingFileUploadUpdated(node, previousValues)
                 break;
               case CREATED_MUTATION_TYPE:
-                setMeetingCreated(node, previousValues)
+                setMeetingFileUploadCreated(node, previousValues)
                 break;
               // case DELETED_MUTATION_TYPE:
               //   break;
@@ -95,7 +88,7 @@ const getSubscribeMeetingMethods = ({
     )
   }
 
-  const setUnSubscribeMeeting = () => {
+  const setUnSubscribeMeetingFileUpload = () => {
     if (querySubscription) {
       querySubscription.unsubscribe()
       setQuerySubscription(null)
@@ -103,7 +96,7 @@ const getSubscribeMeetingMethods = ({
     }
   }
 
-  return { setSubscribeMeeting, setUnSubscribeMeeting }
+  return { setSubscribeMeetingFileUpload, setUnSubscribeMeetingFileUpload }
 }
 
-export default getSubscribeMeetingMethods
+export default getSubscribeMeetingFileUploadMethods

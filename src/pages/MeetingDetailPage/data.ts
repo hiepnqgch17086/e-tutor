@@ -4,6 +4,15 @@ import { Meeting } from "../../models-one-entity/Meetings";
 import { Comment } from "../../models-one-entity/Comments";
 import ProfilePageData from "../ProfilePage/data";
 import { IS_TUTOR, IS_STUDENT } from "../../models-one-prop/role";
+import getSubscribeMeetingFileUploadMethods from "../../subscribes/getSubscribeMeetingFileUploadMethods";
+
+let querySubscription: ZenObservable.Subscription | null = null
+
+const { } = getSubscribeMeetingFileUploadMethods({
+  meetingId: '',
+  querySubscription,
+  setQuerySubscription: (value) => { querySubscription = value }
+})
 
 const MeetingDetailPageData = types.compose(
   'MeetingDetailPageData',
