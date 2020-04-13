@@ -10,6 +10,7 @@ const AdminHomePageData = types.compose(
   types.model({
     totalOfStudents: types.optional(types.union(types.number, types.string), ''),
     totalOfTutors: types.optional(types.union(types.number, types.string), ''),
+    totalOfStudentsWhoNotHaveTutor: types.optional(types.union(types.number, types.string), ''),
     studentsNotInteractive: types.optional(Users, {}),
   })
 )
@@ -18,6 +19,7 @@ const AdminHomePageData = types.compose(
       this.getDatabaseTotalOfStudents()
       this.getDatabaseTotalOfTutors()
       this.getDatabaseStudentsNotInteractive(numberOfDays)
+      this.getDatabaseTotalOfStudentsWhoNotHaveTutor()
     },
     getDatabaseStudentsNotInteractive(numberOfDays: number) {
       self.studentsNotInteractive.getDatabaseStudentsNotInteractive(numberOfDays)
@@ -42,6 +44,17 @@ const AdminHomePageData = types.compose(
         toast.error('Something went wrong!')
       }
     },
+    getDatabaseTotalOfStudentsWhoNotHaveTutor: async function () {
+      try {
+        const { data: { result, errorMessage } } = await API.getTotalOfStudentsWhoNotHaveTutor()
+        if (errorMessage) throw new Error(errorMessage)
+        self.setSnapshotUpdate({ totalOfStudentsWhoNotHaveTutor: result })
+        // console.log(self.totalOfStudentsWhoNotHaveTutor)
+      } catch ({ message }) {
+        console.log('getDatabaseTotalOfStudentsWhoNotHaveTutor()', message)
+        toast.error('Something went wrong!')
+      }
+    }
   }))
   .create({})
 

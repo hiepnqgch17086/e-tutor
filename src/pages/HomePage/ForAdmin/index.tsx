@@ -8,7 +8,7 @@ import PaginationBar from '../../../components-in-managing-resources/PaginationB
 import SlNumberOfDays from './SlNumberOfDays'
 
 const ForAdmin = () => {
-  const { totalOfStudents, totalOfTutors } = Data
+  const { totalOfStudents, totalOfTutors, totalOfStudentsWhoNotHaveTutor } = Data
 
   const [numberOfDays, setNumberOfDays] = useState(7)
 
@@ -21,6 +21,7 @@ const ForAdmin = () => {
       <CardsCounterOfStudentsTutors
         numberOfStudents={totalOfStudents}
         numberOfTutors={totalOfTutors}
+        numberOfStudentsWhoNotHaveTutor={totalOfStudentsWhoNotHaveTutor}
       />
 
       <div className="card">

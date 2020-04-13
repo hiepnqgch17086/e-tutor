@@ -38,6 +38,13 @@ export default class MainApi extends JsonApi {
       errorMessage
     }
   }
+  async getTotalOfStudentsWhoNotHaveTutor(): Promise<Response> {
+    const { data: { result, errorMessage } } = await this.ApiRef.get(`/users/total-of-students-who-not-have-tutor`)
+    return {
+      data: { result },
+      errorMessage
+    }
+  }
   async getTop10StudentsMessageToThisTutor(tutorId: number): Promise<Response> {
     const { data: { students, errorMessage } } = await this.ApiRef.get(`/users/${tutorId}/get-top10-students-message-to-this-tutor`)
     return {
