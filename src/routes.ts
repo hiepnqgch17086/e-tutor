@@ -2,9 +2,9 @@ export const ACCOUNT_PAGE = '/account'
 export const ADMIN_PAGE = '/admin'
 export const ADMIN_ERROR_PAGE = '/admin-error'
 
-export const LANDING_PAGE = '/'
+// export const LANDING_PAGE = '/'
 export const SIGN_IN_PAGE = '/signin'
-export const HOME_PAGE = '/home'
+export const HOME_PAGE = '/'
 export const PROFILE_PAGE = '/profile'
 export const QUOTE_SEPERATED = '/'
 
