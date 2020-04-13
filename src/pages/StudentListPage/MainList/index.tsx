@@ -30,7 +30,7 @@ const MainList = ({
             <BtnChangeTutor className="ml-1" student={item} />
           </div>,
           <ButtonGroup>
-            <Button onClick={() => goStudentPage(item.id)}>
+            <Button onClick={() => goStudentPage(item.id)} size="sm">
               Detail
             </Button>
           </ButtonGroup>

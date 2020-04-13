@@ -34,6 +34,7 @@ const BtnChangeTutor = ({
     <div>
       <Button color="success" onClick={toggle}
         className={className}
+        size="sm"
       >
         <i className="icon-note" />
       </Button>

@@ -20,7 +20,7 @@ const TableOfMemberNotInteractive = ({
           item.name,
           item.email,
           <ButtonGroup>
-            <Button onClick={() => goStudentPage(item.id)}>
+            <Button onClick={() => goStudentPage(item.id)} size="sm">
               Detail
             </Button>
           </ButtonGroup>

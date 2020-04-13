@@ -25,7 +25,7 @@ const MainList = ({
           item.email,
           item.role === IS_STUDENT ? 'Student' : item.role === IS_TUTOR ? 'Tutor' : 'Other',
           <ButtonGroup>
-            <Button onClick={() => goTutorPage(item.id)}>
+            <Button onClick={() => goTutorPage(item.id)} size="sm">
               Detail
             </Button>
           </ButtonGroup>

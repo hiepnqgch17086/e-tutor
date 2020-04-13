@@ -65,3 +65,7 @@ export const goStudentPage = (userId: any) => {
 export const goTutorPage = (tutorId: any) => {
   window.open(get_TUTOR_PAGE(`${tutorId}`))
 }
+
+export const goMeetingPage = (meetingId: any) => {
+  window.open(get_MEETING_DETAIL_PAGE(`${meetingId}`))
+}
