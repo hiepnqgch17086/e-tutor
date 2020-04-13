@@ -1,5 +1,5 @@
 import React from 'react'
-import { get_MEETING_DETAIL_PAGE, goMeetingPage } from '../../../../routes'
+import { goMeetingPage } from '../../../../routes'
 import moment from 'moment'
 import AvatarInDefault from '../../../../images/AvatarInDefault'
 import { defaultOfMeeting } from '../../../../models-one-entity/Meetings'
