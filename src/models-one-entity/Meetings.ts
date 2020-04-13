@@ -104,6 +104,16 @@ export const Meeting = types.compose(
       self.fileUploads.push(newMeetingFileUpload)
     }
   }))
+  .views(self => ({
+    get isFutureMeeting(): boolean {
+      const startAt = moment(self.startAt).toISOString()
+      const now = moment().toISOString()
+      if (startAt > now) {
+        return true
+      }
+      return false
+    }
+  }))
 
 export const defaultOfMeeting = Meeting.create({})
 
@@ -141,7 +151,7 @@ const Meetings = types.compose(
         self.items.push(newMeeting)
       }
     },
-    setMeetingUpdateStartAtEndAt(meeting: object) {
+    setMeetingUpdateStartAtEndAtTitle(meeting: object) {
       let shouldUpdate = false
       // find meeting
       // @ts-ignore
@@ -152,7 +162,7 @@ const Meetings = types.compose(
         return
       }
       // check should update in specific props
-      const updatedFields = ['startAt', 'endAt']
+      const updatedFields = ['startAt', 'endAt', 'title']
       for (let index = 0; index < updatedFields.length; index++) {
         const element = updatedFields[index];
         // @ts-ignore

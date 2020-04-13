@@ -12,7 +12,7 @@ const { setSubscribeMeeting, setUnSubscribeMeeting } = getSubscribeMeetingMethod
     MeetingListPageData.meetings.setMeetingAddedInCalendar(meeting)
   },
   setMeetingUpdated: (meeting) => {
-    MeetingListPageData.meetings.setMeetingUpdateStartAtEndAt(meeting)
+    MeetingListPageData.meetings.setMeetingUpdateStartAtEndAtTitle(meeting)
   },
   setQuerySubscription: (sub) => meetingSubscription = sub,
 })

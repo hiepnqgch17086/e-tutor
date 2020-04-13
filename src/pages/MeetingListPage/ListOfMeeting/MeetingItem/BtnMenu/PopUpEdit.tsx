@@ -8,6 +8,7 @@ import { getSnapshot } from 'mobx-state-tree';
 import DateTimePicker from 'react-datetime-picker';
 import { toast } from 'react-toastify';
 import AvatarInDefault from '../../../../../images/AvatarInDefault';
+import CustomInput from '../../../../../components-in-managing-resources/CustomInput';
 // import DateTimePicker from 'react-datetime-picker/dist/entry.nostyle
 
 const PopUpEdit = ({
@@ -16,8 +17,7 @@ const PopUpEdit = ({
   setModal = (boo: boolean) => { }
 }) => {
 
-  // eslint-disable-next-line
-  const [cloneMeeting, setCloneMeeting] = useState(Meeting.create(getSnapshot(meeting)))
+  const [cloneMeeting] = useState(Meeting.create(getSnapshot(meeting)))
 
   const toggle = () => setModal(!modal);
   // console.log(moment(cloneMeeting.startAt).format('LT'))
@@ -25,7 +25,8 @@ const PopUpEdit = ({
   const onSubmitEdit = async () => {
     const { errorMessage } = await cloneMeeting.setDatabaseUpdate({
       startAt: cloneMeeting.startAt,
-      endAt: cloneMeeting.endAt
+      endAt: cloneMeeting.endAt,
+      title: cloneMeeting.title
     })
     if (!errorMessage) {
       toggle()
@@ -45,6 +46,13 @@ const PopUpEdit = ({
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle} className="text-dark">Meeting: {meeting.title}</ModalHeader>
         <ModalBody>
+          <div>Meeting title</div>
+          <CustomInput
+            error={cloneMeeting.isTitleError}
+            value={cloneMeeting.title}
+            onChangeText={cloneMeeting.setTitle}
+            placeholder={"title"}
+          />
           <div>Student</div>
           <a href="#!" className="message-item d-flex align-items-center px-3 py-2 d-flex justify-content-start">
             <img src={meeting.studentId.avatar || AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />

@@ -19,9 +19,15 @@ const TableOfMeetingByPagination = ({
           item.title,
           moment(item.startAt).format('h:mm a, DD-MM-YYYY'),
           moment(item.endAt).format('h:mm a, DD-MM-YYYY'),
-          <Button onClick={() => goMeetingPage(item.id)} size="sm">
-            Detail
-          </Button>
+          <>
+            {
+              item.isFutureMeeting ? null : (
+                <Button onClick={() => goMeetingPage(item.id)} size="sm">
+                  Detail
+                </Button>
+              )
+            }
+          </>
         ]
       }}
     />
