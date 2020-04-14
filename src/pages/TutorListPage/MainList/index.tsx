@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { observer, Observer } from 'mobx-react-lite'
+import { observer } from 'mobx-react-lite'
 import { defaultOfUser, defaultOfUsers } from '../../../models-one-entity/Users'
 import { goTutorPage } from '../../../routes'
 import CustomTable from '../../../components-in-managing-resources/CustomTable'
@@ -39,7 +39,7 @@ const MainList = ({
 const CellNumberOfStudents = ({ tutor = defaultOfUser }) => {
   useEffect(() => {
     tutor.getDatabaseNumberOfStudentsOfTutor(tutor.id)
-  }, [])
+  }, [tutor, tutor.id])
   return <>
     {
       tutor.numberOfStudentsOfTutor !== "" ? (

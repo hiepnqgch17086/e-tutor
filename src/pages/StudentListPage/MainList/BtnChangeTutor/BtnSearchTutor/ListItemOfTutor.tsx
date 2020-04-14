@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AvatarInDefault from '../../../../../images/AvatarInDefault'
 import { observer } from 'mobx-react-lite'
 import { defaultOfUser } from '../../../../../models-one-entity/Users'
@@ -8,6 +8,10 @@ import { getSnapshot } from 'mobx-state-tree'
 const ListItemOfTutor = ({
   item = defaultOfUser
 }) => {
+
+  useEffect(() => {
+    item.getDatabaseNumberOfStudentsOfTutor(item.id)
+  }, [item, item.id])
 
   const onSelectTutor = () => {
     // console.log('developing')
@@ -20,7 +24,7 @@ const ListItemOfTutor = ({
       <div className="w-75 d-inline-block v-middle pl-2">
         <h6 className="message-title mb-0 mt-1">{item.name}</h6>
         <span className="font-12 text-nowrap d-block text-muted">{item.email}</span>
-        <span className="font-12 text-nowrap d-block text-muted"></span>
+        <span className="font-12 text-nowrap d-block text-muted">{item.numberOfStudentsOfTutor} students</span>
       </div>
     </a>
   )

@@ -6,6 +6,7 @@ import { defaultOfUser } from '../../../../models-one-entity/Users';
 import { newTutor } from './data';
 import { Observer } from 'mobx-react-lite';
 import { toast } from 'react-toastify';
+import CurrentTutor from './CurrentTutor';
 
 const BtnChangeTutor = ({
   className = '',
@@ -60,15 +61,9 @@ const BtnChangeTutor = ({
               {
                 currentTutor.id ? (
                   <>
-                    <div className="mt-2">Current Tutor</div>
-                    <a href="#!" className="message-item align-items-center px-3 py-2 d-flex justify-content-start">
-                      <img src={AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
-                      <div className="d-inline-block v-middle pl-2">
-                        <h6 className="message-title mb-0 mt-1">{currentTutor.name}</h6>
-                        <span className="font-12 text-nowrap d-block text-muted">{currentTutor.email}</span>
-                        <span className="font-12 text-nowrap d-block text-muted"></span>
-                      </div>
-                    </a>
+                    <CurrentTutor
+                      currentTutor={currentTutor}
+                    />
                   </>
                 ) : null
               }

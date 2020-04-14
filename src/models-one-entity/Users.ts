@@ -12,7 +12,7 @@ import avatar from "../models-one-prop/avatar";
 import role, { IS_ADMIN, IS_TUTOR, IS_STUDENT } from "../models-one-prop/role";
 import { toast } from "react-toastify";
 
-const UserBase = types.compose(
+export const UserBase = types.compose(
   GeneralModel,
   id, email, password, name, avatar,
   role,
@@ -70,7 +70,7 @@ export const User = types.compose(
         const { data: { result, errorMessage } } = await API.getNumberOfStudentsOfTutor(tutorId)
         if (errorMessage) throw new Error(errorMessage)
         self.setSnapshotUpdate({ numberOfStudentsOfTutor: result })
-        console.log('self.numberOfStudentsOfTutor', self.numberOfStudentsOfTutor)
+        // console.log('self.numberOfStudentsOfTutor', self.numberOfStudentsOfTutor)
       } catch ({ message }) {
         console.log('getDatabase()', message)
         toast.error('Something went wrong!')
