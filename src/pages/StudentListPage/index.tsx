@@ -35,6 +35,7 @@ const StudentListPage = () => {
   return (
     <>
       <SearchBar
+        initialValue={users.emailContains}
         setPropInput={setEmailContains}
         placeholder="student email"
       />

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { observer } from 'mobx-react-lite'
 import AvatarInDefault from '../../../../images/AvatarInDefault'
 import { NORMAL, WARNING, DANGEROUS } from '../../../../models-one-entity/Users'

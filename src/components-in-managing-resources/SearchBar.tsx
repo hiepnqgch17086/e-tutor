@@ -12,12 +12,13 @@ let input2: string = ''
  * @param getDatabaseItems: call api
  */
 const SearchBar = ({
+  initialValue = '',
   setPropInput = (input: string) => { },
   placeholder = "Enter user's email",
   className = "mb-2"
 }) => {
 
-  const [input, setInput] = useState('')
+  const [input, setInput] = useState(initialValue)
 
   const onChangeInput = (e: any) => {
     setInput(e.target.value)

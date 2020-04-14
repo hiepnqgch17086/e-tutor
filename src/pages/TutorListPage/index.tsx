@@ -30,6 +30,7 @@ const TutorListPage = () => {
   return (
     <>
       <SearchBar
+        initialValue={users.emailContains}
         setPropInput={setEmailContains}
         placeholder="tutor email"
       />

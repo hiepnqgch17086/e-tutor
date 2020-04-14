@@ -6,7 +6,6 @@ import CustomTable from '../../../components-in-managing-resources/CustomTable'
 import { Button, ButtonGroup } from 'reactstrap'
 import AvatarInDefault from '../../../images/AvatarInDefault'
 import { IS_STUDENT, IS_TUTOR } from '../../../models-one-prop/role'
-import SettingsData from '../../SettingsPage/data'
 
 const MainList = ({
   users = defaultOfUsers

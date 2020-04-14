@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import AvatarInDefault from '../../../../images/AvatarInDefault';
 import BtnSearchTutor from './BtnSearchTutor';
-import { defaultOfUser } from '../../../../models-one-entity/Users';
-import { newTutor } from './data';
+import { defaultOfUser, DANGEROUS } from '../../../../models-one-entity/Users';
+import { newTutor, shouldForceChange } from './data';
 import { Observer } from 'mobx-react-lite';
 import { toast } from 'react-toastify';
 import CurrentTutor from './CurrentTutor';
 import NewTutor from './NewTutor';
+import CheckBoxForceChange from './CheckBoxForceChange';
 
 const BtnChangeTutor = ({
   className = '',
@@ -23,6 +24,10 @@ const BtnChangeTutor = ({
       toast.error('New tutor is required!')
       return
     }
+    if (!shouldForceChange.shouldForceChange && newTutor.statusOfSupportingStudents === DANGEROUS) {
+      toast.warn(`New tutor is supporting too much students, to force change, please click 'Force change'`)
+      return
+    }
     student.setTutorNew()
     student.tutorId?.setEmail(newTutor.email)
     student.tutorId?.setId(newTutor.id)
@@ -31,6 +36,16 @@ const BtnChangeTutor = ({
     student.setDatabaseChangeTutor()
     toggle()
   }
+
+  useEffect(() => {
+    if (!modal) {
+      shouldForceChange.setSnapshotNew({})
+      newTutor.setSnapshotNew({})
+    }
+    return () => {
+      // cleanup
+    }
+  }, [modal])
 
   return (
     <div>
@@ -83,9 +98,12 @@ const BtnChangeTutor = ({
 
           </Observer>
         </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={onChangeTutor}>Change Tutor</Button>{' '}
-          <Button color="secondary" onClick={toggle}>Cancel</Button>
+        <ModalFooter className="d-flex justify-content-between">
+          <CheckBoxForceChange />
+          <div>
+            <Button color="primary" onClick={onChangeTutor}>Change Tutor</Button>{' '}
+            <Button color="secondary" onClick={toggle}>Cancel</Button>
+          </div>
         </ModalFooter>
       </Modal>
     </div>
