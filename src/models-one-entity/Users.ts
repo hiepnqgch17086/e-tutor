@@ -42,6 +42,9 @@ export const User = types.compose(
     totalOfMeetingFileUploads: types.optional(
       types.union(types.number, types.string), ''
     ),
+    numberOfStudentsOfTutor: types.optional(
+      types.union(types.number, types.string), ''
+    )
   })
 )
   .actions(self => ({
@@ -52,6 +55,22 @@ export const User = types.compose(
         const { data: { user, errorMessage } } = await API.getUserProfile(self.id)
         if (errorMessage) throw new Error(errorMessage)
         self.setSnapshotNew(user)
+      } catch ({ message }) {
+        console.log('getDatabase()', message)
+        toast.error('Something went wrong!')
+        return {
+          errorMessage: message
+        }
+      }
+    },
+    getDatabaseNumberOfStudentsOfTutor: async function (tutorId: number) {
+      try {
+        // @ts-ignore
+        // eslint-disable-next-line
+        const { data: { result, errorMessage } } = await API.getNumberOfStudentsOfTutor(tutorId)
+        if (errorMessage) throw new Error(errorMessage)
+        self.setSnapshotUpdate({ numberOfStudentsOfTutor: result })
+        console.log('self.numberOfStudentsOfTutor', self.numberOfStudentsOfTutor)
       } catch ({ message }) {
         console.log('getDatabase()', message)
         toast.error('Something went wrong!')

@@ -5,14 +5,17 @@ import ProfileDetail from './ProfileDetail'
 // import AdminLayout from '../../layout/AdminLayout'
 import Data from './data'
 import BtnEditPassword from './BtnEditPassword'
+import { IS_TUTOR } from '../../models-one-prop/role'
 
 const ProfilePage = () => {
+  const { currentUser } = Data
 
   useEffect(() => {
-    Data.onDidMount()
-  }, [])
+    if (currentUser.role === IS_TUTOR) {
+      currentUser.getDatabaseNumberOfStudentsOfTutor(currentUser.id)
+    }
+  }, [currentUser, currentUser.id])
 
-  const { currentUser } = Data
   return (
     <>
       <ProfileDetail user={currentUser} />

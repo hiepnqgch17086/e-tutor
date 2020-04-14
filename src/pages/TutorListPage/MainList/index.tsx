@@ -1,5 +1,5 @@
-import React from 'react'
-import { observer } from 'mobx-react-lite'
+import React, { useEffect } from 'react'
+import { observer, Observer } from 'mobx-react-lite'
 import { defaultOfUser, defaultOfUsers } from '../../../models-one-entity/Users'
 import { goTutorPage } from '../../../routes'
 import CustomTable from '../../../components-in-managing-resources/CustomTable'
@@ -15,7 +15,7 @@ const MainList = ({
   return (
     <CustomTable
       className="mb-2"
-      headerArray={["#", "Avatar", "Name", "Email", "Role", "Menu"]}
+      headerArray={["#", "Avatar", "Name", "Email", "Role", "Students", "Menu"]}
       data={users.items}
       renderItemCellsInRow={({ item = defaultOfUser, index = 0 }) => {
         return [
@@ -24,6 +24,7 @@ const MainList = ({
           item.name,
           item.email,
           item.role === IS_STUDENT ? 'Student' : item.role === IS_TUTOR ? 'Tutor' : 'Other',
+          <CellNumberOfStudentsObserver tutor={item} />,
           <ButtonGroup>
             <Button onClick={() => goTutorPage(item.id)} size="sm">
               Detail
@@ -34,5 +35,22 @@ const MainList = ({
     />
   )
 }
+
+const CellNumberOfStudents = ({ tutor = defaultOfUser }) => {
+  useEffect(() => {
+    tutor.getDatabaseNumberOfStudentsOfTutor(tutor.id)
+  }, [])
+  return <>
+    {
+      tutor.numberOfStudentsOfTutor !== "" ? (
+        <>
+          {tutor.numberOfStudentsOfTutor} student(s)
+        </>
+      ) : null
+    }
+  </>
+}
+
+const CellNumberOfStudentsObserver = observer(CellNumberOfStudents)
 
 export default observer(MainList)

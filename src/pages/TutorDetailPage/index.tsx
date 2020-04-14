@@ -21,6 +21,7 @@ const TutorDetailPage = () => {
     if (id) {
       tutorData.setId(parseInt(id))
       tutorData.getDatabase()
+      tutorData.getDatabaseNumberOfStudentsOfTutor(parseInt(id))
       dashboardData.onDidMountDidUpdate(parseInt(id))
     }
   }, [id])

@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite'
 import { defaultOfUser } from '../../models-one-entity/Users'
 import { Row, Col } from 'reactstrap'
 import AvatarInDefault from '../../images/AvatarInDefault'
+import { IS_TUTOR } from '../../models-one-prop/role'
 
 const ProfileDetail = ({
   user = defaultOfUser
@@ -22,6 +23,11 @@ const ProfileDetail = ({
             {
               user.tutorId ? (
                 <div><i className="fas fa-chevron-right" /> Tutor: {user.tutorId.email}</div>
+              ) : null
+            }
+            {
+              user.role === IS_TUTOR ? (
+                <div><i className="fas fa-chevron-right" /> Number of student in supporting: {user.numberOfStudentsOfTutor}</div>
               ) : null
             }
 
