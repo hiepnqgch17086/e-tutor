@@ -346,4 +346,12 @@ export default class MainApi extends JsonApi {
       errorMessage
     }
   }
+  async setNumberOfStudentsPerTutorUpdate(number: number | string): Promise<Response> {
+    const { data: { errorMessage } } = await this.ApiRef.put('/settings/number-of-students-per-tutor', {
+      numberOfStudentsPerTutor: number
+    })
+    return {
+      errorMessage
+    }
+  }
 }

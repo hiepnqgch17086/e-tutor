@@ -19,7 +19,4 @@ const ProfilePageData = types.compose(
   }))
   .create({})
 
-ProfilePageData.currentUser.getMyProfile()
-// get local to reload from token
-
 export default ProfilePageData
