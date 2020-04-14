@@ -8,7 +8,7 @@ import {
 import {
   SIGN_IN_PAGE, getIsAuthorized, HOME_PAGE,
   // LANDING_PAGE, 
-  ADMIN_ERROR_PAGE, PROFILE_PAGE, CHAT_ROOM_TUTOR_PAGE, MEETING_LIST_PAGE, MEETING_DETAIL_PAGE, EMAIL_LIST_PAGE, EMAIL_DETAIL_PAGE, STUDENT_LIST_PAGE, STUDENT_DETAIL_PAGE, TUTOR_LIST_PAGE, CHAT_ROOM_STUDENT_PAGE, TUTOR_DETAIL_PAGE
+  ADMIN_ERROR_PAGE, PROFILE_PAGE, CHAT_ROOM_TUTOR_PAGE, MEETING_LIST_PAGE, MEETING_DETAIL_PAGE, EMAIL_LIST_PAGE, EMAIL_DETAIL_PAGE, STUDENT_LIST_PAGE, STUDENT_DETAIL_PAGE, TUTOR_LIST_PAGE, CHAT_ROOM_STUDENT_PAGE, TUTOR_DETAIL_PAGE, SETTINGS_PAGE
 } from './routes'
 import SignInPage from './pages/SignInPage';
 import { ToastContainer } from 'react-toastify';
@@ -28,6 +28,7 @@ import StudentDetailPage from './pages/StudentDetailPage';
 import TutorListPage from './pages/TutorListPage';
 import ChatRoomStudentPage from './pages/ChatRoomStudentPage';
 import TutorDetailPage from './pages/TutorDetailPage';
+import SettingsPage from './pages/SettingsPage';
 
 const pathAvoid = [
   SIGN_IN_PAGE,
@@ -79,6 +80,10 @@ function App() {
           </PrivateRoute>
           <PrivateRoute path={STUDENT_DETAIL_PAGE}>
             <StudentDetailPage />
+          </PrivateRoute>
+
+          <PrivateRoute path={SETTINGS_PAGE}>
+            <SettingsPage />
           </PrivateRoute>
         </Switch>
       </AdminLayout>

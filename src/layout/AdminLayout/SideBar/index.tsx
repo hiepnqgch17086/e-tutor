@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import { HOME_PAGE, CHAT_ROOM_TUTOR_PAGE, MEETING_LIST_PAGE, STUDENT_LIST_PAGE, TUTOR_LIST_PAGE, CHAT_ROOM_STUDENT_PAGE } from '../../../routes'
+import { HOME_PAGE, CHAT_ROOM_TUTOR_PAGE, MEETING_LIST_PAGE, STUDENT_LIST_PAGE, TUTOR_LIST_PAGE, CHAT_ROOM_STUDENT_PAGE, SETTINGS_PAGE } from '../../../routes'
 // import ProfilePageData from '../../../pages/ProfilePage/data'
 import { observer } from 'mobx-react-lite'
 import ProfilePageData from '../../../pages/ProfilePage/data'
@@ -23,6 +23,7 @@ const SideBar = () => {
   // const userRoutes = [USER_LIST_PAGE, USER_ADD_PAGE]
   const isStudentsTabActive = pathName.indexOf(STUDENT_LIST_PAGE) >= 0
   const isTutorsTabActive = pathName.indexOf(TUTOR_LIST_PAGE) >= 0
+  const isSettingsTabActive = pathName.indexOf(SETTINGS_PAGE) >= 0
 
   return (
     <aside className="left-sidebar" data-sidebarbg="skin6">
@@ -110,6 +111,17 @@ const SideBar = () => {
                   iconName="icon-people"
                   title="Tutors"
                   isActive={isTutorsTabActive}
+                />
+              )
+            }
+
+            {
+              currentUser.role === IS_ADMIN && ( // for only admin
+                <SideBarItem
+                  href={SETTINGS_PAGE}
+                  iconName="icon-settings"
+                  title="Settings"
+                  isActive={isSettingsTabActive}
                 />
               )
             }

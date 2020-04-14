@@ -21,6 +21,8 @@ export const STUDENT_DETAIL_PAGE = '/students/:id'
 export const TUTOR_LIST_PAGE = '/tutors'
 export const TUTOR_DETAIL_PAGE = '/tutors/:id'
 
+export const SETTINGS_PAGE = '/settings'
+
 export const get_STUDENT_PAGE = (id: string | number) => `/students/${id}`
 export const get_TUTOR_PAGE = (id: string | number) => `/tutors/${id}`
 export const get_CLASS_PAGE = (id: string | number) => `${CHAT_ROOM_TUTOR_PAGE}/${id}`

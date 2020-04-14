@@ -337,4 +337,13 @@ export default class MainApi extends JsonApi {
       errorMessage,
     }
   }
+
+  ///////////// SETTING
+  async getNumberOfStudentsPerTutor(): Promise<Response> {
+    const { data: { result, errorMessage } } = await this.ApiRef.get('/settings/number-of-students-per-tutor')
+    return {
+      data: { result },
+      errorMessage
+    }
+  }
 }
