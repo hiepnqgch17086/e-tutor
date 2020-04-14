@@ -11,19 +11,16 @@ import GeneralModelList from "./GeneralModelList";
 import avatar from "../models-one-prop/avatar";
 import role, { IS_ADMIN, IS_TUTOR, IS_STUDENT } from "../models-one-prop/role";
 import { toast } from "react-toastify";
+import SettingsData from "../pages/SettingsPage/data";
+export const WARNING = 'WARNING'
+export const DANGEROUS = 'DANGEROUS'
+export const NORMAL = 'NORMAL'
 
 export const UserBase = types.compose(
   GeneralModel,
   id, email, password, name, avatar,
   role,
-)
-
-export const User = types.compose(
-  'User',
-  UserBase,
   types.model({
-    tutorId: types.maybeNull(UserBase),
-    // for report
     totalOfMessages: types.optional(
       types.union(types.number, types.string), ''
     ),
@@ -47,6 +44,31 @@ export const User = types.compose(
     )
   })
 )
+  .views(self => ({
+    get statusOfSupportingStudents() {
+      const { numberOfStudentsPerTutor } = SettingsData
+      const { numberOfStudentsOfTutor: current } = self
+      const compare = parseInt(`${numberOfStudentsPerTutor}`) - parseInt(`${current}`)
+      switch (true) {
+        case compare === 1:
+        case compare === 2:
+          return WARNING;
+        case compare <= 0:
+          return DANGEROUS;
+        default:
+          return NORMAL;
+      }
+    }
+  }))
+
+export const User = types.compose(
+  'User',
+  UserBase,
+  types.model({
+    tutorId: types.maybeNull(UserBase),
+    // for report
+  })
+)
   .actions(self => ({
     getDatabase: async function () {
       try {
@@ -65,6 +87,7 @@ export const User = types.compose(
     },
     getDatabaseNumberOfStudentsOfTutor: async function (tutorId: number) {
       try {
+        if (!tutorId) return
         // @ts-ignore
         // eslint-disable-next-line
         const { data: { result, errorMessage } } = await API.getNumberOfStudentsOfTutor(tutorId)

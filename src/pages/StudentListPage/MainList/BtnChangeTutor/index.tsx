@@ -7,6 +7,7 @@ import { newTutor } from './data';
 import { Observer } from 'mobx-react-lite';
 import { toast } from 'react-toastify';
 import CurrentTutor from './CurrentTutor';
+import NewTutor from './NewTutor';
 
 const BtnChangeTutor = ({
   className = '',
@@ -74,16 +75,7 @@ const BtnChangeTutor = ({
               <div className="mt-2">New tutor</div>
               {
                 newTutor.id ? (
-                  <>
-                    <a href="#!" className="message-item d-flex align-items-center px-3 py-2 justify-content-start">
-                      <img src={AvatarInDefault} alt="user" className="rounded-circle" width={40} height={40} />
-                      <div className="d-inline-block v-middle pl-2">
-                        <h6 className="message-title mb-0 mt-1">{newTutor.name}</h6>
-                        <span className="font-12 text-nowrap d-block text-muted">{newTutor.email}</span>
-                        <span className="font-12 text-nowrap d-block text-muted"></span>
-                      </div>
-                    </a>
-                  </>
+                  <NewTutor />
                 ) : null
               }
             </>

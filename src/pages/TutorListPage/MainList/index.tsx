@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import { defaultOfUser, defaultOfUsers } from '../../../models-one-entity/Users'
+import { defaultOfUser, defaultOfUsers, NORMAL, WARNING, DANGEROUS } from '../../../models-one-entity/Users'
 import { goTutorPage } from '../../../routes'
 import CustomTable from '../../../components-in-managing-resources/CustomTable'
 import { Button, ButtonGroup } from 'reactstrap'
 import AvatarInDefault from '../../../images/AvatarInDefault'
 import { IS_STUDENT, IS_TUTOR } from '../../../models-one-prop/role'
+import SettingsData from '../../SettingsPage/data'
 
 const MainList = ({
   users = defaultOfUsers
@@ -40,12 +41,28 @@ const CellNumberOfStudents = ({ tutor = defaultOfUser }) => {
   useEffect(() => {
     tutor.getDatabaseNumberOfStudentsOfTutor(tutor.id)
   }, [tutor, tutor.id])
+
+  let classNameCustom = ''
+  switch (tutor.statusOfSupportingStudents) {
+    case NORMAL:
+      classNameCustom = ''
+      break;
+    case WARNING:
+      classNameCustom = 'bg-warning text-white'
+      break;
+    case DANGEROUS:
+      classNameCustom = 'bg-danger text-white'
+      break;
+    default:
+      break;
+  }
+
   return <>
     {
       tutor.numberOfStudentsOfTutor !== "" ? (
-        <>
+        <span className={`p-1 ${classNameCustom}`}>
           {tutor.numberOfStudentsOfTutor} student(s)
-        </>
+        </span>
       ) : null
     }
   </>
