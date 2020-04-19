@@ -16,7 +16,7 @@ const ChatRoomTutorPage = () => {
     // if (ProfilePageData.currentUser.role === IS_TUTOR) {
     // }
     return () => {
-      Data.onWillUnMount()
+      // Data.onWillUnMount()
     }
     // eslint-disable-next-line
   }, [Data.rooms.textContains])

@@ -11,8 +11,8 @@ const ListOfContactOrRoom = () => {
   const { rooms } = Data
   const { setUnSubscribeMessage, setSubscribeMessage } = useSubscribeMessageOfManyRoomsForTutor({
     setMessageCreated: (message: object) => {
-      rooms.setLatestMessageOfRoom(message)
       // console.log(message)
+      rooms.setLatestMessageOfRoom(message)
     },
     setMessageUpdated: (message: object) => {
       // console.log(message)

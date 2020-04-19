@@ -85,10 +85,13 @@ const Rooms = types.compose(
       // remove room
       // let idx: number = -1
       const msgRoom = self.items.find((item, index) => item.id === msg.roomId.id)
+      // console.log('msgRoom', msgRoom)
       // validate msgRoom
       if (!msgRoom) return
       // update latest message to clone
-      msgRoom.setSnapshotNew([msg], msgRoom.messages)
+      // msgRoom
+      msgRoom.setMessageAdded(msg)
+      // msgRoom.setSnapshotUpdate([msg], msgRoom.messages)
       // const cloneMsgRoom = clone(msgRoom)
       // cloneMsgRoom.setSnapshotNew([msg], cloneMsgRoom.messages)
       // // move to the first

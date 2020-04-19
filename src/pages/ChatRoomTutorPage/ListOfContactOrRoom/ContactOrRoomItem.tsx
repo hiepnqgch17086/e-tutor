@@ -11,7 +11,7 @@ const ContactOrRoomItem = ({
   isActivedRoom = false
 }) => {
   const { studentId: { id: stdId, name, email, avatar }, messages } = item
-  const lastMessage = messages[0]
+  const lastMessage = messages[messages.length - 1]
   const { currentUser } = ProfilePageData
   const { activedRoom } = Data
   // console.log(lastMessage)
