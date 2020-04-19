@@ -14,6 +14,11 @@ const { setSubscribeMeeting, setUnSubscribeMeeting } = getSubscribeMeetingMethod
   setMeetingUpdated: (meeting) => {
     MeetingListPageData.meetings.setMeetingUpdateStartAtEndAtTitle(meeting)
   },
+  setMeetingDeleted: (meeting, previousValues) => {
+    // console.log(previousValues)
+    // @ts-ignore
+    MeetingListPageData.meetings.setMeetingRemove(previousValues.id)
+  },
   setQuerySubscription: (sub) => meetingSubscription = sub,
 })
 

@@ -1,6 +1,6 @@
 import { gql } from "apollo-boost"
 // import { getLocalStorageToken } from "../routes"
-import { client, setClient, CREATED_MUTATION_TYPE, UPDATED_MUTATION_TYPE } from "../ApolloConfig"
+import { client, setClient, CREATED_MUTATION_TYPE, UPDATED_MUTATION_TYPE, DELETED_MUTATION_TYPE } from "../ApolloConfig"
 import { toast } from "react-toastify"
 
 /**
@@ -51,6 +51,7 @@ const getSubscribeMeetingMethods = ({
   // toAt = new Date().toISOString(),
   setMeetingCreated = (node: object, previousValues: object) => { },
   setMeetingUpdated = (node: object, previousValues: object) => { },
+  setMeetingDeleted = (node: object, previousValues: object) => { },
   querySubscription = defaultQuerySubscription,
   setQuerySubscription = (temp: ZenObservable.Subscription | null) => { },
 }) => {
@@ -80,8 +81,9 @@ const getSubscribeMeetingMethods = ({
               case CREATED_MUTATION_TYPE:
                 setMeetingCreated(node, previousValues)
                 break;
-              // case DELETED_MUTATION_TYPE:
-              //   break;
+              case DELETED_MUTATION_TYPE:
+                setMeetingDeleted(node, previousValues)
+                break;
               default:
                 break;
             }

@@ -102,6 +102,15 @@ export const Meeting = types.compose(
     setFileUploadAdded(node: object) {
       const newMeetingFileUpload = MeetingFileUpload.create(node)
       self.fileUploads.push(newMeetingFileUpload)
+    },
+    setDatabaseDelete: async function () {
+      try {
+        const id = self.id
+        await API.setMeetingDelete(id)
+      } catch (error) {
+        console.log(error.message)
+        toast.error(error.message)
+      }
     }
   }))
   .views(self => ({

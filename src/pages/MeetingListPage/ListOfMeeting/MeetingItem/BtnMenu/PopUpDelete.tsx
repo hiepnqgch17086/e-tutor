@@ -3,7 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { defaultOfMeeting } from '../../../../../models-one-entity/Meetings';
 import { observer } from 'mobx-react-lite';
 
-const PopUpDisable = ({
+const PopUpDelete = ({
   modal = false,
   toggle = () => { },
   meeting = defaultOfMeeting,
@@ -14,8 +14,9 @@ const PopUpDisable = ({
   // const toggle = () => setModal(!modal);
 
   const onDisableMeeting = () => {
-    console.log('developing')
+    // console.log('developing')
     toggle()
+    meeting.setDatabaseDelete()
   }
 
   return (
@@ -27,7 +28,7 @@ const PopUpDisable = ({
           Should disable this meeting?
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={onDisableMeeting}>Diable</Button>{' '}
+          <Button color="primary" onClick={onDisableMeeting}>Delete</Button>{' '}
           <Button color="secondary" onClick={toggle}>Cancel</Button>
         </ModalFooter>
       </Modal>
@@ -35,4 +36,4 @@ const PopUpDisable = ({
   );
 }
 
-export default observer(PopUpDisable);
+export default observer(PopUpDelete);

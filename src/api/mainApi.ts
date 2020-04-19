@@ -230,7 +230,6 @@ export default class MainApi extends JsonApi {
       errorMessage
     }
   }
-  // async getTotalOfMessagesOfUser(id: number = 0)
 
   //////////MEETING
   async setMeetingNew(snapshot: any): Promise<Response> {
@@ -306,6 +305,9 @@ export default class MainApi extends JsonApi {
       data: { numberOfLastMessagesIsNotSeenByAuth },
       errorMessage
     }
+  }
+  async setMeetingDelete(meetingId: number) {
+    return this.ApiRef.delete(`/meetings/${meetingId}`)
   }
 
   //////////COMMENT

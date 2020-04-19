@@ -32,7 +32,7 @@ const MeetingItem = ({ item = defaultOfMeeting }) => {
             <h6 className={`message-title mb-0 mt-1 ${!item.isFutureMeeting && 'text-primary'}`}>
               {partner.name}
             </h6>
-            <span className={`font-12 text-nowrap d-block ${!item.isFutureMeeting && 'text-dark'} `}>Title: {item.title}</span>
+            <span className={`font-12 d-block ${!item.isFutureMeeting && 'text-dark'} `}>Title: {item.title}</span>
             <span className="font-12 text-nowrap d-block text-muted">
               {'Start At: ' + moment(item.startAt).format('LT')}
             </span>

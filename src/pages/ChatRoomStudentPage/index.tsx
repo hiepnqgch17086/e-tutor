@@ -5,6 +5,7 @@ import IpMessage from '../../components/ChatRoom/IpMessage'
 import ProfilePageData from '../ProfilePage/data'
 import ListOfMessage from './ListOfMessage'
 import Data from './data'
+import CurrentTutor from './CurrentTutor'
 // import { IS_STUDENT } from '../../models-one-prop/role'
 
 const ChatRoomStudentPage = () => {
@@ -29,6 +30,19 @@ const ChatRoomStudentPage = () => {
             />
           </div>
         </div>
+      </div>
+
+      <div className="col-md-6">
+        {/* <div className="card">
+          <div className="border-left-0">
+            <ListOfMessage />
+            <IpMessage
+              message={Data.newMessage}
+              onCreateMessage={Data.onCreateMessage}
+            />
+          </div>
+        </div> */}
+        <CurrentTutor />
       </div>
     </div>
 
