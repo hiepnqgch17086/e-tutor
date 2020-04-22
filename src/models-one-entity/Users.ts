@@ -92,6 +92,7 @@ export const User = types.compose(
         // eslint-disable-next-line
         const { data: { result, errorMessage } } = await API.getNumberOfStudentsOfTutor(tutorId)
         if (errorMessage) throw new Error(errorMessage)
+        // console.log(result)
         self.setSnapshotUpdate({ numberOfStudentsOfTutor: result })
         // console.log('self.numberOfStudentsOfTutor', self.numberOfStudentsOfTutor)
       } catch ({ message }) {
@@ -273,7 +274,7 @@ export const User = types.compose(
       // self.setSnapshotNew({})
       setLocalStorageAuthTokenDelete()
     },
-    setDatabaseMyPasswordUpdate: async function (oldPassword: string): Promise<Response> {
+    setDatabaseMyPasswordUpdate: async function (oldPassword: string | number): Promise<Response> {
       try {
 
         const validation = [
@@ -285,9 +286,9 @@ export const User = types.compose(
           if (constraint) throw new Error(constraint)
         }
 
-        const { data: { errorMessage } } = await API.setMyPasswordUpdate({ oldPassword, newPassword: self.password })
+        const { data: { errorMessage } } = await API.setMyPasswordUpdate({ oldPassword: `${oldPassword}`, newPassword: `${self.password}` })
         if (errorMessage) throw new Error(errorMessage)
-
+        toast.success('Update successfully!')
         return {
           isSuccess: true
         }

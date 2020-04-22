@@ -80,7 +80,7 @@ export default class MainApi extends JsonApi {
     return this.ApiRef.get('/my-profile', {
     })
   }
-  setMyPasswordUpdate({ oldPassword = '', newPassword = '' }): Promise<AxiosResponse<any>> {
+  setMyPasswordUpdate({ oldPassword = '', newPassword = '' }: any): Promise<AxiosResponse<any>> {
     return this.ApiRef.put(`/change-my-password`, {
       oldPassword,
       newPassword,

@@ -23,7 +23,7 @@ const TableOfMeetingByPagination = ({
             {
               item.isFutureMeeting ? null : (
                 <Button onClick={() => goMeetingPage(item.id)} size="sm">
-                  Detail
+                  Join
                 </Button>
               )
             }

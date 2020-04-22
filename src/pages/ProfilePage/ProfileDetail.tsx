@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { defaultOfUser } from '../../models-one-entity/Users'
 import { Row, Col } from 'reactstrap'
@@ -8,6 +8,13 @@ import { IS_TUTOR } from '../../models-one-prop/role'
 const ProfileDetail = ({
   user = defaultOfUser
 }) => {
+
+  useEffect(() => {
+    if (user.role === IS_TUTOR) {
+      user.getDatabaseNumberOfStudentsOfTutor(user.id)
+    }
+  }, [user, user.role])
+
   return (
     <div className="card">
       <div className="card-body">

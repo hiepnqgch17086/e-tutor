@@ -16,7 +16,7 @@ const MainList = ({
   return (
     <CustomTable
       className="mb-2"
-      headerArray={["#", "Avatar", "Name", "Email", "Role", "Tutor email", "Menu"]}
+      headerArray={["#", "Avatar", "Name", "Email", "Role", "Tutor name", "Menu"]}
       data={users.items}
       renderItemCellsInRow={({ item = defaultOfUser, index = 0 }) => {
         return [
@@ -26,7 +26,7 @@ const MainList = ({
           item.email,
           item.role === IS_STUDENT ? 'Student' : item.role === IS_TUTOR ? 'Tutor' : 'Other',
           <div>
-            {item.tutorId === null ? '' : item.tutorId.email}
+            {item.tutorId === null ? '' : item.tutorId.name}
             <BtnChangeTutor className="ml-1" student={item} />
           </div>,
           <ButtonGroup>

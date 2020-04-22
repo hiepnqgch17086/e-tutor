@@ -24,8 +24,8 @@ const subscribeToMeeting = gql`
       node {
         id
         title
-        studentId {id name email name}
-        creatorId {id name email name}
+        studentId {id name email name avatar}
+        creatorId {id name email name avatar}
         startAt
         endAt
       }

@@ -18,7 +18,7 @@ const MainList = ({
 
   // const defaultData = [defaultItem]
 
-  const headerArray = ['Title', 'Body', 'CreatedAt',]
+  const headerArray = ['Title', 'Content', 'Time',]
 
   return (
     <div className={`card mb-2`}>

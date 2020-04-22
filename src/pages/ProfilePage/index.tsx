@@ -10,12 +10,6 @@ import { IS_TUTOR } from '../../models-one-prop/role'
 const ProfilePage = () => {
   const { currentUser } = Data
 
-  useEffect(() => {
-    if (currentUser.role === IS_TUTOR) {
-      currentUser.getDatabaseNumberOfStudentsOfTutor(currentUser.id)
-    }
-  }, [currentUser, currentUser.id])
-
   return (
     <>
       <ProfileDetail user={currentUser} />
