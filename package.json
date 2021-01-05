@@ -15,7 +15,7 @@
     "@types/reactstrap": "^8.4.2",
     "apollo-boost": "^0.4.7",
     "apollo-link-ws": "^1.0.19",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.4.1",
     "concurrently": "^5.1.0",
     "firebase": "^7.10.0",
